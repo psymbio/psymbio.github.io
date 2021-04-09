@@ -1,0 +1,19 @@
+I"�<p>This year as a joke I decided to try out building Hell’s Kitchen OS. And no I’m not obsessed with Gordon Ramsay, but the OS needed to be a prank that was better than a RickRoll.</p>
+
+<p>As resources for the project, we don’t have a lot of clean data. We need to collect all the bits and pieces in parts. The only legit sources I know of are: <a href="ops-class.org">ops-class.org</a> the class Zuckerberg struggled in, and Terry O. Davis’s 830 GiB Torrent files, which from what I’ve heard it’s mostly filled with (profanity alert) videos of him fapping and n-words.</p>
+
+<p>Here’s an inspiring quote from the man: “I wrote a compiler, nigger. I am smarter than Linus. I wrote a kernel
+and compiler.”</p>
+
+<h2 id="step-1-deciding-what-all-is-even-going-to-be-there">Step 1: Deciding what all is even going to be there.</h2>
+
+<p>When you decide the theme for your OS, you’re flying in the air thinking it’s all going to be possible, almost too easy. I’ll just change my desktop picture. You’re wrong.</p>
+
+<p>Most OSs are quite boring and just need to have the basic functionality. If you look at Windows 10, from a Linux perspective, you’ve sort of learnt how to be minimal with the softwares you use on a daily basis. And really, 90% of Windows is just basically bloat. All you really need in an OS is a file management system, a universal text editor that can handle almost any file, maybe a tux paint, something for viewing images and videos and a browser (networking capabilities).</p>
+
+<h2 id="step-2-making-a-kernel">Step 2: Making a Kernel</h2>
+
+<p>draft:
+<a href="https://wiki.osdev.org/Beginner_Mistakes">Beginner’s Mistakes</a>
+<a href="https://wiki.osdev.org/Main_Page">OS Dev</a></p>
+:ET

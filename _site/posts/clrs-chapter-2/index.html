@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <title>
+    Chapter 2: Getting Started &ndash; The Brain Archive
+  </title>
+  <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+  <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+  <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+  <meta name="author" content="psymbio" />
+  <meta name="description" content="psymbio's blog" />
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+  <link rel="alternate" type="application/rss+xml" href="/atom.xml" />
+  <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+  <link rel="shortcut icon" type="image/x-icon" href="/icons/icon.png" />
+  <link rel="icon" type="image/png" href="/icons/icon.png">
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- See https://goo.gl/OOhYW5 -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- See https://goo.gl/qRE0vM -->
+  <meta name="theme-color" content="#C1272D">
+
+  <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="psymbio's blog">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="psymbio's blog">
+
+  <!-- Homescreen icons -->
+  <link rel="apple-touch-icon" sizes="192x192" href="icons/icon.png">
+
+  <!-- Tile icon for Windows 8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="icons/icon.png">
+  <meta name="msapplication-TileColor" content="#C1272D">
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <!-- Default twitter cards -->
+  <meta name="twitter:card" content="psymbio's blog">
+  <meta name="twitter:site" content="@psymbio">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="my-app">
+  <meta property="og:image" content="icons/icon.png" />
+
+  <!--clicky analytics-->
+  <script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101291588);</script>
+<script async src="//static.getclicky.com/js"></script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.1.2/es5/startup.js" integrity="sha512-umLk4jlqS6v3HF06nsUFlzLGh3yp1A9X+hhlGOEstnLdkphT8w0O8nJJi2Pf28kfIFQvYzMg7ODPluFlkc/WzQ==" crossorigin="anonymous"></script>
+
+<!--flowcharts-->
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true});</script>
+<!--2d plots-->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<!--3d plots-->
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<!--python for browser: brython
+<script type="text/javascript" src="/scripts/brython.js"></script>
+<script type="text/javascript" src="/scripts/brython_stdlib.js"></script>
+--->
+
+
+<!--copy code to clipboard-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+<script src="/assets/scripts/copycode.js"></script>
+
+<!--particles on the background-->
+<script src="/assets/scripts/particle.js"></script>
+
+<link rel="stylesheet" type="text/css" href="http://tikzjax.com/v1/fonts.css">
+<script src="http://tikzjax.com/v1/tikzjax.js"></script>
+<meta name="google-site-verification" content="3PIlzxg_Fq6uuVEqKvNXrVj8NuWqIA9_hqCxWLcnU-4" />
+<!--
+<nav>
+  <ul>
+      <li><a href="/">Blog</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+-->
+</head>
+<body>
+  <div class="top-line"></div>
+  <div class="container">
+    <section class="shore">
+    <header class="sidebar">
+  <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+  <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+  <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+  <a href="/">
+    <img src="/images/title.png" height="250" width="250" class="avatar" />
+  </a>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+</header>
+<link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+<link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+<link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script src="/assets/scripts/copycode.js"></script>
+<section class="content">
+  <section class="byline">
+    October  6, 2020
+  </section>
+  <h1>Chapter 2: Getting Started</h1>
+  <br>
+  <h2 id="21-insertion-sort">2.1 Insertion Sort</h2>
+
+<p><strong>Psuedocode</strong> is a plain language description of the steps in an algorithm or another system as it has the structure of programming language it shouldn’t be hard to understand if you have some knowledge on programming languages.</p>
+
+<p><strong>Insertion sort</strong> is efficient for sorting a small number of elements. It sort of works like if you had cards in the right hand you switch them to the left in the correct order. To find the correct position we compare the positions from right to left and place the card. At all times the cards in the left hand are always sorted.</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">2</span> <span class="n">to</span> <span class="n">A</span><span class="p">.</span><span class="n">length</span>
+	<span class="n">key</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+	<span class="c1">// insert A[j] into sorted sequence</span>
+	<span class="n">i</span> <span class="o">=</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span>
+	<span class="k">while</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">and</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">key</span>
+		<span class="n">A</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+		<span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+	<span class="n">A</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span></code></pre></figure>
+
+<p>So, I was coding this and I ran into a couple of errors.</p>
+<ol>
+  <li>This is going to sound so dumb but that line: i = j - 1, I kinda skipped. Don’t do that kids.</li>
+</ol>
+
+<p>Let’s break down the code (so that every time someone asks me to sort, bubble sort isn’t my reflex action).</p>
+
+<ul>
+  <li>So, you have j iterating through the whole array starting at 2.</li>
+  <li>Now look at that next line, key = A[j]. Fix that in your brain. ‘key’ is like a temporary variable you’re going to store A[j]’s value in. This is because when you move elements, just switching them, it’s like having two full glasses of milk and water and wanting to switch the glass. You need that third glass otherwise you’re gonna lose the information.</li>
+  <li>Assign i a value before j.</li>
+  <li>Now until i is greater than 0 and the value at a preceding index is greater than the key, you wanna keep shifting the value. A[i + 1] = A[i] and then go on to a previous i. The magic in this is, every time you pick up a key, all the elements to its left shall be sorted.</li>
+  <li>So, it’s like every time you pick up a new key, compare it with every value preceding it and shift the key to its correct position, and finally, A[i + 1] = key.</li>
+</ul>
+
+<p>Here is the code in C and Python</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;
+#define LENGTH(array) (sizeof(array)/sizeof(array[0])
+</span>
+<span class="kt">void</span> <span class="nf">insertion_sort</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">A</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">key</span><span class="p">;</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">size</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">key</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+		<span class="c1">// insert A[j] in sorted sequence</span>
+		<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// important line</span>
+		<span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">A</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+			<span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="n">A</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Sorted Array</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+		<span class="n">printf</span><span class="p">(</span><span class="s">"array[%d]: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">size</span><span class="p">;</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Enter the size of the array: "</span><span class="p">);</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">size</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">array</span><span class="p">[</span><span class="n">size</span><span class="p">];</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">printf</span><span class="p">(</span><span class="s">"array[%d]: "</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+                <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+        <span class="p">}</span>
+        <span class="n">insertion_sort</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">size</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">insertion_sort</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
+   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
+      <span class="n">key</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+      <span class="c1"># insert A[j] into the sorted sequence
+</span>      <span class="n">i</span> <span class="o">=</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span> <span class="c1"># important line
+</span>      <span class="k">while</span> <span class="n">i</span> <span class="o">&gt;=</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">key</span><span class="p">:</span>
+         <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+         <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span>
+      <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+
+
+<span class="n">array</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">"Enter size of array: "</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span> 
+    <span class="n">element</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span> 
+    <span class="n">array</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+<span class="n">insertion_sort</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"The sorted array is:"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
+   <span class="k">print</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">])</span></code></pre></figure>
+
+<p>There are three parts that make for an algorithm:</p>
+<ul>
+  <li><strong>Initialization</strong>: First iteration of a loop. Like here we start at j = 2.</li>
+  <li><strong>Maintenance</strong>: True before iteration of a loop and remains true in the next iteration. Like the for loop and the while loop we encounter.</li>
+  <li><strong>Termination</strong>: When the loop terminates, the invariant(property of a mathematical object which remains unchanged) gives us a useful property that the algorithm is correct. When the first two properties hold true, the loop invariant is true prior to every loop iteration. It’s like mathematical induction where you have to prove every preceding step is true and this corresponds to the correctness of the algorithm. But it also differs from induction, as in induction we apply the inductive step infinitely and here we stop the induction and the loop terminates. For this case, the termination statement is in the for loop, j &gt; A.length.</li>
+</ul>
+
+<h3 id="pseudocode">Pseudocode</h3>
+
+<ul>
+  <li>“for”, “while”, “repeat-until”, and “if-else” are from programming languages.</li>
+  <li>”//” for comments.</li>
+  <li>i = j = e are mutiple assignments.</li>
+  <li>“A.length” is an attribute of that object.</li>
+  <li>Passing is done by value thus only a copy of the parameters are received.</li>
+  <li>“return” passes values to its caller.</li>
+  <li>Boolean expressions like “and” and “or” are used for <strong>short-circuiting</strong>.</li>
+  <li>“error” specifies error and no solution to solve itis given.</li>
+</ul>
+
+<p>Extra Resources: To get amazing explanations of all the sorting algorithms try <a href="https://www.youtube.com/user/mycodeschool">mycodeschool</a> on YouTube. He explains everything so well and his voice is pretty calming too. Here’s is his <a href="https://youtu.be/i-SKeOcBwko">insertion sort video</a>.</p>
+
+<h2 id="exercises">Exercises</h2>
+
+<p>2.1-1) Using Figure 2.2 as a model, illustrate the operation of insertion sort on the array A = (31, 41, 59, 26, 41, 58).</p>
+
+<p><img src="2.1-1.jpg" alt="Solution" /></p>
+
+<p>2.1-2) Rewrite the insertion sort procedure to sort into non-increasing instead of non-decreasing order.</p>
+
+<p>Just need to change one little detail in the code. A[i] &gt; key needs to become A[i] &lt; key.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">insertion_sort_dsc</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
+   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
+      <span class="n">key</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+      <span class="c1"># insert A[j] into the sorted sequence
+</span>      <span class="n">i</span> <span class="o">=</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span> <span class="c1"># important line
+</span>      <span class="k">while</span> <span class="n">i</span> <span class="o">&gt;=</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">key</span> <span class="p">:</span>
+         <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+         <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span>
+      <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+
+
+<span class="n">array</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">"Enter size of array: "</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span> 
+    <span class="n">element</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span> 
+    <span class="n">array</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+<span class="n">insertion_sort</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"The sorted array is:"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
+   <span class="k">print</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">])</span></code></pre></figure>
+
+<p>2.1-3) Consider the searching problem:<br />
+Input: A sequence of n numbers A = (a_1, a_2, … a_n) and a value <em>v</em>.<br />
+Output: An index i such that <em>v</em> = A[i] or the special value NIL if does not appear in A.<br />
+Write pseudo-code for linear search, which scans through the sequence, looking for <em>v</em>. Using a loop invariant, prove that your algorithm is correct. Make sure that your loop invariant fulfills the three necessary properties.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">linear_search</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
+       <span class="k">if</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+           <span class="k">return</span> <span class="n">i</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span></code></pre></figure>
+
+<p>Here is the code in C and Python.</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;
+#define LENGTH(arr) (sizeof(arr)/sizeof(arr[0]))
+</span>
+<span class="kt">int</span> <span class="nf">linear_search</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span> <span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="n">LENGTH</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">target</span> <span class="o">==</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        		<span class="k">return</span> <span class="n">i</span><span class="p">;</span>
+	<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">size</span><span class="p">;</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Enter the size of the array: "</span><span class="p">);</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">size</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">array</span><span class="p">[</span><span class="n">size</span><span class="p">];</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">LENGTH</span><span class="p">(</span><span class="n">array</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">printf</span><span class="p">(</span><span class="s">"array[%d]: "</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+                <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>                                           
+        <span class="p">}</span>                                                                         
+        <span class="kt">int</span> <span class="n">target</span><span class="p">;</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Enter the element to find: "</span><span class="p">);</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">target</span><span class="p">);</span>
+        <span class="n">linear_search</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">target</span><span class="p">);</span>
+	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">LENGTH</span><span class="p">(</span><span class="n">array</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>                                    
+                <span class="n">printf</span><span class="p">(</span><span class="s">"%d "</span><span class="p">,</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>                                          
+<span class="p">}</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">linear_search</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
+       <span class="k">if</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+           <span class="k">return</span> <span class="n">i</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="n">array</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">"Enter size of array: "</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span> 
+    <span class="n">element</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span> 
+    <span class="n">array</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+<span class="n">target</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">"Enter an element to find in the array: "</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Target element found at index: "</span><span class="p">,</span> <span class="n">linear_search</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">target</span><span class="p">))</span></code></pre></figure>
+
+<p>2.1-4) Consider the problem of adding two n-bit binary integers, stored in two n-element arrays A and B. The sum of the two integers should be stored in binary form in an (n+1)-element array C. State the problem formally and write pseudocode for adding the two integers.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">addBinary</span><span class="p">(</span><span class="nb">int</span><span class="p">[]</span> <span class="n">a</span><span class="p">,</span> <span class="nb">int</span><span class="p">[]</span> <span class="n">b</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+	<span class="nb">int</span> <span class="n">c</span><span class="p">[</span><span class="n">size</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+	<span class="nb">int</span> <span class="n">carryover</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+	<span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">length</span><span class="p">,</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">length</span><span class="p">,</span> <span class="n">i</span><span class="o">++</span><span class="p">,</span> <span class="n">j</span><span class="o">++</span><span class="p">):</span>
+		<span class="nb">sum</span> <span class="o">=</span> <span class="n">carry</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+			<span class="n">carry</span> <span class="o">=</span> <span class="mi">1</span>
+		<span class="k">if</span> <span class="p">((</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)):</span>
+			<span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+			<span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="k">if</span><span class="p">((</span><span class="nb">sum</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">carry</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)):</span>  
+			<span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+			<span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span></code></pre></figure>
+
+<p>Yeah, this solution isn’t gonna work out. Google it and most solutions are a string manipulation question of LeetCode(question no. 67). But I wanted like an easier version. Link: <a href="https://stackoverflow.com/questions/57506407/adding-two-binary-numbersinteger-array">https://stackoverflow.com/questions/57506407/adding-two-binary-numbersinteger-array</a> (yep -2 upvotes).</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">34</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">,</span> <span class="n">p</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">switch</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">carry</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">temp</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">temp</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">temp</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">carry</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">temp</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">carry</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="nl">default:</span>
+        <span class="c1">// should never be reached with inputs of 0 or 1</span>
+        <span class="n">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">invalid_argument</span><span class="p">(</span><span class="s">"invalid input"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Does this solution go backwards? I’m gonna sit and edit this solution to move forward.</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">int</span><span class="p">[]</span> <span class="n">addBinary</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">b</span><span class="p">[],</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">temp</span><span class="p">[</span><span class="n">size</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+	<span class="kt">int</span> <span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">,</span> <span class="n">p</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">switch</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">carry</span><span class="p">)</span> <span class="p">{</span>
+    			<span class="k">case</span> <span class="mi">0</span><span class="p">:</span>
+        			<span class="n">temp</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        			<span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        			<span class="k">break</span><span class="p">;</span>
+    			<span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
+        			<span class="n">temp</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        			<span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        			<span class="k">break</span><span class="p">;</span>
+    			<span class="k">case</span> <span class="mi">2</span><span class="p">:</span>
+        			<span class="n">temp</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        			<span class="n">carry</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        			<span class="k">break</span><span class="p">;</span>
+    			<span class="k">case</span> <span class="mi">3</span><span class="p">:</span>
+        			<span class="n">temp</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        			<span class="n">carry</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        			<span class="k">break</span><span class="p">;</span>
+    			<span class="nl">default:</span>
+        			<span class="c1">// should never be reached with inputs of 0 or 1</span>
+        			<span class="n">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">invalid_argument</span><span class="p">(</span><span class="s">"invalid input"</span><span class="p">);</span>
+    		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Yep, this is how I would solve it.</p>
+
+<p>The generic solution to this problem: [Leetcode Problem: 67, addBinary] and comments that explain it. Interesting fact: Both Nick White and Kevin Naughton Jr. had the exact same solutions. Hmmmmmmm. Maybe it’s like a general lack of creativity (or not).</p>
+
+<p>First now them basics: <a href="https://circuitglobe.com/binary-addition-and-subtraction.html">https://circuitglobe.com/binary-addition-and-subtraction.html</a>.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">addBinary</span><span class="o">(</span><span class="nc">String</span> <span class="n">a</span><span class="o">,</span> <span class="nc">String</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">StringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">();</span> <span class="c1">// in Java this is how you build strings</span>
+		<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+		<span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+		<span class="kt">int</span> <span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+		<span class="c1">// got to start at least significant bit</span>
+
+		<span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// traverse both the strings completely you don't want to stop if String a has lesser digits than String b</span>
+			<span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">carry</span><span class="o">;</span>
+			<span class="k">if</span> <span class="o">(</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">+=</span> <span class="n">a</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">-</span> <span class="sc">'0'</span><span class="o">;</span> <span class="c1">// converts character to integer</span>
+			<span class="k">if</span> <span class="o">(</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">+=</span> <span class="n">b</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span><span class="o">)</span> <span class="o">-</span> <span class="sc">'0'</span><span class="o">;</span>
+			<span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">sum</span> <span class="o">%</span> <span class="mi">2</span><span class="o">);</span> <span class="c1">// if both of the sums we were looking at were 1 it appends 0</span>
+			<span class="n">carry</span> <span class="o">=</span> <span class="n">sum</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span> <span class="c1">// and you carry the 1 </span>
+			<span class="n">i</span><span class="o">--;</span>
+			<span class="n">j</span><span class="o">--;</span>
+		<span class="o">}</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">carry</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">carry</span><span class="o">);</span> <span class="c1">// for the most significant bit</span>
+		<span class="k">return</span> <span class="n">sb</span><span class="o">.</span><span class="na">reverse</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span> <span class="c1">// because append puts things at the end we would reverse the whole string</span>
+	<span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<h2 id="22-analyzing-algorithms">2.2 Analyzing Algorithms</h2>
+
+<p>We need to <strong>analyze</strong> algorithms to compute how many resources(memory, communication, bandwidth, and computer hardware) they shall require. We compute this comparing to a generic processor, <strong>random-access machine</strong>(RAM) model of computation where there is no concurrency in operations. It contains arithmetic instructions(add, subtract, multiply, divide, remainder, floor, and ceiling), data subroutines(load, store, and copy), and control(conditional and unconditional branching, subroutine calls, and return).</p>
+
+<h3 id="analysis-of-insertion-sort">Analysis of Insertion Sort</h3>
+
+<p>Time taken by insertion-sort depends on the input, and so we describe the time taken as the size of the input. The <strong>running time</strong> of an algorithm is the primitive steps executed by it.</p>
+
+<h3 id="worst-case-and-average-case-analysis">Worst-case and Average-case Analysis</h3>
+
+<p>Worst-case running time is the longest-running time it would take for the algorithm on size n, it gives the upper bound and we then know for sure that the time shall not exceed it. Most of the time the worst-case fails, it’s only in situations like if you were searching and the data isn’t in the database.</p>
+
+<p>Average-case is roughly as bad as the worst-case. // need to add</p>
+
+<p>This book analyzes algorithms probabilistically. Also, we write <strong>randomized algorithms</strong>, which makes random choices to allow the <strong>probabilistic analysis</strong> and yields an <strong>expected time</strong>.</p>
+
+<h3 id="order-of-growth">Order of Growth</h3>
+
+<p>Running time that really interests us. If we had (an^2 + n) then we ignore the coefficient of n^2 and n, since they are insignificant. Thus, insertion sort has a worst-case running time of O(n^2). It might be that an algorithm of higher-order takes more time than that of a smaller order but for a large amount of inputs, this won’t be the case.</p>
+
+<h2 id="exercises-1">Exercises</h2>
+
+<p>2.2-1) Express the function n^3/1000 - 100n^2 -100n + 3 in O-notation.</p>
+
+<p>O(n^3).</p>
+
+<p>2.2-2) Consider sorting n numbers stored in array A by first finding the smallest element of A and exchanging it with the element in A[1]. Then find the second smallest element of A, and exchange it with A[2]. Continue in this manner for the first n-1 elements of A. Write pseudocode for this algorithm, which is known as selection sort. What loop invariant does this algorithm maintain? Why does it need to run for only the first n-1 elements, rather than for all n elements? Give the best-case and worst-case running times of selection sort in Big-O notation.</p>
+
+<p>Selection sort psuedocode</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">selection_sort</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
+	<span class="nb">int</span> <span class="nb">min</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span>
+	<span class="k">while</span> <span class="n">flag</span> <span class="o">&lt;</span> <span class="n">array</span><span class="p">.</span><span class="n">size</span><span class="p">:</span>
+		<span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="n">flag</span> <span class="ow">in</span> <span class="n">array</span><span class="p">:</span>
+			<span class="k">if</span> <span class="nb">min</span> <span class="o">&gt;</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+				<span class="nb">min</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+				<span class="n">flag</span> <span class="o">=</span> <span class="n">flag</span> <span class="o">+</span> <span class="mi">1</span>
+		<span class="n">swap</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="nb">min</span><span class="p">)</span>
+		<span class="n">j</span><span class="o">++</span></code></pre></figure>
+
+<p>// needs edits</p>
+
+<p>2.2-3) Consider linear search again (see Exercise 2.1-3). How many elements of the input sequence need to be checked on the average, assuming that the element being searched for is equally likely to be any element in the array? How about in the worst case? What are the average-case and worst-case running times of linear search in Big-O notation? Justify your answers.</p>
+
+<p>On average the linear algorithm would have to search half the elements n/2, O(n/2) = O(n). The worst case of the algorithm would be O(n), meaning it searches through all the numbers.</p>
+
+<p>2.2-4) How can we modify almost any algorithm to have a good best-case running time?</p>
+
+<p>Funky question. What if we made our algorithm only take in perfect inputs, like elements that don’t require sorting in the first place? Yeah, probably not. We could always try to make sure we don’t put two loops consecutively and try to avoid the O(n^2) case. What else? Make sure memory consumption is kept to O(1). But I’ve noticed that sometimes when you reduce space complexity the time complexity increases. One example is merging two sorted arrays. Like if you think of this traditionally, you take two elements from either array compare them, and place the smaller of the two elements in a new result array. But if you were to reduce space complexity, make it O(1) then you’d need to place another while loop in the for loop that shifts elements, thereby resulting in a time complexity of O(n^2).</p>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Will have to write code that explains this.</li>
+</ul>
+
+<p>Okay, so it is a thing. Handling both complexities could mean one of them suffers.</p>
+
+<blockquote>
+  <p>You might have two different optimization goals, that might sometimes conflict with each other. For example, to optimize the code for performance might conflict with optimize the code for less memory footprint and size. You might have to find a balance.</p>
+</blockquote>
+
+<p>(Source: <a href="https://www.thegeekstuff.com/2015/01/c-cpp-code-optimization/">https://www.thegeekstuff.com/2015/01/c-cpp-code-optimization/</a>)</p>
+
+<p>Branchless programming is another thing I came across recently. Here’s a video that explains it pretty well: <a href="https://youtu.be/bVJ-mWWL7cE">https://youtu.be/bVJ-mWWL7cE</a> by Creel. Now I haven’t watched Creel as much but this video does a pretty good explanation of something I’ve never been able to wrap my head around. Also, switch cases all the way baby. I don’t know I’ve always wanted to get like an in-depth understanding of how jump tables work.</p>
+
+<p>Edit: Creel looks like one of those YouTubers that deep dives into the basics of everything. There’s a lot of computer architecture videos there and yeah, definitely think I should check him out.</p>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Jump tables and their inner workings.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Understand jump tables and their inner workings.</li>
+</ul>
+
+<p>Loops can optimized in weird ways…</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="c1">// not optimized</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">;</span> <span class="p">)</span> <span class="c1">// optimized but not readable</span></code></pre></figure>
+
+<p>I don’t know if this question is asking about all these small things to optimize code (like don’t use cout but use printf instead) but I feel like it’s anyways these small details that contribute to the code and can effectively optimize any algorithm (given the language you use. I hope you don’t use Python, because it is pretty damn slow). I personally feel like I’m gonna put my feet back in C++ and really just stick to it once I get the time to learn some of it’s advanced concepts. Books: <a href="https://github.com/rigtorp/awesome-modern-cpp">https://github.com/rigtorp/awesome-modern-cpp</a> also, this guide: <a href="https://github.com/mcinglis/c-style">https://github.com/mcinglis/c-style</a>. (Man, this reading list just keeps getting longer and longer).</p>
+
+<p>But this would definitively be my reply to optimizing just any piece of code.</p>
+
+<p>Answer on the github guide: You can modify any algorithm to have a best case time complexity by adding a special case. If the input matches this special case, return the pre-computed answer.</p>
+
+<p>I’m going to facepalm myself. Okay, first off what kind of answers are these? Man.</p>
+
+<p>A better answer in the Rutgers guide:</p>
+
+<blockquote>
+  <p>For a good best-case running time, modify an algorithm to first randomly produce output and then check whether or not it satisfies the goal of the algorithm. If so, produce this output and halt. Otherwise, run the algorithm as usual. It is unlikely that this will be successful, but in the best-case the running time will only be as long as it takes to check a solution. For example, we could modify selection sort to first randomly permute the elements of A, then check if they are in sorted order. If they are, output A. Otherwise run selection sort as usual. In the best case, this modified algorithm will have running time Θ(n).</p>
+</blockquote>
+
+<p>Basically, the answer I rejected is correct? I don’t know, my mind shall never settle on that answer being totally correct. I think it’s a combination of your coding style, algorithm, and the input that really consolidates the lead. I may be completely off, but I can’t accept the fact that the best algorithm just knows how to the best-case input efficiently, I mean sure that’s helpful but it definitely isn’t the complete picture.</p>
+
+<h2 id="23-designing-algorithms">2.3 Designing Algorithms</h2>
+
+<p>For insertion sort, we used an <strong>incremental</strong> approach. In this section, we examine an alternative design approach, known as <strong>“divide-and-conquer”</strong>. Here the worst-case running time is much less than that of insertion sort and often their running times are easily determined.</p>
+
+<h3 id="231-the-divide-and-conquer-approach">2.3.1 The divide-and-conquer approach</h3>
+
+<p>Many algorithms use <strong>recursion</strong> to solve problems, they use the divide-and-conquer approach. They break the problem into several subproblems that are similar to the original problem but smaller in size, solve the subproblems recursively, and then combine these solutions to create a solution to the original problem.</p>
+
+<ul>
+  <li>Divide: the problem into a number of subproblems that are smaller instances of the same problem.</li>
+  <li>Conquer: the subproblems by solving them recursively. If the subproblem sizes are small enough, however, just solve the subproblems in a straightforward manner.</li>
+  <li>Combine: the solutions to the subproblems into the solution for the original problem.</li>
+</ul>
+
+<p>Merge-sort algorithm follows this approach.</p>
+
+<ul>
+  <li>It divides the n-element sequence to n/2 subsequences.</li>
+  <li>It sorts the two subsequences recursively using merge sort.</li>
+  <li>It then merges the two sorted subsequences to produce the sorted sequence.</li>
+</ul>
+
+<p>The recursion “bottoms out” when the sequence to be sorted has length 1, because then the array is already sorted.</p>
+
+<p>The key operation in merge-sort is merging of two sorted subsequences in the <strong>combine</strong> step. We call MERGE(A, p, q, r), where A is the array, p, q and r are indices in the array such that p &lt;= q &lt; r. The procedure assumes that the subarrays A[p … q] and A[q+1 … r] are sorted and merges them to form A[p .. r]. Here, MERGE procedure takes time of O(n), where n = r - p + 1 is the total elements being merged.</p>
+
+<p>If you have two sorted piles of cards and you were to merge them, then you’d select a card from either pile, compare them, and place the smallest one in the new sorted pile. This takes O(n) time. The following pseudocode implements this. Here, we also place a <strong>sentinel</strong> card at the bottom of the pile, which has a special value to simplify code. Here it has the value: infinity. Once the sentinel card is exposed that means all the non-sentinel cards of that list have already been placed. But here, we also know that we have to do this exactly r - p + 1 times.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">MERGE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+	<span class="n">n_1</span> <span class="o">=</span> <span class="n">q</span> <span class="o">-</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">1</span>
+	<span class="n">n_2</span> <span class="o">=</span> <span class="n">r</span> <span class="o">-</span> <span class="n">q</span>
+	<span class="n">let</span> <span class="n">L</span><span class="p">[</span><span class="mi">1</span> <span class="p">...</span> <span class="n">n_1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="ow">and</span> <span class="n">R</span><span class="p">[</span><span class="mi">1</span> <span class="p">...</span> <span class="n">n_2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="n">be</span> <span class="n">new</span> <span class="n">arrays</span>
+	<span class="n">For</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n_1</span><span class="p">:</span>
+		<span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">p</span> <span class="o">+</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+	<span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n_2</span><span class="p">:</span>
+		<span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">q</span> <span class="o">+</span> <span class="n">j</span><span class="p">]</span>
+	<span class="n">L</span><span class="p">[</span><span class="n">n_1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">infinity</span>
+	<span class="n">R</span><span class="p">[</span><span class="n">n_2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">infinity</span>
+	<span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+	<span class="n">j</span> <span class="o">=</span> <span class="mi">1</span>
+	<span class="k">for</span> <span class="n">k</span> <span class="o">=</span> <span class="n">p</span> <span class="n">to</span> <span class="n">r</span><span class="p">:</span>
+		<span class="k">if</span> <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+			<span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+			<span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+		<span class="k">else</span> 
+			<span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+			<span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span></code></pre></figure>
+
+<p>First, we compute the length of sub-array n_1 and n_2. Then, we create two subarrays L and R, and place elements A[p … q] in L and A[q + 1 … r] in R. Then, we place sentinel values at n_1 +1 and n_2 + 1 positions of the arrays L and R respectively. After that we start another for loop from p to r comparing elements in both the arrays L and R and placing the smaller of the two onto A. This procedure has O(n) time complexity.</p>
+
+<p>MERGE routine is a subroutine of MERGE-SORT. MERGE-SORT(A, p, r) sorts elements in the subarray A[p … r]. If p &gt;= r, then the subarray has at most one element and is already sorted. Otherwise q is computed as (p + r)/2 making two sub-arrays A[p … q] and A[q+1 … r] both containing n/2 elements.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">MERGE</span><span class="o">-</span><span class="n">SORT</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+	<span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">:</span>
+		<span class="n">q</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="n">r</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+		<span class="n">MERGE</span><span class="o">-</span><span class="n">SORT</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+		<span class="n">MERGE</span><span class="o">-</span><span class="n">SORT</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">q</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+		<span class="n">MERGE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span></code></pre></figure>
+
+<p>To sort the whole array, we call MERGE-SORT(A, 1, A.length), where A.length = n. First they are broken to one item sequences which are already sorted and then combined into two sorted elements, then four, 2^k (for k = 0, 1, 2, 3 …). Until finally two sorted arrays of n/2 are combined in the last step.</p>
+
+<p><img src="https://www.google.com/url?sa=i&amp;url=https%3A%2F%2Fwww.101computing.net%2Fmerge-sort-algorithm%2F&amp;psig=AOvVaw04-7OT541XgTcT4s2gT7iJ&amp;ust=1608616243362000&amp;source=images&amp;cd=vfe&amp;ved=0CAIQjRxqFwoTCJCykdOw3u0CFQAAAAAdAAAAABAD" alt="" /></p>
+
+<h3 id="232-analyzing-divide-and-conquer-algorithms">2.3.2 Analyzing divide-and-conquer algorithms</h3>
+
+<p>When an algorithm contains a call to itself we call it a <strong>recurrence</strong>.</p>
+
+<p>2.3-1) Using Figure 2.4 as a model, illustrate the operation of merge sort on the array A = (3, 41, 52, 26, 38, 57, 9, 49).</p>
+
+<p>2.3-2) Rewrite the MERGE procedure so that it does not use sentinels, instead of stopping once either array L or R has had all its elements copied back to A and then copying the remainder of the other array back into A.</p>
+
+<p>I don’t we need sentinel values, in any case. So maybe we just remove the lines?</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">MERGE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+        <span class="n">n_1</span> <span class="o">=</span> <span class="n">q</span> <span class="o">-</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">n_2</span> <span class="o">=</span> <span class="n">r</span> <span class="o">-</span> <span class="n">q</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n_1</span><span class="p">:</span>
+                <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">p</span> <span class="o">+</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n_2</span><span class="p">:</span>
+                <span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">q</span> <span class="o">+</span> <span class="n">j</span><span class="p">]</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="o">=</span> <span class="n">p</span> <span class="n">to</span> <span class="n">r</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+                        <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+			<span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+			<span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">MERGE</span><span class="o">-</span><span class="n">SORT</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+	<span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">:</span>
+		<span class="n">q</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">((</span><span class="n">p</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+		<span class="n">MERGE</span><span class="o">-</span><span class="n">SORT</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+		<span class="n">MERGE</span><span class="o">-</span><span class="n">SORT</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">q</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+		<span class="n">MERGE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span></code></pre></figure>
+
+<p>2.3-3) Use mathematical induction to show that when n is an exact power of 2, the solution of the recurrence</p>
+
+<p>2.3-4) We can express insertion sort as a recursive procedure as follows. In order to sort A[1 … n], we recursively sort A[1 … n - 1] and then insert A[n] into the sorted array A[n - 1]. Write a recurrence for the running time of this recursive version of insertion sort.</p>
+
+<p>2.3-5) Referring back to the searching problem (see Exercise 2.1-3), observe that if the sequence A is sorted, we can check the midpoint of the sequence against and eliminate half of the sequence from further consideration. The binary search algorithm repeats this procedure, halving the size of the remaining portion of the sequence each time. Write pseudocode, either iterative or recursive, for binary search. Argue that the worst-case running time of binary search is O(lg n).I</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">BINARY</span><span class="o">-</span><span class="n">SEARCH</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+	<span class="nb">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">A</span><span class="p">.</span><span class="n">length</span><span class="p">,</span> <span class="n">location</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+	<span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">A</span><span class="p">.</span><span class="n">length</span><span class="p">:</span>
+		<span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+		<span class="k">if</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">A</span><span class="p">[</span><span class="n">mid</span><span class="p">]:</span>
+			<span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+			<span class="k">continue</span>
+		<span class="k">if</span> <span class="n">target</span> <span class="o">&gt;</span> <span class="n">A</span><span class="p">[</span><span class="n">mid</span><span class="p">]:</span>
+			<span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+			<span class="k">continue</span>
+		<span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="n">A</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span>
+			<span class="n">location</span> <span class="o">=</span> <span class="n">i</span></code></pre></figure>
+
+<p>2.3-6) Observe that the while loop of lines 5–7 of the INSERTION-SORT procedure in Section 2.1 uses a linear search to scan (backward) through the sorted subarray A[1 … j - 1]. Can we use a binary search (see Exercise 2.3-5) instead to improve the overall worst-case running time of insertion sort to O(n lg n)?</p>
+
+<p>Binary search in insertion-sort… Huh? And then also making its complexity O(n log n). So, if we were thinking in terms of a binary search we find some kind of a middle-value and start placing values smaller than it before and the ones bigger after. We would need to do that recursively till the whole array is sorted. Which would mean in this sorting algorithm we are continuously searching for the correct location of each element through binary searches.</p>
+
+<p>(I quit, googling the solution)</p>
+
+<p>Funnily enough, <a href="https://walkccc.github.io/CLRS/Chap02/2.3/">https://walkccc.github.io/CLRS/Chap02/2.3/</a> says it’s impossible.</p>
+
+<p>GeeksforGeeks has a solution:</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">binarySearch</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">item</span><span class="p">,</span> <span class="kt">int</span> <span class="n">low</span><span class="p">,</span> <span class="kt">int</span> <span class="n">high</span><span class="p">)</span> 
+<span class="p">{</span> 
+    <span class="k">if</span> <span class="p">(</span><span class="n">high</span> <span class="o">&lt;=</span> <span class="n">low</span><span class="p">)</span> 
+        <span class="k">return</span> <span class="p">(</span><span class="n">item</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="n">low</span><span class="p">])</span><span class="o">?</span>  <span class="p">(</span><span class="n">low</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">:</span> <span class="n">low</span><span class="p">;</span> 
+  
+    <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">low</span> <span class="o">+</span> <span class="n">high</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span> 
+  
+    <span class="k">if</span><span class="p">(</span><span class="n">item</span> <span class="o">==</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">])</span> 
+        <span class="k">return</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> 
+  
+    <span class="k">if</span><span class="p">(</span><span class="n">item</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">])</span> 
+        <span class="k">return</span> <span class="n">binarySearch</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="p">);</span> 
+    <span class="k">return</span> <span class="n">binarySearch</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">mid</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> 
+<span class="p">}</span> 
+  
+<span class="c1">// Function to sort an array a[] of size 'n' </span>
+<span class="kt">void</span> <span class="nf">insertionSort</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> 
+<span class="p">{</span> 
+    <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">loc</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">selected</span><span class="p">;</span> 
+  
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> 
+    <span class="p">{</span> 
+        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> 
+        <span class="n">selected</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> 
+  
+        <span class="c1">// find location where selected sould be inseretd </span>
+        <span class="n">loc</span> <span class="o">=</span> <span class="n">binarySearch</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">selected</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span> 
+  
+        <span class="c1">// Move all elements after location to create space </span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">j</span> <span class="o">&gt;=</span> <span class="n">loc</span><span class="p">)</span> 
+        <span class="p">{</span> 
+            <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">];</span> 
+            <span class="n">j</span><span class="o">--</span><span class="p">;</span> 
+        <span class="p">}</span> 
+        <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">selected</span><span class="p">;</span> 
+    <span class="p">}</span> 
+<span class="p">}</span></code></pre></figure>
+
+<p>Source: <a href="https://www.geeksforgeeks.org/binary-insertion-sort/">https://www.geeksforgeeks.org/binary-insertion-sort/</a></p>
+
+<p>And already they have a while loop inside a for and still claim it to be O(log n), not even n log n?? Their python solution looks a little more O(n log n). But then again it’s GeeksforGeeks, with a reputation given by either Indian geeks that are just going to suck up to it for having every problem’s solution.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+    <span class="c1"># we need to distinguish whether we should insert
+</span>    <span class="c1"># before or after the left boundary.
+</span>    <span class="c1"># imagine [0] is the last step of the binary search
+</span>    <span class="c1"># and we need to decide where to insert -1
+</span>    <span class="k">if</span> <span class="n">start</span> <span class="o">==</span> <span class="n">end</span><span class="p">:</span> 
+        <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">val</span><span class="p">:</span> 
+            <span class="k">return</span> <span class="n">start</span> 
+        <span class="k">else</span><span class="p">:</span> 
+            <span class="k">return</span> <span class="n">start</span><span class="o">+</span><span class="mi">1</span>
+  
+    <span class="c1"># this occurs if we are moving beyond left's boundary 
+</span>    <span class="c1"># meaning the left boundary is the least position to 
+</span>    <span class="c1"># find a number greater than val 
+</span>    <span class="k">if</span> <span class="n">start</span> <span class="o">&gt;</span> <span class="n">end</span><span class="p">:</span> 
+        <span class="k">return</span> <span class="n">start</span> 
+  
+    <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">start</span><span class="o">+</span><span class="n">end</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+    <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">val</span><span class="p">:</span> 
+        <span class="k">return</span> <span class="n">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span> 
+    <span class="k">elif</span> <span class="n">arr</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">val</span><span class="p">:</span> 
+        <span class="k">return</span> <span class="n">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">mid</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> 
+    <span class="k">else</span><span class="p">:</span> 
+        <span class="k">return</span> <span class="n">mid</span> 
+  
+<span class="k">def</span> <span class="nf">insertion_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span> 
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)):</span> 
+        <span class="n">val</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> 
+        <span class="n">j</span> <span class="o">=</span> <span class="n">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> 
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[:</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">val</span><span class="p">]</span> <span class="o">+</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">:</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span> 
+    <span class="k">return</span> <span class="n">arr</span></code></pre></figure>
+
+<p>Rutgers is also like, nah man.</p>
+
+<blockquote>
+  <p>A binary search wouldn’t improve the worst-case running time. Insertion sort has to copy each element greater than key into its neighboring spot in the array. Doing a binary search would tell us how many how many elements need to be copied over, but wouldn’t rid us of the copying needed to be done.</p>
+</blockquote>
+
+<p><a href="https://stackoverflow.com/questions/18022192/insertion-sort-with-binary-search">Stackoverflow</a> led me to: <a href="https://jeffreystedfast.blogspot.com/2007/02/binary-insertion-sort.html">https://jeffreystedfast.blogspot.com/2007/02/binary-insertion-sort.html</a>.</p>
+
+<p>Question: Is a binary insertion sort just tim sort?</p>
+
+<p>This is a four part video series of Gaurav Sen explaining a hybrid sorting algorithm called Tim sort:</p>
+
+<ol>
+  <li><a href="https://youtu.be/emeME__917E">https://youtu.be/emeME__917E</a></li>
+  <li><a href="https://youtu.be/6DOhQyqAAvU">https://youtu.be/6DOhQyqAAvU</a> (even calling it binary insertion sort)</li>
+  <li><a href="https://youtu.be/Yk4CBisILaw">https://youtu.be/Yk4CBisILaw</a></li>
+  <li><a href="https://youtu.be/o8y9uYygLcw">https://youtu.be/o8y9uYygLcw</a></li>
+</ol>
+
+<p>(Why is this question so big?)</p>
+
+<p>Tim sort is the only thing that is a hybrid of insertion and merge (source: <a href="https://hackernoon.com/timsort-the-fastest-sorting-algorithm-youve-never-heard-of-36b28417f399">https://hackernoon.com/timsort-the-fastest-sorting-algorithm-youve-never-heard-of-36b28417f399</a>) and so for the answers out there that just invalidate the question, you start to wonder if their solutions are even correct, or something to refer to.</p>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Create an algorithm for binary insertion sorting after watching those Gaurav Sen videos.</li>
+</ul>
+
+<p>Extra resource: <a href="https://github.com/ahampriyanshu/algo_ds_101/tree/master/Algorithms/Sorting_Algorithms">https://github.com/ahampriyanshu/algo_ds_101/tree/master/Algorithms/Sorting_Algorithms</a>. I found this while snooping about Github during Hacktoberfest2020 searching for projects to contribute to, it has like almost every sorting algorithm I’ve heard of.</p>
+
+<p>2.3-7) ★ Describe a O(n lg n)-time algorithm that, given a set S of n integers and another integer x, determines whether or not there exist two elements in S whose sum is exactly x.</p>
+
+<p>Black star on this question has already scared me.</p>
+
+  <script src="https://utteranc.es/client.js"
+        repo="psymbio/psymbio.github.io"
+        issue-term="pathname"
+        theme="github-dark-orange"
+        crossorigin="anonymous"
+        async>
+</script>
+</section>
+</section>
+<section class="shore">
+<section class="content">
+  <div class="footer"></div>
+    <section class="thanks">
+      <span>That sentence that goes before giving my email to strangers: <a href="mailto: psymbio@gmail.com">psymbio@gmail.com</a></span>
+    </section>
+  </div>
+</section>
+</section>
+<br>
+<br>
+<script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+
+    <section class="shore">
+  </div>
+</body>  
+<script>
+  'use strict';
+  var head = document.head;
+  var link = document.createElement('link');
+  link.type = 'text/css';
+  link.rel = 'stylesheet';
+  link.href = '/css/pygments.css'
+  head.appendChild(link);
+</script>
+
+</html>

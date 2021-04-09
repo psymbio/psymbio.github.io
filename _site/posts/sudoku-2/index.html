@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <title>
+    Reinforcement Learning based Sudoku Players, Part 2 &ndash; The Brain Archive
+  </title>
+  <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+  <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+  <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+  <meta name="author" content="psymbio" />
+  <meta name="description" content="psymbio's blog" />
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+  <link rel="alternate" type="application/rss+xml" href="/atom.xml" />
+  <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+  <link rel="shortcut icon" type="image/x-icon" href="/icons/icon.png" />
+  <link rel="icon" type="image/png" href="/icons/icon.png">
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- See https://goo.gl/OOhYW5 -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- See https://goo.gl/qRE0vM -->
+  <meta name="theme-color" content="#C1272D">
+
+  <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="psymbio's blog">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="psymbio's blog">
+
+  <!-- Homescreen icons -->
+  <link rel="apple-touch-icon" sizes="192x192" href="icons/icon.png">
+
+  <!-- Tile icon for Windows 8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="icons/icon.png">
+  <meta name="msapplication-TileColor" content="#C1272D">
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <!-- Default twitter cards -->
+  <meta name="twitter:card" content="psymbio's blog">
+  <meta name="twitter:site" content="@psymbio">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="my-app">
+  <meta property="og:image" content="icons/icon.png" />
+
+  <!--clicky analytics-->
+  <script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101291588);</script>
+<script async src="//static.getclicky.com/js"></script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.1.2/es5/startup.js" integrity="sha512-umLk4jlqS6v3HF06nsUFlzLGh3yp1A9X+hhlGOEstnLdkphT8w0O8nJJi2Pf28kfIFQvYzMg7ODPluFlkc/WzQ==" crossorigin="anonymous"></script>
+
+<!--flowcharts-->
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true});</script>
+<!--2d plots-->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<!--3d plots-->
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<!--python for browser: brython
+<script type="text/javascript" src="/scripts/brython.js"></script>
+<script type="text/javascript" src="/scripts/brython_stdlib.js"></script>
+--->
+
+
+<!--copy code to clipboard-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+<script src="/assets/scripts/copycode.js"></script>
+
+<!--particles on the background-->
+<script src="/assets/scripts/particle.js"></script>
+
+<link rel="stylesheet" type="text/css" href="http://tikzjax.com/v1/fonts.css">
+<script src="http://tikzjax.com/v1/tikzjax.js"></script>
+<meta name="google-site-verification" content="3PIlzxg_Fq6uuVEqKvNXrVj8NuWqIA9_hqCxWLcnU-4" />
+<!--
+<nav>
+  <ul>
+      <li><a href="/">Blog</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+-->
+</head>
+<body>
+  <div class="top-line"></div>
+  <div class="container">
+    <section class="shore">
+    <header class="sidebar">
+  <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+  <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+  <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+  <a href="/">
+    <img src="/images/title.png" height="250" width="250" class="avatar" />
+  </a>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+</header>
+<link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+<link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+<link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script src="/assets/scripts/copycode.js"></script>
+<section class="content">
+  <section class="byline">
+    February 24, 2021
+  </section>
+  <h1>Reinforcement Learning based Sudoku Players, Part 2</h1>
+  <br>
+  <p>After about a month of learning deep learning, I realized the solution to the sudoku problem after coming across one single word: Gridworld.</p>
+
+<p>Another square matrix like sudoku, that looks like this:
+<img alt="" src="/images/2021/rl/gridworld.png" height="50%" width="50%" /></p>
+
+<p>Now to solve the Gridworld problem through machine learning you require a special system, a fancy word: Deep Q-networks.</p>
+
+<p>I write this as I embark on a journey to solve it myslf, so writing is what helps me jot down ideas and teach myself.</p>
+
+<p>Deep Q-networks is quite novel, in the sense that we don’t have too many videos tutorials. I don’t think many of us actually want to read probability equations from Sutton’s book. To get a basic idea I recommend watching <a href="">Jabrah Tutorials series on Reinforcement Learning</a>.</p>
+
+<p>After that we’re going to quickly run through all these terms to model this infrastructure to our own needs.</p>
+
+<p>Bet you’ve heard of a markov chain…
+<img alt="" src="/images/2021/rl/markovchain.png" height="50%" width="50%" /></p>
+
+<p>If you haven’t then it’s really simple. This one basically just says this:</p>
+
+<p>If sunny today, then tommorow:
+80% probability for sunny
+20% probability for rainy</p>
+
+<p>If rainy today, then tomorrow:
+60% probability for sunny
+40% probability for rainy</p>
+
+<p>If you were to make a markov chain of your life it would be somthing like this:
+<img alt="State transition graph with transition probabilities" src="/images/2021/rl/markovnorewards.png" height="70%" width="70%" /></p>
+
+<p>Now these are just the probablities of taking an action, I want to add another dimension to it. Say if we were to reward a task, negatively if the task is bad for the person’s productivity and positively if it is good. The agent in such a markov chain wants to perform better, he’s a motivated guy that loves getting rewards.
+<img alt="State transition graph with transition probabilities (dark) and rewards (light)" src="/images/2021/rl/markovrewards.png" height="70%" width="70%" /></p>
+
+<h2 id="some-important-terms">Some important terms</h2>
+
+<p>Any time we observe the system we are recording an <em>episode</em>. For example here it could be home → coffee → coffee → chat → chat → coffee → computer → computer → home. Wherein each of the different tasks are states the agent could be in.</p>
+
+<p>The other thing to note down here is that the transition distribution for any state doesn’t change over time. Non-stationarity means that there is some hidden factor that influences our system dynamics, and this factor is not included in observations.</p>
+
+<p><img alt="Agent environment interface" src="/images/2021/rl/agentenv.png" height="100%" width="100%" /></p>
+
+<p>Now we understand <em>actions</em>. Our agent at every step has a set of action <script type="math/tex">(A)</script> which is finite. This is our agent’s action space. For this we add another dimension, making it a cube with the transition matrix. Now the agent no longer passively observes state transitions, but can actively choose an action to take at every time. So, for every state, we don’t have a list of numbers, but a matrix, where the depth dimension contains actions that the agent can take, and the other dimension is that the target state system will jump to after this action is performed by the agent.</p>
+
+<p>When we talk about taking an action in a particular state we call it a state-action pair <script type="math/tex">(s, a)</script>.</p>
+
+<p>Now the agent doesn’t observe transitions passively but instead can take actions and affect the probabilities of the target states.</p>
+
+<p>If an RL task has a Markov properties it is a Markov Decision Process. If the state and action sets are finite we have a finite MDP. To define a finite MDP we have one step dynamics:
+<script type="math/tex">p(s', r|s, a) = Pr(S_{t+1}= s', R_{t+1}=r|S_t=s, A_t=a)</script>. This is the probability of being in state <script type="math/tex">s'</script> and receiving reward <script type="math/tex">r</script> after being in state <script type="math/tex">s</script> and performing action <script type="math/tex">a</script>.</p>
+
+<p>A policy defines how an agent acts from a specific state. For a deterministic policy, it is the action taken at a specific state. RL defines how the agent needs to change its policy as a result of experience, and here generally the goal is to maximise the rewards. However there could be a variety of policies: like go haywire, avoid just the obstacles, or spin around.</p>
+
+<p>Policy at step
+<script type="math/tex">t = \pi_{t} =</script>
+a mapping from states to action probabilities <script type="math/tex">\pi_{t}(a|s) =</script>
+ probability that
+ <script type="math/tex">A_t = a</script>
+ when 
+ <script type="math/tex">S_t = s</script>.</p>
+
+<p>Deterministic policies are <script type="math/tex">\pi_t(s) =</script> the action taken with probability = 1 when <script type="math/tex">S_t = s</script>.</p>
+
+<p>Now the sequence of rewards after step <script type="math/tex">t</script> is: <script type="math/tex">R_{t+1}, R_{t+2}, R_{t+3}, ...</script></p>
+
+<p>Here we seek to maximise:</p>
+<ul>
+  <li>Total Reward, <script type="math/tex">G_t = R_{t+1} + R_{t+2} + R_{t+3} + ... + R_T</script>. This is usually taken in episodic tasks like number of times the game was played, and we just add the sum total of all the rewards.</li>
+  <li>Discounted Reward, <script type="math/tex">G_t = R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + ...\\= \sum_{k=1}^{\infty} \gamma^k R_{t+k+1}</script>This is taken for continuing tasks, where there aren’t just episodes that come to an end but at every consecutive action it is required to avoid failure. Here <script type="math/tex">% <![CDATA[
+\gamma, 0 <= \gamma <= 1 %]]></script>. If <script type="math/tex">\gamma</script> tends to zero this that means the agent is short-sighted, whereas if it tends to 1 it is farsighted. Generally, we take <script type="math/tex">\gamma = 0.9</script> because we need to discount the current rewards so that the agent performs better in the whole. If <script type="math/tex">\gamma = 1</script> then the value is infinite for all states. And if our diagram doesn’t have any sink states(states without any outgoing transitions) then we’re looking at an infinite amount of transitions. When <script type="math/tex">\gamma = 0</script>, all our values are positive in the short term and so the infinite sum of positive values will give us an infinite value regardless of the starting state. This infinite result shows us one of the reasons to introduce gamma into a Markov reward process, instead of just summing all future rewards. In most cases, the process can have an infinite (or large) amount of transitions. As it is not very practical to deal with infinite values, we would like to limit the horizon we calculate values for. Gamma with a value less than 1 provides such a limitation. We can have <script type="math/tex">\gamma = 1</script> in a tic-tac-toe game where there is a sink state after just 9 turns of playing.</li>
+  <li>Average Reward, <script type="math/tex">G_t =</script> average rewards per time step. This mean shall be measured by <script type="math/tex">\mu = 1/k \sum_{k=1}^{k} R_{t+k+1}</script> but to consecutively update the mean we use: <script type="math/tex">\mu_{new} = (k.\mu_{old} + R_{t}) / k + 1</script>.</li>
+</ul>
+
+<p>Let’s understand with an example: The Mountain Car example.
+<img alt="MountainCar" src="/images/2021/rl/mountaincar.png" height="60%" width="60%" /></p>
+
+<p>The goal is to get to the top of the hill as fast as possible. Here, reward = -1 for each step we aren’t at the top of the hill and so <script type="math/tex">=></script>return = -number of steps before reaching the top of the hill.</p>
+
+<p>Now, we are going to understand how to calculate the value of state. Denoted by <script type="math/tex">V(s)</script>, this value function measures potential future rewards we may get from being in this state <script type="math/tex">s</script>.</p>
+
+<p><img alt="State transition graph with transition probabilities (dark) and rewards (light)" src="/images/2021/rl/markovrewards.png" height="70%" width="70%" /></p>
+
+<p>For this the values of each state is:</p>
+
+<p><script type="math/tex">V(coffee) = 2 * 0.7 + 1 * 0.1 + 3 * 0.2 = 2.1</script>
+<script type="math/tex">V(chat) = -1 * 0.5 + 2 * 0.3 + 1 * 0.2 = 0.3</script>
+<script type="math/tex">V(home) = 1 * 0.6 + 1 * 0.4 = 1.0</script>
+<script type="math/tex">V(computer) = 5 * 0.5 + (-3) * 0.1 + 1 * 0.2 + 2 * 0.2 = 2.8</script></p>
+
+<p>Just take a state and then look at all the arrows heading out of that state, multiply the rewards and probability and then perform the summation for all the outgoing transitions.</p>
+
+<h2 id="openai-gym-and-the-anatomy-of-an-agent">OpenAI Gym and the anatomy of an agent…</h2>
+
+<p>Let’s setup a basic program:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Environment</span><span class="p">:</span>
+	<span class="k">def</span> <span class="nf">__init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="bp">self</span><span class="p">.</span><span class="n">steps_left</span> <span class="o">=</span> <span class="mi">10</span>
+		<span class="c1"># initializing env by saying that only 10 steps are left
+</span>
+	<span class="k">def</span> <span class="nf">get_observations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+		<span class="c1"># returns the current envs observation to agent
+</span>		<span class="c1"># it's some function of the internal state of the env
+</span>		<span class="c1"># here the observation vector is always zero because the env has no internal state
+</span>
+	<span class="k">def</span> <span class="nf">get_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+		<span class="c1"># set of actions the agent can perform
+</span>		<span class="c1"># usually this doesn't change over time
+</span>		<span class="c1"># but smetimes certain moves aren't possible
+</span>
+	<span class="k">def</span> <span class="nf">is_done</span><span class="p">():</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">steps_left</span> <span class="o">==</span> <span class="mi">0</span>
+		<span class="c1"># check if episode is completed
+</span>
+	<span class="k">def</span> <span class="nf">action</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">is_done</span><span class="p">():</span>
+			<span class="k">raise</span> <span class="nb">Exception</span><span class="p">(</span><span class="s">"Game is Over"</span><span class="p">)</span>
+		<span class="bp">self</span><span class="p">.</span><span class="n">steps_left</span> <span class="o">-=</span> <span class="mi">1</span>
+		<span class="k">return</span> <span class="n">random</span><span class="p">.</span><span class="n">random</span><span class="p">()</span>
+		<span class="c1"># if episode is completed then raise exception
+</span>		<span class="c1"># else just take an action and subtract a step from step_left.
+</span>
+<span class="k">class</span> <span class="nc">Agent</span><span class="p">:</span>
+	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="bp">self</span><span class="p">.</span><span class="n">total_reward</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+	<span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">):</span>
+		<span class="n">current_obs</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="n">get_observation</span><span class="p">()</span>
+		<span class="c1"># observe env
+</span>		<span class="n">actions</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="n">get_actions</span><span class="p">()</span>
+		<span class="c1"># make a decision of action to take
+</span>		<span class="n">reward</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="n">action</span><span class="p">(</span><span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">(</span><span class="n">actions</span><span class="p">))</span>
+		<span class="c1"># submit action and collect the rewards
+</span>		<span class="bp">self</span><span class="p">.</span><span class="n">total_reward</span> <span class="o">+=</span> <span class="n">reward</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+	<span class="n">env</span> <span class="o">=</span> <span class="n">Environment</span><span class="p">()</span>
+	<span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">()</span>
+
+	<span class="k">while</span> <span class="ow">not</span> <span class="n">env</span><span class="p">.</span><span class="n">is_done</span><span class="p">():</span>
+		<span class="n">agent</span><span class="p">.</span><span class="n">step</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+	<span class="k">print</span><span class="p">(</span><span class="s">"Total reward got: %.4f"</span> <span class="o">%</span> <span class="n">agent</span><span class="p">.</span><span class="n">total_reward</span><span class="p">)</span></code></pre></figure>
+
+<p>This piece of code is important as it is the infrastructure of our RL agent.</p>
+
+<p>OpenAI provides us with the environment: set of actions, observations, method called &lt;div class="inlinecode"&gt;step&lt;/div&gt; to execute an action (returns current observation, reward, and indication that the episode is over), a method called &lt;div class="inlinecode"&gt;reset&lt;/div&gt; to retrun to initial state.</p>
+
+<p>https://jonathan-hui.medium.com/rl-reinforcement-learning-terms-242baac11907</p>
+
+<p>http://incompleteideas.net/book/first/ebook/node34.html</p>
+
+  <script src="https://utteranc.es/client.js"
+        repo="psymbio/psymbio.github.io"
+        issue-term="pathname"
+        theme="github-dark-orange"
+        crossorigin="anonymous"
+        async>
+</script>
+</section>
+</section>
+<section class="shore">
+<section class="content">
+  <div class="footer"></div>
+    <section class="thanks">
+      <span>That sentence that goes before giving my email to strangers: <a href="mailto: psymbio@gmail.com">psymbio@gmail.com</a></span>
+    </section>
+  </div>
+</section>
+</section>
+<br>
+<br>
+<script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+
+    <section class="shore">
+  </div>
+</body>  
+<script>
+  'use strict';
+  var head = document.head;
+  var link = document.createElement('link');
+  link.type = 'text/css';
+  link.rel = 'stylesheet';
+  link.href = '/css/pygments.css'
+  head.appendChild(link);
+</script>
+
+</html>

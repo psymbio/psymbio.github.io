@@ -1,0 +1,36 @@
+I"q<p>Recently, I’ve taken upon myself the herculean task of single-handedly designing a compiler for a completely new language. Yes, preposterous. The idea of this new language went something like, we have <a href="https://en.wikipedia.org/wiki/Logo_(programming_language)">Logo</a> that can design really neat patterns with just a little math, why not have one that could make either moving patterns or a programming language that could convert something like basic Markdown to video format.</p>
+
+<p>So, there is a company that claims just this: <a href="https://www.narakeet.com">Narakeet</a> but it’s proprietary.</p>
+
+<p>The project is kind of way out of my league, and so I thought I would start small. First make a basic compiler for Logo, or even <a href="https://esolangs.org/wiki/COW">COW</a>. Found a couple of videos and I’m just ruthlessly going to list 5-6 that I shall follow through with:</p>
+<ol>
+  <li><a href="https://www.youtube.com/watch?v=wgHIkdUQbp0&amp;list=PLRAdsfhKI4OWNOSfS7EUu5GRAVmze1t2y">Building a Compiler by Immo Landwerth</a></li>
+  <li><a href="https://youtu.be/-E2tu3MqR24">Write Your Own Compiler by Phil Trelford</a></li>
+  <li><a href="https://www.slideshare.net/ptrelford">The Presentation Phil used in that video.</a></li>
+  <li><a href="https://youtu.be/iUarU8Fhvug">Hjalfi writes a compiler</a></li>
+</ol>
+
+<p>These are seriously long-ass videos, sigh… it’s gonna take some serious time.</p>
+
+<p>So anyways, I was watching Phil Trelford’s video and he explains the most crucial term related to compiler design: <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">Abstract Syntax Tree</a>. And essentially, this is one of those terms that align with natural language processing.</p>
+
+<p><img src="https://i.stack.imgur.com/JDAbW.png" alt="AST" /></p>
+
+<p>If you’re familiar with programming, you’ll understand that at the crux of what a compiler does is it is dealing with the craziness of whatever code you write and converting it to its own sort of craziness that it understands better. It is for that reason that we create parsers. A parser’s job is to look at your code and create an AST. I found this really neat guide explaining all of this: <a href="https://tomassetti.me/guide-parsing-algorithms-terminology/">https://tomassetti.me/guide-parsing-algorithms-terminology/</a>.</p>
+
+<h2 id="the-meandering">The Meandering</h2>
+
+<p>No neat way to change topics than to label it a meandering. You probably get the idea of this website, my writings, and maybe even my existence. If not then, I want you to understand one aspect of it: I try to bend towards all sorts of topics because to talk simply in computer science terms would be too claustrophobic. To present new ideas in the field, we must think outside the means to actualize them. If you think about any programming language, you always think in the terms of a stack. If we were to tomorrow create a mind from these languages, we’d forever be constrained by that stack. Here’s what I present… why aren’t languages more graph? Traditional languages like C, although great, are kind of boxed. They go through line-by-line, maybe come across a function, load things on the stack, and eventually if there’s a run-time issue, they just stop. That’s that for them. Humans don’t. We don’t even read line-by-line, it’s what catches our interest that we move on to. There’s nothing that stops us from continuously compiling and making some sort of weighted decision of how to move forward. But on the other hand, we have the ability to go back to something done by us previously, to try and make ammends.</p>
+
+<p>What would it mean for a language to be graph?</p>
+
+<p>A graph language would have the ability to move back and forth taking weighted decisios that don’t range from only True to False. It would have memory of previous runs sponataneously increasing as it makes up for experience.</p>
+
+<p>draft: <a href="https://blog.opencog.org/page/2/">https://blog.opencog.org/page/2/</a>
+<a href="https://www.tutorialspoint.com/automata_theory/context_free_grammar_introduction.htm">https://www.tutorialspoint.com/automata_theory/context_free_grammar_introduction.htm</a>
+<a href="https://en.wikipedia.org/wiki/Context-free_grammar">https://en.wikipedia.org/wiki/Context-free_grammar</a></p>
+
+<p>draft 2(concurrency):
+<a href="https://sceweb.uhcl.edu/helm/RationalUnifiedProcess/process/workflow/ana_desi/co_cncry.htm">https://sceweb.uhcl.edu/helm/RationalUnifiedProcess/process/workflow/ana_desi/co_cncry.htm</a>
+<a href="https://www.classes.cs.uchicago.edu/archive/2018/spring/12300-1/lab6.html">https://www.classes.cs.uchicago.edu/archive/2018/spring/12300-1/lab6.html</a></p>
+:ET

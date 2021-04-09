@@ -1,0 +1,5 @@
+barba.js for animations
+liquid documentation
+https://hyunyoung2.github.io/2016/12/17/Category_And_Tags_In_Jekyll/
+http://typ.io/tags/tech
+https://j.eremy.net/confused-about-rem-and-em/

@@ -1,0 +1,83 @@
+---
+layout: post
+title: 7 Tips to Look Like a Programmer
+tag: Computer Science
+category: posts
+order: 2
+---
+Warning: This article is a clickbait article I wrote to get readers on Medium.com. What ended up happening is I had about a thousand reads for this and nothing on my actual articles. I still hate this article, but you can learn how to make a clickbait article. That heading has 7 for a reason, I read somewhere if you include the number 7, not 8 or 4 but 7 then you get people pouring in. Treat the rest of the article as Lorem Ipsum.
+
+I know looks can be deceiving, but this guide aims to give you the tricks to look like one and then slowly transition into being.
+
+Step 1. Get a black hoodie.
+Okay, bye guys! See you in my next article where we shall discuss pointers.
+
+You know that moment when you look over at someone’s desktop and feel a serious inferiority complex just because that guy uses the terminal for literally everything. That is this guide. And honestly, I wish came across a guide like this earlier.
+
+## Step 1. Get over Windows, throw it away because it is bloat.
+
+Now everyone has a different reason while shifting over to Linux. Mine was pre-dominantly because my laptop was literally 10 years old and couldn’t handle VSCode and Windows 10 together. I mean sure I could have just dumped VSCode but I flashed my whole laptop with LinuxMint. The thing is, you might think, “*oh, I’ll just dual-boot”*, no. Dual-booting isn’t the whole deal. That’s like swimming in the kiddie pool when you have to swim in the sea next month. This is like one of the hardest steps, you might actually consider getting drunk but trust me one this and just do it.
+
+It doesn’t matter which distro you get, I say try a bunch of them and always keep hopping.
+
+Linux is supposed to teach you stuff like handling error messages, package failures, driver failures, software crashes, and more error messages. If all that doesn’t break you, it makes you stronger and resourceful. There are pros to using Linux if you manage to get the hang of it then it is a much faster alternative to Windows and it’s safer for piracy.
+
+## Step 2. Vim is everything.
+
+I sometimes laugh at professors that still use Notepad while writing Java and kids that think they are cooler by using an IDE instead.
+
+Basically, we deal with text every time we open our laptops. Emails, text documents, notes, code, more code, and my favorite: more code.
+
+In the beginning, all of my notes were written, which led to me realizing even I’d have to bring an Arab to transcribe it for me. Then I shifted to Notion, but oh god is Notion slow. It takes around a whole minute to load all those graphics and scripts. Shifted to Obsidian but it was such a hassle opening it. Then it was Vim. Vim is my church, my every breath, and she even feeds me well.
+
+Why Vim? Well, it’s a lot faster, has code formatting, file compatibility, and auto-complete. I mean what is better than compiling, browsing, writing, and basically doing everything you possibly can just through one software. Plus, you can control how yours looks.
+
+Here’s mine:
+
+![](https://cdn-images-1.medium.com/max/2000/1*5jdXY635b4AutQgaAKeJ4Q.png)
+
+Say goodbye to the 20 gazillion buttons on MSWord and I kid you not, you will not regret it.
+
+If you don’t know how to get started with vim, first follow the installation guide on their website, then a YouTuber by the name MentalOutlaw has a [complete guide on Vim](https://www.youtube.com/watch?v=jyhYW0qZ6oA&list=PL3cu45aM3C2DJVGfCjSBB1yD9YkC7q27-&ab_channel=MentalOutlaw). Just follow through.
+
+## Step 3. Github: just commit everything.
+
+Once you get the distro-hopping disease, you’re going to keep shifting files to and from that hard-drive but I feel like having an online copy of all the stuff you’ve written is absolutely necessary. Even if it isn’t for storing it, keep it on Github to track your progress. My commits usually show me if I’ve done anything the entire day. Also, knowing how git works is a necessity that isn’t evil. Most people even in the second year of college don’t know how to properly clone and upload files to Github. If you’re using the GUI or website, I’m looking at you. Learn to use Github through the terminal, it’s much faster and you can upload more.
+
+My personal Github cheat-sheet is:
+1. Initialize a repo on Github by just following all the steps written there. If you can’t maybe watch a YouTube video by thenewboston (a.k.a Bucky Roberts).
+2. After you’ve initialized everything just three pieces of code you need to know o push code online.
+
+    git add -A
+    git commit -m "second commit"
+    git push
+
+## Step 4. Markdown means uniformity.
+
+Do you sometimes wish you had one format that could turn into a pdf, website, or even a presentation all at once? Well, I like Markdown because of this and the fact you can put in formatted code in your documents too.
+
+However, I do wish there was some in-built mechanism to add in math formulae.
+
+## Step 5. Please name those files properly.
+
+Yes, I’ve seen the horrors of badly named files on Github repositories.
+
+Let’s say if you were to open a repository with Leetcode solutions. You decide to name all the with the question number looking something like 1097.java, 205.java, and 98.java. Well, Github isn’t going to order that for you like 98 then 205, and then 1097. If you want your files in order, you have to name them that way and the solution is pretty simple: add zeros in the front (it’s 0098.java).
+
+Does it piss you off seeing spaces in the names of files? Please for the love of god, use a hyphen or an underscore or camelCase, spaces are unacceptable.
+
+I follow this technique when I want to keep my files in order and add the name and the status of the file:
+
+    000xx_the-name-of-the-file_the-status.md
+
+This way, my files are in order and I can see both the name and the status of the file.
+
+## Step 6. Code efficiently.
+
+Now this could depend on the language you could in, but when I saw Yandere Dev’s fuckup I loled pretty damn hard. Do not use an if-else ladder while checking for equality instead use a switch case. Do not put all of your functions in one file take some time out and make a couple of header files. And lastly remember it’s ++i not i++.
+
+For more tips head [here](https://www.codeproject.com/Articles/6154/Writing-Efficient-C-and-C-Code-Optimization).
+
+## Step 7. Can you type faster than this bud?
+
+Typing really fast is one other thing that really matters. All you can do to improve this is practice. And really if you spend about a month on touch-typing platforms like [Keybr](https://keybr.com/) it will definitely improve.

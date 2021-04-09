@@ -1,0 +1,583 @@
+I"�<p>Let’s try solving the sudoku problem. Fairly simple sounding problem that goes like this: You have a 9 by 9 grid where the numbers go from 1 through 9 and each row, column and sector must have all the numbers. I recommend watching this even if it is half-way through, just for a basic understanding of the puzzle.</p>
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/auK3PSZoidc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<h2 id="step-1-the-really-girly-gui">Step 1: The Really Girly GUI</h2>
+
+<p>I started to learn a little tkinter and ended up with:</p>
+
+<p><img alt="" src="/images/2020/horror.png" height="100%" width="100%" /></p>
+
+<p>Excuse my Python. I did spend like half an hour on that, and then coded this instead:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">sudoku_solver_window</span> <span class="o">=</span> <span class="n">Tk</span><span class="p">()</span>
+<span class="n">sudoku_solver_window</span><span class="p">.</span><span class="n">title</span> <span class="p">(</span><span class="s">"Sudoku Solver"</span><span class="p">)</span>
+<span class="n">w</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">81</span><span class="p">):</span>
+    <span class="n">i</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">k</span><span class="o">/</span><span class="mi">9</span><span class="p">)</span>
+    <span class="n">j</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">k</span><span class="o">%</span><span class="mi">9</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">w</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">Label</span><span class="p">(</span><span class="n">sudoku_solver_window</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s">"pink"</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">w</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">Label</span><span class="p">(</span><span class="n">sudoku_solver_window</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s">"white"</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
+    <span class="n">w</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="n">j</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ipadx</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ipady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">mainloop</span><span class="p">()</span></code></pre></figure>
+
+<p>Yeah, dictionaries are a life-saver. For SEO: Python dictionaries for creating variables through the power of for-loops.</p>
+
+<p>New Update: This sudoku GUI is cute-and-all, but I came across the cutest most fantastic looking web-app for sudoku solvers: <a href="https://cracking-the-cryptic.web.app/sudoku/2QM8JHJ4HB">Sudoku with 4 digits by Aad van de Wetering</a>.</p>
+
+<h2 id="step-15-making-a-web-based-application-instead">Step 1.5: Making a Web-Based Application instead</h2>
+
+<p>To do this, I shall need to learn Javascript from scratch. The goal is to create a webpage that takes the input from user as a imgur image url/file and solve the puzzle to display the output on a grid that looks nice.</p>
+
+<p>(Scroll your mouse over this grid, it’s fun)</p>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+      colgroup,
+      tbody {
+        border: solid medium;
+      }
+      td {
+        border: solid thin;
+        height: 1.4em;
+        width: 1.4em;
+        text-align: center;
+        font-size: 14px;
+        padding: 0;
+      }
+      td:hover {
+        background-color: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <table align="center">
+      <colgroup>
+        <col />
+        <col />
+        <col />
+      </colgroup>
+      <colgroup>
+        <col />
+        <col />
+        <col />
+      </colgroup>
+      <colgroup>
+        <col />
+        <col />
+        <col />
+      </colgroup>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+          <td>4</td>
+          <td>5</td>
+          <td>6</td>
+          <td>7</td>
+          <td>8</td>
+          <td>9</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>11</td>
+          <td>12</td>
+          <td>13</td>
+          <td>14</td>
+          <td>15</td>
+          <td>16</td>
+          <td>17</td>
+          <td>18</td>
+        </tr>
+        <tr>
+          <td>19</td>
+          <td>20</td>
+          <td>21</td>
+          <td>22</td>
+          <td>23</td>
+          <td>24</td>
+          <td>25</td>
+          <td>26</td>
+          <td>27</td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <td>28</td>
+          <td>29</td>
+          <td>30</td>
+          <td>31</td>
+          <td>32</td>
+          <td>33</td>
+          <td>34</td>
+          <td>35</td>
+          <td>36</td>
+        </tr>
+        <tr>
+          <td>37</td>
+          <td>38</td>
+          <td>39</td>
+          <td>40</td>
+          <td>41</td>
+          <td>42</td>
+          <td>43</td>
+          <td>44</td>
+          <td>45</td>
+        </tr>
+        <tr>
+          <td>46</td>
+          <td>47</td>
+          <td>48</td>
+          <td>49</td>
+          <td>50</td>
+          <td>51</td>
+          <td>52</td>
+          <td>53</td>
+          <td>54</td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <td>55</td>
+          <td>56</td>
+          <td>57</td>
+          <td>58</td>
+          <td>59</td>
+          <td>60</td>
+          <td>61</td>
+          <td>62</td>
+          <td>63</td>
+        </tr>
+        <tr>
+          <td>64</td>
+          <td>65</td>
+          <td>66</td>
+          <td>67</td>
+          <td>68</td>
+          <td>69</td>
+          <td>70</td>
+          <td>71</td>
+          <td>72</td>
+        </tr>
+        <tr>
+          <td>73</td>
+          <td>74</td>
+          <td>75</td>
+          <td>76</td>
+          <td>77</td>
+          <td>78</td>
+          <td>79</td>
+          <td>80</td>
+          <td>81</td>
+        </tr>
+      </tbody>
+    </table>
+    <!--
+        kill me for making this
+    -->
+  </body>
+</html>
+
+<p><br /></p>
+
+<p>Update: Instead of Javascript we’re probably going to figure out <a href="https://brython.info/">Brython</a>: Python for Browsers. I’m having problems with the brython files, will return to it after building the machine learning model.</p>
+
+<p>Update 2: No one uses Brython. I’m going to create a flask application instead.</p>
+
+<h2 id="step-2-extracting-text-from-sudoku-puzzles">Step 2: Extracting Text from Sudoku Puzzles</h2>
+
+<p>This step is also divided into two other steps. The first is essentially splitting the picture to digits and the second would be recognizing handwritten digits. The learning begins:</p>
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/GIsg-ZUy0MY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<p>If you want to follow along with what I actually learnt visit <a href="https://psymbio.github.io/posts/zero-to-gans">this</a>. I’ll give myself 2 more days and after a better understanding of the MNIST classification problem, we start to work towards the actual problem.</p>
+
+<p>The next step is working with the actual sudoku image. Here, I’d like to introduce opencv’s most famous sudoku puzzle, dave.jpg.</p>
+
+<p><img alt="" src="https://opencv-python-tutroals.readthedocs.io/en/latest/_images/houghlines3.jpg" height="70%" width="70%" /></p>
+
+<p>I sat down to write <a href="https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_houghlines/py_houghlines.html">the code</a>, or copy-paste it from the website. It didn’t work out for me as well as it did for Dave.</p>
+
+<p><img alt="" src="/images/2020/houghlines3.jpg" height="50%" width="50%" /></p>
+
+<p>For a really long time it was like only the vertical lines were being detected, so I thought maybe we could rotate the image and pass back into the function. I ended up with this monstrosity.</p>
+
+<p><img alt="" src="/images/2020/hough.jpg" height="50%" width="50%" /></p>
+
+<p>Ooof Madone! Have we created a masterpiece.</p>
+
+<p>I tried a couple of more techniques and then read the <a href="https://docs.opencv.org/3.4/d9/db0/tutorial_hough_lines.html">old docmentation</a> on hough lines. In this you come across several parameters one of which is a threshold:</p>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">HoughLines</span><span class="p">(</span><span class="n">dst</span><span class="p">,</span> <span class="n">lines</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">CV_PI</span><span class="o">/</span><span class="mi">180</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span> <span class="p">);</span></code></pre></figure>
+<p>It is currently set to 150, what you want to do is play with it and tweak it to 160. So, from my understanding of that number is it sort of constrains you depending on how shitty the image you’re working with is. I could let the user decide but I also know lots of other projects deal with whatever image is thrown at them. Because I don’t want this project to go on forever and for the sake of my own sanity you can deal with cropped images from <a href="www.sudoku.com">www.sudoku.com</a> which is accessible by the user or really nice images like this one below, which I have a folder of.</p>
+
+<p><img alt="" src="/images/2020/sudoku37.jpg" height="50%" width="50%" /></p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">hougher</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>
+    <span class="n">image1</span> <span class="o">=</span> <span class="n">img</span>
+    <span class="n">gray</span><span class="o">=</span><span class="n">cv2</span><span class="p">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image1</span><span class="p">,</span><span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+    <span class="n">dst</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">Canny</span><span class="p">(</span><span class="n">gray</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+    <span class="c1"># change 100 to 200, so that diagonal isn't detected
+</span>    <span class="n">lines</span><span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">HoughLines</span><span class="p">(</span><span class="n">dst</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">math</span><span class="p">.</span><span class="n">pi</span><span class="o">/</span><span class="mf">180.0</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([]),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span> <span class="o">=</span> <span class="n">lines</span><span class="p">.</span><span class="n">shape</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+        <span class="n">rho</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+        <span class="n">x0</span><span class="p">,</span> <span class="n">y0</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">rho</span><span class="p">,</span> <span class="n">b</span><span class="o">*</span><span class="n">rho</span>
+        <span class="n">pt1</span> <span class="o">=</span> <span class="p">(</span> <span class="nb">int</span><span class="p">(</span><span class="n">x0</span><span class="o">+</span><span class="mi">1000</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="p">)),</span> <span class="nb">int</span><span class="p">(</span><span class="n">y0</span><span class="o">+</span><span class="mi">1000</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="p">))</span> <span class="p">)</span>
+        <span class="n">pt2</span> <span class="o">=</span> <span class="p">(</span> <span class="nb">int</span><span class="p">(</span><span class="n">x0</span><span class="o">-</span><span class="mi">1000</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="p">)),</span> <span class="nb">int</span><span class="p">(</span><span class="n">y0</span><span class="o">-</span><span class="mi">1000</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="p">))</span> <span class="p">)</span>
+        <span class="n">cv2</span><span class="p">.</span><span class="n">line</span><span class="p">(</span><span class="n">image1</span><span class="p">,</span> <span class="n">pt1</span><span class="p">,</span> <span class="n">pt2</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="mi">7</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">LINE_AA</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="p">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s">'hough5.jpg'</span><span class="p">,</span><span class="n">image1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">image1</span></code></pre></figure>
+
+<p>And viola!</p>
+
+<p><img alt="" src="/images/2020/hough5.jpg" height="50%" width="50%" /></p>
+
+<p>So there’s a fascinating bit of math behind hough transforms, this is my attempt to explain what is happening here. First your picture is converted to something that looks like this using an edge detection algorithm called Canny Edge Detection.</p>
+
+<p><img alt="" src="/images/2020/canny.jpg" height="50%" width="50%" /></p>
+
+<p>To get to this image first cv2.Canny performs a gaussian blur to smooth out the image and eliminate any noise. The way a gaussian blur works is we have two 2D matrices one is a kernel and the other of the image we have to work on. Depending on the task(sharpen, blur, outline, etc.)at hand, the kernel can have different values and is usually a much smaller matrix than the image. This kernel passes all over the image matrix and this is what happens</p>
+
+<p><img alt="" src="/images/2020/kernel.gif" height="70%" width="70%" /></p>
+
+<p>Original Image = \(A = \begin{bmatrix}
+50_{0, 0} &amp; 50_{0, 1} &amp; 100_{0, 2}\\
+50_{1, 0} &amp; 50_{1, 1} &amp; 100_{1, 2}\\
+50_{2, 0} &amp; 50_{2, 1} &amp; 100_{2, 2}\\
+50_{3, 0} &amp; 50_{3, 1} &amp; 100_{3, 2}\\
+50_{4, 0} &amp; 50_{4, 1} &amp; 100_{4, 2}\\
+\end{bmatrix}\)</p>
+
+<p>Kernel for blur = \(K = \begin{bmatrix}
+0.0625 &amp; 0.125 &amp; 0.0625\\
+0.125 &amp; 0.25 &amp; 0.125\\
+0.0625 &amp; 0.125 &amp; 0.0625\\
+\end{bmatrix}\)</p>
+
+<p>We select an element for the sake of an example let’s take it to be \(x_1, y_1\), now select all numbers surrounding it as well and you have this matrix:</p>
+
+<p>Selected Portion = \(\begin{bmatrix}
+50_{0, 0} &amp; 50_{0, 1} &amp; 100_{0, 2}\\
+50_{1, 0} &amp; 50_{1, 1} &amp; 100_{1, 2}\\
+50_{2, 0} &amp; 50_{2, 1} &amp; 100_{2, 2}\\
+\end{bmatrix}\)</p>
+
+<p>You multiply all of these values with the corresponding values of the kernel \(\begin{multline*}\\
+50\times0.0625 + 50\times0.125 +\\
+100\times0.0625 + 50\times0.125 +\\
+50\times0.25 + 100\times0.125 +\\
+50\times0.0625 + 50\times0.125 +\\
+100\times0.0625 = 218.5\end{multline*}\)</p>
+
+<p>This is the convolution operation.</p>
+
+<p>and then finally average it out: \(218.5/9 = 24.277777\)</p>
+
+<p>I found a really <a href="https://setosa.io/ev/image-kernels/">neat blog</a> to demonstrate this. To understand how kernels are calculated I recommend reading <a href="https://homepages.inf.ed.ac.uk/rbf/HIPR2/gsmooth.htm">this</a>.</p>
+
+<p>After smoothing the image and eliminating the noise, the next step is to find the edge strength by taking the gradient of the image. The <a href="https://en.wikipedia.org/wiki/Sobel_operator">Sobel operator</a> performs a 2-D spatial gradient measurement on an image. Then, the approximate absolute gradient magnitude (edge strength) at each point can be found. The Sobel operator uses a pair of 3x3 convolution masks, one estimating the gradient in the x-direction (columns) and the other estimating the gradient in the y-direction (rows). These are:</p>
+
+\[G_x = \begin{bmatrix}
+-1 &amp; 0 &amp; +1\\
+-2 &amp; 0 &amp; +2\\
+-1 &amp; 0 &amp; +1\\
+\end{bmatrix} * A\]
+
+\[G_y = \begin{bmatrix}
++1 &amp; +2 &amp; +1\\
+0 &amp; 0 &amp; 0\\
+-1 &amp; -2 &amp; +1\\
+\end{bmatrix} * A\]
+
+<p>where \(*\) represents here denotes the 2-dimensional signal processing convolution operation. This all is fine, but I want you to see the magic of this specific convolution in detecting edges.</p>
+
+\[\begin{bmatrix}
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1\\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1\\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1\\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1\\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1\\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1\\
+\end{bmatrix} * \begin{bmatrix}
+-1 &amp; 0 &amp; +1\\
+-2 &amp; 0 &amp; +2\\
+-1 &amp; 0 &amp; +1\\
+\end{bmatrix} = \begin{bmatrix}
+0 &amp; 4 &amp; 4 &amp; 0\\
+0 &amp; 4 &amp; 4 &amp; 0\\
+0 &amp; 4 &amp; 4 &amp; 0\\
+0 &amp; 4 &amp; 4 &amp; 0\\
+\end{bmatrix}\]
+
+<p>Then you can proceed to apply a min-max scalar, convert the matrix to</p>
+
+\[\begin{bmatrix}
+0 &amp; 255 &amp; 255 &amp; 0\\
+0 &amp; 255 &amp; 255 &amp; 0\\
+0 &amp; 255 &amp; 255 &amp; 0\\
+0 &amp; 255 &amp; 255 &amp; 0\\
+\end{bmatrix}\]
+
+<p>Identifying exactly where the color changes, where you can imagine 0 is black and 255 white.</p>
+
+<p>In a similar manner, you can pass \(G_y\) which the horizontal Sobel filter to highlight the horizontal edges.</p>
+
+<p><img alt="" src="/images/2020/xgrad.jpg" float="left" height="40%" width="40%" />
+<img alt="" src="/images/2020/ygrad.jpg" float="right" height="40%" width="40%" /></p>
+
+<p>Then, you want both of them being represented together so you add up both the gradients \(G = \sqrt{G_x^2 + G_y^2}\). And similarly you could perform \(\theta = atan(\frac{G_y}{G_x})\) to the edge angle represented by different colors. This would look something like this:</p>
+
+<p><img alt="" src="/images/2020/example.png" height="60%" width="60%" /></p>
+
+<p>Now the output of the sobel operator passes to the canny edge detector function. Canny takes the edges from sobel, suppresses the edges to show where the edges are located and not how wide are they. To do this canny checks what the orientation of the edge is and for all the neighbouring edges it has find which one form the local maximum.</p>
+
+<p><img alt="" src="/images/2020/canny.jpg" height="50%" width="50%" /></p>
+
+<p>After this we perform a hough transform. Let’s try and break that down too.</p>
+
+<p>This is the equation of a line:</p>
+
+<p><div class="chartjs-wrapper" style="position: center"><canvas id="chartjs-2" class="chartjs" width="undefined" height="undefined"></canvas><script>new Chart(document.getElementById("chartjs-2"),{"type":"line","data":{"labels":["0","1","2"],"datasets":[{"label":"y = ax + b","data":[1,1.5,2],"fill":false,"borderColor":"rgb(193, 39, 45)","lineTension":0.1}]},"options":{scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }}});</script></div></p>
+
+<p>If you pick two points \(x_i, y_i\) and \(x_j, y_j\) namely, they’d have the following equation: \(y_i = ax_i + b\) and \(y_j = ax_j + b\). Inverting these lines on plane \(a, b\) the equations become \(b = -x_i + y_i\) and \(b = -x_j + y_j\) then these lines would intersect at point \((a, b)\)</p>
+
+<p><img alt="" src="/images/2020/lines.png" height="100%" width="100%" /></p>
+
+<p>Another way to consider a line is through this eqaution: \(xcos\theta + y sin \theta = \rho\)</p>
+
+<p><img alt="" src="/images/2020/line.png" height="50%" width="50%" /></p>
+
+<p>Any line can be represented in these two terms, \((\rho,\theta)\). So first it creates a 2D array or accumulator (to hold the values of the two parameters) and it is set to \(\theta\) initially. Let rows denote the \(\rho\) and columns denote the \(\theta\). Size of array depends on the accuracy you need. Suppose you want the accuracy of angles to be 1 degree, you will need 180 columns. For \(\rho\), the maximum distance possible is the diagonal length of the image. So taking one pixel accuracy, the number of rows can be the diagonal length of the image.</p>
+
+<p>Consider a 100x100 image with a horizontal line at the middle. Take the first point of the line. You know its \((x,y)\) values. Now in the line equation, put the values \(\theta=0,1,2,....,180\) and check the \(\rho\) you get. For every \((\rho,\theta)\) pair, you increment value by one in our accumulator in its corresponding \((\rho,\theta)\) cells. Then keep doing this for all the points and if it finds corresponding points of edges they get highlighted in the first graph shown in the image below.</p>
+
+<p><img alt="" src="/images/2020/houghlines.gif" height="100%" width="100%" /></p>
+
+<p>In addtion you can also watch <a href="https://youtu.be/4zHbI-fFIlI">this video</a> by Thales Sehn Körting.</p>
+
+<p>After the hough lines, I decided to contour draw contours on the image and extract 81 nice square images of digits.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">squares</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>
+    <span class="n">gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+    <span class="n">blur</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">medianBlur</span><span class="p">(</span><span class="n">gray</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">sharpen_kernel</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">sharpen</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">filter2D</span><span class="p">(</span><span class="n">blur</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">sharpen_kernel</span><span class="p">)</span>
+
+    <span class="n">thresh</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">sharpen</span><span class="p">,</span><span class="mi">160</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">THRESH_BINARY_INV</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">kernel</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">getStructuringElement</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">MORPH_RECT</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+    <span class="n">close</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">morphologyEx</span><span class="p">(</span><span class="n">thresh</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">MORPH_CLOSE</span><span class="p">,</span> <span class="n">kernel</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="n">cnts</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">findContours</span><span class="p">(</span><span class="n">close</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">RETR_TREE</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">CHAIN_APPROX_SIMPLE</span><span class="p">)</span>
+    <span class="n">cnts</span> <span class="o">=</span> <span class="n">cnts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cnts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">else</span> <span class="n">cnts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">drawContours</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cnts</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="p">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s">"con.jpg"</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+    <span class="n">min_area</span> <span class="o">=</span> <span class="mi">4000</span>
+    <span class="n">max_area</span> <span class="o">=</span> <span class="mi">11000</span>
+    <span class="n">image_number</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># print (cnts)
+</span>    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cnts</span><span class="p">:</span>
+        <span class="n">area</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">contourArea</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">area</span> <span class="o">&gt;</span> <span class="n">min_area</span> <span class="ow">and</span> <span class="n">area</span> <span class="o">&lt;</span> <span class="n">max_area</span><span class="p">:</span>
+            <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">h</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">boundingRect</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+            <span class="n">ROI</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="n">y</span><span class="p">:</span><span class="n">y</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="p">]</span>
+            <span class="n">cv2</span><span class="p">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s">'81/boxes_{}.jpg'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">80</span><span class="o">-</span><span class="n">image_number</span><span class="p">).</span><span class="n">zfill</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span> <span class="n">ROI</span><span class="p">)</span>
+            <span class="n">cv2</span><span class="p">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">w</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">h</span><span class="p">),</span> <span class="p">(</span><span class="mi">36</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">12</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">image_number</span> <span class="o">+=</span> <span class="mi">1</span></code></pre></figure>
+
+<p><img alt="" src="/images/2020/con.jpg" height="50%" width="50%" /></p>
+
+<p><img alt="" src="/images/2020/ss.png" height="80%" width="80%" /></p>
+
+<p>Then I sat down to train a model on the MNIST data using this <a href="https://youtu.be/uuuzvOEC0zw">video</a> and</p>
+
+<p><img alt="" src="/images/2020/out.gif" height="100%" width="100%" /></p>
+
+<p>I don’t know if you can see it all too well, but that gif shows that MNIST can’t predict its own data correctly(at 98.64% accuracy), let alone mine. This just means, one mistake and it’s a wrong solution. At this point I took the world’s most boring decision, and decided to create my own dataset, so that at least we could get sudoku.com’s sudoku’s right. Although this model is a little flexible, but it would guarantee best results with the sudoku’s from there. And that’s how I cut 18 different puzzles with the power of laser technology to create my very own… you get the point. After collection I sat down to train a model using Youtube videos from Sentdex and have definitely had my fair-share of keras, numpy, reshaping and CNNs.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">input_shape</span> <span class="o">=</span> <span class="n">X</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
+<span class="n">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Activation</span><span class="p">(</span><span class="s">"relu"</span><span class="p">))</span>
+<span class="n">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">MaxPooling2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span>
+
+<span class="n">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)))</span>
+<span class="n">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Activation</span><span class="p">(</span><span class="s">'relu'</span><span class="p">))</span>
+<span class="n">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">MaxPooling2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+
+<span class="n">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Flatten</span><span class="p">())</span>  <span class="c1"># this converts our 3D feature maps to 1D feature vectors
+</span><span class="n">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">64</span><span class="p">))</span>
+
+<span class="n">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">32</span><span class="p">))</span>
+<span class="n">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Activation</span><span class="p">(</span><span class="s">'relu'</span><span class="p">))</span>
+
+<span class="n">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">16</span><span class="p">))</span>
+<span class="n">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Activation</span><span class="p">(</span><span class="s">'relu'</span><span class="p">))</span>
+
+<span class="n">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Activation</span><span class="p">(</span><span class="s">'softmax'</span><span class="p">))</span>
+
+<span class="n">model</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s">'sparse_categorical_crossentropy'</span><span class="p">,</span>
+              <span class="n">optimizer</span><span class="o">=</span><span class="s">'adam'</span><span class="p">,</span>
+              <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s">'accuracy'</span><span class="p">])</span>
+
+<span class="n">model</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span></code></pre></figure>
+
+<p>I must say, it paid off pretty well. 100% accuracy. Not just because the model says so, but I’ve seen it with my own two eyes. As far as I go, I can’t claim the 100 so I’ll say 98.64% too, for whenever things go south.</p>
+
+<p>Yeah, I’m going to break down this code as well, but this time it’ll be short I promise. Like before we’re processing image pixels and the first step is performing a convolution on them to create feature maps of them. Then max-pooling helps us select the maximum value in that region which then becomes the value for the entire region in that image.</p>
+
+<p>Most classification code looks like some form of this one. Depending on the problem really just few of these numbers and variables change, but that change is significant. In this particular case we wanted to perform a multi-class classification such that every picture that’s told to be predicted through this network can have just one class as its predicted. To ensure such is the case that last layer is a softmax and we perform a categorical crossentropy. I’d recommend reading <a href="https://glassboxmedicine.com/2019/05/26/classification-sigmoid-vs-softmax/">this</a>.</p>
+
+<h2 id="step-3-we-solve-the-puzzle">Step 3. We Solve the Puzzle</h2>
+
+<p>We have options here, like a lot of good options and some bad ones too. Let’s iterate through them.</p>
+
+<ul>
+  <li>The shortest sudoku solver by David Singleton. Find out more <a href="https://blog.singleton.io/sudoku/">here</a>.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">S</span><span class="o">{</span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">...</span><span class="na">a</span><span class="o">){</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">a</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">indexOf</span><span class="o">(</span><span class="mi">48</span><span class="o">),</span><span class="n">j</span><span class="o">;</span><span class="kt">char</span>
+<span class="n">k</span><span class="o">=</span><span class="mi">48</span><span class="o">,</span><span class="n">c</span><span class="o">[]=</span><span class="n">a</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">toCharArray</span><span class="o">();</span><span class="k">if</span><span class="o">(</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">)</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">c</span><span class="o">);</span><span class="k">else</span>
+<span class="k">for</span><span class="o">(;++</span><span class="n">k</span><span class="o">&lt;</span><span class="mi">58</span><span class="o">;){</span><span class="k">for</span><span class="o">(</span><span class="n">j</span><span class="o">=</span><span class="mi">81</span><span class="o">;</span><span class="n">j</span><span class="o">--&gt;</span><span class="mi">0</span><span class="o">&amp;&amp;((</span><span class="n">j</span><span class="o">-</span><span class="n">i</span><span class="o">)%</span><span class="mi">9</span><span class="o">*(</span><span class="n">j</span><span class="o">/</span><span class="mi">9</span><span class="o">^</span><span class="n">i</span><span class="o">/</span><span class="mi">9</span><span class="o">)*(</span><span class="n">j</span><span class="o">/</span><span class="mi">27</span><span class="o">^</span><span class="n">i</span><span class="o">/</span><span class="mi">27</span><span class="o">|</span><span class="n">j</span><span class="o">%</span><span class="mi">9</span><span class="o">/</span><span class="mi">3</span><span class="o">^</span><span class="n">i</span><span class="o">%</span><span class="mi">9</span><span class="o">/</span><span class="mi">3</span><span class="o">)</span>
+<span class="o">|</span><span class="n">c</span><span class="o">[</span><span class="n">j</span><span class="o">]^</span><span class="n">k</span><span class="o">)!=</span><span class="mi">0</span><span class="o">;);</span><span class="n">c</span><span class="o">[</span><span class="n">i</span><span class="o">]=</span><span class="n">k</span><span class="o">;</span><span class="k">if</span><span class="o">(</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">)</span><span class="n">main</span><span class="o">(</span><span class="s">""</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">c</span><span class="o">));}}}</span></code></pre></figure>
+
+<p>It’s a shame he uses Java, he could’ve bagged the ioccc with this stuff. We’re not going to be using this, because the title says ML and the solutions given out by this algorithm were a little off.</p>
+
+<ul>
+  <li>The backtracking AI sudoku solver.</li>
+</ul>
+
+<p>Here the rules are expilicitly being coded, which is not something meant by machine learning. Instead of showing you the code, I’ll instead</p>
+
+<p><img alt="" src="/images/2020/backtracking.gif" height="50%" width="50%" /></p>
+
+<p>Yes, can you see see how many numbers are changing in one frame. If you can then, well done Usain Bolt of vision. So, if AI is supposed to mimic human intelligence, do humans really backtrack at the scale? I would imagine most normal humans doing something like this:</p>
+
+<p><img alt="" src="/images/2020/sudoku.png" height="50%" width="50%" />
+ and that is how we come to</p>
+
+<ul>
+  <li>Peter Norvig’s Solution</li>
+</ul>
+
+<p>[draft]</p>
+
+<ul>
+  <li>The most horrifying RNN.</li>
+</ul>
+
+<p>Now generally I don’t think stuffing everything with a network is required. Quite the contrary. I hate AI, ML and object oriented programming, call them over-exploited buzzwords. Unrelated to this, but I came across this <a href="https://joelgrus.com/2016/05/23/fizz-buzz-in-tensorflow/">blog post</a>, where Joel Grus thinks it fit to solve a fizzbuzz problem with a convnet. Thing is, it got some of the answers wrong, it’s not fast, and just in general a stupid thing to do. When this translates to the sudoku problem, it gets kind of crazy.</p>
+
+<p>If a convnet can’t predict the answer for fizzbuzz, getting 81 numbers right in row is kind of like the time Bach’s work was described as playing 6 games of chess blindfolded and still winning. Which got me wondering about this. How many iterations of input and output strings of unsolved sudokus and their respective solutions would it take for a computer to realize a pattern in the data. Certain obvious ones like the numbers used only range from 1 through 9 and lesser obvious ones like all the rules for playing. And consecutively, how long till a person who has never heard of sudokus to realize this. I obviously don’t have a batch of people to test this on but…</p>
+
+<p>I decided to create a hybrid RNN. One that guesses one number at a time(like humans) knows the rules and still is trained on a set of <a href="https://www.kaggle.com/bryanpark/sudoku">1 million games of sudoku</a>. The most inefficient and long solution. I’m only doing it for the title, and because backtracking seems morally wrong.</p>
+
+<p>Update: It’s January 13th and I’ve been considering using NLP to solve them at this point. However, I’ve come to a major decision. This neural network is fundamentally going to be different. Now, traditional ones create their own perception of things. Like the model we made for guessing the numbers isn’t so because we said that the pixel at x,y has to be black then it’s a 1. But something like sudoku does have these rules embedded in it. You can’t place a number where it’s not meant to be, because the model predicted it. For this we’re going to be constructing constraint masks instead. Constraint masks are a cheat too in some way.</p>
+
+<p>The other way of looking at this problem is not considering it so much of a processing problem but looking at it as generating problem first. It’s like teaching a kid English. You first let him speak his mind and correct him wherever you feel the grammar is wrong. After a while he’s generating correct sentences and the to test him you give him a blank to fill in, in a sentence.To even better it, the kid now has to deal with two blanks in sentence where one blank’s value depends on the other. In this case, the child must be able to go to a previuos blank so as to make the sentence grammatically correct. [draft: Bluert, NLG, LSTMs with Attention]</p>
+
+<p>It’s February 6th, and I’ve come up with yet another way to think of games. I have two examples: have you seen one of those ML videos where they teach the code to learn something like Mario Kart and it works on a feedback loop, so in every iteration it’s looking to be better by getting feedback on the move it makes. We could just apply that to our algorithm and what would happen is, as tries to fill something and subsquently knows the answer of, we create a feedback loop. The other example is of yo-yos. The unspoken rule of a yo-yo is that has to come back in your hand. Even if someone hasn’t explicitly told that to you that rule you just start to have an intuition. This probably refers to a more abstract and tactile based intuition, but what I’m concerned with now is how do we begin to harbor such.</p>
+
+<p>I do think I’ll have to write a part 2 of this blog post to cover the techanicalities of solving such problems.</p>
+
+<h2 id="step-4-back-to-the-website">Step 4: Back to the Website</h2>
+
+<p>I started working with Flask at first and for reasons unknown I couldn’t get the GET and POST requests to work. If you would want to try watching <a href="https://deeplizard.com/learn/video/_yoxrAIf5u4">DeepLizard’s series</a> and if you don’t want to waste more time get started with Django. To setup your web aplication watch <a href="https://youtu.be/mgX-2_ybqNk">this guide</a> and really half way through it you’ll start to get an intuition of how Django works. By the end for designing the front-end you’ll need some knowledge on the <a href="https://docs.djangoproject.com/en/3.1/ref/templates/builtins/">built-in tags</a> which if you’ve ever worked with Liquid you’ll get a hang of pretty easily.</p>
+
+<p>After I was done with building the web-app I lost my head on deploying it. You can’t use plain vanilla Heroku deployment because for some stupid reason they decided on <a href="https://help.heroku.com/S48C2M3H/can-i-use-scientific-python-libraries-scipy-scikit-learn-etc-on-heroku">not supporting python libraries like scipy, scikit and whatnot</a>. The solution they list out is then using Docker and try following this <a href="https://youtu.be/Oy71OgKZbOQ">video</a> by VeryAcademy. Now Docker is a real pain in the ass, it’s one script that takes an hour to run and the whole time your fingers are crossed like pretzels hoping not to run into errors. <a href="https://pythonspeed.com/articles/alpine-docker-python/">Protip: Do not use Alpine.</a> and better yet just copy paste my Dockerfile. I’ve literally wasted days on this… when Dockerfiles could’ve simply been venvs with single commands being run at a time because forging for every dependency before an install is a nightmare.</p>
+
+<h4 id="resources">Resources:</h4>
+
+<ol>
+  <li>
+    <p><a href="https://courses.cs.washington.edu/courses/cse473/16au/slides-16au/">Backtracking and A.I.</a></p>
+  </li>
+  <li>
+    <p><a href="https://aishack.in/tutorials/sudoku-grabber-opencv-detection/">Another solution by Utkarsh Sinha</a></p>
+  </li>
+  <li>
+    <p><a href="https://norvig.com/sudoku.html">Solving Every Sudoku Puzzle by Peter Norvig</a></p>
+  </li>
+  <li>
+    <p><a href="https://youtu.be/cOC-ad0BsY0">The Augmented Reality Sudoku Solver by atomic14</a>: I listened to this video line-for-line and still don’t get how he does the very first step. But, to get started it’s fine. Also, his project is pretty damn good.</p>
+  </li>
+  <li>
+    <p><a href="https://youtu.be/qOXDoYUgNlU">Another Sudoku Solver by Murtaza’s Workshop</a>: Went through this half-way and it didn’t work out but my project is somewhat more similar to his (and pssst… it’s much shorter).</p>
+  </li>
+  <li>
+    <p><a href="https://jovian.ai/learn/deep-learning-with-pytorch-zero-to-gans">Zero to GANs on Jovian</a>: Understanding MNIST and the basics of ML and why it screwed couple of my days here on earth. But yeah, the guy who teaches the course absolutely amazing, you should definitely take the course.</p>
+  </li>
+  <li>
+    <p><a href="https://docs.opencv.org/3.4/d9/db0/tutorial_hough_lines.html">Hough Lines on the OpenCV docs</a></p>
+  </li>
+  <li>
+    <p><a href="https://youtu.be/j-3vuBynnOE">Classification Problems by Sentdex</a>: I think Sentdex is god-sent, he’s like the Bucky Roberts of ML (and after doing this I’m like the Siraj😂).</p>
+  </li>
+  <li>
+    <p><a href="https://stackoverflow.com/questions/44747343/keras-input-explanation-input-shape-units-batch-size-dim-etc">Keras batch sizes</a></p>
+  </li>
+  <li>
+    <p><a href="https://blog.acolyer.org/2017/03/21/convolution-neural-nets-part-2/">CNNs</a></p>
+  </li>
+  <li>
+    <p><a href="http://masters.donntu.org/2010/fknt/chudovskaja/library/article5.htm">Canny Edge Detection by Bill Green</a></p>
+  </li>
+  <li>
+    <p><a href="https://homepages.inf.ed.ac.uk/rbf/HIPR2/gsmooth.htm#:~:text=Brief%20Description,(%60bell%2Dshaped')%20hump.">Gausian Smoothing</a></p>
+  </li>
+  <li>
+    <p><a href="https://youtu.be/C_zFhWdM4ic">How Blurs &amp; Filters Work - Computerphile</a></p>
+  </li>
+  <li>
+    <p><a href="http://datahacker.rs/edge-detection-extended/">Edge Detection Convolution</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/kirkeaton/sudoku-image-solver/tree/main/sudoku_images">Nice Pictures of Sudoku Puzzles</a></p>
+  </li>
+  <li>
+    <p><a href="https://youtu.be/mgX-2_ybqNk">For setting up a Django application</a></p>
+  </li>
+  <li>
+    <p>The amazing documentations of Pytorch, OpenCV, Django, Docker, NGINX and of course Stackoverflow.</p>
+  </li>
+</ol>
+
+<h4 id="my-code">My Code</h4>
+
+<p>Visit: <a href="https://github.com/psymbio/sudoku-solver-v1">Sudoku Solver:v1</a></p>
+
+<h4 id="unrelated-gems-i-came-across">Unrelated Gems I came across:</h4>
+
+<ol>
+  <li>
+    <p><a href="https://jhui.github.io/2017/03/05/Generative-adversarial-models/">GANs by Jonathan Hui</a></p>
+  </li>
+  <li>
+    <p>The Soparanos is a great show.</p>
+  </li>
+  <li>
+    <p>Songs that can help you cope: Strange Powers by the Magnetic Fields, Self Portrait by Matty, and I recently found out Arpeggi by Kelly Lee Owens is actually stripped from Thom Yorke and it’s uhm… great without him.</p>
+  </li>
+  <li>
+    <p>Since we’re already off to a weird tangent and I’ve spewed 3000 words on sudokus, I know no one cares about them right. But something about bringing this up as random conversation always gets sparks everywhere and I hoped you enjoyed reading.</p>
+  </li>
+</ol>
+:ET

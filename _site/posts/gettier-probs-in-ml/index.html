@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <title>
+    Gettier Problems in Machine Learning [draft] &ndash; The Brain Archive
+  </title>
+  <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+  <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+  <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+  <meta name="author" content="psymbio" />
+  <meta name="description" content="psymbio's blog" />
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+  <link rel="alternate" type="application/rss+xml" href="/atom.xml" />
+  <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+  <link rel="shortcut icon" type="image/x-icon" href="/icons/icon.png" />
+  <link rel="icon" type="image/png" href="/icons/icon.png">
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- See https://goo.gl/OOhYW5 -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- See https://goo.gl/qRE0vM -->
+  <meta name="theme-color" content="#C1272D">
+
+  <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="psymbio's blog">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="psymbio's blog">
+
+  <!-- Homescreen icons -->
+  <link rel="apple-touch-icon" sizes="192x192" href="icons/icon.png">
+
+  <!-- Tile icon for Windows 8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="icons/icon.png">
+  <meta name="msapplication-TileColor" content="#C1272D">
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <!-- Default twitter cards -->
+  <meta name="twitter:card" content="psymbio's blog">
+  <meta name="twitter:site" content="@psymbio">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="my-app">
+  <meta property="og:image" content="icons/icon.png" />
+
+  <!--clicky analytics-->
+  <script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101291588);</script>
+<script async src="//static.getclicky.com/js"></script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.1.2/es5/startup.js" integrity="sha512-umLk4jlqS6v3HF06nsUFlzLGh3yp1A9X+hhlGOEstnLdkphT8w0O8nJJi2Pf28kfIFQvYzMg7ODPluFlkc/WzQ==" crossorigin="anonymous"></script>
+
+<!--flowcharts-->
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true});</script>
+<!--2d plots-->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<!--3d plots-->
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<!--python for browser: brython
+<script type="text/javascript" src="/scripts/brython.js"></script>
+<script type="text/javascript" src="/scripts/brython_stdlib.js"></script>
+--->
+
+
+<!--copy code to clipboard-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+<script src="/assets/scripts/copycode.js"></script>
+
+<!--particles on the background-->
+<script src="/assets/scripts/particle.js"></script>
+
+<link rel="stylesheet" type="text/css" href="http://tikzjax.com/v1/fonts.css">
+<script src="http://tikzjax.com/v1/tikzjax.js"></script>
+<meta name="google-site-verification" content="3PIlzxg_Fq6uuVEqKvNXrVj8NuWqIA9_hqCxWLcnU-4" />
+<!--
+<nav>
+  <ul>
+      <li><a href="/">Blog</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+-->
+</head>
+<body>
+  <div class="top-line"></div>
+  <div class="container">
+    <section class="shore">
+    <header class="sidebar">
+  <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+  <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+  <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+  <a href="/">
+    <img src="/images/title.png" height="250" width="250" class="avatar" />
+  </a>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+</header>
+<link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+<link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+<link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script src="/assets/scripts/copycode.js"></script>
+<section class="content">
+  <section class="byline">
+    December  5, 2020
+  </section>
+  <h1>Gettier Problems in Machine Learning [draft]</h1>
+  <br>
+  <p>Have a look at one of the most prominent philosophical puzzles through the lenses of machine learning.</p>
+
+<h2 id="gettier-problems">Gettier Problems</h2>
+
+<p>If you haven’t heard the term already, here’s the gist of it. The Classical Account of Knowledge suggests the following:</p>
+<blockquote>
+  <p>One can know a proposition is true, only if:<br />
+1) The proposition is true;<br />
+2) One believes the proposition;<br />
+3) and One’s beliefs are justified.</p>
+</blockquote>
+
+<p>According to this view of knowledge, knowledge is just justified true belief. That every time you come to a conclusion q through p implying it, p needs to be true and justified so as to lead to it. This justification needs to satisfy the anti-luck intuition and the ability intuition. The anti-luck intuition simply states that your knowledge isn’t just out of luck that you’ve got it right while e the ability intuition states that this knowing was down to your cognitive abilities.</p>
+
+<p>Now, this account of knowledge is plausible. But around the 1960s, Edmund Gettier got to disproving the basis of this account of knowledge.</p>
+
+<h2 id="the-stopped-clock-case">The Stopped Clock Case</h2>
+
+<p><img src="https://cdn-images-1.medium.com/max/2100/1*XLI8dZvCjiyo03BI5hi-HA.jpeg" alt="" /></p>
+
+<p>This was stated by Bertrand Russel to prove a different point but we shall use this example here. Let us say you get up one morning and look at the time on your clock. This clock is very reliable and there is absolutely no reason you’d doubt that the clock is showing you the wrong time. Also, the time shown by the clock corresponds to what time you might take it to roughly be.</p>
+
+<p>But here’s the problem. That clock stopped working 24 hours ago exactly. The moment you’re looking at it, it just so happens that it is showing you the correct time. This is pure luck. But is the inference you make of the time actually knowledge? Well, one would argue that a clock that isn’t working can never show you the correct time and how you got the proposition of the time correct was just luck attacking the anti-luck intuition. So, you have a justified true belief that doesn’t satisfy knowledge.</p>
+
+<p>Another case could be, looking at the above image of a clock and imagining whether it is one of a stopped clock or a working one.</p>
+
+<h2 id="the-sheep-case">The Sheep Case</h2>
+
+<p>This example is from the American philosopher Roderick Chisholm. Imagine a farmer looking at a field in clear daylight and seeing what looks like a sheep. This is a justified true belief.</p>
+
+<p>Now, imagine that we set the case such that the farmer is not looking at a real sheep but a sheep-shaped object and there really is a sheep behind the view of a sheep-shaped object. That means the farmer has a true belief but what he is looking at isn’t a sheep but a sheep shaped object.</p>
+
+<h2 id="generalizing-gettier-problems">Generalizing Gettier Problems</h2>
+
+<p>Step 1. Take a belief that is formed in such a way that it would result in a false belief but is justified nonetheless.</p>
+
+<p>Step 2. Make the belief true, albeit for reasons that have nothing to do with the subject’s justification of the case.</p>
+
+<h2 id="the-solution">The Solution</h2>
+
+<p>People thought the solution to Gettier cases would be quite simple. Maybe just add something onto the tripartite analysis or negate Gettier completely.</p>
+
+<p>Keith Lehrer suggested that we add in a fourth clause saying that your belief shouldn’t be based on any false assumptions. But there are problems with this. In the clock case, it simply isn’t psychologically plausible that you start to question whether the clock is working or not. And what are even assumptions?</p>
+
+<p>The definition of an assumption can not be so narrow so as to assume that the clock is working or so broad that genuine knowledge shall be excluded.</p>
+
+<p>Another solution was by Lukasz Lozanski, who completely negates the Gettier problems saying that assumptions made were far too specific to generalize conclusions we reached at. And thus, the knowledge we concluded with was either not justified or false. Or the fact that there could be logical flaws in the case stated in his article <a href="https://philosophynow.org/issues/63/The_Gettier_Problem_No_Longer_a_Problem">here</a>.</p>
+
+<p>With all that kept in mind, I don’t think Gettier cases are so far-fetched or logically flawed so as to cease all existence. And hence, I shall present my own and the problems that follow.</p>
+
+<h2 id="the-machine-learning-gettier-case">The Machine Learning Gettier Case</h2>
+
+<p><img src="https://cdn-images-1.medium.com/max/3200/1*g05i8hAF4S0isX44eqOquw.gif" alt="" /></p>
+
+<p>When it comes to ML we have one basic problem we try to solve: Character Recognition. It’s quite simple, you design a neural network that classifies all the Unicode characters there can possibly exist. Let’s say you write two really similar characters on two separate parchment paper. These two: ⻳ and 龟. This is the 2nd last example on this <a href="http://www.unicode.org/Public/security/latest/confusables.txt">site</a>. The first Unicode character has a description different from the second, so technically they are two different characters. Now, you keep the incorrect character’s butter paper in front of the correct character. The answer classified by the algorithm is of the correct character even though, it’s supposed to be of the incorrect character.</p>
+
+<p>How would you justify correct answers that have false assumptions to a machine? This is something above hoaxes because otherwise, you can just completely negate the case stating that it is completely untrue. In this case, we can’t alter the weights leading to a supposedly correct solution.</p>
+
+<p>To me, this example poses a problem to machine learning algorithms, not ones that just classify but in the real world, this example exemplifies. When robots are supposed to make inferences that might be correct because they are justified and true but for the fact that in this case aren’t seemingly. If this continues, it’ll become a barrier in the way machines learn.</p>
+
+  <script src="https://utteranc.es/client.js"
+        repo="psymbio/psymbio.github.io"
+        issue-term="pathname"
+        theme="github-dark-orange"
+        crossorigin="anonymous"
+        async>
+</script>
+</section>
+</section>
+<section class="shore">
+<section class="content">
+  <div class="footer"></div>
+    <section class="thanks">
+      <span>That sentence that goes before giving my email to strangers: <a href="mailto: psymbio@gmail.com">psymbio@gmail.com</a></span>
+    </section>
+  </div>
+</section>
+</section>
+<br>
+<br>
+<script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+
+    <section class="shore">
+  </div>
+</body>  
+<script>
+  'use strict';
+  var head = document.head;
+  var link = document.createElement('link');
+  link.type = 'text/css';
+  link.rel = 'stylesheet';
+  link.href = '/css/pygments.css'
+  head.appendChild(link);
+</script>
+
+</html>

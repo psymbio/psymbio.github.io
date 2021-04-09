@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <title>
+    The Meanderings of Designing Compilers &ndash; The Brain Archive
+  </title>
+  <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+  <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+  <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+  <meta name="author" content="psymbio" />
+  <meta name="description" content="psymbio's blog" />
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+  <link rel="alternate" type="application/rss+xml" href="/atom.xml" />
+  <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+  <link rel="shortcut icon" type="image/x-icon" href="/icons/icon.png" />
+  <link rel="icon" type="image/png" href="/icons/icon.png">
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- See https://goo.gl/OOhYW5 -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- See https://goo.gl/qRE0vM -->
+  <meta name="theme-color" content="#C1272D">
+
+  <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="psymbio's blog">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="psymbio's blog">
+
+  <!-- Homescreen icons -->
+  <link rel="apple-touch-icon" sizes="192x192" href="icons/icon.png">
+
+  <!-- Tile icon for Windows 8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="icons/icon.png">
+  <meta name="msapplication-TileColor" content="#C1272D">
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <!-- Default twitter cards -->
+  <meta name="twitter:card" content="psymbio's blog">
+  <meta name="twitter:site" content="@psymbio">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="my-app">
+  <meta property="og:image" content="icons/icon.png" />
+
+  <!--clicky analytics-->
+  <script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101291588);</script>
+<script async src="//static.getclicky.com/js"></script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.1.2/es5/startup.js" integrity="sha512-umLk4jlqS6v3HF06nsUFlzLGh3yp1A9X+hhlGOEstnLdkphT8w0O8nJJi2Pf28kfIFQvYzMg7ODPluFlkc/WzQ==" crossorigin="anonymous"></script>
+
+<!--flowcharts-->
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true});</script>
+<!--2d plots-->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<!--3d plots-->
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<!--python for browser: brython
+<script type="text/javascript" src="/scripts/brython.js"></script>
+<script type="text/javascript" src="/scripts/brython_stdlib.js"></script>
+--->
+
+
+<!--copy code to clipboard-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+<script src="/assets/scripts/copycode.js"></script>
+
+<!--particles on the background-->
+<script src="/assets/scripts/particle.js"></script>
+
+<link rel="stylesheet" type="text/css" href="http://tikzjax.com/v1/fonts.css">
+<script src="http://tikzjax.com/v1/tikzjax.js"></script>
+<meta name="google-site-verification" content="3PIlzxg_Fq6uuVEqKvNXrVj8NuWqIA9_hqCxWLcnU-4" />
+<!--
+<nav>
+  <ul>
+      <li><a href="/">Blog</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+-->
+</head>
+<body>
+  <div class="top-line"></div>
+  <div class="container">
+    <section class="shore">
+    <header class="sidebar">
+  <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+  <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+  <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+  <a href="/">
+    <img src="/images/title.png" height="250" width="250" class="avatar" />
+  </a>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+</header>
+<link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+<link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+<link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script src="/assets/scripts/copycode.js"></script>
+<section class="content">
+  <section class="byline">
+    December  8, 2020
+  </section>
+  <h1>The Meanderings of Designing Compilers</h1>
+  <br>
+  <p>Recently, I’ve taken upon myself the herculean task of single-handedly designing a compiler for a completely new language. Yes, preposterous. The idea of this new language went something like, we have <a href="https://en.wikipedia.org/wiki/Logo_(programming_language)">Logo</a> that can design really neat patterns with just a little math, why not have one that could make either moving patterns or a programming language that could convert something like basic Markdown to video format.</p>
+
+<p>So, there is a company that claims just this: <a href="https://www.narakeet.com">Narakeet</a> but it’s proprietary.</p>
+
+<p>The project is kind of way out of my league, and so I thought I would start small. First make a basic compiler for Logo, or even <a href="https://esolangs.org/wiki/COW">COW</a>. Found a couple of videos and I’m just ruthlessly going to list 5-6 that I shall follow through with:</p>
+<ol>
+  <li><a href="https://www.youtube.com/watch?v=wgHIkdUQbp0&amp;list=PLRAdsfhKI4OWNOSfS7EUu5GRAVmze1t2y">Building a Compiler by Immo Landwerth</a></li>
+  <li><a href="https://youtu.be/-E2tu3MqR24">Write Your Own Compiler by Phil Trelford</a></li>
+  <li><a href="https://www.slideshare.net/ptrelford">The Presentation Phil used in that video.</a></li>
+  <li><a href="https://youtu.be/iUarU8Fhvug">Hjalfi writes a compiler</a></li>
+</ol>
+
+<p>These are seriously long-ass videos, sigh… it’s gonna take some serious time.</p>
+
+<p>So anyways, I was watching Phil Trelford’s video and he explains the most crucial term related to compiler design: <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">Abstract Syntax Tree</a>. And essentially, this is one of those terms that align with natural language processing.</p>
+
+<p><img src="https://i.stack.imgur.com/JDAbW.png" alt="AST" /></p>
+
+<p>If you’re familiar with programming, you’ll understand that at the crux of what a compiler does is it is dealing with the craziness of whatever code you write and converting it to its own sort of craziness that it understands better. It is for that reason that we create parsers. A parser’s job is to look at your code and create an AST. I found this really neat guide explaining all of this: <a href="https://tomassetti.me/guide-parsing-algorithms-terminology/">https://tomassetti.me/guide-parsing-algorithms-terminology/</a>.</p>
+
+<h2 id="the-meandering">The Meandering</h2>
+
+<p>No neat way to change topics than to label it a meandering. You probably get the idea of this website, my writings, and maybe even my existence. If not then, I want you to understand one aspect of it: I try to bend towards all sorts of topics because to talk simply in computer science terms would be too claustrophobic. To present new ideas in the field, we must think outside the means to actualize them. If you think about any programming language, you always think in the terms of a stack. If we were to tomorrow create a mind from these languages, we’d forever be constrained by that stack. Here’s what I present… why aren’t languages more graph? Traditional languages like C, although great, are kind of boxed. They go through line-by-line, maybe come across a function, load things on the stack, and eventually if there’s a run-time issue, they just stop. That’s that for them. Humans don’t. We don’t even read line-by-line, it’s what catches our interest that we move on to. There’s nothing that stops us from continuously compiling and making some sort of weighted decision of how to move forward. But on the other hand, we have the ability to go back to something done by us previously, to try and make ammends.</p>
+
+<p>What would it mean for a language to be graph?</p>
+
+<p>A graph language would have the ability to move back and forth taking weighted decisios that don’t range from only True to False. It would have memory of previous runs sponataneously increasing as it makes up for experience.</p>
+
+<p>draft: <a href="https://blog.opencog.org/page/2/">https://blog.opencog.org/page/2/</a>
+<a href="https://www.tutorialspoint.com/automata_theory/context_free_grammar_introduction.htm">https://www.tutorialspoint.com/automata_theory/context_free_grammar_introduction.htm</a>
+<a href="https://en.wikipedia.org/wiki/Context-free_grammar">https://en.wikipedia.org/wiki/Context-free_grammar</a></p>
+
+<p>draft 2(concurrency):
+<a href="https://sceweb.uhcl.edu/helm/RationalUnifiedProcess/process/workflow/ana_desi/co_cncry.htm">https://sceweb.uhcl.edu/helm/RationalUnifiedProcess/process/workflow/ana_desi/co_cncry.htm</a>
+<a href="https://www.classes.cs.uchicago.edu/archive/2018/spring/12300-1/lab6.html">https://www.classes.cs.uchicago.edu/archive/2018/spring/12300-1/lab6.html</a></p>
+
+  <script src="https://utteranc.es/client.js"
+        repo="psymbio/psymbio.github.io"
+        issue-term="pathname"
+        theme="github-dark-orange"
+        crossorigin="anonymous"
+        async>
+</script>
+</section>
+</section>
+<section class="shore">
+<section class="content">
+  <div class="footer"></div>
+    <section class="thanks">
+      <span>That sentence that goes before giving my email to strangers: <a href="mailto: psymbio@gmail.com">psymbio@gmail.com</a></span>
+    </section>
+  </div>
+</section>
+</section>
+<br>
+<br>
+<script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+
+    <section class="shore">
+  </div>
+</body>  
+<script>
+  'use strict';
+  var head = document.head;
+  var link = document.createElement('link');
+  link.type = 'text/css';
+  link.rel = 'stylesheet';
+  link.href = '/css/pygments.css'
+  head.appendChild(link);
+</script>
+
+</html>

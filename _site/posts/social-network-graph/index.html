@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <title>
+    Social Network Graph &ndash; The Brain Archive
+  </title>
+  <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+  <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+  <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+  <meta name="author" content="psymbio" />
+  <meta name="description" content="psymbio's blog" />
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+  <link rel="alternate" type="application/rss+xml" href="/atom.xml" />
+  <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+  <link rel="shortcut icon" type="image/x-icon" href="/icons/icon.png" />
+  <link rel="icon" type="image/png" href="/icons/icon.png">
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- See https://goo.gl/OOhYW5 -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- See https://goo.gl/qRE0vM -->
+  <meta name="theme-color" content="#C1272D">
+
+  <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="psymbio's blog">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="psymbio's blog">
+
+  <!-- Homescreen icons -->
+  <link rel="apple-touch-icon" sizes="192x192" href="icons/icon.png">
+
+  <!-- Tile icon for Windows 8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="icons/icon.png">
+  <meta name="msapplication-TileColor" content="#C1272D">
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <!-- Default twitter cards -->
+  <meta name="twitter:card" content="psymbio's blog">
+  <meta name="twitter:site" content="@psymbio">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="my-app">
+  <meta property="og:image" content="icons/icon.png" />
+
+  <!--clicky analytics-->
+  <script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101291588);</script>
+<script async src="//static.getclicky.com/js"></script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.1.2/es5/startup.js" integrity="sha512-umLk4jlqS6v3HF06nsUFlzLGh3yp1A9X+hhlGOEstnLdkphT8w0O8nJJi2Pf28kfIFQvYzMg7ODPluFlkc/WzQ==" crossorigin="anonymous"></script>
+
+<!--flowcharts-->
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true});</script>
+<!--2d plots-->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<!--3d plots-->
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<!--python for browser: brython
+<script type="text/javascript" src="/scripts/brython.js"></script>
+<script type="text/javascript" src="/scripts/brython_stdlib.js"></script>
+--->
+
+
+<!--copy code to clipboard-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+<script src="/assets/scripts/copycode.js"></script>
+
+<!--particles on the background-->
+<script src="/assets/scripts/particle.js"></script>
+
+<link rel="stylesheet" type="text/css" href="http://tikzjax.com/v1/fonts.css">
+<script src="http://tikzjax.com/v1/tikzjax.js"></script>
+<meta name="google-site-verification" content="3PIlzxg_Fq6uuVEqKvNXrVj8NuWqIA9_hqCxWLcnU-4" />
+<!--
+<nav>
+  <ul>
+      <li><a href="/">Blog</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+-->
+</head>
+<body>
+  <div class="top-line"></div>
+  <div class="container">
+    <section class="shore">
+    <header class="sidebar">
+  <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+  <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+  <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+  <a href="/">
+    <img src="/images/title.png" height="250" width="250" class="avatar" />
+  </a>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+</header>
+<link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+<link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+<link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script src="/assets/scripts/copycode.js"></script>
+<section class="content">
+  <section class="byline">
+    November 19, 2020
+  </section>
+  <h1>Social Network Graph</h1>
+  <br>
+  <h2 id="the-problem-were-dealing-with">The Problem We’re Dealing With</h2>
+
+<p>Develop a social network website with thousands of users. With the use of data structure to efficiently represent and store the users’ profiles. Keep the information about how these users are connected with each other.</p>
+
+<p>Find out the friends for a given user. This search needs to be executed quickly as there are thousands of users.</p>
+
+<p>Find the common friends for two given users. Propose a suitable data structure; implement the insert, delete, search operations and relevant algorithms to solve the problem. Analyse the time and space complexities of all the operations.</p>
+
+<h2 id="my-solution">My Solution</h2>
+
+<p>For the entire program visit: <a href="https://github.com/psymbio/social-network-graph">https://github.com/psymbio/social-network-graph</a></p>
+
+<p>Initially, I thought of constructing two 2D matrices, one which would hold the information of all the users and the other that holds the data of how these people are connected with each other.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>username</th>
+      <th style="text-align: left">password</th>
+      <th>name</th>
+      <th>email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>cornetto_tornado</td>
+      <td style="text-align: left">severussnaps</td>
+      <td>Rick Roll</td>
+      <td>cornetto@yahoo.co.uk</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>xX-witchyPrincess-Xx</td>
+      <td style="text-align: left">hhsj112@</td>
+      <td>Chandler Bing</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>dancingsloths</td>
+      <td style="text-align: left">nothing</td>
+      <td>Julian Assange</td>
+      <td>mumbo@jumbo.com</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>But with thousands of users, the CSV file of the connections crashed my text-editor. Not only that, but if there was a 25% chance someone was your friend then about 50% of the space used by the graph goes to waste, which is a great deal if you’re handling thousands of users.</p>
+
+<p>Then I decided to make an adjacency-list representation of a graph. This would only deal with the ids of each user in the graph to show the connection, saving space.</p>
+
+<p><img src="https://www.d.umn.edu/~gshute/cs2511/slides/graphs/images/adj-list-1.png" alt="Adjacency Graph" /></p>
+
+<p>Now to create the graph:</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="c1">// structure to represent an user node</span>
+<span class="k">struct</span> <span class="n">user_node</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">dest</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">user_node</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// structure to represent the list of users</span>
+<span class="k">struct</span> <span class="n">user_list</span>
+<span class="p">{</span>
+    <span class="k">struct</span> <span class="n">user_node</span> <span class="o">*</span><span class="n">head</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// graph is an array of adjacency lists.</span>
+<span class="k">struct</span> <span class="n">Graph</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">V</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">user_list</span> <span class="o">*</span><span class="n">array</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// A utility function to create a new adjacency list node</span>
+<span class="k">struct</span> <span class="n">user_node</span> <span class="o">*</span><span class="nf">newuser_node</span><span class="p">(</span><span class="kt">int</span> <span class="n">dest</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">struct</span> <span class="n">user_node</span> <span class="o">*</span><span class="n">newNode</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">user_node</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">user_node</span><span class="p">));</span>
+    <span class="n">newNode</span><span class="o">-&gt;</span><span class="n">dest</span> <span class="o">=</span> <span class="n">dest</span><span class="p">;</span>
+    <span class="n">newNode</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">newNode</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// create a graph of V vertices</span>
+<span class="k">struct</span> <span class="n">Graph</span> <span class="o">*</span><span class="nf">createGraph</span><span class="p">(</span><span class="kt">int</span> <span class="n">V</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">struct</span> <span class="n">Graph</span> <span class="o">*</span><span class="n">graph</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">Graph</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">Graph</span><span class="p">));</span>
+    <span class="n">graph</span><span class="o">-&gt;</span><span class="n">V</span> <span class="o">=</span> <span class="n">V</span><span class="p">;</span>
+    <span class="n">graph</span><span class="o">-&gt;</span><span class="n">array</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">user_list</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">V</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">user_list</span><span class="p">));</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">V</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">graph</span><span class="o">-&gt;</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">head</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">graph</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Now that our graph has been implemented, let’s carry out some functionality of the program.</p>
+
+<h5 id="1-add-a-friend">1. Add a Friend</h5>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="c1">// add an edge to an undirected graph</span>
+<span class="kt">void</span> <span class="nf">add_friend</span><span class="p">(</span><span class="k">struct</span> <span class="n">Graph</span> <span class="o">*</span><span class="n">graph</span><span class="p">,</span> <span class="kt">int</span> <span class="n">src</span><span class="p">,</span> <span class="kt">int</span> <span class="n">dest</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// add edge from src to dest</span>
+    <span class="k">struct</span> <span class="n">user_node</span> <span class="o">*</span><span class="n">newNode</span> <span class="o">=</span> <span class="n">newuser_node</span><span class="p">(</span><span class="n">dest</span><span class="p">);</span>
+    <span class="n">newNode</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">graph</span><span class="o">-&gt;</span><span class="n">array</span><span class="p">[</span><span class="n">src</span><span class="p">].</span><span class="n">head</span><span class="p">;</span>
+    <span class="n">graph</span><span class="o">-&gt;</span><span class="n">array</span><span class="p">[</span><span class="n">src</span><span class="p">].</span><span class="n">head</span> <span class="o">=</span> <span class="n">newNode</span><span class="p">;</span>
+    <span class="c1">// add edge from dest to src</span>
+    <span class="n">newNode</span> <span class="o">=</span> <span class="n">newuser_node</span><span class="p">(</span><span class="n">src</span><span class="p">);</span>
+    <span class="n">newNode</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">graph</span><span class="o">-&gt;</span><span class="n">array</span><span class="p">[</span><span class="n">dest</span><span class="p">].</span><span class="n">head</span><span class="p">;</span>
+    <span class="n">graph</span><span class="o">-&gt;</span><span class="n">array</span><span class="p">[</span><span class="n">dest</span><span class="p">].</span><span class="n">head</span> <span class="o">=</span> <span class="n">newNode</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>This simply adds an edge between two user nodes of the graph and takes linear time O(1).</p>
+
+<h5 id="2-find-a-node">2. Find a Node</h5>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">find_user</span><span class="p">(</span><span class="k">struct</span> <span class="n">Graph</span> <span class="o">*</span><span class="n">graph</span><span class="p">,</span> <span class="kt">int</span> <span class="n">src</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="n">graph</span><span class="o">-&gt;</span><span class="n">V</span><span class="p">;</span> <span class="o">++</span><span class="n">v</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">struct</span> <span class="n">user_node</span> <span class="o">*</span><span class="n">pCrawl</span> <span class="o">=</span> <span class="n">graph</span><span class="o">-&gt;</span><span class="n">array</span><span class="p">[</span><span class="n">v</span><span class="p">].</span><span class="n">head</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">pCrawl</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">pCrawl</span><span class="o">-&gt;</span><span class="n">dest</span> <span class="o">==</span> <span class="n">src</span><span class="p">)</span>
+                <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">pCrawl</span> <span class="o">=</span> <span class="n">pCrawl</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>This takes O(n^2) time complexity to find a user_node.</p>
+
+<h5 id="3-remove-a-friend">3. Remove a Friend</h5>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">remove_friend</span><span class="p">(</span><span class="k">struct</span> <span class="n">Graph</span> <span class="o">*</span><span class="n">graph</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">find_user</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">src</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">find_user</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">dest</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="k">struct</span> <span class="n">user_node</span> <span class="o">*</span><span class="n">aCrawl</span> <span class="o">=</span> <span class="n">graph</span><span class="o">-&gt;</span><span class="n">array</span><span class="p">[</span><span class="n">v</span><span class="p">].</span><span class="n">head</span><span class="p">;</span>
+        <span class="k">struct</span> <span class="n">user_node</span> <span class="o">*</span><span class="n">bCrawl</span> <span class="o">=</span> <span class="n">graph</span><span class="o">-&gt;</span><span class="n">array</span><span class="p">[</span><span class="n">v</span><span class="p">].</span><span class="n">head</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">aCrawl</span> <span class="o">||</span> <span class="n">bCrawl</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">aCrawl</span><span class="o">-&gt;</span><span class="n">dest</span> <span class="o">==</span> <span class="n">b</span><span class="p">)</span>
+                <span class="n">free</span><span class="p">(</span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">array</span><span class="p">);</span>
+            <span class="n">aCrawl</span> <span class="o">=</span> <span class="n">aCrawl</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">bCrawl</span><span class="o">-&gt;</span><span class="n">dest</span> <span class="o">==</span> <span class="n">a</span><span class="p">)</span>
+                <span class="n">free</span><span class="p">(</span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">array</span><span class="p">);</span>
+            <span class="n">bCrawl</span> <span class="o">=</span> <span class="n">bCrawl</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>This takes O(n) time complexity.</p>
+
+<h5 id="4-delete-your-account">4. Delete Your Account</h5>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">delete_user</span><span class="p">(</span><span class="k">struct</span> <span class="n">Graph</span> <span class="o">*</span><span class="n">graph</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">find_user</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">a</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="n">graph</span><span class="o">-&gt;</span><span class="n">V</span><span class="p">;</span> <span class="o">++</span><span class="n">v</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">struct</span> <span class="n">user_node</span> <span class="o">*</span><span class="n">aCrawl</span> <span class="o">=</span> <span class="n">graph</span><span class="o">-&gt;</span><span class="n">array</span><span class="p">[</span><span class="n">v</span><span class="p">].</span><span class="n">head</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="o">==</span> <span class="n">a</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">free</span><span class="p">(</span><span class="n">graph</span><span class="o">-&gt;</span><span class="n">array</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">delete_your_account</span><span class="p">(</span><span class="k">struct</span> <span class="n">Graph</span> <span class="o">*</span><span class="n">graph</span><span class="p">,</span> <span class="n">MYSQL</span> <span class="o">*</span><span class="n">conn</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">delete_user</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">atoi</span><span class="p">(</span><span class="n">current_uid</span><span class="p">));</span>
+    <span class="n">sprintf</span><span class="p">(</span><span class="n">sql_statement</span><span class="p">,</span> <span class="s">"DELETE FROM user_database where id=%d"</span><span class="p">,</span> <span class="n">atoi</span><span class="p">(</span><span class="n">current_uid</span><span class="p">));</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">mysql_query</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">sql_statement</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="n">finish_with_error</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">So long, and thanks for all the fish.</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Deleting your account deletes the array of friends you had and your information in the database. Since find_user takes O(n^2) so does this.</p>
+
+<h5 id="5-print-entire-graph">5. Print Entire Graph</h5>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">print_friend_graph</span><span class="p">(</span><span class="k">struct</span> <span class="n">Graph</span> <span class="o">*</span><span class="n">graph</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">v</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">v</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="n">graph</span><span class="o">-&gt;</span><span class="n">V</span><span class="p">;</span> <span class="o">++</span><span class="n">v</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">struct</span> <span class="n">user_node</span> <span class="o">*</span><span class="n">pCrawl</span> <span class="o">=</span> <span class="n">graph</span><span class="o">-&gt;</span><span class="n">array</span><span class="p">[</span><span class="n">v</span><span class="p">].</span><span class="n">head</span><span class="p">;</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Friends of %d are:</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">pCrawl</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"-&gt; %d"</span><span class="p">,</span> <span class="n">pCrawl</span><span class="o">-&gt;</span><span class="n">dest</span><span class="p">);</span>
+            <span class="n">pCrawl</span> <span class="o">=</span> <span class="n">pCrawl</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>This prints the entire graph in O(n^2) however this is only a back-end function that normal users cannot run.</p>
+
+<h5 id="6-print-the-friends-of-a-user">6. Print the Friends of a User</h5>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">print_userid_friends</span><span class="p">(</span><span class="k">struct</span> <span class="n">Graph</span> <span class="o">*</span><span class="n">graph</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="n">MYSQL</span> <span class="o">*</span><span class="n">conn</span><span class="p">,</span> <span class="n">MYSQL_ROW</span> <span class="n">row</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">status</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">user_node</span> <span class="o">*</span><span class="n">pCrawl</span> <span class="o">=</span> <span class="n">graph</span><span class="o">-&gt;</span><span class="n">array</span><span class="p">[</span><span class="n">v</span><span class="p">].</span><span class="n">head</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">pCrawl</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">sprintf</span><span class="p">(</span><span class="n">sql_statement</span><span class="p">,</span> <span class="s">"SELECT username, first_name, last_name </span><span class="err">
+</span><span class="s">        FROM user_database WHERE id=%d"</span><span class="p">,</span> <span class="n">pCrawl</span><span class="o">-&gt;</span><span class="n">dest</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">mysql_query</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">sql_statement</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="n">finish_with_error</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">MYSQL_RES</span> <span class="o">*</span><span class="n">result</span> <span class="o">=</span> <span class="n">mysql_store_result</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span>
+        <span class="k">while</span> <span class="p">((</span><span class="n">row</span> <span class="o">=</span> <span class="n">mysql_fetch_row</span><span class="p">(</span><span class="n">result</span><span class="p">))</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"Username: %s</span><span class="se">\t</span><span class="s">"</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"Name: %s %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+        <span class="p">}</span>
+        <span class="n">pCrawl</span> <span class="o">=</span> <span class="n">pCrawl</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>For a user with id = v this prints all the information of the friends of that user. This takes O(n) time.</p>
+
+<h5 id="7-print-common-friends-of-two-users">7. Print Common Friends of Two Users</h5>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">find_common_friends</span><span class="p">(</span><span class="k">struct</span> <span class="n">Graph</span> <span class="o">*</span><span class="n">graph</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">,</span> <span class="n">MYSQL</span> <span class="o">*</span><span class="n">conn</span><span class="p">,</span> <span class="n">MYSQL_ROW</span> <span class="n">row</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"here 1"</span><span class="p">);</span>
+    <span class="k">struct</span> <span class="n">user_node</span> <span class="o">*</span><span class="n">aCrawl</span> <span class="o">=</span> <span class="n">graph</span><span class="o">-&gt;</span><span class="n">array</span><span class="p">[</span><span class="n">a</span><span class="p">].</span><span class="n">head</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">user_node</span> <span class="o">*</span><span class="n">bCrawl</span> <span class="o">=</span> <span class="n">graph</span><span class="o">-&gt;</span><span class="n">array</span><span class="p">[</span><span class="n">b</span><span class="p">].</span><span class="n">head</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"here 1"</span><span class="p">);</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">aCrawl</span> <span class="o">||</span> <span class="n">bCrawl</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">aCrawl</span><span class="o">-&gt;</span><span class="n">dest</span> <span class="o">==</span> <span class="n">bCrawl</span><span class="o">-&gt;</span><span class="n">dest</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">sprintf</span><span class="p">(</span><span class="n">sql_statement</span><span class="p">,</span> <span class="s">"SELECT username, first_name, last_name FROM</span><span class="err">
+</span><span class="s">            user_database WHERE id=%d"</span><span class="p">,</span> <span class="n">aCrawl</span><span class="o">-&gt;</span><span class="n">dest</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">mysql_query</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">sql_statement</span><span class="p">))</span>
+            <span class="p">{</span>
+                <span class="n">finish_with_error</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="n">MYSQL_RES</span> <span class="o">*</span><span class="n">result</span> <span class="o">=</span> <span class="n">mysql_store_result</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span>
+            <span class="k">while</span> <span class="p">((</span><span class="n">row</span> <span class="o">=</span> <span class="n">mysql_fetch_row</span><span class="p">(</span><span class="n">result</span><span class="p">))</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">printf</span><span class="p">(</span><span class="s">"Username: %s</span><span class="se">\t</span><span class="s">"</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+                <span class="n">printf</span><span class="p">(</span><span class="s">"Name: %s %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">aCrawl</span> <span class="o">=</span> <span class="n">aCrawl</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="n">bCrawl</span> <span class="o">=</span> <span class="n">bCrawl</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">print_common_friends</span><span class="p">(</span><span class="k">struct</span> <span class="n">Graph</span> <span class="o">*</span><span class="n">graph</span><span class="p">,</span> <span class="n">MYSQL</span> <span class="o">*</span><span class="n">conn</span><span class="p">,</span> <span class="n">MYSQL_ROW</span> <span class="n">row</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="n">user_a</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
+    <span class="kt">char</span> <span class="n">user_b</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
+    <span class="kt">char</span> <span class="n">user_a_uid</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
+    <span class="kt">char</span> <span class="n">user_b_uid</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Enter the first user: "</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span> <span class="n">user_a</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Enter the second user: "</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span> <span class="n">user_b</span><span class="p">);</span>
+    <span class="n">sprintf</span><span class="p">(</span><span class="n">sql_statement</span><span class="p">,</span> <span class="s">"SELECT id FROM user_database </span><span class="err">
+</span><span class="s">    WHERE username='%s' OR username='%s'"</span><span class="p">,</span> <span class="n">user_a</span><span class="p">,</span> <span class="n">user_b</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">mysql_query</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">sql_statement</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Query failed  with the following message:</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">mysql_error</span><span class="p">(</span><span class="n">conn</span><span class="p">));</span>
+        <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">MYSQL_RES</span> <span class="o">*</span><span class="n">result</span> <span class="o">=</span> <span class="n">mysql_store_result</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span>
+    <span class="k">while</span> <span class="p">((</span><span class="n">row</span> <span class="o">=</span> <span class="n">mysql_fetch_row</span><span class="p">(</span><span class="n">result</span><span class="p">))</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">strcpy</span><span class="p">(</span><span class="n">user_a_uid</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+        <span class="n">strcpy</span><span class="p">(</span><span class="n">user_b_uid</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span> <span class="n">user_a_uid</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span> <span class="n">user_b_uid</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"The common friends of %s and %s are:</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">user_a</span><span class="p">,</span> <span class="n">user_b</span><span class="p">);</span>
+    <span class="n">find_common_friends</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">atoi</span><span class="p">(</span><span class="n">user_a_uid</span><span class="p">),</span> <span class="n">atoi</span><span class="p">(</span><span class="n">user_b_uid</span><span class="p">),</span> <span class="n">conn</span><span class="p">,</span> <span class="n">row</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<h5 id="8-print-friend-recommendations">8. Print Friend Recommendations</h5>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">print_friend_recommendations</span><span class="p">(</span><span class="k">struct</span> <span class="n">Graph</span> <span class="o">*</span><span class="n">graph</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="n">MYSQL</span> <span class="o">*</span><span class="n">conn</span><span class="p">,</span> <span class="n">MYSQL_ROW</span> <span class="n">row</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">struct</span> <span class="n">user_node</span> <span class="o">*</span><span class="n">pCrawl</span> <span class="o">=</span> <span class="n">graph</span><span class="o">-&gt;</span><span class="n">array</span><span class="p">[</span><span class="n">v</span><span class="p">].</span><span class="n">head</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">pCrawl</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">pCrawl</span><span class="o">-&gt;</span><span class="n">dest</span> <span class="o">!=</span> <span class="n">v</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">sprintf</span><span class="p">(</span><span class="n">sql_statement</span><span class="p">,</span> <span class="s">"SELECT username, first_name, last_name FROM user_database WHERE id=%d"</span><span class="p">,</span> <span class="n">pCrawl</span><span class="o">-&gt;</span><span class="n">dest</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">mysql_query</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">sql_statement</span><span class="p">))</span>
+            <span class="p">{</span>
+                <span class="n">finish_with_error</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="n">MYSQL_RES</span> <span class="o">*</span><span class="n">result</span> <span class="o">=</span> <span class="n">mysql_store_result</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span>
+            <span class="k">while</span> <span class="p">((</span><span class="n">row</span> <span class="o">=</span> <span class="n">mysql_fetch_row</span><span class="p">(</span><span class="n">result</span><span class="p">))</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">printf</span><span class="p">(</span><span class="s">"Recommendation from username: %s</span><span class="se">\t</span><span class="s">"</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+                <span class="n">printf</span><span class="p">(</span><span class="s">"Name: %s %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+                <span class="n">print_userid_friends</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">pCrawl</span><span class="o">-&gt;</span><span class="n">dest</span><span class="p">,</span> <span class="n">conn</span><span class="p">,</span> <span class="n">row</span><span class="p">);</span>
+                <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n\n\n</span><span class="s">"</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">pCrawl</span> <span class="o">=</span> <span class="n">pCrawl</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>This takes O(n*k) where k is the number of friends user with id = v has.</p>
+
+<h5 id="9-insert-a-new-login">9. Insert a New Login</h5>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">sign_up</span><span class="p">(</span><span class="n">MYSQL</span> <span class="o">*</span><span class="n">conn</span><span class="p">,</span> <span class="n">MYSQL_ROW</span> <span class="n">row</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="n">uid</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">mysql_query</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s">"SELECT id FROM user_database </span><span class="err">
+</span><span class="s">    ORDER BY ID DESC LIMIT 1"</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Query failed  with the following message:</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">mysql_error</span><span class="p">(</span><span class="n">conn</span><span class="p">));</span>
+        <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">MYSQL_RES</span> <span class="o">*</span><span class="n">result</span> <span class="o">=</span> <span class="n">mysql_store_result</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span>
+    <span class="k">while</span> <span class="p">((</span><span class="n">row</span> <span class="o">=</span> <span class="n">mysql_fetch_row</span><span class="p">(</span><span class="n">result</span><span class="p">))</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">strcpy</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="p">}</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">new_uid</span> <span class="o">=</span> <span class="n">string_test</span><span class="p">(</span><span class="n">uid</span><span class="p">);</span>
+    <span class="kt">char</span> <span class="n">username</span><span class="p">[</span><span class="mi">50</span><span class="p">],</span> <span class="n">password</span><span class="p">[</span><span class="mi">50</span><span class="p">],</span> <span class="n">first_name</span><span class="p">[</span><span class="mi">50</span><span class="p">],</span> <span class="n">last_name</span><span class="p">[</span><span class="mi">50</span><span class="p">],</span> <span class="n">gender</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
+    <span class="kt">char</span> <span class="n">dob</span><span class="p">[</span><span class="mi">50</span><span class="p">],</span> <span class="n">phone_number</span><span class="p">[</span><span class="mi">50</span><span class="p">],</span> <span class="n">email</span><span class="p">[</span><span class="mi">50</span><span class="p">],</span> <span class="n">lives_in</span><span class="p">[</span><span class="mi">50</span><span class="p">],</span> <span class="n">college</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Enter your username: "</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span> <span class="n">username</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Enter your password: "</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span> <span class="n">password</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Enter your first name: "</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span> <span class="n">first_name</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Enter your last name: "</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span> <span class="n">last_name</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Enter your gender(Male/Female): "</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span> <span class="n">gender</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Enter your date of birth(YYYY-MM-DD): "</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span> <span class="n">dob</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Enter your mobile number(XXX-XXX-XXXX): "</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span> <span class="n">phone_number</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Enter your email: "</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span> <span class="n">email</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Enter your address: "</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span> <span class="n">lives_in</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Enter your college: "</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span> <span class="n">college</span><span class="p">);</span>
+    <span class="n">sprintf</span><span class="p">(</span><span class="n">sql_statement</span><span class="p">,</span> <span class="s">"INSERT INTO user_database(id, username, password, </span><span class="err">
+</span><span class="s">    first_name, last_name, gender, dob, since, phone_number, </span><span class="err">
+</span><span class="s">    email, lives_in, college) VALUES('%s', '%s', '%s', '%s', </span><span class="err">
+</span><span class="s">    '%s', '%s', '%s', '2020-11-29', '%s','%s', '%s', '%s')"</span><span class="p">,</span> <span class="n">new_uid</span><span class="p">,</span> 
+    <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> 
+    <span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span><span class="p">,</span> <span class="n">gender</span><span class="p">,</span> <span class="n">dob</span><span class="p">,</span> <span class="n">phone_number</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">lives_in</span><span class="p">,</span> <span class="n">college</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">mysql_query</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">sql_statement</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Query failed  with the following message:</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">mysql_error</span><span class="p">(</span><span class="n">conn</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Great! you've signed up. The program shall exit now, </span><span class="err">
+</span><span class="s">        next time log in with your new credentials.</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>This takes constant time.</p>
+
+  <script src="https://utteranc.es/client.js"
+        repo="psymbio/psymbio.github.io"
+        issue-term="pathname"
+        theme="github-dark-orange"
+        crossorigin="anonymous"
+        async>
+</script>
+</section>
+</section>
+<section class="shore">
+<section class="content">
+  <div class="footer"></div>
+    <section class="thanks">
+      <span>That sentence that goes before giving my email to strangers: <a href="mailto: psymbio@gmail.com">psymbio@gmail.com</a></span>
+    </section>
+  </div>
+</section>
+</section>
+<br>
+<br>
+<script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+
+    <section class="shore">
+  </div>
+</body>  
+<script>
+  'use strict';
+  var head = document.head;
+  var link = document.createElement('link');
+  link.type = 'text/css';
+  link.rel = 'stylesheet';
+  link.href = '/css/pygments.css'
+  head.appendChild(link);
+</script>
+
+</html>

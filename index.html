@@ -1,0 +1,38 @@
+---
+layout: layout
+---
+
+<style>
+  .content {
+    margin-top: 0;
+  }
+  .sidebar {
+    margin-bottom: 0;
+  }
+  .something {
+    font-size: 20px;
+  }
+</style>
+<!--
+<p class="something">a brain on computer chips</p>
+-->
+<section class="content">
+  <ul class="listing table">
+    {% assign site_tags = site.tags | sort %}
+    {% for tag in site_tags %}
+    <h2 id="{{ tag[0] | slugify }}">{{ tag | first }}</h2>
+    <ul class="listing table">
+      {% assign sorted_posts = tag[1] | sort: "order" %} {% for post in
+      sorted_posts %}
+      <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
+        <li>
+          <span>{{ post.date | date_to_string }}</span>
+          <a href="{{ post.url }}" class="indexed">{{ post.title }}</a>
+        </li>
+      </a>
+      {% endfor %}
+    </ul>
+    {% endfor %}
+  </ul>
+  <br /><br />
+</section>

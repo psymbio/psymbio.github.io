@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <title>
+    Designing Your Own OS from Scratch &ndash; The Brain Archive
+  </title>
+  <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+  <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+  <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+  <meta name="author" content="psymbio" />
+  <meta name="description" content="psymbio's blog" />
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+  <link rel="alternate" type="application/rss+xml" href="/atom.xml" />
+  <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+  <link rel="shortcut icon" type="image/x-icon" href="/icons/icon.png" />
+  <link rel="icon" type="image/png" href="/icons/icon.png">
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- See https://goo.gl/OOhYW5 -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- See https://goo.gl/qRE0vM -->
+  <meta name="theme-color" content="#C1272D">
+
+  <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="psymbio's blog">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="psymbio's blog">
+
+  <!-- Homescreen icons -->
+  <link rel="apple-touch-icon" sizes="192x192" href="icons/icon.png">
+
+  <!-- Tile icon for Windows 8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="icons/icon.png">
+  <meta name="msapplication-TileColor" content="#C1272D">
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <!-- Default twitter cards -->
+  <meta name="twitter:card" content="psymbio's blog">
+  <meta name="twitter:site" content="@psymbio">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="my-app">
+  <meta property="og:image" content="icons/icon.png" />
+
+  <!--clicky analytics-->
+  <script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101291588);</script>
+<script async src="//static.getclicky.com/js"></script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.1.2/es5/startup.js" integrity="sha512-umLk4jlqS6v3HF06nsUFlzLGh3yp1A9X+hhlGOEstnLdkphT8w0O8nJJi2Pf28kfIFQvYzMg7ODPluFlkc/WzQ==" crossorigin="anonymous"></script>
+
+<!--flowcharts-->
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true});</script>
+<!--2d plots-->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<!--3d plots-->
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<!--python for browser: brython
+<script type="text/javascript" src="/scripts/brython.js"></script>
+<script type="text/javascript" src="/scripts/brython_stdlib.js"></script>
+--->
+
+
+<!--copy code to clipboard-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+<script src="/assets/scripts/copycode.js"></script>
+
+<!--particles on the background-->
+<script src="/assets/scripts/particle.js"></script>
+
+<link rel="stylesheet" type="text/css" href="http://tikzjax.com/v1/fonts.css">
+<script src="http://tikzjax.com/v1/tikzjax.js"></script>
+<meta name="google-site-verification" content="3PIlzxg_Fq6uuVEqKvNXrVj8NuWqIA9_hqCxWLcnU-4" />
+<!--
+<nav>
+  <ul>
+      <li><a href="/">Blog</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+-->
+</head>
+<body>
+  <div class="top-line"></div>
+  <div class="container">
+    <section class="shore">
+    <header class="sidebar">
+  <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+  <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+  <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+  <a href="/">
+    <img src="/images/title.png" height="250" width="250" class="avatar" />
+  </a>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+</header>
+<link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+<link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+<link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script src="/assets/scripts/copycode.js"></script>
+<section class="content">
+  <section class="byline">
+    January 20, 2021
+  </section>
+  <h1>Designing Your Own OS from Scratch</h1>
+  <br>
+  <p>This year as a joke I decided to try out building Hell’s Kitchen OS. And no I’m not obsessed with Gordon Ramsay, but the OS needed to be a prank that was better than a RickRoll.</p>
+
+<p>As resources for the project, we don’t have a lot of clean data. We need to collect all the bits and pieces in parts. The only legit sources I know of are: <a href="ops-class.org">ops-class.org</a> the class Zuckerberg struggled in, and Terry O. Davis’s 830 GiB Torrent files, which from what I’ve heard it’s mostly filled with (profanity alert) videos of him fapping and n-words.</p>
+
+<p>Here’s an inspiring quote from the man:</p>
+<blockquote>
+  <p>“I wrote a compiler, nigger. I am smarter than Linus. I wrote a kernel and compiler.”</p>
+</blockquote>
+
+<p>Also, another alert: I have about 30 days to work on this. Like basically spending around a day on full-blown aspects like file management, connections and text editors. It really is just how much can one do when a project title and the power of the internet is given to them. I do think I might work on it as time goes by, but for now just stick the the one month.</p>
+
+<h2 id="step-1-deciding-what-all-is-even-going-to-be-there">Step 1: Deciding what all is even going to be there.</h2>
+
+<p>When you decide the theme for your OS, you’re flying in the air thinking it’s all going to be possible, almost too easy. I’ll just change my desktop picture. You’re wrong.</p>
+
+<p>Most DIY-OSs are quite boring and just need to have the basic functionality. If you look at Windows 10, from a Linux perspective, you’ve sort of learnt how to be minimal with the softwares you use on a daily basis. And really, 90% of Windows is just basically bloat. All you really need in an OS is a file management system, a universal text editor that can handle almost any file, maybe a tux paint, something for viewing images and videos and a browser (networking capabilities).</p>
+
+<h2 id="step-2-making-a-cross-compiler">Step 2: Making a Cross Compiler.</h2>
+
+<p><del>This is the guide you want to follow: <a href="https://wiki.osdev.org/GCC_Cross-Compiler">GCC Cross Compiler</a>.<span class="inlinecode">sudo apt install</span> all those dependencies, take a gcc from <a href="http://robotlab.itk.ppke.hu/gcc/releases/">here</a> and a binutils from <a href="https://ftp.gnu.org/gnu/binutils/">here</a>. Extract them to your project directory and just follow the guide.</del></p>
+
+<p><del>
+While working on binutils if you encounter “checking whether the C compiler works… no” run the following commands:
+</del></p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">sudo </span>apt-get <span class="nb">install</span> <span class="nt">--reinstall</span> build-essential
+<span class="nb">sudo </span>apt-get <span class="nb">install</span> <span class="nt">--reinstall</span> gcc
+<span class="nb">sudo </span>dpkg-reconfigure build-essential
+<span class="nb">sudo </span>dpkg-reconfigure gcc</code></pre></figure>
+
+<p><del>
+I think this is something that happens when you try to make install binutils a second time. I guess before working on anything else and after making gcc you might want to actually run it again.
+</del></p>
+
+<h2 id="dum-dum-dum-technical-difficulties">dum dum dum… technical difficulties</h2>
+
+<p>After spending a day or more setting up that cross compiler I lost the battle. Then, having only 4 days left for the grand presentation I found myself, well how one finds themselves before deadlines. Well, where do you actually start?</p>
+
+<p>I think reading OSDev right at the beginning could somewhat be a mix of exhausting, and at same time the site manages to be condescending. Don’t take it the wrong way, it’s a great resource but just spirals out of control.</p>
+
+<p>Here’s where you want to begin.</p>
+
+<p>You want to start with falling in love with this ultra-cute language called Assembly. It’s cute because every fucking line of code is just three words at max and so much fun dealing with the little loops and labels. This is the <a href="https://www.youtube.com/watch?v=SL--qoiu7yA&amp;list=PLR2FqYUVaFJpHPw1ExSVJZFNlXzJYGAT1&amp;ab_channel=Programology">playlist</a> I followed for studying for assembly language, it’s in Urdu right but maybe you can manage to look at his notes in English. The first few videos are boring but then it catches pace when starts up his MASM, which by the way is super easy to <a href="https://ksaikiranr.wordpress.com/2016/05/01/run-masm-programs-on-ubuntu/">setup for Ubuntu</a>. After you’re answering the programming questions 
+before that guy solves it in his videos, I think it’s good to begin.</p>
+
+<p>When dealing with the bootloader, all we can use is Assembly and not even just diassembly of C code. We actually start off with only 16 bits in real mode. That means registers like eax (extended registers) are outside our scope. So let’s you’re lazy and would rather disassemble stuff like this simple C program:</p>
+
+<div class="code-header">
+    <button class="copy-code-button" aria-label="Copy code to clipboard"></button>
+</div>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="c1">// filename: basic.c</span>
+<span class="kt">int</span> <span class="nf">my_function</span> <span class="p">()</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="mh">0xbaba</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Good news: You CAN’T!</p>
+
+<p>The answer lies in the disassembly. To disamble this:</p>
+
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">gcc -ffreestanding -c basic.c -o basic.o
+objdump -d basic.o</span></code></pre></figure>
+
+<p>And you end up with an output like this:</p>
+
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">basic.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+</span><span class="gp">0000000000000000 &lt;my_function&gt;</span>:
+<span class="go">   0:	f3 0f 1e fa          	endbr64 
+   4:	55                   	push   %rbp
+   5:	48 89 e5             	mov    %rsp,%rbp
+</span><span class="gp">   8:	b8 ba ba 00 00       	mov    $</span>0xbaba,%eax
+<span class="go">   d:	5d                   	pop    %rbp
+   e:	c3                   	ret    </span></code></pre></figure>
+
+<p>Look at that eax, occupying all those 32 bits of memory just waiting to crash our OS. So in this bootloading stage you can only use assembly till you finally extend from the 16 bit real mode to the 32 bit protected mode and finally the 64 bit long mode.</p>
+
+<p>Now to get started on understanding the basics follow <a href="https://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lectures/os-dev.pdf">this pdf</a>.</p>
+
+<p>draft:
+<a href="https://wiki.osdev.org/Beginner_Mistakes">Beginner’s Mistakes</a>
+<a href="https://wiki.osdev.org/Main_Page">OS Dev</a></p>
+
+  <script src="https://utteranc.es/client.js"
+        repo="psymbio/psymbio.github.io"
+        issue-term="pathname"
+        theme="github-dark-orange"
+        crossorigin="anonymous"
+        async>
+</script>
+</section>
+</section>
+<section class="shore">
+<section class="content">
+  <div class="footer"></div>
+    <section class="thanks">
+      <span>That sentence that goes before giving my email to strangers: <a href="mailto: psymbio@gmail.com">psymbio@gmail.com</a></span>
+    </section>
+  </div>
+</section>
+</section>
+<br>
+<br>
+<script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+
+    <section class="shore">
+  </div>
+</body>  
+<script>
+  'use strict';
+  var head = document.head;
+  var link = document.createElement('link');
+  link.type = 'text/css';
+  link.rel = 'stylesheet';
+  link.href = '/css/pygments.css'
+  head.appendChild(link);
+</script>
+
+</html>
