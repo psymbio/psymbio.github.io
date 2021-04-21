@@ -25,24 +25,6 @@
     
     
     <url>
-        <loc>http://localhost:4000/posts/fastai-lesson7/</loc>
-    </url>
-    
-    
-    
-    <url>
-        <loc>http://localhost:4000/posts/fastai-lesson6/</loc>
-    </url>
-    
-    
-    
-    <url>
-        <loc>http://localhost:4000/posts/fastai-lesson5/</loc>
-    </url>
-    
-    
-    
-    <url>
         <loc>http://localhost:4000/posts/blogs/</loc>
     </url>
     
@@ -128,12 +110,6 @@
     
     <url>
         <loc>http://localhost:4000/posts/social-network-graph/</loc>
-    </url>
-    
-    
-    
-    <url>
-        <loc>http://localhost:4000/posts/programmer-tips/</loc>
     </url>
     
     
