@@ -11,7 +11,7 @@ Here are my real life goals to suck out from this book. There's a couple of test
 
 1. [The Human Brain Project Curriculum](https://www.humanbrainproject.eu/en/education/participatecollaborate/curriculum/): they offer you credits depending on the number of courses you take. Now I'm not particularly aware of how valid or well recognized they are but the thing is, I don't think as computer science students we get to take tests that give us medical degrees in neuroscience. So, I think this is as good as it gets. Current status: Incomplete.
 
-2. [Neuromatch Academy](https://www.neuromatchacademy.org/) Current status: Incomplete.
+2. [Neuromatch Academy](https://www.neuromatchacademy.org/) Current status: Applied.
 
 3. [mindCORE](https://mindcore.sas.upenn.edu/education/) Current status: Incomplete.
 
@@ -123,7 +123,7 @@ There are three types of glial cells:
 
 + Restricted to the <span data-tooltip="The brain and spinal cord" data-tooltip-position="bottom"><i>CNS</i></span>.
 + Lay down a lipid-rich wrapping around some axons. Myelin increases the speed of transmission of  electrical signals.
-+ In the <span data-tooltip="peripheral nervous system" data-tooltip-position="bottom"><i>PNS</i></span> the cells that provide the myelin asre called **Schwann Cells**.
++ In the <span data-tooltip="peripheral nervous system" data-tooltip-position="bottom"><i>PNS</i></span> the cells that provide the myelin are called **Schwann Cells**.
 + In the mature nervous system subsets of the oligodendrocytes and schwann cells retain neural stem properties and can generate new oligodendrocytes and schwann cells in response to injury.
 
 ### Microglial Cells
@@ -175,3 +175,5 @@ Tracts:
 Commissures: 
 
 Columns:
+
+[Quiz Guide](https://quizlet.com/au/238594832/neuroscience-cells-of-cns-and-basic-orientation-flash-cards/)
