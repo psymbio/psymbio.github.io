@@ -8,6 +8,46 @@ convex optimization
 
 cs229, cs229a, cs230
 
+Arthur Samuel checkers playing program: a program better than his creator.
+
+Arthur Samuel (1958) Machine Learning: Give computers the ability to learn instead of being explicitly programmed.
+
+Tom Mitchell (1998) Well-posed Learning Problem: A computer program is said to learn from experience E with respect to some task T and some performance measure P, if its performance on T, as measured by P, improves with experience E.
+
+Supervised Learning:
+
+Regression: house pricing based on size and prices. How to get y from x when you already have a bunch of (x,y)s
+
+Classification Problem: is the tumor malignant or not depending on the size of the tumor.
+
+Logistic Regression Algorithm
+
+Dean Pomerleau: self-driving cars
+
+Back propogation
+
+Gradient Descent
+
+ML strategy: choose the correct algorithm 
+
+https://www.deeplearning.ai/programs/
+
+Unsupervised learning
+
+K-means clusterng
+
+Astronomical data, social network analysis, organizing computing clusters, market segmentation
+
+Algorithm to separate the voices: Cocktail party problem, ICA: Independent Components Analysis
+
+RL: flying a helicopter
+
+[Pavlovian Conditioning](https://www.simplypsychology.org/pavlov.html)
+
+Project idea: Mario Kart playing RL Agent
+
+
+{% comment %}
 http://cs229.stanford.edu/proj2019spr/report/21.pdf
 
 Requester,
@@ -64,47 +104,9 @@ and dignity.
 6. This data comes with no warranty or guarantee of any kind, and you
 accept full liability.
 
-  If you do not agree to any of these terms, please do not use the Service.
+If you do not agree to any of these terms, please do not use the Service.
 
-  Thank you.
+Thank you.
 
-  Moments in Time Team
-
-
-Arthur Samuel checkers playing program: a program better than his creator.
-
-Arthur Samuel (1958) Machine Learning: Give computers the ability to learn instead of being explicitly programmed.
-
-Tom Mitchell (1998) Well-posed Learning Problem: A computer program is said to learn from experience E with respect to some task T and some performance measure P, if its performance on T, as measured by P, improves with experience E.
-
-Supervised Learning:
-
-Regression: house pricing based on size and prices. How to get y from x when you already have a bunch of (x,y)s
-
-Classification Problem: is the tumor malignant or not depending on the size of the tumor.
-
-Logistic Regression Algorithm
-
-Dean Pomerleau: self-driving cars
-
-Back propogation
-
-Gradient Descent
-
-ML strategy: choose the correct algorithm 
-
-https://www.deeplearning.ai/programs/
-
-Unsupervised learning
-
-K-means clusterng
-
-Astronomical data, social network analysis, organizing computing clusters, market segmentation
-
-Algorithm to separate the voices: Cocktail party problem, ICA: Independent Components Analysis
-
-RL: flying a helicopter
-
-[Pavlovian Conditioning](https://www.simplypsychology.org/pavlov.html)
-
-Project idea: Mario Kart playing RL Agent
+Moments in Time Team
+{% end comment %}

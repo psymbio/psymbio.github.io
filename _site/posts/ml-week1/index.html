@@ -172,6 +172,8 @@
 
 <p>Non-clustering: The “Cocktail Party Algorithm”, allows you to find structure in a chaotic environment. (i.e. identifying individual voices and music from a mesh of sounds at a <a href="https://en.wikipedia.org/wiki/Cocktail_party_effect">cocktail party</a>).</p>
 
+<p>To solve the cocktail party problem, we use ICA: Independent Component Analysis.</p>
+
 <p>Basically separates the sounds coming from two different sources. This is done through just one line of code: <script type="math/tex">[W,s,v] = svd((repmat(sum(x. * x,1),size(x,1),1). * x) * x');</script></p>
 
 <h2 id="model-and-cost-function">Model and Cost Function</h2>
@@ -187,7 +189,13 @@
     C["Training Set and Learning Algorithm"]--&gt; h
 </div>
 
-<p>h is a function that maps from x to y.</p>
+<div class="mermaid" align="center" height="70%" width="70%">
+    flowchart LR
+    A["size"]--&gt; h 
+    h--&gt; B["Price of the House"]
+</div>
+
+<p>h(hypothesis) is a function that maps from x to y. To represent h, <script type="math/tex">h(x) = \theta_0 + \theta_1 x</script> (linear or affine function) and if there are more inputs: <script type="math/tex">h(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 ... = \sum_{j=0}^{z} \theta_j * j</script></p>
 
 <p>To establish notation for future use, we’ll use <script type="math/tex">x^{(i)}</script> to denote the “input” variables (living area in this example), also called input features, and <script type="math/tex">y^{(i)}</script> to denote the “output” or target variable that we are trying to predict (price). A pair <script type="math/tex">(x^{(i)} , y^{(i)} )</script> is called a training example, and the dataset that we’ll be using to learn—a list of m training examples <script type="math/tex">{(x^{(i)} , y^{(i)} ); i = 1, . . . , m}</script> —is called a training set. Note that the superscript “(i)” in the notation is simply an index into the training set, and has nothing to do with exponentiation. We will also use X to denote the space of input values, and Y to denote the space of output values. In this example, <script type="math/tex">X = Y = ℝ</script>.</p>
 
@@ -218,8 +226,8 @@
       <td>315</td>
     </tr>
     <tr>
-      <td> </td>
-      <td> </td>
+      <td>852</td>
+      <td>178</td>
     </tr>
     <tr>
       <td>…</td>
@@ -262,7 +270,9 @@
             }]
         }}});</script></div></p>
 
-<p>The idea is to select <script type="math/tex">\theta_0</script> and <script type="math/tex">\theta_1</script> so that <script type="math/tex">h_\theta(x)</script> is close to <script type="math/tex">y</script> for our training examples <script type="math/tex">(x, y)</script>. To do this we have to minimize this funtion: <script type="math/tex">\sum_{i=1}^{m} (h_\theta(x^{(i)}-y^{(i)}))^2</script> and to minimize the work you average it out by a factor of <script type="math/tex">2m</script> and use this: <script type="math/tex">J(\theta_0, \theta_1) = \frac{1}{2m} (h_\theta(x^{(i)}-y^{(i)}))^2</script>.</p>
+<p>The idea is to select <script type="math/tex">\theta_0</script> and <script type="math/tex">\theta_1</script> so that <script type="math/tex">h_\theta(x)</script> is close to <script type="math/tex">y</script> for our training examples <script type="math/tex">(x, y)</script>. To do this we have to minimize this function: <script type="math/tex">\sum_{i=1}^{m} (h_\theta(x^{(i)}-y^{(i)}))^2</script> and to minimize the work you average it out by a factor of <script type="math/tex">2m</script> and use this: <script type="math/tex">J(\theta_0, \theta_1) = \frac{1}{2m} (h_\theta(x^{(i)}-y^{(i)}))^2</script>.</p>
+
+<p>Why is it mean-squared error and not to the power of 4 or something else?</p>
 
 <p>We can measure the accuracy of our hypothesis function by using a cost function. This takes an average difference (actually a fancier version of an average) of all the results of the hypothesis with inputs from x’s and the actual output y’s. This function is otherwise called the “Squared error function”, or “Mean squared error”. The mean is halved as a convenience for the computation of the gradient descent, as the derivative term of the square function will cancel out the <script type="math/tex">\frac{1}{2}</script> term.</p>
 
@@ -270,13 +280,37 @@
 
 <p>Hypothesis: <script type="math/tex">h_\theta(x) = \theta_0 + \theta_1 x</script></p>
 
-<p>Parameters: <script type="math/tex">\theta_0, \theta_1</script></p>
+<p>Parameters: <script type="math/tex">\theta_0, \theta_1 ...</script></p>
 
-<p>Cost Function: <script type="math/tex">J(\theta_0, \theta_1) = \frac{1}{2m} (h_\theta(x^{(i)}-y^{(i)}))^2</script></p>
+<p>m: number of training examples</p>
+
+<p>n: number of features</p>
+
+<p>x: inputs / features</p>
+
+<script type="math/tex; mode=display">x = \begin{bmatrix}
+x_0\\
+x_1\\
+x_2
+\end{bmatrix}</script>
+
+<p>where, <script type="math/tex">x_0</script> is zero all the time
+<script type="math/tex">x_1</script> is size in feet
+<script type="math/tex">x_2</script> is number of bedrooms</p>
+
+<script type="math/tex; mode=display">\theta = \begin{bmatrix}
+\theta_0\\
+\theta_1\\
+\theta_2
+\end{bmatrix}</script>
+
+<p>y: output / target variable</p>
+
+<p>Cost Function: <script type="math/tex">J(\theta_0, \theta_1) = \frac{1}{2m} (h_\theta(x^{(i)})-y^{(i)})^2</script></p>
 
 <p>Goal: <script type="math/tex">J(\theta_0, \theta_1)</script></p>
 
-<p>If we try to think of it in visual terms, our training data set is scattered on the x-y plane. We are trying to make a straight line (defined by <script type="math/tex">h_\theta(x)</script> which passes through these scattered data points.</p>
+<p>If we try to think of it in visual terms, our training data set is scattered on the x-y plane. We are trying to make a straight line (defined by <script type="math/tex">h_\theta(x) = h(x)</script> which passes through these scattered data points.</p>
 
 <p>Our objective is to get the best possible line. The best possible line will be such so that the average squared vertical distances of the scattered points from the line will be the least. Ideally, the line should pass through all the points of our training data set. In such a case, the value of <script type="math/tex">J(\theta_0, \theta_1)</script> will be 0. The following example shows the ideal situation where we have a cost function of 0.</p>
 
@@ -308,23 +342,77 @@
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/IHZwWFHWa-w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
 
+<p>A cost function is a function that measures the performance of a machine learning model for a given data. It quantifies the error between the predicted values and the expected values (to a single number).</p>
+
+<p>Depending on the problem Cost Function can be formed in many different ways. The purpose of Cost Function is to be either:</p>
+
+<ul>
+  <li>Minimized: then returned value is usually called cost, loss or error. The goal is to find the values of model parameters for which Cost Function return as small number as possible.</li>
+  <li>Maximized: then the value it yields is named a reward. The goal is to find values of model parameters for which returned number is as large as possible.</li>
+</ul>
+
+<p>Gradient descent is an optimization algorithm used to find the parameters to minimize the cost function.</p>
+
+<p>The cost function here is <script type="math/tex">J(\theta) = \frac{1}{2m} (h_\theta(x^{(i)})-y^{(i)})^2</script> and we need to minimise it. Keep changing <script type="math/tex">\theta</script> to reduce <script type="math/tex">J(\theta)</script></p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{eqnarray} 
+J \left(\begin{pmatrix}\theta_0\\ \theta_1\end{pmatrix} \right) &=& 
+\frac{1}{2m}\sum_{i=1}^{m} (h(x^{(i)})-y^{(i)})^2 \\
+&=& \frac{1}{2m}\sum_{i=1}^{m} ((\theta_0 + \theta_1 x^{(i)})-y^{(i)})^2 \\
+&=& \frac{1}{2m}(X\times\Theta-y)'\times  (X\times\Theta-y)
+\end{eqnarray} %]]></script>
+
+<p>To change <script type="math/tex">\theta</script> we say <script type="math/tex">\theta_j := \theta_j - \alpha \frac{\partial J(\theta)}{\partial \theta_j}</script> for <script type="math/tex">j = 0, 1, 2, ...</script> (here := is an assignment operator it’s like <script type="math/tex">a = a + 1</script> is wrong but <script type="math/tex">a:= a + 1</script> is correct).</p>
+
+<script type="math/tex; mode=display">\frac{\partial J(\theta)}{\partial \theta_j} = \frac{\partial}{\partial \theta_j} \frac{1}{2} (h_\theta(x) - y)^2\\=2 \frac{1}{2} (h_\theta(x) - y)  \frac{\partial}{\partial \theta_j} (h_\theta(x) - y)\\=(h_\theta - y) \frac{\partial}{\partial \theta_j} (\theta_0 x_0 + \theta_1 x_1 + ... + \theta_d x_d - y)\\=(h_\theta - y) x_j</script>
+
+<p>So now we can say: <script type="math/tex">\theta_j := \theta_j - \alpha(h_\theta(x)-y) x_j</script></p>
+
+<script type="math/tex; mode=display">\theta_j := \theta_j - \alpha\sum_{i=1}^{m} (h_\theta(x^{(i)}-y^{(i)}))x_j</script>
+
+<p>This is called batch gradient descent.</p>
+
+<p>Stochastic gradient descent</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">repeat</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">m</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">d</span> <span class="p">{</span>
+            <span class="n">theta_j</span> <span class="o">:=</span> <span class="n">theta_j</span> <span class="o">-</span> <span class="n">alpha</span> <span class="n">h_theta</span><span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="p">{(</span><span class="n">i</span><span class="p">)}</span><span class="o">-</span><span class="n">y</span><span class="o">^</span><span class="p">{(</span><span class="n">i</span><span class="p">)}))</span><span class="n">x_j</span><span class="o">^</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> 
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Unlike batch gradient descent, stochastic never converges but runs fatser on large datasets.</p>
+
+<p>mini-batch gradient descent.</p>
+
 <h3 id="gradient-descent-intuition">Gradient Descent Intuition</h3>
 
 <h3 id="gradient-descent-for-linear-regression">Gradient Descent for Linear Regression</h3>
 
-<h2 id="linear-algebra-review">Linear Algebra Review</h2>
+<p>The math is pretty simple: learn the basic matric operations, transpose, inverse and multiplication.</p>
 
-<h3 id="matrices-and-vectors">Matrices and Vectors</h3>
+<p><script type="math/tex">tr(A) =</script> Trace of Matrix A = sum of the diagonals</p>
 
-<h3 id="addition-and-scalar-multiplication">Addition and Scalar Multiplication</h3>
+<script type="math/tex; mode=display">tr(A) = tr(A)^{T}</script>
 
-<h3 id="matrix-vector-multiplication">Matrix Vector Multiplication</h3>
+<script type="math/tex; mode=display">f(A) = tr(AB)\\\nabla_{A} F(A) = B^{T}</script>
 
-<h3 id="matrix-matrix-multiplication">Matrix Matrix Multiplication</h3>
+<script type="math/tex; mode=display">tr(AB) = tr(BA)</script>
 
-<h3 id="matrix-multiplication-properties">Matrix Multiplication Properties</h3>
+<script type="math/tex; mode=display">tr(ABC) = tr(CAB)</script>
 
-<h3 id="inverse-and-transpose">Inverse and Transpose</h3>
+<script type="math/tex; mode=display">\nabla_{A} tr(AA^{T}C) = CA + C^{T}A</script>
+
+<p>[watch again]</p>
+
+<h2 id="extra-reading">Extra Reading</h2>
+
+<p><a href="https://towardsdatascience.com/coding-deep-learning-for-beginners-linear-regression-part-2-cost-function-49545303d29f">Cost Function</a></p>
+
+<p><a href="https://user.phil.hhu.de/~petersen/SoSe17_Teamprojekt/linearRegression_functions.html">Blog for psuedocode</a></p>
 
 
   <script src="https://utteranc.es/client.js"
