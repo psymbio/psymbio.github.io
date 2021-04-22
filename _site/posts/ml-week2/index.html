@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>
-     The Brain Archive
+    Lecture 3: Locally Weighted & Logistic Regression &ndash; The Brain Archive
   </title>
   <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
   <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
@@ -109,220 +109,37 @@
   </a>
   <!-- Global site tag (gtag.js) - Google Analytics -->
 </header>
-<style>
-  .content {
-    margin-top: 0;
-  }
-  .sidebar {
-    margin-bottom: 0;
-  }
-  .something {
-    font-size: 20px;
-  }
-</style>
-<!--
-<p class="something">a brain on computer chips</p>
--->
+<link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+<link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+<link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script src="/assets/scripts/copycode.js"></script>
 <section class="content">
-  <ul class="listing table">
-    
-    
-    <h2 id="artificial-intelligence">Artificial Intelligence</h2>
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/zero-to-gans/">
-        <li>
-          <span>31 Dec 2020</span>
-          <a href="/posts/zero-to-gans/" class="indexed">Zero to GANs [draft]</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/brain-inspired-ai/">
-        <li>
-          <span>19 Sep 2020</span>
-          <a href="/posts/brain-inspired-ai/" class="indexed">Brain-inspired AI</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="clrs">CLRS</h2>
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/intro-to-algorithms/">
-        <li>
-          <span>04 Oct 2020</span>
-          <a href="/posts/intro-to-algorithms/" class="indexed">Introduction to Algorithms</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/clrs-chapter-1/">
-        <li>
-          <span>05 Oct 2020</span>
-          <a href="/posts/clrs-chapter-1/" class="indexed">Chapter 1: The Role of Algorithms in Computing</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/clrs-chapter-2/">
-        <li>
-          <span>06 Oct 2020</span>
-          <a href="/posts/clrs-chapter-2/" class="indexed">Chapter 2: Getting Started</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="cs229">CS229</h2>
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/ml-week1/">
-        <li>
-          <span>12 Dec 2020</span>
-          <a href="/posts/ml-week1/" class="indexed">Lecture 2: Introduction, Linear Regression, Gradient Descent</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/ml-week2/">
-        <li>
-          <span>22 Apr 2021</span>
-          <a href="/posts/ml-week2/" class="indexed">Lecture 3: Locally Weighted & Logistic Regression</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="computer-science">Computer Science</h2>
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/os/">
-        <li>
-          <span>20 Jan 2021</span>
-          <a href="/posts/os/" class="indexed">Designing Your Own OS from Scratch</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/compilers/">
-        <li>
-          <span>08 Dec 2020</span>
-          <a href="/posts/compilers/" class="indexed">The Meanderings of Designing Compilers</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/social-network-graph/">
-        <li>
-          <span>19 Nov 2020</span>
-          <a href="/posts/social-network-graph/" class="indexed">Social Network Graph</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="fast-ai">Fast.ai</h2>
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/fastai-lesson1/">
-        <li>
-          <span>05 Feb 2021</span>
-          <a href="/posts/fastai-lesson1/" class="indexed">Fastbook Lesson 1</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/fastai-lesson2/">
-        <li>
-          <span>09 Feb 2021</span>
-          <a href="/posts/fastai-lesson2/" class="indexed">Fastbook Lesson 2</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/fastai-lesson3/">
-        <li>
-          <span>11 Feb 2021</span>
-          <a href="/posts/fastai-lesson3/" class="indexed">Fastbook Lesson 3</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/fastai-lesson4/">
-        <li>
-          <span>13 Feb 2021</span>
-          <a href="/posts/fastai-lesson4/" class="indexed">Fastbook Lesson 4</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="machine-learning">Machine Learning</h2>
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/deap/">
-        <li>
-          <span>12 Mar 2021</span>
-          <a href="/posts/deap/" class="indexed">Diving into the DEAP</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/sudoku/">
-        <li>
-          <span>04 Jan 2021</span>
-          <a href="/posts/sudoku/" class="indexed">Machine Learning based Sudoku Players</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/sudoku-2/">
-        <li>
-          <span>24 Feb 2021</span>
-          <a href="/posts/sudoku-2/" class="indexed">Reinforcement Learning based Sudoku Players, Part 2</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="mike-x-cohen-course">Mike X Cohen Course</h2>
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/new-ants-1/">
-        <li>
-          <span>15 Mar 2021</span>
-          <a href="/posts/new-ants-1/" class="indexed">Analyzing Neural Time Series Data, Part 1</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="neuroscience-purves-6e">Neuroscience Purves 6E</h2>
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/studying-the-nervous-system/">
-        <li>
-          <span>02 Feb 2021</span>
-          <a href="/posts/studying-the-nervous-system/" class="indexed">Chapter 1: Studying the Nervous System</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="philosophy">Philosophy</h2>
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/intro-to-phil/">
-        <li>
-          <span>29 Nov 2020</span>
-          <a href="/posts/intro-to-phil/" class="indexed">Introduction to Philosophy</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/gettier-probs-in-ml/">
-        <li>
-          <span>05 Dec 2020</span>
-          <a href="/posts/gettier-probs-in-ml/" class="indexed">Gettier Problems in Machine Learning [draft]</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-  </ul>
-  <br /><br />
-</section>
+  <section class="byline">
+    April 22, 2021
+  </section>
+  <h1>Lecture 3: Locally Weighted & Logistic Regression</h1>
+  <br>
+  <p>Okay so now instead of just straight lines, we’ll be dealing with curves and so the definition of <script type="math/tex">h(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 ...</script> changes from this to something like a qudratic line <script type="math/tex">h(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2^2</script> and if we don’t want it to look like a parabola we could say <script type="math/tex">h(x) = \theta_0 + \theta_1 x_1 + \theta_2 \sqrt[2]{x_2}</script></p>
 
+<iframe src="https://www.desmos.com/calculator/wswxzktjwn" width="100%" style="min-height:400px"></iframe>
+
+<p>Now feature design algorithms help to decide whether x should be squared or rooted or should the log of x be taken so as to fit the function.</p>
+
+<h2 id="locally-weighted-regression">Locally Weighted Regression</h2>
+
+<p>What if the data isn’t fit well by just a straight line?</p>
+
+  <script src="https://utteranc.es/client.js"
+        repo="psymbio/psymbio.github.io"
+        issue-term="pathname"
+        theme="github-dark-orange"
+        crossorigin="anonymous"
+        async>
+</script>
+</section>
 </section>
 <section class="shore">
 <section class="content">
