@@ -130,7 +130,20 @@
 
 <h2 id="locally-weighted-regression">Locally Weighted Regression</h2>
 
-<p>What if the data isn’t fit well by just a straight line?</p>
+<p>What if the data isn’t fit well by just a straight line? How do you find the features then? We use locally weighted regression.</p>
+
+<p>Parmetric lerning algorithms: Fit a fixed set of parameters <script type="math/tex">\theta_i</script> to the data.</p>
+
+<p>Non-parametric learning algorithms: (locally weighted uses this) The amount of data/parameters you need to keep grows linearly with the size of data. (Not great if you have a large dataset becasue you need to keep all the data around loaded in the memory)</p>
+
+<p>In linear regression: To evaluate the output at x, fit <script type="math/tex">\theta</script> to minimize the cost function <script type="math/tex">J(\theta_0, \theta_1) = \frac{1}{2m} (y^{(i)}-\theta^{T}(x^{(i)}))^2</script> and return <script type="math/tex">\theta^{T}(x)</script></p>
+
+<p>In a locally weighted regression you look at those value close to the value you want to predict and draw a line there.</p>
+
+<figure>
+<img alt="regression" src="/images/2021/cs229/reg4.jpg" height="100%" width="100%" />
+<figcaption align="center">Normal linear regression vs. Locally weighted regression</figcaption>
+</figure>
 
   <script src="https://utteranc.es/client.js"
         repo="psymbio/psymbio.github.io"
