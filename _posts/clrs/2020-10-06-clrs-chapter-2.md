@@ -4,6 +4,8 @@ title: "Chapter 2: Getting Started"
 tag: CLRS
 category: posts
 order: 2
+pagestyle: base
+pagestyle2: post
 ---
 ## 2.1 Insertion Sort
 

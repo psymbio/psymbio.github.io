@@ -4,6 +4,8 @@ title: Introduction to Algorithms
 tag: CLRS
 category: posts
 order: 0
+pagestyle: base
+pagestyle2: post
 ---
 Welcome to this comprehensive guide to CLRS or Introduction to Algorithms, Third Edition by Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and last but not least Clifford Stein. Let us begin.
 

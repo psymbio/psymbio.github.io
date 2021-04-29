@@ -4,6 +4,8 @@ title: The Meanderings of Designing Compilers
 tag: Computer Science
 category: posts
 order: 1
+pagestyle: base
+pagestyle2: post
 ---
 Recently, I've taken upon myself the herculean task of single-handedly designing a compiler for a completely new language. Yes, preposterous. The idea of this new language went something like, we have [Logo](https://en.wikipedia.org/wiki/Logo_(programming_language)) that can design really neat patterns with just a little math, why not have one that could make either moving patterns or a programming language that could convert something like basic Markdown to video format.
 

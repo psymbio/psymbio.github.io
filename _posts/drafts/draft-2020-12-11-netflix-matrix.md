@@ -4,6 +4,8 @@ title: Netflix Recommendation Systems through Matrices [draft]
 tag: draft
 category: posts
 order: 0
+pagestyle: base
+pagestyle2: post
 ---
 ## Idea 1
 I'm going to presume you have basic knowledge of recommendation systems in general and Netflix. In this blog post, I shall try to write a solution to the Netflix Prize problem, probably a really simple recommendation system through the application of 2D matrices, and successively try to better optimize the solution and see what new math brings to solving the problem.

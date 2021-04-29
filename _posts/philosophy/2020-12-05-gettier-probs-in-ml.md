@@ -4,6 +4,8 @@ title: Gettier Problems in Machine Learning [draft]
 tag: Philosophy
 category: posts
 order: 2
+pagestyle: base
+pagestyle2: post
 ---
 Have a look at one of the most prominent philosophical puzzles through the lenses of machine learning.
 

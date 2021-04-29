@@ -4,6 +4,8 @@ title: Brain-inspired AI
 tag: Artificial Intelligence
 category: posts
 order: 2
+pagestyle: base
+pagestyle2: post
 ---
 GPT-3 is creating the next boom in technology but most technologists laugh it off saying that NLP today is chasing the wrong goals. So, what exactly are we aiming to achieve?
 

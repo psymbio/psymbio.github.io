@@ -4,6 +4,8 @@ title: Social Network Graph
 tag: Computer Science
 category: posts
 order: 1
+pagestyle: base
+pagestyle2: post
 ---
 ## The Problem We're Dealing With
 

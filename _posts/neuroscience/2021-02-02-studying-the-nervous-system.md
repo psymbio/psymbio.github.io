@@ -4,6 +4,8 @@ title: "Chapter 1: Studying the Nervous System"
 tag: Neuroscience Purves 6E
 category: posts
 order: 1
+pagestyle: base
+pagestyle2: post
 ---
 This part of the series in the blog is going to explore what I'm most excited about. How do we go from neuron to cognition and if it is possible for computers to finally get there.
 

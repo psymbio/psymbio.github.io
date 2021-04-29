@@ -13,6 +13,12 @@
     
     
     <url>
+        <loc>http://localhost:4000/posts/chunking-express/</loc>
+    </url>
+    
+    
+    
+    <url>
         <loc>http://localhost:4000/posts/new-ants-1/</loc>
     </url>
     

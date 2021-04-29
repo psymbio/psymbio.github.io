@@ -4,6 +4,8 @@ title: Fastbook Lesson 4
 tag: Fast.ai
 category: posts
 order: 4
+pagestyle: base
+pagestyle2: post
 ---
 ## Questions
 

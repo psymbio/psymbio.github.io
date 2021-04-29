@@ -4,6 +4,8 @@ title: Introduction to Philosophy
 tag: Philosophy
 category: posts
 order: 1
+pagestyle: base
+pagestyle2: post
 ---
 ## Why even study philosophy?
 

@@ -4,6 +4,8 @@ title: Zero to GANs [draft]
 tag: Artificial Intelligence
 category: posts
 order: -2
+pagestyle: base
+pagestyle2: post
 ---
 
 This is a course by [Jovian](https://www.jovian.ai/) for which they are giving free certification till the 2nd of January, 2021. Here are my notes and if instead you'd like to clone it then: <https://github.com/psymbio/GANs>.

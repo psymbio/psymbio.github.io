@@ -4,6 +4,8 @@ title: 7 Tips to Look Like a Programmer
 tag: Computer Science
 category: posts
 order: 2
+pagestyle: base
+pagestyle2: post
 ---
 Warning: This article is a clickbait article I wrote to get readers on Medium.com. What ended up happening is I had about a thousand reads for this and nothing on my actual articles. I still hate this article, but you can learn how to make a clickbait article. That heading has 7 for a reason, I read somewhere if you include the number 7, not 8 or 4 but 7 then you get people pouring in. Treat the rest of the article as Lorem Ipsum.
 

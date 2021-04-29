@@ -4,6 +4,8 @@ title: "Chapter 1: The Role of Algorithms in Computing"
 tag: CLRS
 category: posts
 order: 1
+pagestyle: base
+pagestyle2: post
 ---
 ## 1.1 Algorithms
 
