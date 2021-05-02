@@ -1,5 +1,7 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,600&display=swap");
 @font-face {
     font-family: og-emoji;
     src: url(/fonts/og-dcm-emoji.ttf);
@@ -61,8 +63,14 @@
     font-style: swap;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,600&display=swap");
+@font-face {
+    font-family: 'soehne-buch';
+    src: url(/fonts/soehne-buch.woff);
+    font-display: swap;
+    unicode-range: U+000-5FF;
+    font-style: swap;
+}
+
 @font-face {
     font-family: "soehne";
     src: url("fonts/test-soehne-buch.woff") format("woff");
@@ -139,8 +147,54 @@
 }
 
 @font-face {
+    font-family: "forum";
+    src: url("fonts/Forum-Regular.otf") format("opentype");
+}
+
+@font-face {
     font-family: "domaine-ita";
     src: url(fonts/TestDomaineDisplayNarrow-RegularItalic.otf) format("opentype");
+}
+
+@font-face {
+    font-family: "geograph";
+    src: url(fonts/TestGeograph-Light.otf) format("opentype");
+}
+
+@font-face {
+    font-family: "metric";
+    src: url(fonts/TestMetric-Light.otf) format("opentype");
+}
+
+@font-face {
+    font-family: "hedane";
+    src: url(fonts/TestHeldaneDisplay-Regular.otf) format("opentype");
+}
+
+@font-face {
+    font-family: "nueue";
+    src: url(fonts/NHaasGroteskTXPro-55Rg.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "gandhi";
+    src: url(fonts/GandhiSerif-Regular.otf) format("opentype");
+}
+
+@font-face {
+    font-family: "ogg";
+    src: url(fonts/Ogg-Roman.otf) format("opentype");
+}
+
+@font-face {
+    font-family: "basis";
+    src: url(fonts/basis-grotesque-regular.woff2) format("woff");
+}
+
+@font-face {
+    font-family: "attila";
+    src: url("//db.onlinewebfonts.com/t/e6ecebce74f9ee16345813d47cb3cff9.eot");
+    src: url("//db.onlinewebfonts.com/t/e6ecebce74f9ee16345813d47cb3cff9.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/e6ecebce74f9ee16345813d47cb3cff9.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/e6ecebce74f9ee16345813d47cb3cff9.woff") format("woff"), url("//db.onlinewebfonts.com/t/e6ecebce74f9ee16345813d47cb3cff9.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/e6ecebce74f9ee16345813d47cb3cff9.svg#Attila Sans Black") format("svg");
 }
 
 body {
@@ -151,14 +205,68 @@ body {
     flex-wrap: wrap;
 }
 
+::-moz-selection {
+    /* Code for Firefox */
+    color: #2d2d2d;
+    background: #FAF6EB;
+}
+
+ ::selection {
+    color: #2d2d2d;
+    background: #FAF6EB;
+}
+
 h1 {
-    font-family: "gtamerica-ex-light";
-    font-weight: normal;
+    font-family: "ogg";
     color: #FAF6EB;
-    font-size: 72px;
+    font-size: 5.5em;
+    font-weight: lighter;
+    letter-spacing: -2px;
 }
 
 p {
-    font-family: "domaine-ita";
+    font-family: "basis", "nueue";
+    /*gtamerica*/
+    /*attila*/
     color: #FAF6EB;
+    font-size: 24px;
+}
+
+.content {
+    max-width: 750px;
+    transform: translateY(20px);
+}
+
+.content-title {
+    max-width: 750px;
+}
+
+blockquote {
+    color: #2D2D2D;
+    background: rgba(175, 168, 162, 0.1);
+    margin: 30px 48px;
+    padding: 14px 12px;
+}
+
+blockquote p {
+    font-family: "gandhi";
+    font-size: 26px;
+    /*font-family: "gandhi;*/
+}
+
+blockquote:before {
+    content: "\201C";
+    font-family: Georgia;
+    font-size: 80px;
+    line-height: 0;
+    vertical-align: -0.35em;
+    color: #FAF6EB;
+}
+
+blockquote:after {
+    content: "";
+}
+
+blockquote p {
+    display: inline;
 }
