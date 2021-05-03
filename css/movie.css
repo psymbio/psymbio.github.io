@@ -264,7 +264,7 @@ p {
 }
 
 h2 {
-    font-size: 5em;
+    font-size: 4.5em;
     color: var(--headings2);
     font-family: "chronicle";
     line-height: 1;
@@ -272,34 +272,34 @@ h2 {
 }
 
 h3 {
-    font-size: 4.5em;
+    font-size: 4em;
     color: var(--headings2);
     font-family: "chronicle";
-    line-height: 1.0909090909;
+    line-height: 1;
     font-weight: normal;
 }
 
 h4 {
-    font-size: 4em;
+    font-size: 3.5em;
     color: var(--headings2);
     font-family: "chronicle";
-    line-height: 1.2;
+    line-height: 1;
     font-weight: normal;
 }
 
 h5 {
-    font-size: 3.5em;
+    font-size: 3em;
     color: var(--headings2);
     font-family: "chronicle";
-    line-height: 1.3333333333;
+    line-height: 1;
     font-weight: normal;
 }
 
 h6 {
-    font-size: 3em;
+    font-size: 2.5em;
     color: var(--headings2);
     font-family: "chronicle";
-    line-height: 1.5;
+    line-height: 1;
     font-weight: normal;
 }
 
@@ -310,6 +310,15 @@ h6 {
 
 .content-title {
     max-width: 750px;
+}
+
+.byline {
+    font-size: 1.5em;
+    color: #2d2d2d;
+    font-family: "chronicle";
+    /*text-transform: uppercase;*/
+    transform: translateY(100px);
+    opacity: 0.5;
 }
 
 blockquote {
@@ -402,4 +411,54 @@ ul {
     font-family: "suisse", "basis", "nueue";
     color: #2d2d2d;
     font-size: 23px;
+}
+
+ol {
+    font-family: "suisse", "basis", "nueue";
+    /*gtamerica*/
+    /*attila*/
+    color: #2d2d2d;
+    font-size: 23px;
+}
+
+code {
+    background: #b0efe6;
+    outline: 1px solid #7fe5d7;
+    font-family: 'Source Code Pro', 'fira', monospace;
+    font-size: var(--font-size-xs);
+    color: black;
+    border: 1px solid var(--accent-2);
+    background-color: rgba(123, 228, 213, 0.3);
+    /* accent-2 with opacity */
+    line-height: 1.5;
+    padding: 2px 3px;
+}
+
+pre {
+    background: #fffcf8;
+    /*#fefefe;*/
+    /*#f5f1ec;*/
+    /*#fff1e6;*/
+    /*linen*/
+    /*f4f1de*/
+    outline: 2px solid #eeeeee;
+    border-left: 5px solid var(--accent-2);
+    padding: var(--spacing-s);
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+pre code {
+    background: transparent !important;
+    outline: none;
+    color: black;
+    border: none;
+    font-weight: normal;
+}
+
+
+/* just the code blocks */
+
+h2 code {
+    font-size: 30px;
 }

@@ -50,11 +50,6 @@
     <meta property="og:image" content="icons/icon.png" />
 
     <!--clicky analytics-->
-    <script>
-        var clicky_site_ids = clicky_site_ids || [];
-        clicky_site_ids.push(101291588);
-    </script>
-    <script async src="//static.getclicky.com/js"></script>
 
     <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
     </script>
@@ -169,6 +164,20 @@
 <p><a href="http://cs229.stanford.edu/notes2020fall/notes2020fall/cs229-notes1.pdf#page=16">Explanation</a></p>
 
 <p>And we come back to the exact same equation as we had in</p>
+
+<p>[1:06:00]</p>
+<h2 id="newtons-method">Newton’s Method</h2>
+
+<p>Gadient descent is too slow because of the number of iterations it takes. Newton’s method takes more costlier iterations but the number decreases.</p>
+
+<p>Starting from an initial point always draw a tangent and see where the tangent meets the x-axis such thta y = 0. Then if on that point x is not equal to 0 keep repeating the process.</p>
+
+<figure>
+<img alt="regression" src="/images/2021/cs229/newtonsmethod.gif" height="100%" width="100%" />
+<figcaption align="center">Newton's Method</figcaption>
+</figure>
+
+<p>It has quadratic convergence.</p>
 
     <script src="https://utteranc.es/client.js" repo="psymbio/psymbio.github.io" issue-term="pathname" theme="github-dark-orange" crossorigin="anonymous" async>
     </script>

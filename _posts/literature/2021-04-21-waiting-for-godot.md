@@ -5,9 +5,7 @@ category: posts
 order: 1
 layout: movie
 ---
-[hover over me](www.google.com)
-
-[links](www.google.com)
+[hover over me](https://google.com)
 
 Samuel Beckett's absurdist play
 
@@ -20,10 +18,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 Amet volutpat consequat mauris nunc congue nisi vitae. Mauris vitae ultricies leo integer malesuada nunc vel risus commodo. Aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque habitant. Proin sed libero enim sed. Sit amet luctus venenatis lectus magna fringilla urna porttitor rhoncus. Vulputate dignissim suspendisse in est ante in nibh mauris cursus. Diam sit amet nisl suscipit adipiscing bibendum est ultricies. Faucibus scelerisque eleifend donec pretium. Cum sociis natoque penatibus et. Ultricies mi eget mauris pharetra et ultrices neque ornare. Pellentesque habitant morbi tristique senectus et netus. Porttitor eget dolor morbi non arcu risus. Consequat id porta nibh venenatis cras sed felis eget velit. Nibh tellus molestie nunc non blandit massa. Pharetra convallis posuere morbi leo urna molestie at. Eleifend donec pretium vulputate sapien. Aliquet lectus proin nibh nisl condimentum id venenatis. Vitae turpis massa sed elementum tempus. Vitae turpis massa sed elementum tempus egestas sed. Ultricies mi quis hendrerit dolor magna.
 
 > blockquotes can come here
-
-[links](www.google.com){target="_blank"}
-
-[links](www.google.com)
 
 + hello word
 + hell
