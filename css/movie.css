@@ -212,6 +212,14 @@
     src: url("//db.onlinewebfonts.com/t/e6ecebce74f9ee16345813d47cb3cff9.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/e6ecebce74f9ee16345813d47cb3cff9.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/e6ecebce74f9ee16345813d47cb3cff9.woff") format("woff"), url("//db.onlinewebfonts.com/t/e6ecebce74f9ee16345813d47cb3cff9.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/e6ecebce74f9ee16345813d47cb3cff9.svg#Attila Sans Black") format("svg");
 }
 
+:root {
+    --red: #9f0d06;
+    --white: #ffffff;
+    --black: #2d2d2d;
+    --headings: #2d2d2d;
+    --headings2: #2d2d2d;
+}
+
 body {
     background-color: #faf6eb;
     justify-content: center;
@@ -233,7 +241,7 @@ body {
 
 h1 {
     font-family: "ogg";
-    color: #9f0d06;
+    color: var(--headings);
     font-size: 6.5em;
     font-weight: lighter;
     letter-spacing: -2px;
@@ -257,7 +265,7 @@ p {
 
 h2 {
     font-size: 5em;
-    color: #9F0D06;
+    color: var(--headings2);
     font-family: "chronicle";
     line-height: 1;
     font-weight: normal;
@@ -265,7 +273,7 @@ h2 {
 
 h3 {
     font-size: 4.5em;
-    color: #9F0D06;
+    color: var(--headings2);
     font-family: "chronicle";
     line-height: 1.0909090909;
     font-weight: normal;
@@ -273,7 +281,7 @@ h3 {
 
 h4 {
     font-size: 4em;
-    color: #9F0D06;
+    color: var(--headings2);
     font-family: "chronicle";
     line-height: 1.2;
     font-weight: normal;
@@ -281,7 +289,7 @@ h4 {
 
 h5 {
     font-size: 3.5em;
-    color: #9F0D06;
+    color: var(--headings2);
     font-family: "chronicle";
     line-height: 1.3333333333;
     font-weight: normal;
@@ -289,7 +297,7 @@ h5 {
 
 h6 {
     font-size: 3em;
-    color: #9F0D06;
+    color: var(--headings2);
     font-family: "chronicle";
     line-height: 1.5;
     font-weight: normal;
@@ -357,8 +365,8 @@ blockquote p {
     #cursor.arrow .cursor__circle {
         width: 100px;
         height: 100px;
-        background-color: #2d2d2d;
-        border-color: #2d2d2d;
+        background-color: var(--black);
+        border-color: var(--black);
     }
     #cursor.arrow::after {
         content: '';
@@ -387,7 +395,7 @@ a {
 }
 
 a:hover {
-    color: #bec7be;
+    color: #dc2f02;
 }
 
 ul {

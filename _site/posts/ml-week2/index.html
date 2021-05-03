@@ -152,17 +152,7 @@
 
 <p>In locally weighted regression, fit <script type="math/tex">\theta</script> to minimize <script type="math/tex">\sum_{i=1}^{m} w^{i} (y^{(i)}-\theta^{T}(x^{(i)}))^2</script> where <script type="math/tex">w^{i}</script> is a “weight” function.</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>A default choice of <script type="math/tex">w^{i}</script> will be <script type="math/tex">exp(\frac{-(x^{(i)}-x)^2}{2\tau^2})</script> and if $$</td>
-      <td>x^{(i)}-x</td>
-      <td><script type="math/tex">is small then</script>w^{(i)} \approx 1<script type="math/tex">and if</script></td>
-      <td>x^{(i)}-x</td>
-      <td><script type="math/tex">is large then</script>w^{(i)} \approx 0<script type="math/tex">. So now if the term that you predit is far away from an</script>x^{(i)}$$ then multiply the term with zero.</td>
-    </tr>
-  </tbody>
-</table>
+<p>A default choice of <script type="math/tex">w^{i}</script> will be <script type="math/tex">exp(\frac{-(x^{(i)}-x)^2}{2\tau^2})</script> and if <script type="math/tex">\mid x^{(i)}-x \mid</script> is small then <script type="math/tex">w^{(i)} \approx 1</script> and if <script type="math/tex">\mid x^{(i)}-x \mid</script> is large then <script type="math/tex">w^{(i)} \approx 0</script>. So now if the term that you predit is far away from an <script type="math/tex">x^{(i)}</script> then multiply the term with zero.</p>
 
 <p>How do you choose the widh of the gaussain function? The parameter <script type="math/tex">\tau</script> is the bandwidth parameter that lets you decide on how big the neighbourhood of the value to be predicted should be. Depending on <script type="math/tex">\tau</script> we can choose a fatter or thinner bell shaped curve. The value of <script type="math/tex">\tau</script> has an influence on whether the data is underfitted or overfitted.</p>
 
@@ -171,6 +161,14 @@
 <p>Why is the least square error taken? [24:00]</p>
 
 <p><a href="http://cs229.stanford.edu/notes2020fall/notes2020fall/cs229-notes1.pdf#page=10">Explanation</a></p>
+
+<p>[53:55]</p>
+
+<p>Now in the whether the tumor is malignant example, the probability of it being malignant is <script type="math/tex">p(y=1 \mid x; \theta) = h_\theta(x)</script> and of it not being malignant is <script type="math/tex">p(y=0 \mid x; \theta) = 1 - h_\theta(x)</script> and these two equations can be combined as: where <script type="math/tex">y \in {0, 1}</script>, <script type="math/tex">p(y \mid x; \theta) = (h_\theta(x))^y (1 - h_\theta(x))^{1-y}</script></p>
+
+<p><a href="http://cs229.stanford.edu/notes2020fall/notes2020fall/cs229-notes1.pdf#page=16">Explanation</a></p>
+
+<p>And we come back to the exact same equation as we had in</p>
 
     <script src="https://utteranc.es/client.js" repo="psymbio/psymbio.github.io" issue-term="pathname" theme="github-dark-orange" crossorigin="anonymous" async>
     </script>

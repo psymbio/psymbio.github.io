@@ -1,5 +1,5 @@
 ---
-title: "Waiting for _Godot_"
+title: "Waiting for Godot"
 tag: Literature
 category: posts
 order: 1
@@ -21,7 +21,7 @@ Amet volutpat consequat mauris nunc congue nisi vitae. Mauris vitae ultricies le
 
 > blockquotes can come here
 
-[links](www.google.com)
+[links](www.google.com){target="_blank"}
 
 [links](www.google.com)
 
