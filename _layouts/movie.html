@@ -25,9 +25,9 @@
         <div class="cursor__circle"></div>
     </div>
     <section class="content-title">
-    <section class="byline">
-        {{ page.date | date: "%B %e, %Y" }}
-    </section>
+        <section class="byline">
+            {{ page.date | date: "%B %e, %Y" }}
+        </section>
         <h1>{{ page.title | markdownify | remove: '<p>' | remove: '</p>' }}</h1>
         <section class="content">
             {{ content }}
@@ -42,7 +42,7 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.1.2/es5/startup.js" integrity="sha512-umLk4jlqS6v3HF06nsUFlzLGh3yp1A9X+hhlGOEstnLdkphT8w0O8nJJi2Pf28kfIFQvYzMg7ODPluFlkc/WzQ==" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <script>
         mermaid.initialize({
             startOnLoad: true
@@ -55,18 +55,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
     <script>
         /*
-	VANTA.TRUNK({
-	el: "#animate",
-	mouseControls: true,
-	touchControls: true,
-	gyroControls: false,
-	minHeight: 200.00,
-	minWidth: 200.00,
-	scale: 1.00,
-	scaleMobile: 1.00,
-	spacing: 10.00
-	})
-        */
+                        	VANTA.TRUNK({
+                        	el: "#animate",
+                        	mouseControls: true,
+                        	touchControls: true,
+                        	gyroControls: false,
+                        	minHeight: 200.00,
+                        	minWidth: 200.00,
+                        	scale: 1.00,
+                        	scaleMobile: 1.00,
+                        	spacing: 10.00
+                        	})
+                                */
         const cursor = document.querySelector('#cursor');
         const cursorCircle = cursor.querySelector('.cursor__circle');
         var anchors = document.getElementsByTagName('a');
@@ -143,15 +143,17 @@
                 cursor.classList.remove(className);
             });
         });
-        
+
         'use strict';
-    var head = document.head;
-    var link = document.createElement('link');
-    link.type = 'text/css';
-    link.rel = 'stylesheet';
-    link.href = '/css/pygments.css'
-    head.appendChild(link);
+        var head = document.head;
+        var link = document.createElement('link');
+        link.type = 'text/css';
+        link.rel = 'stylesheet';
+        link.href = '/css/pygments.css'
+        head.appendChild(link);
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    {% include open-embed.html %}
 </body>
 
 </html>

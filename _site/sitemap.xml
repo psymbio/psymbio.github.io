@@ -7,6 +7,12 @@
     
     
     <url>
+        <loc>http://localhost:4000/posts/ml-week4/</loc>
+    </url>
+    
+    
+    
+    <url>
         <loc>http://localhost:4000/posts/ml-week2/</loc>
     </url>
     

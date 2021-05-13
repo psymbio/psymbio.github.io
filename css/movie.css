@@ -263,6 +263,39 @@ p {
     font-size: 23px;
 }
 
+figcaption {
+    font-family: "suisse", "basis", "nueue";
+    /*gtamerica*/
+    /*attila*/
+    color: #2d2d2d;
+    font-size: 20px;
+}
+
+
+/*https://gomakethings.com/how-to-break-an-image-out-of-its-parent-container-with-css/*/
+
+figure {
+    height: auto;
+    max-width: 40%;
+    left: 50%;
+    margin-left: -24vw;
+    margin-right: 0vw;
+    max-width: 48vw;
+    position: relative;
+}
+
+@media screen and (max-width: 480px) {
+    figure {
+        height: auto;
+        max-width: 100%;
+        left: -15%;
+        margin-left: 30vw;
+        margin-right: 0vw;
+        min-width: 70vw;
+        position: relative;
+    }
+}
+
 h2 {
     font-size: 4.5em;
     color: var(--headings2);
@@ -317,7 +350,7 @@ h6 {
     color: #2d2d2d;
     font-family: "chronicle";
     /*text-transform: uppercase;*/
-    transform: translateY(100px);
+    transform: translateY(112px);
     opacity: 0.5;
 }
 

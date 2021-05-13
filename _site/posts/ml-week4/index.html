@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        Lecture 4: Perceptron & Generalized Linear Model &ndash; The Brain Archive
+    </title>
+    <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+    <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+    <meta name="author" content="psymbio" />
+    <meta name="description" content="psymbio's blog" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+    <link rel="alternate" type="application/rss+xml" href="/atom.xml" />
+    <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+    <link rel="shortcut icon" type="image/x-icon" href="/icons/icon.png" />
+    <link rel="icon" type="image/png" href="/icons/icon.png">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- See https://goo.gl/OOhYW5 -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- See https://goo.gl/qRE0vM -->
+    <meta name="theme-color" content="#C1272D">
+
+    <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="psymbio's blog">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="psymbio's blog">
+
+    <!-- Homescreen icons -->
+    <link rel="apple-touch-icon" sizes="192x192" href="icons/icon.png">
+
+    <!-- Tile icon for Windows 8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="icons/icon.png">
+    <meta name="msapplication-TileColor" content="#C1272D">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Default twitter cards -->
+    <meta name="twitter:card" content="psymbio's blog">
+    <meta name="twitter:site" content="@psymbio">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="my-app">
+    <meta property="og:image" content="icons/icon.png" />
+
+    <!--clicky analytics-->
+
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.1.2/es5/startup.js" integrity="sha512-umLk4jlqS6v3HF06nsUFlzLGh3yp1A9X+hhlGOEstnLdkphT8w0O8nJJi2Pf28kfIFQvYzMg7ODPluFlkc/WzQ==" crossorigin="anonymous"></script>
+
+    <!--flowcharts-->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true
+        });
+    </script>
+    <!--2d plots-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <!--3d plots-->
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+    <!--python for browser: brython
+<script type="text/javascript" src="/scripts/brython.js"></script>
+<script type="text/javascript" src="/scripts/brython_stdlib.js"></script>
+--->
+
+
+    <!--copy code to clipboard-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="/assets/scripts/copycode.js"></script>
+
+    <!--particles on the background-->
+    <script src="/assets/scripts/particle.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="http://tikzjax.com/v1/fonts.css">
+    <script src="http://tikzjax.com/v1/tikzjax.js"></script>
+    <meta name="google-site-verification" content="3PIlzxg_Fq6uuVEqKvNXrVj8NuWqIA9_hqCxWLcnU-4" />
+    <!--
+<nav>
+  <ul>
+      <li><a href="/">Blog</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+-->
+</head>
+
+<body>
+    <div class="top-line"></div>
+    <div class="container">
+        <section class="shore">
+            <header class="sidebar">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+    <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+    <a href="/">
+        <img src="/images/title.png" height="250" width="250" class="avatar" />
+    </a>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+</header>
+<link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+<link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+<link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+<link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script src="/assets/scripts/copycode.js"></script>
+<section class="content">
+    <section class="byline">
+        May  3, 2021
+    </section>
+    <h1>Lecture 4: Perceptron & Generalized Linear Model</h1>
+    <br> <p>Sigmoid function</p>
+<iframe src="https://www.desmos.com/calculator/jsy08qm97c" width="100%" style="min-height:400px"></iframe>
+
+<figure>
+<img alt="regression" src="/images/2021/cs229/activationfunction.jpg" height="100%" width="100%" />
+<figcaption align="center">Various activation functions that can be used with Perceptron are shown here.</figcaption>
+</figure>
+
+<p>The perceptron function we are concerned with is: Signum.</p>
+
+<iframe src="https://www.desmos.com/calculator/z5ztszs7tk" width="100%" style="min-height:400px"></iframe>
+
+<p>In a way a signum function is a hard-version of the sigmoid.</p>
+
+<p>Now the hypothesis function of the signum function is <script type="math/tex">h_\theta(x) = g(\theta^{T} x)</script> where <script type="math/tex">\theta</script> is the parameter and <script type="math/tex">x</script> is the input.</p>
+
+<p>The hypothesis function of the sigmoid function is <script type="math/tex">h_\theta(x) = 1 / (1 + e^{-\theta^{T}x})</script>.</p>
+
+<p>They have an update rule which looks the same: <script type="math/tex">\theta_j = \theta_j + \alpha (y^{(i)} - h_\theta(x)^{(i)}) (x_j)^{(i)}</script> except <script type="math/tex">h_\theta(x)^{(i)}</script> mean different in both of them. It’s also same in linear regression as well.</p>
+
+<p>Now <script type="math/tex">y^{(i)} - h_\theta(x)^{(i)}</script> can have a value of:</p>
+<ul>
+  <li>0 if the prediction is correct.</li>
+  <li>+1 if <script type="math/tex">y^{(i)}</script> is 1, the prediction is wrong.</li>
+  <li>-1 if <script type="math/tex">y^{(i)}</script> is 0, the prediction is wrong.</li>
+</ul>
+
+<p>[8:00]</p>
+
+<p>perceptron Marvin Minsky paper</p>
+
+<p>[14:00]</p>
+
+<h2 id="exponential-families">Exponential Families</h2>
+
+<p>/<em>didn’t understand a single thing</em>/</p>
+
+    <script src="https://utteranc.es/client.js" repo="psymbio/psymbio.github.io" issue-term="pathname" theme="github-dark-orange" crossorigin="anonymous" async>
+    </script>
+</section>
+
+</section>
+<section class="shore">
+    <section class="content">
+        <div class="footer"></div>
+        <section class="thanks">
+            <span>That sentence that goes before giving my email to strangers: <a href="mailto: psymbio@gmail.com">psymbio@gmail.com</a></span>
+        </section>
+        </div>
+    </section>
+</section>
+<br>
+<br>
+<script>
+    ! function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+            p = /^http:/.test(d.location) ? 'http' : 'https';
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.id = id;
+            js.src = p + '://platform.twitter.com/widgets.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    }(document, 'script', 'twitter-wjs');
+</script>
+
+            <section class="shore">
+    </div>
+</body>
+<script>
+    'use strict';
+    var head = document.head;
+    var link = document.createElement('link');
+    link.type = 'text/css';
+    link.rel = 'stylesheet';
+    link.href = '/css/pygments.css'
+    head.appendChild(link);
+</script>
+
+</html>
