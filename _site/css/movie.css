@@ -207,6 +207,11 @@
 }
 
 @font-face {
+    font-family: "newyork";
+    src: url(fonts/NewYork.otf) format("opentype");
+}
+
+@font-face {
     font-family: "attila";
     src: url("//db.onlinewebfonts.com/t/e6ecebce74f9ee16345813d47cb3cff9.eot");
     src: url("//db.onlinewebfonts.com/t/e6ecebce74f9ee16345813d47cb3cff9.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/e6ecebce74f9ee16345813d47cb3cff9.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/e6ecebce74f9ee16345813d47cb3cff9.woff") format("woff"), url("//db.onlinewebfonts.com/t/e6ecebce74f9ee16345813d47cb3cff9.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/e6ecebce74f9ee16345813d47cb3cff9.svg#Attila Sans Black") format("svg");
@@ -245,6 +250,7 @@ h1 {
     font-size: 6.5em;
     font-weight: lighter;
     letter-spacing: -2px;
+    line-height: 95%;
 }
 
 h1 i {
@@ -350,7 +356,7 @@ h6 {
     color: #2d2d2d;
     font-family: "chronicle";
     /*text-transform: uppercase;*/
-    transform: translateY(112px);
+    transform: translateY(90px);
     opacity: 0.5;
 }
 
@@ -494,4 +500,11 @@ pre code {
 
 h2 code {
     font-size: 30px;
+}
+
+audio {
+    font-family: "suisse", "basis", "nueue";
+    outline: none;
+    filter: invert(10%) sepia(17%) saturate(341%) hue-rotate(324deg) brightness(110%) contrast(96%);
+    width: 750px;
 }
