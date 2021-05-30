@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        MNE Custom Filters &ndash; The Brain Archive
+    </title>
+    <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+    <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+    <meta name="author" content="psymbio" />
+    <meta name="description" content="psymbio's blog" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+    <link rel="alternate" type="application/rss+xml" href="/atom.xml" />
+    <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+    <link rel="shortcut icon" type="image/x-icon" href="/icons/icon.png" />
+    <link rel="icon" type="image/png" href="/icons/icon.png">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- See https://goo.gl/OOhYW5 -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- See https://goo.gl/qRE0vM -->
+    <meta name="theme-color" content="#C1272D">
+
+    <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="psymbio's blog">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="psymbio's blog">
+
+    <!-- Homescreen icons -->
+    <link rel="apple-touch-icon" sizes="192x192" href="icons/icon.png">
+
+    <!-- Tile icon for Windows 8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="icons/icon.png">
+    <meta name="msapplication-TileColor" content="#C1272D">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Default twitter cards -->
+    <meta name="twitter:card" content="psymbio's blog">
+    <meta name="twitter:site" content="@psymbio">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="my-app">
+    <meta property="og:image" content="icons/icon.png" />
+
+    <!--clicky analytics-->
+
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.1.2/es5/startup.js" integrity="sha512-umLk4jlqS6v3HF06nsUFlzLGh3yp1A9X+hhlGOEstnLdkphT8w0O8nJJi2Pf28kfIFQvYzMg7ODPluFlkc/WzQ==" crossorigin="anonymous"></script>
+
+    <!--flowcharts-->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true
+        });
+    </script>
+    <!--2d plots-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <!--3d plots-->
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+    <!--python for browser: brython
+<script type="text/javascript" src="/scripts/brython.js"></script>
+<script type="text/javascript" src="/scripts/brython_stdlib.js"></script>
+--->
+
+
+    <!--copy code to clipboard-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="/assets/scripts/copycode.js"></script>
+
+    <!--particles on the background-->
+    <script src="/assets/scripts/particle.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="http://tikzjax.com/v1/fonts.css">
+    <script src="http://tikzjax.com/v1/tikzjax.js"></script>
+    <meta name="google-site-verification" content="3PIlzxg_Fq6uuVEqKvNXrVj8NuWqIA9_hqCxWLcnU-4" />
+    <!--
+<nav>
+  <ul>
+      <li><a href="/">Blog</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+-->
+</head>
+
+<body>
+    <div class="top-line"></div>
+    <div class="container">
+        <section class="shore">
+            <header class="sidebar">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+    <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+    <a href="/">
+        <img src="/images/title.png" height="250" width="250" class="avatar" />
+    </a>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+</header>
+<link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+<link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+<link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+<link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<script src="/assets/scripts/copycode.js"></script>
+<section class="content">
+    <section class="byline">
+        May 30, 2021
+    </section>
+    <h1>MNE Custom Filters</h1>
+    <br> <p>The internship I have right now just entails me to convert the toolbox they’ve created in MATLAB to Python. Obviously didn’t know this was going to happen but It definitely has its pros and cons. Con: I spend the entire day reading the documentations of SciPy, MNE, and MATLAB’s EEG Lab. Pro: Since I don’t know jack-shit converting someone else’s badly written code to another language is right up my alley.</p>
+
+<p>The code I had used a Butterworth low-pass filter instead of <a href="https://mne.tools/0.15/auto_tutorials/plot_artifacts_correction_filtering.html#removing-power-line-noise-with-low-pass-filtering">MNE’s inbuilt</a>.</p>
+
+<p>A little bit of research and I guess the first thing you end up on is <a href="https://mne.tools/dev/auto_tutorials/preprocessing/25_background_filtering.html#sphx-glr-auto-tutorials-preprocessing-25-background-filtering-py">this,</a> where oddly enough you’re greeted with a please shoo off this is for math-geniuses only but here’s the deal:</p>
+
+<blockquote>
+  <p>Filtering is essential, but it can lead to severe distortions if applied incorrectly.</p>
+
+  <p>~ An Introduction to ERP Technique</p>
+</blockquote>
+
+<p>In this blog post, we’ll look into custom filters and how we can apply it using MNE.</p>
+
+<p>The problem with using one of MNE’s  inbuilt filters is that the roll-off is actually quite steep and this is quite visible</p>
+
+<figure>
+<img alt="before low-pass" src="/images/2021/erp-filters/before.png" height="80%" width="80%" />
+<figcaption align="center">Before the low-pass filter</figcaption>
+</figure>
+
+<figure>
+<img alt="after low-pass" src="/images/2021/erp-filters/after.png" height="80%" width="80%" />
+<figcaption align="center">Before the low-pass filter</figcaption>
+</figure>
+
+<figure>
+<img alt="separate signals" src="/images/2021/erp-filters/roll-off.png" height="80%" width="80%" />
+<figcaption align="center"></figcaption>
+</figure>
+
+<p>Edge artifacts can be created when the cutoff frequency is low (for both low- and high- pass filters) and when the roll-off is steep, because these factors require the use of more time points to compute the filtered data. Edge artifacts are not a problem when you have a long continuous EEG as the edge artifact will only be a very small part of it. Now it’s usually fine to apply low-pass filters to epoched EEG or averaged ERPs, but high-pass filters should usually be applied to the continuous EEG.</p>
+
+<h2 id="iir-or-fir">IIR or FIR?</h2>
+
+<p>IIR filters (e.g., Butterworth filters) do not need to use as many time points as FIR filters. Consequently, it can be advantageous to use an infinite impulse response filter when you are filtering epoched EEG data or averaged ERP data. For this reason, ERPLAB Toolbox mainly implements Butterworth filters.</p>
+
+<p>With all that said, let’s implement our custom Butterworth and notch filters.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="kn">import</span> <span class="nn">mne</span>
+<span class="kn">import</span> <span class="nn">mne_bids</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="nn">numpy.fft</span> <span class="kn">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">fftfreq</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span>
+<span class="kn">from</span> <span class="nn">mne.time_frequency.tfr</span> <span class="kn">import</span> <span class="n">morlet</span>
+<span class="kn">from</span> <span class="nn">mne.viz</span> <span class="kn">import</span> <span class="n">plot_filter</span><span class="p">,</span> <span class="n">plot_ideal_filter</span>
+
+<span class="c1"># matplotlib.use('TKAgg')
+</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sample_data_folder</span> <span class="o">=</span> <span class="n">pathlib</span><span class="p">.</span><span class="n">Path</span><span class="p">(</span><span class="s">'data/'</span><span class="p">)</span>
+<span class="n">name_of_subject</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Which subject do you want to analyse? with .edf appended"</span><span class="p">)</span>
+<span class="n">sample_data_raw_file</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">sample_data_folder</span><span class="p">,</span> <span class="n">name_of_subject</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">sample_data_raw_file</span><span class="p">)</span>
+<span class="n">raw</span> <span class="o">=</span> <span class="n">mne</span><span class="p">.</span><span class="n">io</span><span class="p">.</span><span class="n">read_raw_edf</span><span class="p">(</span><span class="n">sample_data_raw_file</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">raw</span><span class="p">.</span><span class="n">info</span><span class="p">,</span> <span class="n">raw</span><span class="p">.</span><span class="n">info</span><span class="p">[</span><span class="s">"ch_names"</span><span class="p">],</span> <span class="n">raw</span><span class="p">.</span><span class="n">info</span><span class="p">[</span><span class="s">"dig"</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;Info | 7 non-empty values
+ bads: []
+ ch_names: EEG Fp1-Ref, EEG Fp2-Ref, EEG F3-Ref, EEG F4-Ref, EEG C3-Ref, ...
+ chs: 43 EEG
+ custom_ref_applied: False
+ highpass: 0.0 Hz
+ lowpass: 500.0 Hz
+ meas_date: 2019-12-01 22:34:06 UTC
+ nchan: 43
+ projs: []
+ sfreq: 1000.0 Hz
+&gt; ['EEG Fp1-Ref', 'EEG Fp2-Ref', 'EEG F3-Ref', 'EEG F4-Ref', 'EEG C3-Ref', 'EEG C4-Ref', 'EEG P3-Ref', 'EEG P4-Ref', 'EEG O1-Ref', 'EEG O2-Ref', 'EEG F7-Ref', 'EEG F8-Ref', 'EEG T3-Ref', 'EEG T4-Ref', 'EEG T5-Ref', 'EEG T6-Ref', 'EEG Fz-Ref', 'EEG Cz-Ref', 'EEG Pz-Ref', 'POL E', 'POL PG1', 'POL PG2', 'EEG A1-Ref', 'EEG A2-Ref', 'POL T1', 'POL T2', 'POL X1', 'POL X2', 'POL X3', 'POL X4', 'POL X5', 'POL X6', 'POL X7', 'POL SpO2', 'POL EtCO2', 'POL DC03', 'POL DC04', 'POL DC05', 'POL DC06', 'POL Pulse', 'POL CO2Wave', 'POL $A1', 'POL $A2'] None
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">events_from_annot</span><span class="p">,</span> <span class="n">event_dict</span> <span class="o">=</span> <span class="n">mne</span><span class="p">.</span><span class="n">events_from_annotations</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Used Annotations descriptions: ['+0.000000', '+176.086000', 'A1+A2 OFF', 'Famil tree stop', 'Segment: REC START MONT-B EEG']
+</code></pre></div></div>
+
+<h2 id="remove-channels-that-we-dont-have-the-mapping-for">Remove channels that we don’t have the mapping for</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">raw_removed</span> <span class="o">=</span> <span class="n">raw</span><span class="p">.</span><span class="n">copy</span><span class="p">().</span><span class="n">drop_channels</span><span class="p">([</span><span class="s">'POL E'</span><span class="p">,</span> <span class="s">'POL PG1'</span><span class="p">,</span> <span class="s">'POL PG2'</span><span class="p">,</span> <span class="s">'EEG A1-Ref'</span><span class="p">,</span> <span class="s">'EEG A2-Ref'</span><span class="p">,</span> <span class="s">'POL T1'</span><span class="p">,</span> <span class="s">'POL T2'</span><span class="p">,</span> <span class="s">'POL X1'</span><span class="p">,</span> <span class="s">'POL X2'</span><span class="p">,</span> <span class="s">'POL X3'</span><span class="p">,</span> <span class="s">'POL X4'</span><span class="p">,</span> <span class="s">'POL X5'</span><span class="p">,</span> <span class="s">'POL X6'</span><span class="p">,</span> <span class="s">'POL X7'</span><span class="p">,</span> <span class="s">'POL SpO2'</span><span class="p">,</span> <span class="s">'POL EtCO2'</span><span class="p">,</span> <span class="s">'POL DC03'</span><span class="p">,</span> <span class="s">'POL DC04'</span><span class="p">,</span> <span class="s">'POL DC05'</span><span class="p">,</span> <span class="s">'POL DC06'</span><span class="p">,</span> <span class="s">'POL Pulse'</span><span class="p">,</span> <span class="s">'POL CO2Wave'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<h2 id="re-name-to-re-map">Re-name to Re-map</h2>
+
+<p>The renaming</p>
+
+<ul>
+  <li>t3 -&gt; T7</li>
+  <li>t4 -&gt; T8</li>
+  <li>t5 -&gt; P7</li>
+  <li>t6 -&gt; P8</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mapping</span> <span class="o">=</span> <span class="p">{</span><span class="s">'EEG Fp1-Ref'</span><span class="p">:</span> <span class="s">'Fp1'</span><span class="p">,</span> <span class="s">'EEG Fp2-Ref'</span><span class="p">:</span> <span class="s">'Fp2'</span><span class="p">,</span> <span class="s">'EEG F3-Ref'</span><span class="p">:</span><span class="s">'F3'</span><span class="p">,</span>
+           <span class="s">'EEG F4-Ref'</span><span class="p">:</span><span class="s">'F4'</span><span class="p">,</span> <span class="s">'EEG C3-Ref'</span><span class="p">:</span><span class="s">'C3'</span><span class="p">,</span> <span class="s">'EEG C4-Ref'</span><span class="p">:</span><span class="s">'C4'</span><span class="p">,</span> <span class="s">'EEG P3-Ref'</span><span class="p">:</span><span class="s">'P3'</span><span class="p">,</span>
+           <span class="s">'EEG P4-Ref'</span><span class="p">:</span><span class="s">'P4'</span><span class="p">,</span> <span class="s">'EEG O1-Ref'</span><span class="p">:</span><span class="s">'O1'</span><span class="p">,</span> <span class="s">'EEG O2-Ref'</span><span class="p">:</span><span class="s">'O2'</span><span class="p">,</span> <span class="s">'EEG F7-Ref'</span><span class="p">:</span><span class="s">'F7'</span><span class="p">,</span>
+           <span class="s">'EEG F8-Ref'</span><span class="p">:</span><span class="s">'F8'</span><span class="p">,</span> <span class="s">'EEG T3-Ref'</span><span class="p">:</span><span class="s">'T7'</span><span class="p">,</span> <span class="s">'EEG T4-Ref'</span><span class="p">:</span><span class="s">'P8'</span><span class="p">,</span> <span class="s">'EEG T5-Ref'</span><span class="p">:</span><span class="s">'P7'</span><span class="p">,</span>
+           <span class="s">'EEG T6-Ref'</span><span class="p">:</span><span class="s">'T8'</span><span class="p">,</span> <span class="s">'EEG Fz-Ref'</span><span class="p">:</span><span class="s">'Fz'</span><span class="p">,</span> <span class="s">'EEG Cz-Ref'</span><span class="p">:</span><span class="s">'Cz'</span><span class="p">,</span> <span class="s">'EEG Pz-Ref'</span><span class="p">:</span><span class="s">'Pz'</span><span class="p">,</span>
+           <span class="s">'POL $A1'</span><span class="p">:</span><span class="s">'A1'</span><span class="p">,</span> <span class="s">'POL $A2'</span><span class="p">:</span><span class="s">'A2'</span><span class="p">}</span>
+<span class="n">raw_rename</span> <span class="o">=</span> <span class="n">raw_removed</span><span class="p">.</span><span class="n">rename_channels</span><span class="p">(</span><span class="n">mapping</span><span class="p">)</span>
+<span class="n">raw_no_ref_a1a2</span> <span class="o">=</span> <span class="n">raw_rename</span><span class="p">.</span><span class="n">copy</span><span class="p">().</span><span class="n">drop_channels</span><span class="p">([</span><span class="s">'A1'</span><span class="p">,</span> <span class="s">'A2'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">raw_no_ref_a1a2</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">duration</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</code></pre></div></div>
+
+<figure>
+<img alt="" src="/images/2021/erp-filters/attempt_4_13_0.png" height="80%" width="80%" />
+<figcaption align="center"></figcaption>
+</figure>
+
+<figure>
+<img alt="" src="/images/2021/erp-filters/attempt_4_13_1.png" height="80%" width="80%" />
+<figcaption align="center"></figcaption>
+</figure>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">montage</span> <span class="o">=</span> <span class="n">mne</span><span class="p">.</span><span class="n">channels</span><span class="p">.</span><span class="n">read_custom_montage</span><span class="p">(</span><span class="s">'Standard-10-20-Cap19.locs'</span><span class="p">)</span>
+<span class="n">raw_montage</span> <span class="o">=</span> <span class="n">raw_no_ref_a1a2</span><span class="p">.</span><span class="n">copy</span><span class="p">().</span><span class="n">set_montage</span><span class="p">(</span><span class="n">montage</span><span class="p">,</span>  <span class="n">match_case</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">raw_montage</span><span class="p">.</span><span class="n">plot_psd</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Effective window size : 2.048 (s)
+</code></pre></div></div>
+
+<figure>
+<img alt="" src="/images/2021/erp-filters/attempt_4_14_1.png" height="80%" width="80%" />
+<figcaption align="center"></figcaption>
+</figure>
+
+<figure>
+<img alt="" src="/images/2021/erp-filters/attempt_4_14_2.png" height="80%" width="80%" />
+<figcaption align="center"></figcaption>
+</figure>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">raw_montage</span><span class="p">.</span><span class="n">info</span> <span class="c1"># now we have dig
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;Info | 9 non-empty values
+ bads: []
+ ch_names: Fp1, Fp2, F3, F4, C3, C4, P3, P4, O1, O2, F7, F8, T7, P8, P7, ...
+ chs: 19 EEG
+ custom_ref_applied: False
+ dig: 19 items (19 EEG)
+ highpass: 0.0 Hz
+ lowpass: 500.0 Hz
+ meas_date: 2019-12-01 22:34:06 UTC
+ nchan: 19
+ projs: []
+ sfreq: 1000.0 Hz
+ subject_info: 4 items (dict)
+&gt;
+</code></pre></div></div>
+
+<h2 id="removing-and-reconstruct-by-spline-interpolation">Removing and reconstruct by spline interpolation</h2>
+
+<p>bad channels if not redeemable else flagged portions are removed</p>
+
+<p>https://mne.tools/0.16/auto_examples/preprocessing/plot_interpolate_bad_channels.html#sphx-glr-auto-examples-preprocessing-plot-interpolate-bad-channels-py</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">raw_loaded</span> <span class="o">=</span> <span class="n">raw_montage</span><span class="p">.</span><span class="n">copy</span><span class="p">().</span><span class="n">load_data</span><span class="p">()</span>
+<span class="n">raw_loaded</span><span class="p">.</span><span class="n">interpolate_bads</span><span class="p">(</span><span class="n">reset_bads</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">raw_loaded</span><span class="p">.</span><span class="n">plot_psd</span><span class="p">()</span>
+<span class="n">raw_loaded</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">duration</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Reading 0 ... 177291  =      0.000 ...   177.291 secs...
+Effective window size : 2.048 (s)
+
+
+&lt;ipython-input-19-692f43f128a9&gt;:2: RuntimeWarning: No bad channels to interpolate. Doing nothing...
+  raw_loaded.interpolate_bads(reset_bads=False, verbose=False)
+</code></pre></div></div>
+
+<figure>
+<img alt="" src="/images/2021/erp-filters/attempt_4_17_2.png" height="80%" width="80%" />
+<figcaption align="center"></figcaption>
+</figure>
+
+<figure>
+<img alt="" src="/images/2021/erp-filters/attempt_4_17_3.png" height="80%" width="80%" />
+<figcaption align="center"></figcaption>
+</figure>
+
+<figure>
+<img alt="" src="/images/2021/erp-filters/attempt_4_17_4.png" height="80%" width="80%" />
+<figcaption align="center"></figcaption>
+</figure>
+
+<h2 id="re-reference-the-signal-average-reference">Re-reference the Signal: Average Reference</h2>
+
+<p>Averaging is a linear operation. Consequently, it doesn’t matter if you filter the EEG immediately before averaging or if you filter the ERP immediately after averaging. Re-referencing is also a linear operation (except in unusual cases), so you can filter either before or after you re-reference the data.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">raw_avg_ref</span> <span class="o">=</span> <span class="n">raw_loaded</span><span class="p">.</span><span class="n">load_data</span><span class="p">().</span><span class="n">copy</span><span class="p">().</span><span class="n">set_eeg_reference</span><span class="p">(</span><span class="n">ref_channels</span><span class="o">=</span><span class="s">'average'</span><span class="p">)</span>
+<span class="n">raw_avg_ref</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">duration</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">raw_avg_ref</span><span class="p">.</span><span class="n">plot_psd</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>EEG channel type selected for re-referencing
+Applying average reference.
+Applying a custom EEG reference.
+</code></pre></div></div>
+
+<figure>
+<img alt="" src="/images/2021/erp-filters/attempt_4_19_1.png" height="80%" width="80%" />
+<figcaption align="center"></figcaption>
+</figure>
+
+<figure>
+<img alt="" src="/images/2021/erp-filters/attempt_4_19_3.png" height="80%" width="80%" />
+<figcaption align="center"></figcaption>
+</figure>
+
+<figure>
+<img alt="" src="/images/2021/erp-filters/attempt_4_19_4.png" height="80%" width="80%" />
+<figcaption align="center"></figcaption>
+</figure>
+
+<h2 id="notch-filters">Notch Filters</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">picks</span> <span class="o">=</span> <span class="n">raw_loaded</span><span class="p">.</span><span class="n">info</span><span class="p">[</span><span class="s">"ch_names"</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">notch_bandpass</span><span class="p">(</span><span class="n">line_noise</span><span class="p">,</span> <span class="n">sfreq</span><span class="p">,</span> <span class="n">notch_width</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">line_noise</span><span class="o">/</span><span class="p">(</span><span class="n">sfreq</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span> <span class="c1"># 50 Hz line noise in radians
+</span>    <span class="c1"># print(notch_width)
+</span>    <span class="n">notch_width</span> <span class="o">=</span> <span class="n">notch_width</span><span class="o">/</span><span class="p">(</span><span class="n">sfreq</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+    <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">signal</span><span class="p">.</span><span class="n">iirnotch</span><span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="n">index</span><span class="p">,</span> <span class="n">notch_width</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">b</span><span class="p">,</span><span class="n">a</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">notch_filter</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">line_noise</span><span class="p">,</span> <span class="n">sfreq</span><span class="p">,</span> <span class="n">notch_width</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">sig</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># n = sig[1]
+</span>    <span class="c1"># print("m:",m)
+</span>    <span class="c1"># o = np.array((m,n))
+</span>    <span class="c1"># print("o:",o)
+</span>    <span class="n">b</span><span class="p">,</span><span class="n">a</span> <span class="o">=</span> <span class="n">notch_bandpass</span><span class="p">(</span><span class="n">line_noise</span><span class="p">,</span> <span class="n">sfreq</span><span class="p">,</span> <span class="n">notch_width</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">signal</span><span class="p">.</span><span class="n">filtfilt</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">padlen</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># print("c:",c)
+</span>    <span class="k">return</span> <span class="n">c</span>
+</code></pre></div></div>
+
+<h2 id="butterworth-high">Butterworth High</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">butter_bandpass_high</span><span class="p">(</span><span class="n">butterworth_order</span><span class="p">,</span> <span class="n">h_freq</span><span class="p">,</span> <span class="n">sfreq</span><span class="p">):</span>
+    <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">signal</span><span class="p">.</span><span class="n">butter</span><span class="p">(</span><span class="n">butterworth_order</span><span class="p">,</span> <span class="n">h_freq</span><span class="o">/</span><span class="p">(</span><span class="n">sfreq</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span><span class="s">'high'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">b</span><span class="p">,</span><span class="n">a</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">butter_filter_high</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">butterworth_order</span><span class="p">,</span> <span class="n">h_freq</span><span class="p">,</span> <span class="n">sfreq</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">sig</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">b</span><span class="p">,</span><span class="n">a</span> <span class="o">=</span> <span class="n">butter_bandpass_high</span><span class="p">(</span><span class="n">butterworth_order</span><span class="p">,</span> <span class="n">h_freq</span><span class="p">,</span> <span class="n">sfreq</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">signal</span><span class="p">.</span><span class="n">filtfilt</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">padlen</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">c</span>
+</code></pre></div></div>
+
+<h2 id="butterworth-low">Butterworth Low</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">butter_bandpass_low</span><span class="p">(</span><span class="n">butterworth_order</span><span class="p">,</span> <span class="n">l_freq</span><span class="p">,</span> <span class="n">sfreq</span><span class="p">):</span>
+    <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">signal</span><span class="p">.</span><span class="n">butter</span><span class="p">(</span><span class="n">butterworth_order</span><span class="p">,</span> <span class="n">l_freq</span><span class="o">/</span><span class="p">(</span><span class="n">sfreq</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span><span class="s">'low'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">b</span><span class="p">,</span><span class="n">a</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">butter_filter_low</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">butterworth_order</span><span class="p">,</span> <span class="n">l_freq</span><span class="p">,</span> <span class="n">sfreq</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">sig</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">b</span><span class="p">,</span><span class="n">a</span> <span class="o">=</span> <span class="n">butter_bandpass_low</span><span class="p">(</span><span class="n">butterworth_order</span><span class="p">,</span> <span class="n">l_freq</span><span class="p">,</span> <span class="n">sfreq</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">signal</span><span class="p">.</span><span class="n">filtfilt</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">padlen</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">c</span>
+</code></pre></div></div>
+
+<h2 id="now-applying-all-filters">Now applying all filters</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">prepsig</span><span class="p">(</span><span class="n">raw_edf</span><span class="o">=</span><span class="n">raw_avg_ref</span><span class="p">,</span> <span class="n">signals</span><span class="o">=</span><span class="n">picks</span><span class="p">,</span> <span class="n">notch_width</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">butterworth_order</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">sfreq</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">h_freq</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">l_freq</span><span class="o">=</span><span class="mi">125</span><span class="p">,</span> <span class="n">line_noise</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">initial_transient</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">final_transient</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+    <span class="c1"># Sig = prepsig(Sig, bw, ord, fs, fhi, Ln, Ti, Tf)
+</span>    <span class="c1"># function with full input argument
+</span>    <span class="c1"># Defaults
+</span>    <span class="c1"># bw:notch_width    ... Bandwith of notch Filter: default 5 Hz
+</span>    <span class="c1"># ord:butterworth_order   ... butterworth Filter Order: default 5
+</span>    <span class="c1"># fs:s_freq    ... Sampling frequency: default 250 Hz
+</span>    <span class="c1"># fhi:h_freq    ... Cut-off frequency for removing slow drift: default 0.53 Hz
+</span>    <span class="c1"># flo:l_freq    ...Lowpass
+</span>    <span class="c1"># Ln:line_noise    ... Line-noise specification: default 50 Hz
+</span>    <span class="c1"># Ti:initial_transient    ... Initial transient: default 4 s
+</span>    <span class="c1"># Tf:final_transient    ... Final transient: default 0 s
+</span>
+    <span class="c1"># goes through 9 times for all nineteen signals
+</span>    <span class="c1"># pick a signal
+</span>    <span class="n">raw_edf</span> <span class="o">=</span> <span class="n">raw_edf</span><span class="p">.</span><span class="n">copy</span><span class="p">().</span><span class="n">load_data</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">sig</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">19</span><span class="p">):</span>
+            <span class="c1"># a = butter_bandpass_filter(raw_edf[x], line_noise, sfreq, butterworth_order, index)
+</span>            <span class="c1"># print(type(a))
+</span>            <span class="n">raw_edf</span><span class="p">[</span><span class="n">sig</span><span class="p">]</span> <span class="o">=</span> <span class="n">notch_filter</span><span class="p">(</span><span class="n">raw_edf</span><span class="p">[</span><span class="n">sig</span><span class="p">],</span> <span class="n">line_noise</span><span class="p">,</span> <span class="n">sfreq</span><span class="p">,</span> <span class="n">notch_width</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+            <span class="c1"># raw_edf[sig] = butter_bandpass_filter_1(raw_edf[sig][0], line_noise, sfreq, butterworth_order, index)
+</span>    <span class="k">print</span><span class="p">(</span><span class="s">"Notch filter applied"</span><span class="p">)</span>
+    <span class="n">raw_edf</span><span class="p">.</span><span class="n">plot_psd</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">sig</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">19</span><span class="p">):</span>
+        <span class="n">raw_edf</span><span class="p">[</span><span class="n">sig</span><span class="p">]</span> <span class="o">=</span> <span class="n">butter_filter_high</span><span class="p">(</span><span class="n">raw_edf</span><span class="p">[</span><span class="n">sig</span><span class="p">],</span> <span class="n">butterworth_order</span><span class="p">,</span> <span class="n">h_freq</span><span class="p">,</span> <span class="n">sfreq</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Butterworth High"</span><span class="p">)</span>
+    <span class="n">raw_edf</span><span class="p">.</span><span class="n">plot_psd</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">sig</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">19</span><span class="p">):</span>
+        <span class="n">raw_edf</span><span class="p">[</span><span class="n">sig</span><span class="p">]</span> <span class="o">=</span> <span class="n">butter_filter_low</span><span class="p">(</span><span class="n">raw_edf</span><span class="p">[</span><span class="n">sig</span><span class="p">],</span> <span class="n">butterworth_order</span><span class="p">,</span> <span class="n">l_freq</span><span class="p">,</span> <span class="n">sfreq</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Butterworth Low"</span><span class="p">)</span>
+    <span class="n">raw_edf</span><span class="p">.</span><span class="n">plot_psd</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">raw_edf</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">raw_filt</span> <span class="o">=</span> <span class="n">prepsig</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Notch filter applied
+Effective window size : 2.048 (s)
+</code></pre></div></div>
+
+<figure>
+<img alt="" src="/images/2021/erp-filters/attempt_4_32_1.png" height="80%" width="80%" />
+<figcaption align="center"></figcaption>
+</figure>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Butterworth High
+Effective window size : 2.048 (s)
+</code></pre></div></div>
+
+<figure>
+<img alt="" src="/images/2021/erp-filters/attempt_4_32_3.png" height="80%" width="80%" />
+<figcaption align="center"></figcaption>
+</figure>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Butterworth Low
+Effective window size : 2.048 (s)
+# what we want
+</code></pre></div></div>
+
+<figure>
+<img alt="" src="/images/2021/erp-filters/attempt_4_32_5.png" height="80%" width="80%" />
+<figcaption align="center"></figcaption>
+</figure>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Butterworth Low
+Effective window size : 2.048 (s)
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># low pass filtering below 50 Hz # raw_filt or raw_notch
+</span><span class="n">raw_low_pass</span> <span class="o">=</span> <span class="n">raw_avg_ref</span><span class="p">.</span><span class="n">copy</span><span class="p">().</span><span class="nb">filter</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mf">50.</span><span class="p">,</span> <span class="n">fir_design</span><span class="o">=</span><span class="s">'firwin'</span><span class="p">)</span><span class="n">raw_low_pass</span><span class="p">.</span><span class="n">plot_psd</span><span class="p">()</span>
+</code></pre></div></div>
+
+<figure>
+<img alt="" src="/images/2021/erp-filters/attempt_3_40_2.png" height="80%" width="80%" />
+<figcaption align="center"></figcaption>
+</figure>
+
+<p>See the difference?</p>
+
+    <script src="https://utteranc.es/client.js" repo="psymbio/psymbio.github.io" issue-term="pathname" theme="github-dark-orange" crossorigin="anonymous" async>
+    </script>
+</section>
+
+</section>
+<section class="shore">
+    <section class="content">
+        <div class="footer"></div>
+        <section class="thanks">
+            <span>That sentence that goes before giving my email to strangers: <a href="mailto: psymbio@gmail.com">psymbio@gmail.com</a></span>
+        </section>
+        </div>
+    </section>
+</section>
+<br>
+<br>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<style>
+    .videoWrapper {
+        position: relative;
+        padding-bottom: 56.333%;
+        height: 0;
+        background: black;
+    }
+    
+    .videoWrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+</style>
+
+<script>
+    function get_youtube_id(url) {
+        var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+        return (url.match(p)) ? RegExp.$1 : false;
+    }
+
+    function vimeo_embed(url, el) {
+        var id = false;
+        $.ajax({
+            url: 'https://vimeo.com/api/oembed.json?url=' + url,
+            async: true,
+            success: function(response) {
+                if (response.video_id) {
+                    id = response.video_id;
+                    if (url.indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (url.indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    var theInnerHTML = '<div class="videoWrapper"><iframe src="https://player.vimeo.com/video/' + id + '/?byline=0&title=0&portrait=0';
+                    if (autoplay == 1) theInnerHTML += '&autoplay=1';
+                    if (loop == 1) theInnerHTML += '&loop=1';
+                    theInnerHTML += '" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>';
+                    el.innerHTML = theInnerHTML;
+                }
+            }
+        });
+    }
+
+    function video_embed() {
+        var p = document.getElementsByTagName('p');
+        for (var i = 0; i < p.length; i++) {
+            //check if this is an external url (that starts with https:// or http://
+            if (p[i].innerHTML.indexOf("http://") == 0 ||
+                p[i].innerHTML.indexOf("https://") == 0) {
+                var youtube_id = get_youtube_id(p[i].innerHTML);
+                if (youtube_id) {
+                    if (p[i].innerHTML.indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (p[i].innerHTML.indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    var theInnerHTML = '<div class="videoWrapper"><iframe width="720" height="420" src="https://www.youtube.com/embed/' + youtube_id + '?rel=0&showinfo=0';
+                    if (autoplay == 1) theInnerHTML += '&autoplay=1';
+                    if (loop == 1) theInnerHTML += '&loop=1&playlist=' + youtube_id + '&version=3';
+                    if (p[i].innerHTML.indexOf('start=') !== -1) theInnerHTML += '&start=' + p[i].innerHTML.substring(p[i].innerHTML.indexOf('start=') + 6);
+                    theInnerHTML += '" frameborder="0" allowfullscreen></iframe></div>';
+                    p[i].innerHTML = theInnerHTML;
+                }
+                if (p[i].innerHTML.indexOf('vimeo.com') !== -1) {
+                    //ask vimeo for the id and place the embed
+                    vimeo_embed(p[i].innerHTML, p[i]);
+                }
+            }
+        }
+    }
+    video_embed();
+
+    function mp3_embed() {
+        var p = document.getElementsByTagName('p');
+        for (var i = 0; i < p.length; i++) {
+            if (p[i].innerHTML.indexOf('.mp3') !== -1) {
+                var str = p[i].innerHTML.split('?');
+                if (str.length == 1) str[1] = '';
+                var str1 = str[1];
+                str1 = str1.replace('&', '').replace('&', '');
+                str1 = str1.replace('autoplay=1', '').replace('autoplay=0', '');
+                str1 = str1.replace('loop=1', '').replace('loop=0', '');
+                str1 = str1.replace('controls=0', '').replace('controls=1', '');
+
+                if (str[0].lastIndexOf('.mp3', str[0].length - 4) === str[0].length - 4 && str1.length == 0) {
+                    if (str[1].indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (str[1].indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    if (str[1].indexOf('controls=0') !== -1) var controls = 0;
+                    else var controls = 1;
+                    var newInnerHTML = '<audio';
+                    if (autoplay == 1) newInnerHTML += ' autoplay';
+                    if (loop == 1) newInnerHTML += ' loop';
+                    if (controls == 1) newInnerHTML += ' controls';
+                    newInnerHTML += '><source src="' + str[0] + '" type="audio/mpeg">Your browser does not support the audio element.</audio>';
+                    p[i].innerHTML = newInnerHTML;
+                }
+            }
+        }
+    }
+    mp3_embed();
+</script>
+<script>
+    ! function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+            p = /^http:/.test(d.location) ? 'http' : 'https';
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.id = id;
+            js.src = p + '://platform.twitter.com/widgets.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    }(document, 'script', 'twitter-wjs');
+</script>
+
+            <section class="shore">
+    </div>
+</body>
+<script>
+    'use strict';
+    var head = document.head;
+    var link = document.createElement('link');
+    link.type = 'text/css';
+    link.rel = 'stylesheet';
+    link.href = '/css/pygments.css'
+    head.appendChild(link);
+</script>
+
+</html>

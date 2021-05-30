@@ -6,4 +6,4 @@ Internship 2: Work for a UK company that needs to analyze their EEG data to cure
 
 Internship 3: Some random ML thing, where they teach you ML and ask you to make projects.
 
-Now let me introduce you to: Star Guitar, a diy project to carry out in the summer of 2021.
+Now let me introduce you to: Star Guitar, a DIY project to carry out in the summer of 2021.
