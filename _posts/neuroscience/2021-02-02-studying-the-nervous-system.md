@@ -172,10 +172,36 @@ Nucleus: Local accumulation of neurons with roughly similar functions.
 
 Cortex: Sheet-like arrays of nerve cells.
 
-Tracts: 
+Tracts:
 
-Commissures: 
+Commissures:
 
 Columns:
 
+Autonomic motor system: is divided into the sympathetic and parasympathetic systems.
+
+Sympathetic:
+
+Parasympathetic systems:
+
+
+## Neural Systems
+
+Characteristics distinguish some neural networks from others in the complex array of anatomical components creating sub-divisions. Selective interconnectivity is what defines these subsystems i.e. the visual, auditory etc. These systems are dedicated to a specific task of either the sense of touch, vision etc. In most instances the components of the system are distributed, and divided like peripheral sensory nerves taking in information through the eyes, nose, mouth, and peripheral motor nerves then taking action. Both the sensory and motor systems have pathways connecting them with the spinal cord, brainstem, thalamus and areas of the cerebral cortex.
+
+Other features include orderly representation of information at every level and parallel pathways . Parallel pathways exist because the neural system has identifiable subsystems, like the visual system emphasizing on the color, form, or motion and this information being relayed and processed separately.
+
+For visual and somatic sensations the information is topographic, and topographic maps represent the point-to-point correspondence between the sensory periphery and the neighboring neurons.
+
+For neural systems where the representation of information doesn't depend on discriminating neighbouring points in a field, like hearing, smelling, tasting. Here the organizational principles compare, assess and integrate multiple stimulus to extract and process essential information. These representations are only partially understood and are called computational maps.
+
+The organization of even more complex information like perception, attention, emotions and memory engages additional networks beyond the rudimentary level of topographic and computational maps.
+
+## Genetic Analysis of Neural Systems
+
+We take genes and try to recreate the same disease in mice (which is honestly very sad).
+
+## Structural Analysis of Neural Systems
+
+Damaging the the nueral structures in the brain to then observe the subsequent loss in functioning (lesion studies).
 [Quiz Guide](https://quizlet.com/au/238594832/neuroscience-cells-of-cns-and-basic-orientation-flash-cards/)
