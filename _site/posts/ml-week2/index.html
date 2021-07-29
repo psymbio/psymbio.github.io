@@ -119,10 +119,10 @@
 <script src="/assets/scripts/copycode.js"></script>
 <section class="content">
     <section class="byline">
-        April 22, 2021
+        June 25, 2021
     </section>
     <h1>Lecture 3: Locally Weighted & Logistic Regression</h1>
-    <br> <p>Okay so now instead of just straight lines, we’ll be dealing with curves and so the definition of <script type="math/tex">h(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 ...</script> changes from this to something like a qudratic line <script type="math/tex">h(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2^2</script> and if we don’t want it to look like a parabola we could say <script type="math/tex">h(x) = \theta_0 + \theta_1 x_1 + \theta_2 \sqrt[2]{x_2}</script></p>
+    <br> <p>Okay so now instead of just straight lines, we’ll be dealing with curves and so the definition of \(h(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 ...\) changes from this to something like a qudratic line \(h(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2^2\) and if we don’t want it to look like a parabola we could say \(h(x) = \theta_0 + \theta_1 x_1 + \theta_2 \sqrt[2]{x_2}\)</p>
 
 <iframe src="https://www.desmos.com/calculator/wswxzktjwn" width="100%" style="min-height:400px"></iframe>
 
@@ -132,11 +132,11 @@
 
 <p>What if the data isn’t fit well by just a straight line? How do you find the features then? We use locally weighted regression.</p>
 
-<p>Parmetric lerning algorithms: Fit a fixed set of parameters <script type="math/tex">\theta_i</script> to the data.</p>
+<p>Parmetric lerning algorithms: Fit a fixed set of parameters \(\theta_i\) to the data.</p>
 
 <p>Non-parametric learning algorithms: (locally weighted uses this) The amount of data/parameters you need to keep grows linearly with the size of data. (Not great if you have a large dataset becasue you need to keep all the data around loaded in the memory)</p>
 
-<p>In linear regression: To evaluate the output at x, fit <script type="math/tex">\theta</script> to minimize the cost function <script type="math/tex">J(\theta_0, \theta_1) = \frac{1}{2m} (y^{(i)}-\theta^{T}(x^{(i)}))^2</script> and return <script type="math/tex">\theta^{T}(x)</script></p>
+<p>In linear regression: To evaluate the output at x, fit \(\theta\) to minimize the cost function \(J(\theta_0, \theta_1) = \frac{1}{2m} (y^{(i)}-\theta^{T}(x^{(i)}))^2\) and return \(\theta^{T}(x)\)</p>
 
 <p>In a locally weighted regression you look at those value close to the value you want to predict and draw a line there.</p>
 
@@ -145,11 +145,11 @@
 <figcaption align="center">Normal linear regression vs. Locally weighted regression</figcaption>
 </figure>
 
-<p>In locally weighted regression, fit <script type="math/tex">\theta</script> to minimize <script type="math/tex">\sum_{i=1}^{m} w^{i} (y^{(i)}-\theta^{T}(x^{(i)}))^2</script> where <script type="math/tex">w^{i}</script> is a “weight” function.</p>
+<p>In locally weighted regression, fit \(\theta\) to minimize \(\sum_{i=1}^{m} w^{i} (y^{(i)}-\theta^{T}(x^{(i)}))^2\) where \(w^{i}\) is a “weight” function.</p>
 
-<p>A default choice of <script type="math/tex">w^{i}</script> will be <script type="math/tex">exp(\frac{-(x^{(i)}-x)^2}{2\tau^2})</script> and if <script type="math/tex">\mid x^{(i)}-x \mid</script> is small then <script type="math/tex">w^{(i)} \approx 1</script> and if <script type="math/tex">\mid x^{(i)}-x \mid</script> is large then <script type="math/tex">w^{(i)} \approx 0</script>. So now if the term that you predit is far away from an <script type="math/tex">x^{(i)}</script> then multiply the term with zero.</p>
+<p>A default choice of \(w^{i}\) will be \(exp(\frac{-(x^{(i)}-x)^2}{2\tau^2})\) and if \(\mid x^{(i)}-x \mid\) is small then \(w^{(i)} \approx 1\) and if \(\mid x^{(i)}-x \mid\) is large then \(w^{(i)} \approx 0\). So now if the term that you predit is far away from an \(x^{(i)}\) then multiply the term with zero.</p>
 
-<p>How do you choose the widh of the gaussain function? The parameter <script type="math/tex">\tau</script> is the bandwidth parameter that lets you decide on how big the neighbourhood of the value to be predicted should be. Depending on <script type="math/tex">\tau</script> we can choose a fatter or thinner bell shaped curve. The value of <script type="math/tex">\tau</script> has an influence on whether the data is underfitted or overfitted.</p>
+<p>How do you choose the widh of the gaussain function? The parameter \(\tau\) is the bandwidth parameter that lets you decide on how big the neighbourhood of the value to be predicted should be. Depending on \(\tau\) we can choose a fatter or thinner bell shaped curve. The value of \(\tau\) has an influence on whether the data is underfitted or overfitted.</p>
 
 <h2 id="probabilistic-interpretation">Probabilistic Interpretation</h2>
 
@@ -159,7 +159,7 @@
 
 <p>[53:55]</p>
 
-<p>Now in the whether the tumor is malignant example, the probability of it being malignant is <script type="math/tex">p(y=1 \mid x; \theta) = h_\theta(x)</script> and of it not being malignant is <script type="math/tex">p(y=0 \mid x; \theta) = 1 - h_\theta(x)</script> and these two equations can be combined as: where <script type="math/tex">y \in {0, 1}</script>, <script type="math/tex">p(y \mid x; \theta) = (h_\theta(x))^y (1 - h_\theta(x))^{1-y}</script></p>
+<p>Now in the whether the tumor is malignant example, the probability of it being malignant is \(p(y=1 \mid x; \theta) = h_\theta(x)\) and of it not being malignant is \(p(y=0 \mid x; \theta) = 1 - h_\theta(x)\) and these two equations can be combined as: where \(y \in {0, 1}\), \(p(y \mid x; \theta) = (h_\theta(x))^y (1 - h_\theta(x))^{1-y}\)</p>
 
 <p><a href="http://cs229.stanford.edu/notes2020fall/notes2020fall/cs229-notes1.pdf#page=16">Explanation</a></p>
 

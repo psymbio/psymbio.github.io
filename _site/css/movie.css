@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 @font-face {
     font-family: og-emoji;
     src: url(/fonts/og-dcm-emoji.ttf);
@@ -70,6 +71,7 @@
     unicode-range: U+000-5FF;
     font-style: swap;
 }
+
 
 @font-face {
     font-family: "soehne";
@@ -209,6 +211,11 @@
 @font-face {
     font-family: "newyork";
     src: url(fonts/NewYork.otf) format("opentype");
+}
+
+@font-face {
+    font-family: "carlson";
+    src: url(fonts/Carlson.woff2) format("woff");
 }
 
 @font-face {
@@ -356,7 +363,7 @@ h6 {
     color: #2d2d2d;
     font-family: "chronicle";
     /*text-transform: uppercase;*/
-    transform: translateY(90px);
+    transform: translateY(80px);
     opacity: 0.5;
 }
 
@@ -376,7 +383,7 @@ blockquote p {
 blockquote:before {
     content: "\201C";
     font-family: Georgia;
-    font-size: 80px;
+    font-size: 60px;
     line-height: 0;
     vertical-align: -0.35em;
     color: #2d2d2d;
@@ -507,4 +514,20 @@ audio {
     outline: none;
     filter: invert(10%) sepia(17%) saturate(341%) hue-rotate(324deg) brightness(110%) contrast(96%);
     width: 750px;
+}
+
+.google-review {
+  font-family: sans-serif;
+  background-color: #ffffff;
+  font-size: 20px;
+  margin: 30px 48px;
+  padding: 14px 12px;
+}
+
+.new-yorker {
+  font-family: "hedane";
+  background-color: #ffffff;
+  font-size: 22px;
+  margin: 30px 48px;
+  padding: 14px 12px;
 }

@@ -187,7 +187,7 @@
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">raw</span><span class="p">.</span><span class="n">info</span><span class="p">,</span> <span class="n">raw</span><span class="p">.</span><span class="n">info</span><span class="p">[</span><span class="s">"ch_names"</span><span class="p">],</span> <span class="n">raw</span><span class="p">.</span><span class="n">info</span><span class="p">[</span><span class="s">"dig"</span><span class="p">])</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;Info | 7 non-empty values
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;Info | 7 non-empty values
  bads: []
  ch_names: EEG Fp1-Ref, EEG Fp2-Ref, EEG F3-Ref, EEG F4-Ref, EEG C3-Ref, ...
  chs: 43 EEG
@@ -202,9 +202,6 @@
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">events_from_annot</span><span class="p">,</span> <span class="n">event_dict</span> <span class="o">=</span> <span class="n">mne</span><span class="p">.</span><span class="n">events_from_annotations</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
-</code></pre></div></div>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Used Annotations descriptions: ['+0.000000', '+176.086000', 'A1+A2 OFF', 'Famil tree stop', 'Segment: REC START MONT-B EEG']
 </code></pre></div></div>
 
 <h2 id="remove-channels-that-we-dont-have-the-mapping-for">Remove channels that we don’t have the mapping for</h2>
@@ -251,9 +248,6 @@
 <span class="n">raw_montage</span><span class="p">.</span><span class="n">plot_psd</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Effective window size : 2.048 (s)
-</code></pre></div></div>
-
 <figure>
 <img alt="" src="/images/2021/erp-filters/attempt_4_14_1.png" height="130%" width="130%" />
 <figcaption align="center"></figcaption>
@@ -264,43 +258,16 @@
 <figcaption align="center"></figcaption>
 </figure>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">raw_montage</span><span class="p">.</span><span class="n">info</span> <span class="c1"># now we have dig
-</span></code></pre></div></div>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;Info | 9 non-empty values
- bads: []
- ch_names: Fp1, Fp2, F3, F4, C3, C4, P3, P4, O1, O2, F7, F8, T7, P8, P7, ...
- chs: 19 EEG
- custom_ref_applied: False
- dig: 19 items (19 EEG)
- highpass: 0.0 Hz
- lowpass: 500.0 Hz
- meas_date: 2019-12-01 22:34:06 UTC
- nchan: 19
- projs: []
- sfreq: 1000.0 Hz
- subject_info: 4 items (dict)
-&gt;
-</code></pre></div></div>
-
 <h2 id="removing-and-reconstruct-by-spline-interpolation">Removing and reconstruct by spline interpolation</h2>
 
-<p>bad channels if not redeemable else flagged portions are removed</p>
+<p>Bad channels if not redeemable else flagged portions are removed</p>
 
-<p>https://mne.tools/0.16/auto_examples/preprocessing/plot_interpolate_bad_channels.html#sphx-glr-auto-examples-preprocessing-plot-interpolate-bad-channels-py</p>
+<p><a href="https://mne.tools/0.16/auto_examples/preprocessing/plot_interpolate_bad_channels.html#sphx-glr-auto-examples-preprocessing-plot-interpolate-bad-channels-py">Interpolate bad channels</a></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">raw_loaded</span> <span class="o">=</span> <span class="n">raw_montage</span><span class="p">.</span><span class="n">copy</span><span class="p">().</span><span class="n">load_data</span><span class="p">()</span>
 <span class="n">raw_loaded</span><span class="p">.</span><span class="n">interpolate_bads</span><span class="p">(</span><span class="n">reset_bads</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 <span class="n">raw_loaded</span><span class="p">.</span><span class="n">plot_psd</span><span class="p">()</span>
 <span class="n">raw_loaded</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">duration</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-</code></pre></div></div>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Reading 0 ... 177291  =      0.000 ...   177.291 secs...
-Effective window size : 2.048 (s)
-
-
-&lt;ipython-input-19-692f43f128a9&gt;:2: RuntimeWarning: No bad channels to interpolate. Doing nothing...
-  raw_loaded.interpolate_bads(reset_bads=False, verbose=False)
 </code></pre></div></div>
 
 <figure>
@@ -327,7 +294,7 @@ Effective window size : 2.048 (s)
 <span class="n">raw_avg_ref</span><span class="p">.</span><span class="n">plot_psd</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>EEG channel type selected for re-referencing
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>EEG channel type selected for re-referencing
 Applying average reference.
 Applying a custom EEG reference.
 </code></pre></div></div>
@@ -406,14 +373,14 @@ Applying a custom EEG reference.
     <span class="c1"># Sig = prepsig(Sig, bw, ord, fs, fhi, Ln, Ti, Tf)
 </span>    <span class="c1"># function with full input argument
 </span>    <span class="c1"># Defaults
-</span>    <span class="c1"># bw:notch_width    ... Bandwith of notch Filter: default 5 Hz
-</span>    <span class="c1"># ord:butterworth_order   ... butterworth Filter Order: default 5
-</span>    <span class="c1"># fs:s_freq    ... Sampling frequency: default 250 Hz
-</span>    <span class="c1"># fhi:h_freq    ... Cut-off frequency for removing slow drift: default 0.53 Hz
-</span>    <span class="c1"># flo:l_freq    ...Lowpass
-</span>    <span class="c1"># Ln:line_noise    ... Line-noise specification: default 50 Hz
-</span>    <span class="c1"># Ti:initial_transient    ... Initial transient: default 4 s
-</span>    <span class="c1"># Tf:final_transient    ... Final transient: default 0 s
+</span>    <span class="c1"># notch_width    ... Bandwith of notch Filter: default 5 Hz
+</span>    <span class="c1"># butterworth_order   ... butterworth Filter Order: default 5
+</span>    <span class="c1"># s_freq    ... Sampling frequency: default 250 Hz
+</span>    <span class="c1"># h_freq    ... Cut-off frequency for removing slow drift: default 0.53 Hz
+</span>    <span class="c1"># l_freq    ...Lowpass
+</span>    <span class="c1"># line_noise    ... Line-noise specification: default 50 Hz
+</span>    <span class="c1"># initial_transient    ... Initial transient: default 4 s
+</span>    <span class="c1"># final_transient    ... Final transient: default 0 s
 </span>
     <span class="c1"># goes through 9 times for all nineteen signals
 </span>    <span class="c1"># pick a signal
@@ -443,17 +410,12 @@ Applying a custom EEG reference.
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">raw_filt</span> <span class="o">=</span> <span class="n">prepsig</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Notch filter applied
-Effective window size : 2.048 (s)
-</code></pre></div></div>
-
 <figure>
 <img alt="" src="/images/2021/erp-filters/attempt_4_32_1.png" height="130%" width="130%" />
 <figcaption align="center"></figcaption>
 </figure>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Butterworth High
-Effective window size : 2.048 (s)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Butterworth High
 </code></pre></div></div>
 
 <figure>
@@ -461,8 +423,7 @@ Effective window size : 2.048 (s)
 <figcaption align="center"></figcaption>
 </figure>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Butterworth Low
-Effective window size : 2.048 (s)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Butterworth Low
 # what we want
 </code></pre></div></div>
 
@@ -470,10 +431,6 @@ Effective window size : 2.048 (s)
 <img alt="" src="/images/2021/erp-filters/attempt_4_32_5.png" height="130%" width="130%" />
 <figcaption align="center"></figcaption>
 </figure>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Butterworth Low
-Effective window size : 2.048 (s)
-</code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># low pass filtering below 50 Hz # raw_filt or raw_notch
 </span><span class="n">raw_low_pass</span> <span class="o">=</span> <span class="n">raw_avg_ref</span><span class="p">.</span><span class="n">copy</span><span class="p">().</span><span class="nb">filter</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mf">50.</span><span class="p">,</span> <span class="n">fir_design</span><span class="o">=</span><span class="s">'firwin'</span><span class="p">)</span><span class="n">raw_low_pass</span><span class="p">.</span><span class="n">plot_psd</span><span class="p">()</span>

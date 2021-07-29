@@ -162,52 +162,51 @@
 
 <p><img alt="Agent environment interface" src="/images/2021/rl/agentenv.png" height="100%" width="100%" /></p>
 
-<p>Now we understand <em>actions</em>. Our agent at every step has a set of action <script type="math/tex">(A)</script> which is finite. This is our agent’s action space. For this we add another dimension, making it a cube with the transition matrix. Now the agent no longer passively observes state transitions, but can actively choose an action to take at every time. So, for every state, we don’t have a list of numbers, but a matrix, where the depth dimension contains actions that the agent can take, and the other dimension is that the target state system will jump to after this action is performed by the agent.</p>
+<p>Now we understand <em>actions</em>. Our agent at every step has a set of action \((A)\) which is finite. This is our agent’s action space. For this we add another dimension, making it a cube with the transition matrix. Now the agent no longer passively observes state transitions, but can actively choose an action to take at every time. So, for every state, we don’t have a list of numbers, but a matrix, where the depth dimension contains actions that the agent can take, and the other dimension is that the target state system will jump to after this action is performed by the agent.</p>
 
-<p>When we talk about taking an action in a particular state we call it a state-action pair <script type="math/tex">(s, a)</script>.</p>
+<p>When we talk about taking an action in a particular state we call it a state-action pair \((s, a)\).</p>
 
 <p>Now the agent doesn’t observe transitions passively but instead can take actions and affect the probabilities of the target states.</p>
 
 <p>If an RL task has a Markov properties it is a Markov Decision Process. If the state and action sets are finite we have a finite MDP. To define a finite MDP we have one step dynamics:
-<script type="math/tex">p(s', r|s, a) = Pr(S_{t+1}= s', R_{t+1}=r|S_t=s, A_t=a)</script>. This is the probability of being in state <script type="math/tex">s'</script> and receiving reward <script type="math/tex">r</script> after being in state <script type="math/tex">s</script> and performing action <script type="math/tex">a</script>.</p>
+\(p(s', r|s, a) = Pr(S_{t+1}= s', R_{t+1}=r|S_t=s, A_t=a)\). This is the probability of being in state \(s'\) and receiving reward \(r\) after being in state \(s\) and performing action \(a\).</p>
 
 <p>A policy defines how an agent acts from a specific state. For a deterministic policy, it is the action taken at a specific state. RL defines how the agent needs to change its policy as a result of experience, and here generally the goal is to maximise the rewards. However there could be a variety of policies: like go haywire, avoid just the obstacles, or spin around.</p>
 
 <p>Policy at step
-<script type="math/tex">t = \pi_{t} =</script>
-a mapping from states to action probabilities <script type="math/tex">\pi_{t}(a|s) =</script>
+\(t = \pi_{t} =\)
+a mapping from states to action probabilities \(\pi_{t}(a|s) =\)
  probability that
- <script type="math/tex">A_t = a</script>
+ \(A_t = a\)
  when 
- <script type="math/tex">S_t = s</script>.</p>
+ \(S_t = s\).</p>
 
-<p>Deterministic policies are <script type="math/tex">\pi_t(s) =</script> the action taken with probability = 1 when <script type="math/tex">S_t = s</script>.</p>
+<p>Deterministic policies are \(\pi_t(s) =\) the action taken with probability = 1 when \(S_t = s\).</p>
 
-<p>Now the sequence of rewards after step <script type="math/tex">t</script> is: <script type="math/tex">R_{t+1}, R_{t+2}, R_{t+3}, ...</script></p>
+<p>Now the sequence of rewards after step \(t\) is: \(R_{t+1}, R_{t+2}, R_{t+3}, ...\)</p>
 
 <p>Here we seek to maximise:</p>
 <ul>
-  <li>Total Reward, <script type="math/tex">G_t = R_{t+1} + R_{t+2} + R_{t+3} + ... + R_T</script>. This is usually taken in episodic tasks like number of times the game was played, and we just add the sum total of all the rewards.</li>
-  <li>Discounted Reward, <script type="math/tex">G_t = R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + ...\\= \sum_{k=1}^{\infty} \gamma^k R_{t+k+1}</script>This is taken for continuing tasks, where there aren’t just episodes that come to an end but at every consecutive action it is required to avoid failure. Here <script type="math/tex">% <![CDATA[
-\gamma, 0 <= \gamma <= 1 %]]></script>. If <script type="math/tex">\gamma</script> tends to zero this that means the agent is short-sighted, whereas if it tends to 1 it is farsighted. Generally, we take <script type="math/tex">\gamma = 0.9</script> because we need to discount the current rewards so that the agent performs better in the whole. If <script type="math/tex">\gamma = 1</script> then the value is infinite for all states. And if our diagram doesn’t have any sink states(states without any outgoing transitions) then we’re looking at an infinite amount of transitions. When <script type="math/tex">\gamma = 0</script>, all our values are positive in the short term and so the infinite sum of positive values will give us an infinite value regardless of the starting state. This infinite result shows us one of the reasons to introduce gamma into a Markov reward process, instead of just summing all future rewards. In most cases, the process can have an infinite (or large) amount of transitions. As it is not very practical to deal with infinite values, we would like to limit the horizon we calculate values for. Gamma with a value less than 1 provides such a limitation. We can have <script type="math/tex">\gamma = 1</script> in a tic-tac-toe game where there is a sink state after just 9 turns of playing.</li>
-  <li>Average Reward, <script type="math/tex">G_t =</script> average rewards per time step. This mean shall be measured by <script type="math/tex">\mu = 1/k \sum_{k=1}^{k} R_{t+k+1}</script> but to consecutively update the mean we use: <script type="math/tex">\mu_{new} = (k.\mu_{old} + R_{t}) / k + 1</script>.</li>
+  <li>Total Reward, \(G_t = R_{t+1} + R_{t+2} + R_{t+3} + ... + R_T\). This is usually taken in episodic tasks like number of times the game was played, and we just add the sum total of all the rewards.</li>
+  <li>Discounted Reward, \(G_t = R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + ...\\= \sum_{k=1}^{\infty} \gamma^k R_{t+k+1}\)This is taken for continuing tasks, where there aren’t just episodes that come to an end but at every consecutive action it is required to avoid failure. Here \(\gamma, 0 &lt;= \gamma &lt;= 1\). If \(\gamma\) tends to zero this that means the agent is short-sighted, whereas if it tends to 1 it is farsighted. Generally, we take \(\gamma = 0.9\) because we need to discount the current rewards so that the agent performs better in the whole. If \(\gamma = 1\) then the value is infinite for all states. And if our diagram doesn’t have any sink states(states without any outgoing transitions) then we’re looking at an infinite amount of transitions. When \(\gamma = 0\), all our values are positive in the short term and so the infinite sum of positive values will give us an infinite value regardless of the starting state. This infinite result shows us one of the reasons to introduce gamma into a Markov reward process, instead of just summing all future rewards. In most cases, the process can have an infinite (or large) amount of transitions. As it is not very practical to deal with infinite values, we would like to limit the horizon we calculate values for. Gamma with a value less than 1 provides such a limitation. We can have \(\gamma = 1\) in a tic-tac-toe game where there is a sink state after just 9 turns of playing.</li>
+  <li>Average Reward, \(G_t =\) average rewards per time step. This mean shall be measured by \(\mu = 1/k \sum_{k=1}^{k} R_{t+k+1}\) but to consecutively update the mean we use: \(\mu_{new} = (k.\mu_{old} + R_{t}) / k + 1\).</li>
 </ul>
 
 <p>Let’s understand with an example: The Mountain Car example.
 <img alt="MountainCar" src="/images/2021/rl/mountaincar.png" height="60%" width="60%" /></p>
 
-<p>The goal is to get to the top of the hill as fast as possible. Here, reward = -1 for each step we aren’t at the top of the hill and so <script type="math/tex">=></script>return = -number of steps before reaching the top of the hill.</p>
+<p>The goal is to get to the top of the hill as fast as possible. Here, reward = -1 for each step we aren’t at the top of the hill and so \(=&gt;\)return = -number of steps before reaching the top of the hill.</p>
 
-<p>Now, we are going to understand how to calculate the value of state. Denoted by <script type="math/tex">V(s)</script>, this value function measures potential future rewards we may get from being in this state <script type="math/tex">s</script>.</p>
+<p>Now, we are going to understand how to calculate the value of state. Denoted by \(V(s)\), this value function measures potential future rewards we may get from being in this state \(s\).</p>
 
 <p><img alt="State transition graph with transition probabilities (dark) and rewards (light)" src="/images/2021/rl/markovrewards.png" height="70%" width="70%" /></p>
 
 <p>For this the values of each state is:</p>
 
-<p><script type="math/tex">V(coffee) = 2 * 0.7 + 1 * 0.1 + 3 * 0.2 = 2.1</script>
-<script type="math/tex">V(chat) = -1 * 0.5 + 2 * 0.3 + 1 * 0.2 = 0.3</script>
-<script type="math/tex">V(home) = 1 * 0.6 + 1 * 0.4 = 1.0</script>
-<script type="math/tex">V(computer) = 5 * 0.5 + (-3) * 0.1 + 1 * 0.2 + 2 * 0.2 = 2.8</script></p>
+<p>\(V(coffee) = 2 * 0.7 + 1 * 0.1 + 3 * 0.2 = 2.1\)
+\(V(chat) = -1 * 0.5 + 2 * 0.3 + 1 * 0.2 = 0.3\)
+\(V(home) = 1 * 0.6 + 1 * 0.4 = 1.0\)
+\(V(computer) = 5 * 0.5 + (-3) * 0.1 + 1 * 0.2 + 2 * 0.2 = 2.8\)</p>
 
 <p>Just take a state and then look at all the arrows heading out of that state, multiply the rewards and probability and then perform the summation for all the outgoing transitions.</p>
 

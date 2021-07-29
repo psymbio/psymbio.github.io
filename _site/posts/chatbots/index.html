@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-        Lecture 4: Perceptron & Generalized Linear Model &ndash; The Brain Archive
+        Chatbots that don't suck &ndash; The Brain Archive
     </title>
     <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
     <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
@@ -119,45 +119,10 @@
 <script src="/assets/scripts/copycode.js"></script>
 <section class="content">
     <section class="byline">
-        May  3, 2021
+        July 18, 2021
     </section>
-    <h1>Lecture 4: Perceptron & Generalized Linear Model</h1>
-    <br> <p>Sigmoid function</p>
-<iframe src="https://www.desmos.com/calculator/jsy08qm97c" width="100%" style="min-height:400px"></iframe>
-
-<figure>
-<img alt="regression" src="/images/2021/cs229/activationfunction.jpg" height="100%" width="100%" />
-<figcaption align="center">Various activation functions that can be used with Perceptron are shown here.</figcaption>
-</figure>
-
-<p>The perceptron function we are concerned with is: Signum.</p>
-
-<iframe src="https://www.desmos.com/calculator/z5ztszs7tk" width="100%" style="min-height:400px"></iframe>
-
-<p>In a way a signum function is a hard-version of the sigmoid.</p>
-
-<p>Now the hypothesis function of the signum function is <script type="math/tex">h_\theta(x) = g(\theta^{T} x)</script> where <script type="math/tex">\theta</script> is the parameter and <script type="math/tex">x</script> is the input.</p>
-
-<p>The hypothesis function of the sigmoid function is <script type="math/tex">h_\theta(x) = 1 / (1 + e^{-\theta^{T}x})</script>.</p>
-
-<p>They have an update rule which looks the same: <script type="math/tex">\theta_j = \theta_j + \alpha (y^{(i)} - h_\theta(x)^{(i)}) (x_j)^{(i)}</script> except <script type="math/tex">h_\theta(x)^{(i)}</script> mean different in both of them. It’s also same in linear regression as well.</p>
-
-<p>Now <script type="math/tex">y^{(i)} - h_\theta(x)^{(i)}</script> can have a value of:</p>
-<ul>
-  <li>0 if the prediction is correct.</li>
-  <li>+1 if <script type="math/tex">y^{(i)}</script> is 1, the prediction is wrong.</li>
-  <li>-1 if <script type="math/tex">y^{(i)}</script> is 0, the prediction is wrong.</li>
-</ul>
-
-<p>[8:00]</p>
-
-<p>perceptron Marvin Minsky paper</p>
-
-<p>[14:00]</p>
-
-<h2 id="exponential-families">Exponential Families</h2>
-
-<p>/<em>didn’t understand a single thing</em>/</p>
+    <h1>Chatbots that don't suck</h1>
+    <br> <p>I’m sick of chatbots being portrayed as this perfect slick solution for all human doubts, have you seen these things? Even as someone who could remotely sympathize with them I just don’t</p>
 
     <script src="https://utteranc.es/client.js" repo="psymbio/psymbio.github.io" issue-term="pathname" theme="github-dark-orange" crossorigin="anonymous" async>
     </script>

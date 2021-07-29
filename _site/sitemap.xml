@@ -7,19 +7,31 @@
     
     
     <url>
-        <loc>http://localhost:4000/posts/filters/</loc>
+        <loc>http://localhost:4000/posts/the-catcher-in-the-rye/</loc>
     </url>
     
     
     
     <url>
-        <loc>http://localhost:4000/posts/ml-week4/</loc>
+        <loc>http://localhost:4000/posts/chatbots/</loc>
     </url>
     
     
     
     <url>
         <loc>http://localhost:4000/posts/ml-week2/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/ml-week1/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/filters/</loc>
     </url>
     
     
@@ -109,12 +121,6 @@
     
     
     <url>
-        <loc>http://localhost:4000/posts/ml-week1/</loc>
-    </url>
-    
-    
-    
-    <url>
         <loc>http://localhost:4000/posts/compilers/</loc>
     </url>
     
@@ -128,12 +134,6 @@
     
     <url>
         <loc>http://localhost:4000/posts/intro-to-phil/</loc>
-    </url>
-    
-    
-    
-    <url>
-        <loc>http://localhost:4000/posts/social-network-graph/</loc>
     </url>
     
     

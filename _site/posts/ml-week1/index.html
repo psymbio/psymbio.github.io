@@ -119,7 +119,7 @@
 <script src="/assets/scripts/copycode.js"></script>
 <section class="content">
     <section class="byline">
-        December 12, 2020
+        June 24, 2021
     </section>
     <h1>Lecture 2: Introduction, Linear Regression, Gradient Descent</h1>
     <br> <h2 id="introduction">Introduction</h2>
@@ -174,13 +174,13 @@
 
 <p>To solve the cocktail party problem, we use ICA: Independent Component Analysis.</p>
 
-<p>Basically separates the sounds coming from two different sources. This is done through just one line of code: <script type="math/tex">[W,s,v] = svd((repmat(sum(x. * x,1),size(x,1),1). * x) * x');</script></p>
+<p>Basically separates the sounds coming from two different sources. This is done through just one line of code: \([W,s,v] = svd((repmat(sum(x. * x,1),size(x,1),1). * x) * x');\)</p>
 
 <h2 id="model-and-cost-function">Model and Cost Function</h2>
 
 <h3 id="model-representation">Model Representation</h3>
 
-<p>Taking the housing price example, you are given m number of training examples, x is the input variable/features and y is the output variable/features. (x, y) refers to a single training example and <script type="math/tex">(x^{i}, y^{i})</script> is the <script type="math/tex">i^{th}</script> training example.</p>
+<p>Taking the housing price example, you are given m number of training examples, x is the input variable/features and y is the output variable/features. (x, y) refers to a single training example and \((x^{i}, y^{i})\) is the \(i^{th}\) training example.</p>
 
 <div class="mermaid" align="center" height="70%" width="70%">
     flowchart LR
@@ -195,11 +195,11 @@
     h--&gt; B["Price of the House"]
 </div>
 
-<p>h(hypothesis) is a function that maps from x to y. To represent h, <script type="math/tex">h(x) = \theta_0 + \theta_1 x</script> (linear or affine function) and if there are more inputs: <script type="math/tex">h(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 ... = \sum_{j=0}^{z} \theta_j * j</script></p>
+<p>h(hypothesis) is a function that maps from x to y. To represent h, \(h(x) = \theta_0 + \theta_1 x\) (linear or affine function) and if there are more inputs: \(h(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 ... = \sum_{j=0}^{z} \theta_j * j\)</p>
 
-<p>To establish notation for future use, we’ll use <script type="math/tex">x^{(i)}</script> to denote the “input” variables (living area in this example), also called input features, and <script type="math/tex">y^{(i)}</script> to denote the “output” or target variable that we are trying to predict (price). A pair <script type="math/tex">(x^{(i)} , y^{(i)} )</script> is called a training example, and the dataset that we’ll be using to learn—a list of m training examples <script type="math/tex">{(x^{(i)} , y^{(i)} ); i = 1, . . . , m}</script> —is called a training set. Note that the superscript “(i)” in the notation is simply an index into the training set, and has nothing to do with exponentiation. We will also use X to denote the space of input values, and Y to denote the space of output values. In this example, <script type="math/tex">X = Y = ℝ</script>.</p>
+<p>To establish notation for future use, we’ll use \(x^{(i)}\) to denote the “input” variables (living area in this example), also called input features, and \(y^{(i)}\) to denote the “output” or target variable that we are trying to predict (price). A pair \((x^{(i)} , y^{(i)} )\) is called a training example, and the dataset that we’ll be using to learn—a list of m training examples \({(x^{(i)} , y^{(i)} ); i = 1, . . . , m}\) —is called a training set. Note that the superscript “(i)” in the notation is simply an index into the training set, and has nothing to do with exponentiation. We will also use X to denote the space of input values, and Y to denote the space of output values. In this example, \(X = Y = ℝ\).</p>
 
-<p>To describe the supervised learning problem slightly more formally, our goal is, given a training set, to learn a function <script type="math/tex">h : X → Y</script> so that h(x) is a “good” predictor for the corresponding value of y. For historical reasons, this function h is called a hypothesis.</p>
+<p>To describe the supervised learning problem slightly more formally, our goal is, given a training set, to learn a function \(h : X → Y\) so that h(x) is a “good” predictor for the corresponding value of y. For historical reasons, this function h is called a hypothesis.</p>
 
 <p>When the target variable that we’re trying to predict is continuous, such as in our housing example, we call the learning problem a regression problem. When y can take on only a small number of discrete values (such as if, given the living area, we wanted to predict if a dwelling is a house or an apartment, say), we call it a classification problem.</p>
 
@@ -208,7 +208,7 @@
 <table>
   <thead>
     <tr>
-      <th>Size in <script type="math/tex">feet^2</script> <script type="math/tex">(x^2)</script></th>
+      <th>Size in \(feet^2\) \((x^2)\)</th>
       <th>Price in $ in 1000’s (y)</th>
     </tr>
   </thead>
@@ -236,11 +236,11 @@
   </tbody>
 </table>
 
-<script type="math/tex; mode=display">h_\theta(x) = \theta_0 + \theta_1 x</script>
+\[h_\theta(x) = \theta_0 + \theta_1 x\]
 
-<script type="math/tex; mode=display">\theta_{i's} = parameters</script>
+\[\theta_{i's} = parameters\]
 
-<p>for <script type="math/tex">\theta_0 = 1.5</script> and <script type="math/tex">\theta_1 = 0</script></p>
+<p>for \(\theta_0 = 1.5\) and \(\theta_1 = 0\)</p>
 
 <p><div class="chartjs-wrapper" style="position: center"><canvas id="chartjs-0" class="chartjs" width="undefined" height="undefined"></canvas><script>new Chart(document.getElementById("chartjs-0"),{"type":"line","data":{"labels":["0","1","2"],"datasets":[{"label":"cost function","data":[1.5,1.5,1.5],"fill":false,"borderColor":"rgb(193, 39, 45)","lineTension":0.1}]},"options":{scales: {
             yAxes: [{
@@ -250,7 +250,7 @@
             }]
         }}});</script></div></p>
 
-<p>for <script type="math/tex">\theta_0 = 0</script> and <script type="math/tex">\theta_1 = 0.5</script></p>
+<p>for \(\theta_0 = 0\) and \(\theta_1 = 0.5\)</p>
 
 <p><div class="chartjs-wrapper" style="position: center"><canvas id="chartjs-1" class="chartjs" width="undefined" height="undefined"></canvas><script>new Chart(document.getElementById("chartjs-1"),{"type":"line","data":{"labels":["0","1","2"],"datasets":[{"label":"cost function","data":[0,0.5,1],"fill":false,"borderColor":"rgb(193, 39, 45)","lineTension":0.1}]},"options":{scales: {
             yAxes: [{
@@ -260,7 +260,7 @@
             }]
         }}});</script></div></p>
 
-<p>for <script type="math/tex">\theta_0 = 1</script> and <script type="math/tex">\theta_1 = 0.5</script></p>
+<p>for \(\theta_0 = 1\) and \(\theta_1 = 0.5\)</p>
 
 <p><div class="chartjs-wrapper" style="position: center"><canvas id="chartjs-2" class="chartjs" width="undefined" height="undefined"></canvas><script>new Chart(document.getElementById("chartjs-2"),{"type":"line","data":{"labels":["0","1","2"],"datasets":[{"label":"cost function","data":[1,1.5,2],"fill":false,"borderColor":"rgb(193, 39, 45)","lineTension":0.1}]},"options":{scales: {
             yAxes: [{
@@ -270,17 +270,17 @@
             }]
         }}});</script></div></p>
 
-<p>The idea is to select <script type="math/tex">\theta_0</script> and <script type="math/tex">\theta_1</script> so that <script type="math/tex">h_\theta(x)</script> is close to <script type="math/tex">y</script> for our training examples <script type="math/tex">(x, y)</script>. To do this we have to minimize this function: <script type="math/tex">\sum_{i=1}^{m} (h_\theta(x^{(i)}-y^{(i)}))^2</script> and to minimize the work you average it out by a factor of <script type="math/tex">2m</script> and use this: <script type="math/tex">J(\theta_0, \theta_1) = \frac{1}{2m} (h_\theta(x^{(i)}-y^{(i)}))^2</script>.</p>
+<p>The idea is to select \(\theta_0\) and \(\theta_1\) so that \(h_\theta(x)\) is close to \(y\) for our training examples \((x, y)\). To do this we have to minimize this function: \(\sum_{i=1}^{m} (h_\theta(x^{(i)}-y^{(i)}))^2\) and to minimize the work you average it out by a factor of \(2m\) and use this: \(J(\theta_0, \theta_1) = \frac{1}{2m} (h_\theta(x^{(i)}-y^{(i)}))^2\).</p>
 
 <p>Why is it mean-squared error and not to the power of 4 or something else?</p>
 
-<p>We can measure the accuracy of our hypothesis function by using a cost function. This takes an average difference (actually a fancier version of an average) of all the results of the hypothesis with inputs from x’s and the actual output y’s. This function is otherwise called the “Squared error function”, or “Mean squared error”. The mean is halved as a convenience for the computation of the gradient descent, as the derivative term of the square function will cancel out the <script type="math/tex">\frac{1}{2}</script> term.</p>
+<p>We can measure the accuracy of our hypothesis function by using a cost function. This takes an average difference (actually a fancier version of an average) of all the results of the hypothesis with inputs from x’s and the actual output y’s. This function is otherwise called the “Squared error function”, or “Mean squared error”. The mean is halved as a convenience for the computation of the gradient descent, as the derivative term of the square function will cancel out the \(\frac{1}{2}\) term.</p>
 
 <h3 id="cost-function-intuition">Cost Function Intuition</h3>
 
-<p>Hypothesis: <script type="math/tex">h_\theta(x) = \theta_0 + \theta_1 x</script></p>
+<p>Hypothesis: \(h_\theta(x) = \theta_0 + \theta_1 x\)</p>
 
-<p>Parameters: <script type="math/tex">\theta_0, \theta_1 ...</script></p>
+<p>Parameters: \(\theta_0, \theta_1 ...\)</p>
 
 <p>m: number of training examples</p>
 
@@ -288,35 +288,35 @@
 
 <p>x: inputs / features</p>
 
-<script type="math/tex; mode=display">x = \begin{bmatrix}
+\[x = \begin{bmatrix}
 x_0\\
 x_1\\
 x_2
-\end{bmatrix}</script>
+\end{bmatrix}\]
 
-<p>where, <script type="math/tex">x_0</script> is zero all the time
-<script type="math/tex">x_1</script> is size in feet
-<script type="math/tex">x_2</script> is number of bedrooms</p>
+<p>where, \(x_0\) is zero all the time
+\(x_1\) is size in feet
+\(x_2\) is number of bedrooms</p>
 
-<script type="math/tex; mode=display">\theta = \begin{bmatrix}
+\[\theta = \begin{bmatrix}
 \theta_0\\
 \theta_1\\
 \theta_2
-\end{bmatrix}</script>
+\end{bmatrix}\]
 
 <p>y: output / target variable</p>
 
-<p>Cost Function: <script type="math/tex">J(\theta_0, \theta_1) = \frac{1}{2m} (h_\theta(x^{(i)})-y^{(i)})^2</script></p>
+<p>Cost Function: \(J(\theta_0, \theta_1) = \frac{1}{2m} (h_\theta(x^{(i)})-y^{(i)})^2\)</p>
 
-<p>Goal: <script type="math/tex">J(\theta_0, \theta_1)</script></p>
+<p>Goal: \(J(\theta_0, \theta_1)\)</p>
 
-<p>If we try to think of it in visual terms, our training data set is scattered on the x-y plane. We are trying to make a straight line (defined by <script type="math/tex">h_\theta(x) = h(x)</script> which passes through these scattered data points.</p>
+<p>If we try to think of it in visual terms, our training data set is scattered on the x-y plane. We are trying to make a straight line (defined by \(h_\theta(x) = h(x)\) which passes through these scattered data points.</p>
 
-<p>Our objective is to get the best possible line. The best possible line will be such so that the average squared vertical distances of the scattered points from the line will be the least. Ideally, the line should pass through all the points of our training data set. In such a case, the value of <script type="math/tex">J(\theta_0, \theta_1)</script> will be 0. The following example shows the ideal situation where we have a cost function of 0.</p>
+<p>Our objective is to get the best possible line. The best possible line will be such so that the average squared vertical distances of the scattered points from the line will be the least. Ideally, the line should pass through all the points of our training data set. In such a case, the value of \(J(\theta_0, \theta_1)\) will be 0. The following example shows the ideal situation where we have a cost function of 0.</p>
 
 <p><img alt="" src="/images/2020/ml1.png" height="100%" width="100%" /></p>
 
-<p>When <script type="math/tex">\theta_1 = 1</script>, we get a slope of 1 which goes through every single data point in our model. Conversely, when <script type="math/tex">\theta_1 = 0.5</script>, we see the vertical distance from our fit to the data points increase.</p>
+<p>When \(\theta_1 = 1\), we get a slope of 1 which goes through every single data point in our model. Conversely, when \(\theta_1 = 0.5\), we see the vertical distance from our fit to the data points increase.</p>
 
 <p><img alt="" src="/images/2020/ml2.png" height="100%" width="100%" /></p>
 
@@ -324,7 +324,7 @@ x_2
 
 <p><img alt="" src="/images/2020/ml3.png" height="60%" width="60%" /></p>
 
-<p>Thus as a goal, we should try to minimize the cost function. In this case, <script type="math/tex">\theta_1 = 1</script> is our global minimum.</p>
+<p>Thus as a goal, we should try to minimize the cost function. In this case, \(\theta_1 = 1\) is our global minimum.</p>
 
 <iframe width="700" height="700" frameborder="0" scrolling="no" src="//plotly.com/~psymbio/3.embed"></iframe>
 
@@ -353,23 +353,22 @@ x_2
 
 <p>Gradient descent is an optimization algorithm used to find the parameters to minimize the cost function.</p>
 
-<p>The cost function here is <script type="math/tex">J(\theta) = \frac{1}{2m} (h_\theta(x^{(i)})-y^{(i)})^2</script> and we need to minimise it. Keep changing <script type="math/tex">\theta</script> to reduce <script type="math/tex">J(\theta)</script></p>
+<p>The cost function here is \(J(\theta) = \frac{1}{2m} (h_\theta(x^{(i)})-y^{(i)})^2\) and we need to minimise it. Keep changing \(\theta\) to reduce \(J(\theta)\)</p>
 
-<script type="math/tex; mode=display">% <![CDATA[
-\begin{eqnarray} 
-J \left(\begin{pmatrix}\theta_0\\ \theta_1\end{pmatrix} \right) &=& 
+\[\begin{eqnarray} 
+J \left(\begin{pmatrix}\theta_0\\ \theta_1\end{pmatrix} \right) &amp;=&amp; 
 \frac{1}{2m}\sum_{i=1}^{m} (h(x^{(i)})-y^{(i)})^2 \\
-&=& \frac{1}{2m}\sum_{i=1}^{m} ((\theta_0 + \theta_1 x^{(i)})-y^{(i)})^2 \\
-&=& \frac{1}{2m}(X\times\Theta-y)'\times  (X\times\Theta-y)
-\end{eqnarray} %]]></script>
+&amp;=&amp; \frac{1}{2m}\sum_{i=1}^{m} ((\theta_0 + \theta_1 x^{(i)})-y^{(i)})^2 \\
+&amp;=&amp; \frac{1}{2m}(X\times\Theta-y)'\times  (X\times\Theta-y)
+\end{eqnarray}\]
 
-<p>To change <script type="math/tex">\theta</script> we say <script type="math/tex">\theta_j := \theta_j - \alpha \frac{\partial J(\theta)}{\partial \theta_j}</script> for <script type="math/tex">j = 0, 1, 2, ...</script> (here := is an assignment operator it’s like <script type="math/tex">a = a + 1</script> is wrong but <script type="math/tex">a:= a + 1</script> is correct).</p>
+<p>To change \(\theta\) we say \(\theta_j := \theta_j - \alpha \frac{\partial J(\theta)}{\partial \theta_j}\) for \(j = 0, 1, 2, ...\) (here := is an assignment operator it’s like \(a = a + 1\) is wrong but \(a:= a + 1\) is correct).</p>
 
-<script type="math/tex; mode=display">\frac{\partial J(\theta)}{\partial \theta_j} = \frac{\partial}{\partial \theta_j} \frac{1}{2} (h_\theta(x) - y)^2\\=2 \frac{1}{2} (h_\theta(x) - y)  \frac{\partial}{\partial \theta_j} (h_\theta(x) - y)\\=(h_\theta - y) \frac{\partial}{\partial \theta_j} (\theta_0 x_0 + \theta_1 x_1 + ... + \theta_d x_d - y)\\=(h_\theta - y) x_j</script>
+\[\frac{\partial J(\theta)}{\partial \theta_j} = \frac{\partial}{\partial \theta_j} \frac{1}{2} (h_\theta(x) - y)^2\\=2 \frac{1}{2} (h_\theta(x) - y)  \frac{\partial}{\partial \theta_j} (h_\theta(x) - y)\\=(h_\theta - y) \frac{\partial}{\partial \theta_j} (\theta_0 x_0 + \theta_1 x_1 + ... + \theta_d x_d - y)\\=(h_\theta - y) x_j\]
 
-<p>So now we can say: <script type="math/tex">\theta_j := \theta_j - \alpha(h_\theta(x)-y) x_j</script></p>
+<p>So now we can say: \(\theta_j := \theta_j - \alpha(h_\theta(x)-y) x_j\)</p>
 
-<script type="math/tex; mode=display">\theta_j := \theta_j - \alpha\sum_{i=1}^{m} (h_\theta(x^{(i)}-y^{(i)}))x_j</script>
+\[\theta_j := \theta_j - \alpha\sum_{i=1}^{m} (h_\theta(x^{(i)}-y^{(i)}))x_j\]
 
 <p>This is called batch gradient descent.</p>
 
@@ -394,17 +393,17 @@ J \left(\begin{pmatrix}\theta_0\\ \theta_1\end{pmatrix} \right) &=&
 
 <p>The math is pretty simple: learn the basic matric operations, transpose, inverse and multiplication.</p>
 
-<p><script type="math/tex">tr(A) =</script> Trace of Matrix A = sum of the diagonals</p>
+<p>\(tr(A) =\) Trace of Matrix A = sum of the diagonals</p>
 
-<script type="math/tex; mode=display">tr(A) = tr(A)^{T}</script>
+\[tr(A) = tr(A)^{T}\]
 
-<script type="math/tex; mode=display">f(A) = tr(AB)\\\nabla_{A} F(A) = B^{T}</script>
+\[f(A) = tr(AB)\\\nabla_{A} F(A) = B^{T}\]
 
-<script type="math/tex; mode=display">tr(AB) = tr(BA)</script>
+\[tr(AB) = tr(BA)\]
 
-<script type="math/tex; mode=display">tr(ABC) = tr(CAB)</script>
+\[tr(ABC) = tr(CAB)\]
 
-<script type="math/tex; mode=display">\nabla_{A} tr(AA^{T}C) = CA + C^{T}A</script>
+\[\nabla_{A} tr(AA^{T}C) = CA + C^{T}A\]
 
 <p>[watch again]</p>
 
