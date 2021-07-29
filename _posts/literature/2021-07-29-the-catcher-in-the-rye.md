@@ -7,7 +7,7 @@ layout: movie
 ---
 It's not the greatest coming-of-age book, that I can agree with. My only question is do coming-of-age books need to be great? If you ask me then they are the transitory phase between coloring books and actual greatness.
 
-Getting into the nitty-gritty, I got slightly depressed reading it. Only slightly because it seemed like the book kind of just exploded by the end. Good start, funny, slightly witty like the protagonist and I'm fine with how it doesn't aim to be something more or you know phony. I think as you sort of go through all these pages the book gets drunker[1] and shows you an ugly side of the cynicism presented. To me, it was like being shown what an all-time low in life looks like when a 17-year-old could conjure up a life with his mute wife and his job at a petrol pump. The thing is the book has to have got you to agree with how life is right now is pretty shit too, like flocking together with birds of the same feather/Catholics stick together or talking about the mileage in cars/showing-off and buying and selling cars/that desire to always keep hustling. But a resolution to that sort of life isn't one at a petrol pump or being completely done with all forms of "stupid useless conversations".
+Getting into the nitty-gritty, I got slightly depressed reading it. Only slightly because it seemed like the book kind of just exploded by the end. Good start, funny, slightly witty like the protagonist and I'm fine with how it doesn't aim to be something more or you know phony. I think as you sort of go through all these pages the book gets drunker<sup><a href="#drunk">[1]</a></sup> and shows you an ugly side of the cynicism presented. To me, it was like being shown what an all-time low in life looks like when a 17-year-old could conjure up a life with his mute wife and a job at a petrol pump. The thing is the book has to have got you to agree with how life is right now is pretty shit too, like Catholics stick together(birds of a feather flock together) or talking about the mileage in cars(showing-off) and buying and selling cars(that desire to always keep hustling). But a resolution to that sort of life isn't running away from education, working at a petrol pump or being completely done with all forms of "stupid useless conversations".
 
 I like how the resolution is presented by a little boy singing, "If a body catch a body coming through the rye" and the antagonist of the story Mr. Antolini.
 
@@ -109,7 +109,9 @@ About three shootings are on the account of this book. The most famous of which 
 
 I recommend watching it because the Salinger documentary seemed "phony" and this on the other hand really shows you the consequences of the book. Also I'd love to know what you think about my interpretation of the book.
 
+<p id="drunk">
 [1] The Catcher in the Rye struggles with the dark thought that maybe everything is fake and meaningless. Most authors would consider such a psychological premise like that for a short story, but Salinger stretches it out over 200 pages, diving deeper and deeper into Holden’s spiritual downward spiral
+</p>
 
 [The Vision of the Innocent By S. N. Behrman, The New Yorker](https://www.newyorker.com/magazine/1951/08/11/the-vision-of-the-innocent)
 
@@ -117,8 +119,7 @@ I recommend watching it because the Salinger documentary seemed "phony" and this
 
 [The Catcher in the Rye in Popular Culture](https://en.wikipedia.org/wiki/The_Catcher_in_the_Rye_in_popular_culture)
 
-#### References in the Book
-
+##### References in the Book
 1. The 39 Steps by Hitchcock but also the book
 2. Out of Africa by Karen Blixen
 3. The Return of the Native by Thomas Hardy
@@ -131,7 +132,10 @@ I recommend watching it because the Salinger documentary seemed "phony" and this
 10. The Great Gatsby by F. Scott Fitzgerald
 11. Works by Emily Dickinson, Grendal, and Beowulf
 
-### Vocabulary to take away
-
+##### Vocabulary to take away
 inane, sacrilegious, unscrupulous, ostracizing, pedagogical
+
 (yeah I know there isn't much, but whatever)
+
+##### Overall rating
+2.8/5 (if you're into that stuff)

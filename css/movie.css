@@ -230,6 +230,7 @@
     --black: #2d2d2d;
     --headings: #2d2d2d;
     --headings2: #2d2d2d;
+    --lineheight: 0.1;
 }
 
 body {
@@ -313,7 +314,7 @@ h2 {
     font-size: 4.5em;
     color: var(--headings2);
     font-family: "chronicle";
-    line-height: 1;
+    line-height: var(--lineheight);
     font-weight: normal;
 }
 
@@ -321,7 +322,7 @@ h3 {
     font-size: 4em;
     color: var(--headings2);
     font-family: "chronicle";
-    line-height: 1;
+    line-height: var(--lineheight);
     font-weight: normal;
 }
 
@@ -329,7 +330,7 @@ h4 {
     font-size: 3.5em;
     color: var(--headings2);
     font-family: "chronicle";
-    line-height: 1;
+    line-height: var(--lineheight);
     font-weight: normal;
 }
 
@@ -337,7 +338,7 @@ h5 {
     font-size: 3em;
     color: var(--headings2);
     font-family: "chronicle";
-    line-height: 1;
+    line-height: var(--lineheight);
     font-weight: normal;
 }
 
@@ -345,7 +346,7 @@ h6 {
     font-size: 2.5em;
     color: var(--headings2);
     font-family: "chronicle";
-    line-height: 1;
+    line-height: var(--lineheight);
     font-weight: normal;
 }
 
@@ -381,7 +382,7 @@ blockquote p {
 }
 
 blockquote:before {
-    content: "\201C";
+    /*content: "\201C";*/
     font-family: Georgia;
     font-size: 60px;
     line-height: 0;
