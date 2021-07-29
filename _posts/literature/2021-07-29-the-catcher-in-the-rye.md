@@ -89,7 +89,7 @@ The other part I like about it is resonating with Caulfield:
 + There was never a chance where I thought he was a shitty character. Most people would call him whiny, immature and all that crap but all of this felt more real of him to be (at least for his age). The way he cherishes the presence of kids more to adults of his own age shows you that maybe he was better off not knowing about the inner-workings of this big bad world.
 + I love the duck question he keeps asking, it reminded of an episode in The Sopranos.
 
-<iframe width="700" height="400" src="https://www.youtube.com/embed/jxXjhRHrs6k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="100%" max-width="700" height="400" src="https://www.youtube.com/embed/jxXjhRHrs6k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 I like this character summary from the New Yorker:
 
@@ -105,7 +105,7 @@ Holden’s comment declaring that it’s “a people shooting hat” reveals fee
 
 About three shootings are on the account of this book. The most famous of which is the shooting of John Lennon by Mark David Chapman.
 
-<iframe width="700" height="400" src="https://www.youtube-nocookie.com/embed/OkmaGvdJIZU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="100%" max-width="700" height="400" src="https://www.youtube-nocookie.com/embed/OkmaGvdJIZU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 I recommend watching it because the Salinger documentary seemed "phony" and this on the other hand really shows you the consequences of the book. Also I'd love to know what you think about my interpretation of the book.
 
