@@ -11,10 +11,6 @@ Getting into the nitty-gritty, I got slightly depressed reading it. Only slightl
 
 I like how the resolution is presented by a little boy singing, "If a body catch a body coming through the rye" and the antagonist of the story Mr. Antolini.
 
-{% comment %}
-> *"All right. Listen to me a minute now . . . I may not word this as memorably as I'd like to, but I'll write you a letter about it in a day or two. Then you can get it all straight. But listen now, anyway." He started concentrating again. Then he said, "This fall I think you're riding for--it's a special kind of fall, a horrible kind. The man falling isn't permitted to feel or hear himself hit bottom. He just keeps falling and falling. The whole arrangement's designed for men who, at some time or other in their lives, were looking for something their own environment couldn't supply them with. Or they thought their own environment couldn't supply them with. So they gave up looking. They gave it up before they ever really even got started. You follow me?"*
-{% endcomment %}
-
 > *"Something else an academic education will do for you. If you go along with it any considerable distance, it'll begin to give you an idea what size mind you have. What it'll fit and, maybe, what it won't. After a while, you'll have an idea what kind of thoughts your particular size mind should be wearing. For one thing, it may save you an extraordinary amount of time trying on ideas that don't suit you, aren't becoming to you. You'll begin to know your true measurements and dress your mind accordingly."*
 
 For this review, I don't have a concrete review on the plot of the book or the characters in it, partly because they weren't great but also because the book wasn't supposed to dwell on these characters or plotlines to create the ambiance of a world reigned by angst. Holden hates everything and so should you.
@@ -86,7 +82,11 @@ I know it's not much of an explanation but it shall suffice for why the book mea
 The other part I like about it is resonating with Caulfield:
 
 + Hating things and liking even fewer. The kind of hate he presents you with is different, you might hate something but still miss the absence of it. It's the kind of hate that I've known all my life: to sit at tables and really be vocal about the certain oddities you find in people sitting in front of you that just tears you up. It's not like you'd wish for them to disappear(for they fuel that train of thought) but it's something about that specific kind of hate that just never wants to die out. I sincerely think, the day that this kind of hate dies out in me I'll be dead or depressed.
-+ There was never a chance where I thought he was a shitty character. Most people would call him whiny, immature and all that crap but all of this felt more real of him to be (at least for his age). The way he cherishes the presence of kids more to adults of his own age shows you that maybe he was better off not knowing about the inner-workings of this big bad world.
+
++ There was never a chance where I thought he was a shitty character. Most people would call him whiny, immature and all that crap but all of this felt more real of him to be (at least for his age). The way he cherishes the innocence of kids to the phoniness of adults, and becoming the catcher in the rye to save that innocence from that endless fall to adulthood.
+
+> *"All right. Listen to me a minute now . . . I may not word this as memorably as I'd like to, but I'll write you a letter about it in a day or two. Then you can get it all straight. But listen now, anyway." He started concentrating again. Then he said, "This fall I think you're riding for--it's a special kind of fall, a horrible kind. The man falling isn't permitted to feel or hear himself hit bottom. He just keeps falling and falling. The whole arrangement's designed for men who, at some time or other in their lives, were looking for something their own environment couldn't supply them with. Or they thought their own environment couldn't supply them with. So they gave up looking. They gave it up before they ever really even got started. You follow me?"*
+
 + I love the duck question he keeps asking, it reminded of an episode in The Sopranos.
 
 <iframe width="100%" max-width="700" height="400" src="https://www.youtube.com/embed/jxXjhRHrs6k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -119,6 +119,8 @@ I recommend watching it because the Salinger documentary seemed "phony" and this
 
 [The Catcher in the Rye in Popular Culture](https://en.wikipedia.org/wiki/The_Catcher_in_the_Rye_in_popular_culture)
 
+[Tony Soprano, Holden Caufield, and Jay Gatsby](https://thechaselounge.net/viewtopic.php?t=1806)
+
 ##### References in the Book
 1. The 39 Steps by Hitchcock but also the book
 2. Out of Africa by Karen Blixen
@@ -138,4 +140,4 @@ inane, sacrilegious, unscrupulous, ostracizing, pedagogical
 (yeah I know there isn't much, but whatever)
 
 ##### Overall rating
-2.8/5 (if you're into that stuff)
+2.7/5 (if you're into that stuff)
