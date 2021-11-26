@@ -1,0 +1,150 @@
+I"E6<p>After about a month of learning deep learning, I realized the solution to the sudoku problem after coming across one single word: Gridworld.</p>
+
+<p>Another square matrix like sudoku, that looks like this:
+<img alt="" src="/images/2021/rl/gridworld.png" height="50%" width="50%" /></p>
+
+<p>Now to solve the Gridworld problem through machine learning you require a special system, a fancy word: Deep Q-networks.</p>
+
+<p>I write this as I embark on a journey to solve it myslf, so writing is what helps me jot down ideas and teach myself.</p>
+
+<p>Deep Q-networks is quite novel, in the sense that we don’t have too many videos tutorials. I don’t think many of us actually want to read probability equations from Sutton’s book. To get a basic idea I recommend watching <a href="">Jabrah Tutorials series on Reinforcement Learning</a>.</p>
+
+<p>After that we’re going to quickly run through all these terms to model this infrastructure to our own needs.</p>
+
+<p>Bet you’ve heard of a markov chain…
+<img alt="" src="/images/2021/rl/markovchain.png" height="50%" width="50%" /></p>
+
+<p>If you haven’t then it’s really simple. This one basically just says this:</p>
+
+<p>If sunny today, then tommorow:
+80% probability for sunny
+20% probability for rainy</p>
+
+<p>If rainy today, then tomorrow:
+60% probability for sunny
+40% probability for rainy</p>
+
+<p>If you were to make a markov chain of your life it would be somthing like this:
+<img alt="State transition graph with transition probabilities" src="/images/2021/rl/markovnorewards.png" height="70%" width="70%" /></p>
+
+<p>Now these are just the probablities of taking an action, I want to add another dimension to it. Say if we were to reward a task, negatively if the task is bad for the person’s productivity and positively if it is good. The agent in such a markov chain wants to perform better, he’s a motivated guy that loves getting rewards.
+<img alt="State transition graph with transition probabilities (dark) and rewards (light)" src="/images/2021/rl/markovrewards.png" height="70%" width="70%" /></p>
+
+<h2 id="some-important-terms">Some important terms</h2>
+
+<p>Any time we observe the system we are recording an <em>episode</em>. For example here it could be home → coffee → coffee → chat → chat → coffee → computer → computer → home. Wherein each of the different tasks are states the agent could be in.</p>
+
+<p>The other thing to note down here is that the transition distribution for any state doesn’t change over time. Non-stationarity means that there is some hidden factor that influences our system dynamics, and this factor is not included in observations.</p>
+
+<p><img alt="Agent environment interface" src="/images/2021/rl/agentenv.png" height="100%" width="100%" /></p>
+
+<p>Now we understand <em>actions</em>. Our agent at every step has a set of action \((A)\) which is finite. This is our agent’s action space. For this we add another dimension, making it a cube with the transition matrix. Now the agent no longer passively observes state transitions, but can actively choose an action to take at every time. So, for every state, we don’t have a list of numbers, but a matrix, where the depth dimension contains actions that the agent can take, and the other dimension is that the target state system will jump to after this action is performed by the agent.</p>
+
+<p>When we talk about taking an action in a particular state we call it a state-action pair \((s, a)\).</p>
+
+<p>Now the agent doesn’t observe transitions passively but instead can take actions and affect the probabilities of the target states.</p>
+
+<p>If an RL task has a Markov properties it is a Markov Decision Process. If the state and action sets are finite we have a finite MDP. To define a finite MDP we have one step dynamics:
+\(p(s', r|s, a) = Pr(S_{t+1}= s', R_{t+1}=r|S_t=s, A_t=a)\). This is the probability of being in state \(s'\) and receiving reward \(r\) after being in state \(s\) and performing action \(a\).</p>
+
+<p>A policy defines how an agent acts from a specific state. For a deterministic policy, it is the action taken at a specific state. RL defines how the agent needs to change its policy as a result of experience, and here generally the goal is to maximise the rewards. However there could be a variety of policies: like go haywire, avoid just the obstacles, or spin around.</p>
+
+<p>Policy at step
+\(t = \pi_{t} =\)
+a mapping from states to action probabilities \(\pi_{t}(a|s) =\)
+ probability that
+ \(A_t = a\)
+ when 
+ \(S_t = s\).</p>
+
+<p>Deterministic policies are \(\pi_t(s) =\) the action taken with probability = 1 when \(S_t = s\).</p>
+
+<p>Now the sequence of rewards after step \(t\) is: \(R_{t+1}, R_{t+2}, R_{t+3}, ...\)</p>
+
+<p>Here we seek to maximise:</p>
+<ul>
+  <li>Total Reward, \(G_t = R_{t+1} + R_{t+2} + R_{t+3} + ... + R_T\). This is usually taken in episodic tasks like number of times the game was played, and we just add the sum total of all the rewards.</li>
+  <li>Discounted Reward, \(G_t = R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + ...\\= \sum_{k=1}^{\infty} \gamma^k R_{t+k+1}\)This is taken for continuing tasks, where there aren’t just episodes that come to an end but at every consecutive action it is required to avoid failure. Here \(\gamma, 0 &lt;= \gamma &lt;= 1\). If \(\gamma\) tends to zero this that means the agent is short-sighted, whereas if it tends to 1 it is farsighted. Generally, we take \(\gamma = 0.9\) because we need to discount the current rewards so that the agent performs better in the whole. If \(\gamma = 1\) then the value is infinite for all states. And if our diagram doesn’t have any sink states(states without any outgoing transitions) then we’re looking at an infinite amount of transitions. When \(\gamma = 0\), all our values are positive in the short term and so the infinite sum of positive values will give us an infinite value regardless of the starting state. This infinite result shows us one of the reasons to introduce gamma into a Markov reward process, instead of just summing all future rewards. In most cases, the process can have an infinite (or large) amount of transitions. As it is not very practical to deal with infinite values, we would like to limit the horizon we calculate values for. Gamma with a value less than 1 provides such a limitation. We can have \(\gamma = 1\) in a tic-tac-toe game where there is a sink state after just 9 turns of playing.</li>
+  <li>Average Reward, \(G_t =\) average rewards per time step. This mean shall be measured by \(\mu = 1/k \sum_{k=1}^{k} R_{t+k+1}\) but to consecutively update the mean we use: \(\mu_{new} = (k.\mu_{old} + R_{t}) / k + 1\).</li>
+</ul>
+
+<p>Let’s understand with an example: The Mountain Car example.
+<img alt="MountainCar" src="/images/2021/rl/mountaincar.png" height="60%" width="60%" /></p>
+
+<p>The goal is to get to the top of the hill as fast as possible. Here, reward = -1 for each step we aren’t at the top of the hill and so \(=&gt;\)return = -number of steps before reaching the top of the hill.</p>
+
+<p>Now, we are going to understand how to calculate the value of state. Denoted by \(V(s)\), this value function measures potential future rewards we may get from being in this state \(s\).</p>
+
+<p><img alt="State transition graph with transition probabilities (dark) and rewards (light)" src="/images/2021/rl/markovrewards.png" height="70%" width="70%" /></p>
+
+<p>For this the values of each state is:</p>
+
+<p>\(V(coffee) = 2 * 0.7 + 1 * 0.1 + 3 * 0.2 = 2.1\)
+\(V(chat) = -1 * 0.5 + 2 * 0.3 + 1 * 0.2 = 0.3\)
+\(V(home) = 1 * 0.6 + 1 * 0.4 = 1.0\)
+\(V(computer) = 5 * 0.5 + (-3) * 0.1 + 1 * 0.2 + 2 * 0.2 = 2.8\)</p>
+
+<p>Just take a state and then look at all the arrows heading out of that state, multiply the rewards and probability and then perform the summation for all the outgoing transitions.</p>
+
+<h2 id="openai-gym-and-the-anatomy-of-an-agent">OpenAI Gym and the anatomy of an agent…</h2>
+
+<p>Let’s setup a basic program:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Environment</span><span class="p">:</span>
+	<span class="k">def</span> <span class="nf">__init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="bp">self</span><span class="p">.</span><span class="n">steps_left</span> <span class="o">=</span> <span class="mi">10</span>
+		<span class="c1"># initializing env by saying that only 10 steps are left
+</span>
+	<span class="k">def</span> <span class="nf">get_observations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+		<span class="c1"># returns the current envs observation to agent
+</span>		<span class="c1"># it's some function of the internal state of the env
+</span>		<span class="c1"># here the observation vector is always zero because the env has no internal state
+</span>
+	<span class="k">def</span> <span class="nf">get_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+		<span class="c1"># set of actions the agent can perform
+</span>		<span class="c1"># usually this doesn't change over time
+</span>		<span class="c1"># but smetimes certain moves aren't possible
+</span>
+	<span class="k">def</span> <span class="nf">is_done</span><span class="p">():</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">steps_left</span> <span class="o">==</span> <span class="mi">0</span>
+		<span class="c1"># check if episode is completed
+</span>
+	<span class="k">def</span> <span class="nf">action</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">is_done</span><span class="p">():</span>
+			<span class="k">raise</span> <span class="nb">Exception</span><span class="p">(</span><span class="s">"Game is Over"</span><span class="p">)</span>
+		<span class="bp">self</span><span class="p">.</span><span class="n">steps_left</span> <span class="o">-=</span> <span class="mi">1</span>
+		<span class="k">return</span> <span class="n">random</span><span class="p">.</span><span class="n">random</span><span class="p">()</span>
+		<span class="c1"># if episode is completed then raise exception
+</span>		<span class="c1"># else just take an action and subtract a step from step_left.
+</span>
+<span class="k">class</span> <span class="nc">Agent</span><span class="p">:</span>
+	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="bp">self</span><span class="p">.</span><span class="n">total_reward</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+	<span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">):</span>
+		<span class="n">current_obs</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="n">get_observation</span><span class="p">()</span>
+		<span class="c1"># observe env
+</span>		<span class="n">actions</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="n">get_actions</span><span class="p">()</span>
+		<span class="c1"># make a decision of action to take
+</span>		<span class="n">reward</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="n">action</span><span class="p">(</span><span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">(</span><span class="n">actions</span><span class="p">))</span>
+		<span class="c1"># submit action and collect the rewards
+</span>		<span class="bp">self</span><span class="p">.</span><span class="n">total_reward</span> <span class="o">+=</span> <span class="n">reward</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+	<span class="n">env</span> <span class="o">=</span> <span class="n">Environment</span><span class="p">()</span>
+	<span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">()</span>
+
+	<span class="k">while</span> <span class="ow">not</span> <span class="n">env</span><span class="p">.</span><span class="n">is_done</span><span class="p">():</span>
+		<span class="n">agent</span><span class="p">.</span><span class="n">step</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+	<span class="k">print</span><span class="p">(</span><span class="s">"Total reward got: %.4f"</span> <span class="o">%</span> <span class="n">agent</span><span class="p">.</span><span class="n">total_reward</span><span class="p">)</span></code></pre></figure>
+
+<p>This piece of code is important as it is the infrastructure of our RL agent.</p>
+
+<p>OpenAI provides us with the environment: set of actions, observations, method called &lt;div class="inlinecode"&gt;step&lt;/div&gt; to execute an action (returns current observation, reward, and indication that the episode is over), a method called &lt;div class="inlinecode"&gt;reset&lt;/div&gt; to retrun to initial state.</p>
+
+<p>https://jonathan-hui.medium.com/rl-reinforcement-learning-terms-242baac11907</p>
+
+<p>http://incompleteideas.net/book/first/ebook/node34.html</p>
+:ET

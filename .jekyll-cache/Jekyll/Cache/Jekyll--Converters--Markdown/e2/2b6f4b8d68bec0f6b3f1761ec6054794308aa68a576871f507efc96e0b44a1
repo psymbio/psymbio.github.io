@@ -1,0 +1,292 @@
+I"8C<h2 id="introduction">Introduction</h2>
+
+<h3 id="welcome">Welcome</h3>
+<p>Machine learning is used in algorithms that rank web-pages, recognizes people in photos, or even filters your spam. These algorithms try to mimic how the human brain works. Normally machines would do one specific task that was stated by the algorithm, but as the variety of tasks increase we realize the only way to catch up is to create such algorithms through which machines can teach themselves to do the task.</p>
+
+<h3 id="what-is-machine-learning">What is Machine Learning?</h3>
+
+<p>Ability to learn without explicitly being programmed (definition by Arthur Samuel). Extra reading: <a href="http://www.incompleteideas.net/book/ebook/node109.html">this</a> and <a href="http://www.incompleteideas.net/book/ebook/node1.html">this</a>.</p>
+
+<p>A newer defnition by Tom Mitchell: a computer program is said to learn from experience E with respect to some task T and some performance measure P, if its performance on T, as measured by P, improves with experience E.</p>
+
+<p>Example: playing checkers.</p>
+
+<p>E = the experience of playing many games of checkers</p>
+
+<p>T = the task of playing checkers.</p>
+
+<p>P = the probability that the program will win the next game.</p>
+
+<p>Machine learning algorithms are broadly classified into:</p>
+
+<ul>
+  <li>
+    <p>Supervised Learning</p>
+  </li>
+  <li>
+    <p>Unsupervised Learning</p>
+  </li>
+</ul>
+
+<p>Other terms include: Reinforcement learning, recommender systems.</p>
+
+<h3 id="supervised-learning">Supervised Learning</h3>
+
+<p>For housing price prediction, you collect data of the size of the house and the price. You then graph the data and you can either perform a linear regression to predict the prices of other houses or pass a quadratic line through the graph for the same. This is an example of supervised learning solved through regression (predict continuous values).</p>
+
+<p>For classifying whether or not a tumor of size x is malignant or benign. This is a classification problem. To this problem you can add more features, and so if there were about infinite features to deal with it we use <a href="https://scikit-learn.org/stable/modules/svm.html">support vector machines</a> and <a href="https://towardsdatascience.com/support-vector-machine-introduction-to-machine-learning-algorithms-934a444fca47">this</a>.</p>
+
+<h3 id="unsupervised-learning">Unsupervised Learning</h3>
+
+<p>We’re given a dataset that isn’t labeled, and not told what to do with it. So then, the algorithm must create clusters through a clustering algorithm. Unsupervised learning allows us to approach problems with little or no idea what our results should look like. We can derive structure from data where we don’t necessarily know the effect of the variables. We can derive this structure by clustering the data based on relationships among the variables in the data. With unsupervised learning there is no feedback based on the prediction results.</p>
+
+<p>Like Google news clusters news stories together from thousands of news articles posted online. Other examples include: analyzing customer data and creating clusters for them, social network analysis, astronomical data analysis, organizing computing clusters.</p>
+
+<p>Clustering: Take a collection of 1,000,000 different genes, and find a way to automatically group these genes into groups that are somehow similar or related by different variables, such as lifespan, location, roles, and so on.</p>
+
+<h3 id="cocktail-party-problem">Cocktail Party Problem</h3>
+
+<p>Non-clustering: The “Cocktail Party Algorithm”, allows you to find structure in a chaotic environment. (i.e. identifying individual voices and music from a mesh of sounds at a <a href="https://en.wikipedia.org/wiki/Cocktail_party_effect">cocktail party</a>).</p>
+
+<p>To solve the cocktail party problem, we use ICA: Independent Component Analysis.</p>
+
+<p>Basically separates the sounds coming from two different sources. This is done through just one line of code: \([W,s,v] = svd((repmat(sum(x. * x,1),size(x,1),1). * x) * x');\)</p>
+
+<h2 id="model-and-cost-function">Model and Cost Function</h2>
+
+<h3 id="model-representation">Model Representation</h3>
+
+<p>Taking the housing price example, you are given m number of training examples, x is the input variable/features and y is the output variable/features. (x, y) refers to a single training example and \((x^{i}, y^{i})\) is the \(i^{th}\) training example.</p>
+
+<div class="mermaid" align="center" height="70%" width="70%">
+    flowchart LR
+    A["Size of the House"]--&gt; h 
+    h--&gt; B["Price of the House"]
+    C["Training Set and Learning Algorithm"]--&gt; h
+</div>
+
+<div class="mermaid" align="center" height="70%" width="70%">
+    flowchart LR
+    A["size"]--&gt; h 
+    h--&gt; B["Price of the House"]
+</div>
+
+<p>h(hypothesis) is a function that maps from x to y. To represent h, \(h(x) = \theta_0 + \theta_1 x\) (linear or affine function) and if there are more inputs: \(h(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 ... = \sum_{j=0}^{z} \theta_j * j\)</p>
+
+<p>To establish notation for future use, we’ll use \(x^{(i)}\) to denote the “input” variables (living area in this example), also called input features, and \(y^{(i)}\) to denote the “output” or target variable that we are trying to predict (price). A pair \((x^{(i)} , y^{(i)} )\) is called a training example, and the dataset that we’ll be using to learn—a list of m training examples \({(x^{(i)} , y^{(i)} ); i = 1, . . . , m}\) —is called a training set. Note that the superscript “(i)” in the notation is simply an index into the training set, and has nothing to do with exponentiation. We will also use X to denote the space of input values, and Y to denote the space of output values. In this example, \(X = Y = ℝ\).</p>
+
+<p>To describe the supervised learning problem slightly more formally, our goal is, given a training set, to learn a function \(h : X → Y\) so that h(x) is a “good” predictor for the corresponding value of y. For historical reasons, this function h is called a hypothesis.</p>
+
+<p>When the target variable that we’re trying to predict is continuous, such as in our housing example, we call the learning problem a regression problem. When y can take on only a small number of discrete values (such as if, given the living area, we wanted to predict if a dwelling is a house or an apartment, say), we call it a classification problem.</p>
+
+<h3 id="cost-function">Cost Function</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Size in \(feet^2\) \((x^2)\)</th>
+      <th>Price in $ in 1000’s (y)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2104</td>
+      <td>460</td>
+    </tr>
+    <tr>
+      <td>1416</td>
+      <td>232</td>
+    </tr>
+    <tr>
+      <td>1534</td>
+      <td>315</td>
+    </tr>
+    <tr>
+      <td>852</td>
+      <td>178</td>
+    </tr>
+    <tr>
+      <td>…</td>
+      <td>…</td>
+    </tr>
+  </tbody>
+</table>
+
+\[h_\theta(x) = \theta_0 + \theta_1 x\]
+
+\[\theta_{i's} = parameters\]
+
+<p>for \(\theta_0 = 1.5\) and \(\theta_1 = 0\)</p>
+
+<p><div class="chartjs-wrapper" style="position: center"><canvas id="chartjs-0" class="chartjs" width="undefined" height="undefined"></canvas><script>new Chart(document.getElementById("chartjs-0"),{"type":"line","data":{"labels":["0","1","2"],"datasets":[{"label":"cost function","data":[1.5,1.5,1.5],"fill":false,"borderColor":"rgb(193, 39, 45)","lineTension":0.1}]},"options":{scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }}});</script></div></p>
+
+<p>for \(\theta_0 = 0\) and \(\theta_1 = 0.5\)</p>
+
+<p><div class="chartjs-wrapper" style="position: center"><canvas id="chartjs-1" class="chartjs" width="undefined" height="undefined"></canvas><script>new Chart(document.getElementById("chartjs-1"),{"type":"line","data":{"labels":["0","1","2"],"datasets":[{"label":"cost function","data":[0,0.5,1],"fill":false,"borderColor":"rgb(193, 39, 45)","lineTension":0.1}]},"options":{scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }}});</script></div></p>
+
+<p>for \(\theta_0 = 1\) and \(\theta_1 = 0.5\)</p>
+
+<p><div class="chartjs-wrapper" style="position: center"><canvas id="chartjs-2" class="chartjs" width="undefined" height="undefined"></canvas><script>new Chart(document.getElementById("chartjs-2"),{"type":"line","data":{"labels":["0","1","2"],"datasets":[{"label":"cost function","data":[1,1.5,2],"fill":false,"borderColor":"rgb(193, 39, 45)","lineTension":0.1}]},"options":{scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }}});</script></div></p>
+
+<p>The idea is to select \(\theta_0\) and \(\theta_1\) so that \(h_\theta(x)\) is close to \(y\) for our training examples \((x, y)\). To do this we have to minimize this function: \(\sum_{i=1}^{m} (h_\theta(x^{(i)}-y^{(i)}))^2\) and to minimize the work you average it out by a factor of \(2m\) and use this: \(J(\theta_0, \theta_1) = \frac{1}{2m} (h_\theta(x^{(i)}-y^{(i)}))^2\).</p>
+
+<p>Why is it mean-squared error and not to the power of 4 or something else?</p>
+
+<p>We can measure the accuracy of our hypothesis function by using a cost function. This takes an average difference (actually a fancier version of an average) of all the results of the hypothesis with inputs from x’s and the actual output y’s. This function is otherwise called the “Squared error function”, or “Mean squared error”. The mean is halved as a convenience for the computation of the gradient descent, as the derivative term of the square function will cancel out the \(\frac{1}{2}\) term.</p>
+
+<h3 id="cost-function-intuition">Cost Function Intuition</h3>
+
+<p>Hypothesis: \(h_\theta(x) = \theta_0 + \theta_1 x\)</p>
+
+<p>Parameters: \(\theta_0, \theta_1 ...\)</p>
+
+<p>m: number of training examples</p>
+
+<p>n: number of features</p>
+
+<p>x: inputs / features</p>
+
+\[x = \begin{bmatrix}
+x_0\\
+x_1\\
+x_2
+\end{bmatrix}\]
+
+<p>where, \(x_0\) is zero all the time
+\(x_1\) is size in feet
+\(x_2\) is number of bedrooms</p>
+
+\[\theta = \begin{bmatrix}
+\theta_0\\
+\theta_1\\
+\theta_2
+\end{bmatrix}\]
+
+<p>y: output / target variable</p>
+
+<p>Cost Function: \(J(\theta_0, \theta_1) = \frac{1}{2m} (h_\theta(x^{(i)})-y^{(i)})^2\)</p>
+
+<p>Goal: \(J(\theta_0, \theta_1)\)</p>
+
+<p>If we try to think of it in visual terms, our training data set is scattered on the x-y plane. We are trying to make a straight line (defined by \(h_\theta(x) = h(x)\) which passes through these scattered data points.</p>
+
+<p>Our objective is to get the best possible line. The best possible line will be such so that the average squared vertical distances of the scattered points from the line will be the least. Ideally, the line should pass through all the points of our training data set. In such a case, the value of \(J(\theta_0, \theta_1)\) will be 0. The following example shows the ideal situation where we have a cost function of 0.</p>
+
+<p><img alt="" src="/images/2020/ml1.png" height="100%" width="100%" /></p>
+
+<p>When \(\theta_1 = 1\), we get a slope of 1 which goes through every single data point in our model. Conversely, when \(\theta_1 = 0.5\), we see the vertical distance from our fit to the data points increase.</p>
+
+<p><img alt="" src="/images/2020/ml2.png" height="100%" width="100%" /></p>
+
+<p>This increases our cost function to 0.58. Plotting several other points yields to the following graph:</p>
+
+<p><img alt="" src="/images/2020/ml3.png" height="60%" width="60%" /></p>
+
+<p>Thus as a goal, we should try to minimize the cost function. In this case, \(\theta_1 = 1\) is our global minimum.</p>
+
+<iframe width="700" height="700" frameborder="0" scrolling="no" src="//plotly.com/~psymbio/3.embed"></iframe>
+
+<p>To embed plots on your jekyll blog try <a href="https://youtu.be/kxPZV9ileKI">this</a>, <a href="https://youtu.be/RbQ8d97p7QU">this</a> and <a href="https://davistownsend.github.io/blog/PlotlyBloggingTutorial/">this</a>.</p>
+
+<p>Found this really neat blog <a href="https://blog.paperspace.com/intro-to-optimization-in-deep-learning-gradient-descent/">here</a> for better notes than mine.</p>
+
+<p>Is it weird that in all my years of studying math, that somehow making a graph for a blog post no one shall read led to the enlightenement of how important math is?</p>
+
+<h2 id="parameter-learning">Parameter Learning</h2>
+
+<h3 id="gradient-descent">Gradient Descent</h3>
+
+<p>Before any of this, watch the 3Blue1Brown video:</p>
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/IHZwWFHWa-w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<p>A cost function is a function that measures the performance of a machine learning model for a given data. It quantifies the error between the predicted values and the expected values (to a single number).</p>
+
+<p>Depending on the problem Cost Function can be formed in many different ways. The purpose of Cost Function is to be either:</p>
+
+<ul>
+  <li>Minimized: then returned value is usually called cost, loss or error. The goal is to find the values of model parameters for which Cost Function return as small number as possible.</li>
+  <li>Maximized: then the value it yields is named a reward. The goal is to find values of model parameters for which returned number is as large as possible.</li>
+</ul>
+
+<p>Gradient descent is an optimization algorithm used to find the parameters to minimize the cost function.</p>
+
+<p>The cost function here is \(J(\theta) = \frac{1}{2m} (h_\theta(x^{(i)})-y^{(i)})^2\) and we need to minimise it. Keep changing \(\theta\) to reduce \(J(\theta)\)</p>
+
+\[\begin{eqnarray} 
+J \left(\begin{pmatrix}\theta_0\\ \theta_1\end{pmatrix} \right) &amp;=&amp; 
+\frac{1}{2m}\sum_{i=1}^{m} (h(x^{(i)})-y^{(i)})^2 \\
+&amp;=&amp; \frac{1}{2m}\sum_{i=1}^{m} ((\theta_0 + \theta_1 x^{(i)})-y^{(i)})^2 \\
+&amp;=&amp; \frac{1}{2m}(X\times\Theta-y)'\times  (X\times\Theta-y)
+\end{eqnarray}\]
+
+<p>To change \(\theta\) we say \(\theta_j := \theta_j - \alpha \frac{\partial J(\theta)}{\partial \theta_j}\) for \(j = 0, 1, 2, ...\) (here := is an assignment operator it’s like \(a = a + 1\) is wrong but \(a:= a + 1\) is correct).</p>
+
+\[\frac{\partial J(\theta)}{\partial \theta_j} = \frac{\partial}{\partial \theta_j} \frac{1}{2} (h_\theta(x) - y)^2\\=2 \frac{1}{2} (h_\theta(x) - y)  \frac{\partial}{\partial \theta_j} (h_\theta(x) - y)\\=(h_\theta - y) \frac{\partial}{\partial \theta_j} (\theta_0 x_0 + \theta_1 x_1 + ... + \theta_d x_d - y)\\=(h_\theta - y) x_j\]
+
+<p>So now we can say: \(\theta_j := \theta_j - \alpha(h_\theta(x)-y) x_j\)</p>
+
+\[\theta_j := \theta_j - \alpha\sum_{i=1}^{m} (h_\theta(x^{(i)}-y^{(i)}))x_j\]
+
+<p>This is called batch gradient descent.</p>
+
+<p>Stochastic gradient descent</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">repeat</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">m</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">d</span> <span class="p">{</span>
+            <span class="n">theta_j</span> <span class="o">:=</span> <span class="n">theta_j</span> <span class="o">-</span> <span class="n">alpha</span> <span class="n">h_theta</span><span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="p">{(</span><span class="n">i</span><span class="p">)}</span><span class="o">-</span><span class="n">y</span><span class="o">^</span><span class="p">{(</span><span class="n">i</span><span class="p">)}))</span><span class="n">x_j</span><span class="o">^</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> 
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Unlike batch gradient descent, stochastic never converges but runs fatser on large datasets.</p>
+
+<p>mini-batch gradient descent.</p>
+
+<h3 id="gradient-descent-intuition">Gradient Descent Intuition</h3>
+
+<h3 id="gradient-descent-for-linear-regression">Gradient Descent for Linear Regression</h3>
+
+<p>The math is pretty simple: learn the basic matric operations, transpose, inverse and multiplication.</p>
+
+<p>\(tr(A) =\) Trace of Matrix A = sum of the diagonals</p>
+
+\[tr(A) = tr(A)^{T}\]
+
+\[f(A) = tr(AB)\\\nabla_{A} F(A) = B^{T}\]
+
+\[tr(AB) = tr(BA)\]
+
+\[tr(ABC) = tr(CAB)\]
+
+\[\nabla_{A} tr(AA^{T}C) = CA + C^{T}A\]
+
+<p>[watch again]</p>
+
+<h2 id="extra-reading">Extra Reading</h2>
+
+<p><a href="https://towardsdatascience.com/coding-deep-learning-for-beginners-linear-regression-part-2-cost-function-49545303d29f">Cost Function</a></p>
+
+<p><a href="https://user.phil.hhu.de/~petersen/SoSe17_Teamprojekt/linearRegression_functions.html">Blog for psuedocode</a></p>
+
+:ET

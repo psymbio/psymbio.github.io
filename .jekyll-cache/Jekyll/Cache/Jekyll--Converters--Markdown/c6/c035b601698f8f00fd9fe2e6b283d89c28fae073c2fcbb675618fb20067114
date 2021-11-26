@@ -1,0 +1,86 @@
+I"=<p>This year as a joke I decided to try out building Hell’s Kitchen OS. And no I’m not obsessed with Gordon Ramsay, but the OS needed to be a prank that was better than a RickRoll.</p>
+
+<p>As resources for the project, we don’t have a lot of clean data. We need to collect all the bits and pieces in parts. The only legit sources I know of are: <a href="ops-class.org">ops-class.org</a> the class Zuckerberg struggled in, and Terry O. Davis’s 830 GiB Torrent files, which from what I’ve heard it’s mostly filled with (profanity alert) videos of him fapping and n-words.</p>
+
+<p>Here’s an inspiring quote from the man:</p>
+<blockquote>
+  <p>“I wrote a compiler, nigger. I am smarter than Linus. I wrote a kernel and compiler.”</p>
+</blockquote>
+
+<p>Also, another alert: I have about 30 days to work on this. Like basically spending around a day on full-blown aspects like file management, connections and text editors. It really is just how much can one do when a project title and the power of the internet is given to them. I do think I might work on it as time goes by, but for now just stick the the one month.</p>
+
+<h2 id="step-1-deciding-what-all-is-even-going-to-be-there">Step 1: Deciding what all is even going to be there.</h2>
+
+<p>When you decide the theme for your OS, you’re flying in the air thinking it’s all going to be possible, almost too easy. I’ll just change my desktop picture. You’re wrong.</p>
+
+<p>Most DIY-OSs are quite boring and just need to have the basic functionality. If you look at Windows 10, from a Linux perspective, you’ve sort of learnt how to be minimal with the softwares you use on a daily basis. And really, 90% of Windows is just basically bloat. All you really need in an OS is a file management system, a universal text editor that can handle almost any file, maybe a tux paint, something for viewing images and videos and a browser (networking capabilities).</p>
+
+<h2 id="step-2-making-a-cross-compiler">Step 2: Making a Cross Compiler.</h2>
+
+<p><del>This is the guide you want to follow: <a href="https://wiki.osdev.org/GCC_Cross-Compiler">GCC Cross Compiler</a>.<span class="inlinecode">sudo apt install</span> all those dependencies, take a gcc from <a href="http://robotlab.itk.ppke.hu/gcc/releases/">here</a> and a binutils from <a href="https://ftp.gnu.org/gnu/binutils/">here</a>. Extract them to your project directory and just follow the guide.</del></p>
+
+<p><del>
+While working on binutils if you encounter “checking whether the C compiler works… no” run the following commands:
+</del></p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">sudo </span>apt-get <span class="nb">install</span> <span class="nt">--reinstall</span> build-essential
+<span class="nb">sudo </span>apt-get <span class="nb">install</span> <span class="nt">--reinstall</span> gcc
+<span class="nb">sudo </span>dpkg-reconfigure build-essential
+<span class="nb">sudo </span>dpkg-reconfigure gcc</code></pre></figure>
+
+<p><del>
+I think this is something that happens when you try to make install binutils a second time. I guess before working on anything else and after making gcc you might want to actually run it again.
+</del></p>
+
+<h2 id="dum-dum-dum-technical-difficulties">dum dum dum… technical difficulties</h2>
+
+<p>After spending a day or more setting up that cross compiler I lost the battle. Then, having only 4 days left for the grand presentation I found myself, well how one finds themselves before deadlines. Well, where do you actually start?</p>
+
+<p>I think reading OSDev right at the beginning could somewhat be a mix of exhausting, and at same time the site manages to be condescending. Don’t take it the wrong way, it’s a great resource but just spirals out of control.</p>
+
+<p>Here’s where you want to begin.</p>
+
+<p>You want to start with falling in love with this ultra-cute language called Assembly. It’s cute because every fucking line of code is just three words at max and so much fun dealing with the little loops and labels. This is the <a href="https://www.youtube.com/watch?v=SL--qoiu7yA&amp;list=PLR2FqYUVaFJpHPw1ExSVJZFNlXzJYGAT1&amp;ab_channel=Programology">playlist</a> I followed for studying for assembly language, it’s in Urdu right but maybe you can manage to look at his notes in English. The first few videos are boring but then it catches pace when starts up his MASM, which by the way is super easy to <a href="https://ksaikiranr.wordpress.com/2016/05/01/run-masm-programs-on-ubuntu/">setup for Ubuntu</a>. After you’re answering the programming questions 
+before that guy solves it in his videos, I think it’s good to begin.</p>
+
+<p>When dealing with the bootloader, all we can use is Assembly and not even just diassembly of C code. We actually start off with only 16 bits in real mode. That means registers like eax (extended registers) are outside our scope. So let’s you’re lazy and would rather disassemble stuff like this simple C program:</p>
+
+<div class="code-header">
+    <button class="copy-code-button" aria-label="Copy code to clipboard"></button>
+</div>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="c1">// filename: basic.c</span>
+<span class="kt">int</span> <span class="nf">my_function</span> <span class="p">()</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="mh">0xbaba</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Good news: You CAN’T!</p>
+
+<p>The answer lies in the disassembly. To disamble this:</p>
+
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">gcc -ffreestanding -c basic.c -o basic.o
+objdump -d basic.o</span></code></pre></figure>
+
+<p>And you end up with an output like this:</p>
+
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">basic.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+</span><span class="gp">0000000000000000 &lt;my_function&gt;</span>:
+<span class="go">   0:	f3 0f 1e fa          	endbr64 
+   4:	55                   	push   %rbp
+   5:	48 89 e5             	mov    %rsp,%rbp
+</span><span class="gp">   8:	b8 ba ba 00 00       	mov    $</span>0xbaba,%eax
+<span class="go">   d:	5d                   	pop    %rbp
+   e:	c3                   	ret    </span></code></pre></figure>
+
+<p>Look at that eax, occupying all those 32 bits of memory just waiting to crash our OS. So in this bootloading stage you can only use assembly till you finally extend from the 16 bit real mode to the 32 bit protected mode and finally the 64 bit long mode.</p>
+
+<p>Now to get started on understanding the basics follow <a href="https://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lectures/os-dev.pdf">this pdf</a>.</p>
+
+<p>draft:
+<a href="https://wiki.osdev.org/Beginner_Mistakes">Beginner’s Mistakes</a>
+<a href="https://wiki.osdev.org/Main_Page">OS Dev</a></p>
+:ET
