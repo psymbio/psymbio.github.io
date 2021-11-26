@@ -255,7 +255,8 @@ body {
 h1 {
     font-family: "ogg";
     color: var(--headings);
-    font-size: 6.5em;
+    /* was 6.5em */
+    font-size: 4em;
     font-weight: lighter;
     letter-spacing: -2px;
     line-height: 95%;
@@ -368,7 +369,8 @@ h6 {
     color: #2d2d2d;
     font-family: "chronicle";
     /*text-transform: uppercase;*/
-    transform: translateY(80px);
+    /* was 80px */
+    transform: translateY(52px);
     opacity: 0.5;
 }
 

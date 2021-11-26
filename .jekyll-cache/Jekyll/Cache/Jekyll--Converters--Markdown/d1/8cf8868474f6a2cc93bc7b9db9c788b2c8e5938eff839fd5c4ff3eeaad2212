@@ -1,0 +1,30 @@
+I"�<h2 id="morlet-wavelets-in-time-and-frequency-usage-and-implementation">Morlet Wavelets in Time and Frequency (Usage and Implementation)</h2>
+
+<p>We might lose data while converting the signals of EEG from the time to frequency domain. That’s a short-coming of static spectral analyses, and so to be able to extract frequency specific information over time we use wavelet convolution.</p>
+
+<p>What’s a wavelet?</p>
+
+<div class="wikipedia">
+A wavelet is a wave-like oscillation with an amplitude that begins at zero, increases or decreases, and then returns to zero one or more times. Wavelets are termed a "brief oscillation". A taxonomy of wavelets has been established, based on the number and direction of its pulses. Wavelets are imbued with specific properties that make them useful for signal processing.
+</div>
+
+<iframe src="https://www.desmos.com/calculator/3pokv7swqh" width="100%" style="min-height:400px"></iframe>
+
+<p>The Arctic Monkeys logo might be more mathematic than you think.</p>
+
+<iframe src="https://www.desmos.com/calculator/uuv2ikwvev" width="100%" style="min-height:400px"></iframe>
+
+<p>かわいいですね💮</p>
+
+<p>Requirements for a wavelet: it integrates to zero or the sum total is zero over time and it tapers to zero in the beginning and the end.</p>
+
+<p>Wavelets provide temporal specificity when used as weighting functions for signals, as when these signals are convoluted(sliding dot product between the kernel and the section of signal it’s aligned with) with the kernel(in this case the morlet wavelet).</p>
+
+<video width="320" height="240" controls="">
+  <source src="/images/2021/ants/convolution.mp4" type="video/mp4" />
+Your browser does not support the video tag.
+</video>
+
+<p><a href="http://www.svcl.ucsd.edu/courses/ece271B-F09/handouts/DPK.pdf">Dot-product kernels in ml</a>
+<a href="https://www.dcs.bbk.ac.uk/~ale/dsta/dsta-2/dsta-2018-19-zaki-meira-ch5-excerpt-v2.pdf">Kernel Methods</a></p>
+:ET

@@ -308,7 +308,7 @@ background-color: var(--mushroom);
 			var(--mushroom) 0.26em,
 			var(--trans) 0.275em,
 			var(--trans) 2em),
-		
+
 		repeating-radial-gradient(
 			circle at 0.59em 0.31em,
 			var(--mushroom),
@@ -1212,4 +1212,12 @@ mark {
 [data-tooltip]:hover:after {
     display: block;
     z-index: 50;
+}
+
+.wikipedia {
+  font-family: sans-serif;
+  background-color: #ffffff;
+  font-size: 20px;
+  margin: 30px 48px;
+  padding: 14px 12px;
 }
