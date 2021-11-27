@@ -1,0 +1,228 @@
+I"�L<h2 id="morlet-wavelets-usage-and-python-implementation">Morlet Wavelets (Usage and Python Implementation)</h2>
+
+<p>We might lose data while converting the signals of EEG from the time to frequency domain. That’s a short-coming of static spectral analyses, and so to be able to extract frequency specific information over time we use wavelet convolution.</p>
+
+<p>What’s a wavelet?</p>
+
+<div class="wikipedia">
+A wavelet is a wave-like oscillation with an amplitude that begins at zero, increases or decreases, and then returns to zero one or more times. Wavelets are termed a "brief oscillation". A taxonomy of wavelets has been established, based on the number and direction of its pulses. Wavelets are imbued with specific properties that make them useful for signal processing.
+</div>
+
+<iframe src="https://www.desmos.com/calculator/lbzmlosf4g" width="100%" style="min-height:400px"></iframe>
+
+<p>Yeah, there’s a bit of cheating, we can’t graph complex numbers in desmos and I’ll probably have to look into plotting these another way, but for now the only online substitute is visit <a href="https://jutanium.github.io/ComplexNumberGrapher/">this</a> and type this: \(\cos (2\pi z)+z\sin (2\pi z)\) (from Euler’s formula) and like all things complex, you must imagine yourself multiplying it with a gaussian and creating a morlet.</p>
+
+<p>Euler’s formula for the basic waves \(e^{2\pi i \theta}\) is \(e^{2\pi i \theta} = cos(2\pi\theta) + i sin(2\pi\theta)\).</p>
+
+<p>The Arctic Monkeys logo might be more mathematic than you think.</p>
+
+<iframe src="https://www.desmos.com/calculator/uuv2ikwvev" width="100%" style="min-height:400px"></iframe>
+
+<p>かわいいですね💮</p>
+
+<p>Requirements for a wavelet: it integrates to zero or the sum total is zero over time and it tapers to zero in the beginning and the end.</p>
+
+<p>Wavelets provide temporal specificity when used as weighting functions for signals, as when these signals are convoluted(sliding dot product between the kernel and the section of signal it’s aligned with) with the kernel(in this case the morlet wavelet).</p>
+
+<figure>
+<img alt="separate signals" src="/images/2021/ants/multichannel.gif" height="80%" width="80%" />
+<figcaption align="center">Multi-channel Convolution</figcaption>
+</figure>
+
+<p>So now, unlike weighting the signal with a normal sine wave, weighting with the morlet retains temporal information because it tapers out as well as the spectral information(something like a fourier transform, just better).</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">srate</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c1"># changed time from [-1,1] to [-2,2] to get a better guassian resolution
+</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">stop</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">freq</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span>
+
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1"># using euler's to ceneter the sine at zero (it looks okay)
+</span>
+<span class="n">sine_wave</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">freq</span> <span class="o">*</span> <span class="n">time</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">freq</span> <span class="o">*</span> <span class="n">time</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">sine_wave</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Sine wave'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Amplitude'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s">'both'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'k'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<figure><img alt="separate signals" src="/images/2021/ants/output_3_0.png" height="80%" width="80%" /><figcaption align="center"></figcaption></figure>
+
+<p>We want to create a guassian with a full width at half maximum (FWHM), where the FWHM is the width of a line shape at half of its maximum amplitude, as shown below:</p>
+
+<figure><img alt="separate signals" src="/images/2021/ants/FWHM.svg" height="80%" width="80%" /><figcaption align="center"></figcaption></figure>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1"># defining the gaussian
+</span>
+<span class="c1"># full width at half maximum
+</span>
+<span class="n">fwhm</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+<span class="n">gaussian</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">((</span><span class="o">-</span><span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">time</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">fwhm</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">gaussian</span><span class="p">,</span> <span class="s">'y'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Gaussian'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">''</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s">'both'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'k'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<figure><img alt="separate signals" src="/images/2021/ants/output_6_0.png" height="80%" width="80%" /><figcaption align="center"></figcaption></figure>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1"># element-wise multiplication of the sine and gaussian
+</span>
+<span class="n">morlet_wavelet</span> <span class="o">=</span> <span class="n">sine_wave</span> <span class="o">*</span> <span class="n">gaussian</span>
+
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1"># viola! a morlet
+</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">morlet_wavelet</span><span class="p">,</span> <span class="s">'g'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Morlet Wavelet'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Amplitude'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s">'both'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'k'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<figure><img alt="separate signals" src="/images/2021/ants/output_8_0.png" height="80%" width="80%" /><figcaption align="center"></figcaption></figure>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1"># looking at everything at once.
+</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">sine_wave</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">gaussian</span><span class="p">,</span> <span class="s">'y'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">morlet_wavelet</span><span class="p">,</span> <span class="s">'g'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Morlet Wavelet'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Amplitude'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s">'both'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'k'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<figure><img alt="separate signals" src="/images/2021/ants/output_9_0.png" height="80%" width="80%" /><figcaption align="center"></figcaption></figure>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">pnts</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">mwX</span> <span class="o">=</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">fft</span><span class="p">.</span><span class="n">fft</span><span class="p">(</span><span class="n">morlet_wavelet</span><span class="p">)</span><span class="o">/</span><span class="n">pnts</span><span class="p">)</span>
+
+<span class="n">hz</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">stop</span> <span class="o">=</span> <span class="n">srate</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="n">pnts</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hz</span><span class="p">,</span> <span class="n">mwX</span><span class="p">,</span> <span class="s">'b'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Morlet Wavelet'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Amplitude'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s">'both'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'k'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<figure><img alt="separate signals" src="/images/2021/ants/output_11_0.png" height="80%" width="80%" /><figcaption align="center"></figcaption></figure>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1"># zoomed in version
+</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hz</span><span class="p">,</span> <span class="n">mwX</span><span class="p">,</span> <span class="s">'b'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Morlet Wavelet'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Amplitude'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s">'both'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'k'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.001</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">40</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<figure><img alt="separate signals" src="/images/2021/ants/output_12_0.png" height="80%" width="80%" /><figcaption align="center"></figcaption></figure>
+
+<p>Links:
+https://pythontic.com/visualization/charts/sinewave</p>
+
+<p><a href="https://e2eml.school/convolution_one_d.html">Convolution in one dimension for neural networks</a></p>
+
+<p><a href="http://www.svcl.ucsd.edu/courses/ece271B-F09/handouts/DPK.pdf">Dot-product kernels in ml</a></p>
+
+<p><a href="https://www.dcs.bbk.ac.uk/~ale/dsta/dsta-2/dsta-2018-19-zaki-meira-ch5-excerpt-v2.pdf">Kernel Methods</a></p>
+:ET
