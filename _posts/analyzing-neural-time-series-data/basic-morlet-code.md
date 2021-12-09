@@ -41,14 +41,12 @@ plot_signal(time, sine_wave, "Sine wave")
 
 
     
-![png](output_4_0.png)
-    
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_4_0.png" height="100%" width="100%"><figcaption align="center"></figcaption></figure>    
 
 
 We want to create a guassian with a full width at half maximum (FWHM), where the FWHM is the width of a line shape at half of its maximum amplitude, as shown below:
 
-![png](FWHM.svg)
-
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/FWHM.svg" height="100%" width="100%"><figcaption align="center"></figcaption></figure>
 
 ```python
 # defining the gaussian
@@ -64,8 +62,7 @@ plot_signal(time, gaussian, "Gaussian")
 
 
     
-![png](output_7_0.png)
-    
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_7_0.png" height="100%" width="100%"><figcaption align="center"></figcaption></figure>    
 
 
 
@@ -81,8 +78,7 @@ plot_signal(time, morlet_wavelet, "Morlet Wavelet")
 
 
     
-![png](output_9_0.png)
-    
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_9_0.png" height="100%" width="100%"><figcaption align="center"></figcaption></figure>    
 
 
 
@@ -101,8 +97,7 @@ plt.show()
 
 
     
-![png](output_10_0.png)
-    
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_10_0.png" height="100%" width="100%"><figcaption align="center"></figcaption></figure>    
 
 
 
@@ -119,8 +114,7 @@ plot_signal(hz, mwX, "DFT", "Hz", "DFT Values")
 
 
     
-![png](output_12_0.png)
-    
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_12_0.png" height="100%" width="100%"><figcaption align="center"></figcaption></figure>    
 
 
 
@@ -130,8 +124,7 @@ plot_signal(hz, mwX, "DFT", "Hz", "DFT Values", "yes")
 
 
     
-![png](output_13_0.png)
-    
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_13_0.png" height="100%" width="100%"><figcaption align="center"></figcaption></figure>    
 
 
 
@@ -161,8 +154,7 @@ plot_signal(time_series_time, time_series_values, "Signal")
 
 
     
-![png](output_17_0.png)
-    
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_17_0.png" height="100%" width="100%"><figcaption align="center"></figcaption></figure>    
 
 
 
@@ -173,8 +165,7 @@ plot_signal(time_series_time, convoluted_signal[:len(time_series_time)], "Convol
 
 
     
-![png](output_18_0.png)
-    
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_18_0.png" height="100%" width="100%"><figcaption align="center"></figcaption></figure>    
 
 
 
@@ -201,8 +192,7 @@ plot_signal(time_series_time_2, time_series_values_2, "Random Noise")
 
 
     
-![png](output_19_0.png)
-    
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_19_0.png" height="100%" width="100%"><figcaption align="center"></figcaption></figure>    
 
 
 
@@ -217,8 +207,7 @@ plot_signal(kernel_time, kernel_new, "Guassian Kernel")
 
 
     
-![png](output_20_0.png)
-    
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_20_0.png" height="100%" width="100%"><figcaption align="center"></figcaption></figure>    
 
 
 
@@ -230,8 +219,7 @@ plot_signal(time_series_time[:len(convoluted_signal)], convoluted_signal, "Convo
 
 
     
-![png](output_21_0.png)
-    
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_21_0.png" height="100%" width="100%"><figcaption align="center"></figcaption></figure>    
 
 
 
@@ -256,8 +244,7 @@ plot_signal(kernel_time_edge, kernel_edge, "Edge Kernel")
 
 
     
-![png](output_22_0.png)
-    
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_22_0.png" height="100%" width="100%"><figcaption align="center"></figcaption></figure>    
 
 
 
@@ -270,8 +257,7 @@ plot_signal(time_series_time[:len(convoluted_signal)], convoluted_signal, "Convo
 
 
     
-![png](output_23_0.png)
-    
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_23_0.png" height="100%" width="100%"><figcaption align="center"></figcaption></figure>    
 
 
 Links:

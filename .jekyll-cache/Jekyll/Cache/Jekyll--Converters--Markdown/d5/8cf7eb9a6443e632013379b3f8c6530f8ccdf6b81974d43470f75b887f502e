@@ -1,128 +1,4 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
-
-<head>
-    <meta charset="utf-8">
-    <title>
-        Morlet Wavelets [Part 1] &ndash; The Brain Archive
-    </title>
-    <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
-    <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
-    <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
-    <meta name="author" content="psymbio" />
-    <meta name="description" content="psymbio's blog" />
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-    <link rel="alternate" type="application/rss+xml" href="/atom.xml" />
-    <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen, projection" />
-    <link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
-    <link rel="shortcut icon" type="image/x-icon" href="/icons/icon.png" />
-    <link rel="icon" type="image/png" href="/icons/icon.png">
-    <link rel="manifest" href="/manifest.json">
-
-    <!-- See https://goo.gl/OOhYW5 -->
-    <link rel="manifest" href="manifest.json">
-
-    <!-- See https://goo.gl/qRE0vM -->
-    <meta name="theme-color" content="#C1272D">
-
-    <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="psymbio's blog">
-
-    <!-- Add to homescreen for Safari on iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="psymbio's blog">
-
-    <!-- Homescreen icons -->
-    <link rel="apple-touch-icon" sizes="192x192" href="icons/icon.png">
-
-    <!-- Tile icon for Windows 8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="icons/icon.png">
-    <meta name="msapplication-TileColor" content="#C1272D">
-    <meta name="msapplication-tap-highlight" content="no">
-
-    <!-- Default twitter cards -->
-    <meta name="twitter:card" content="psymbio's blog">
-    <meta name="twitter:site" content="@psymbio">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="my-app">
-    <meta property="og:image" content="icons/icon.png" />
-
-    <!--clicky analytics-->
-
-    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-    </script>
-    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.1.2/es5/startup.js" integrity="sha512-umLk4jlqS6v3HF06nsUFlzLGh3yp1A9X+hhlGOEstnLdkphT8w0O8nJJi2Pf28kfIFQvYzMg7ODPluFlkc/WzQ==" crossorigin="anonymous"></script>
-
-    <!--flowcharts-->
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script>
-        mermaid.initialize({
-            startOnLoad: true
-        });
-    </script>
-    <!--2d plots-->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-    <!--3d plots-->
-    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
-    <!--python for browser: brython
-<script type="text/javascript" src="/scripts/brython.js"></script>
-<script type="text/javascript" src="/scripts/brython_stdlib.js"></script>
---->
-
-
-    <!--copy code to clipboard-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
-    <script src="/assets/scripts/copycode.js"></script>
-
-    <!--particles on the background-->
-    <script src="/assets/scripts/particle.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="http://tikzjax.com/v1/fonts.css">
-    <script src="http://tikzjax.com/v1/tikzjax.js"></script>
-    <meta name="google-site-verification" content="3PIlzxg_Fq6uuVEqKvNXrVj8NuWqIA9_hqCxWLcnU-4" />
-    <!--
-<nav>
-  <ul>
-      <li><a href="/">Blog</a></li>
-      <li><a href="/about">About</a></li>
-      <li><a href="/contact">Contact</a></li>
-  </ul>
-</nav>
--->
-</head>
-
-<body>
-    <div class="top-line"></div>
-    <div class="container">
-        <section class="shore">
-            <header class="sidebar">
-    <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
-    <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
-    <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
-    <a href="/">
-        <img src="/images/title.png" height="250" width="250" class="avatar" />
-    </a>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-</header>
-<link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
-<link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
-<link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
-<link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
-<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-</script>
-<script src="/assets/scripts/copycode.js"></script>
-<section class="content">
-    <section class="byline">
-        November 24, 2021
-    </section>
-    <h1>Morlet Wavelets [Part 1]</h1>
-    <br> <h2 id="morlet-wavelets-usage-and-python-implementation">Morlet Wavelets (Usage and Python Implementation)</h2>
+I"\<h2 id="morlet-wavelets-usage-and-python-implementation">Morlet Wavelets (Usage and Python Implementation)</h2>
 
 <p>We might lose data while converting the signals of EEG from the time to frequency domain. That’s a short-coming of static spectral analyses, and so to be able to extract frequency specific information over time we use wavelet convolution.</p>
 
@@ -134,7 +10,7 @@ A wavelet is a wave-like oscillation with an amplitude that begins at zero, incr
 
 <iframe src="https://www.desmos.com/calculator/lbzmlosf4g" width="100%" style="min-height:400px"></iframe>
 
-<p>Yeah, there’s a bit of cheating, we can’t graph complex numbers in desmos and I’ll probably have to look into plotting these another way, but for now the only online substitute is visit <a href="https://jutanium.github.io/ComplexNumberGrapher/">this</a> and type this: \(\cos (2\pi z)+z\sin (2\pi z)\) z(from Euler’s formula) and like all things complex, you must imagine yourself multiplying it with a gaussian and creating a morlet.</p>
+<p>Yeah, there’s a bit of cheating, we can’t graph complex numbers in desmos and I’ll probably have to look into plotting these another way, but for now the only online substitute is visit <a href="https://jutanium.github.io/ComplexNumberGrapher/">this</a> and type this: \(\cos (2\pi z)+z\sin (2\pi z)\) (from Euler’s formula) and like all things complex, you must imagine yourself multiplying it with a gaussian and creating a morlet.</p>
 
 <p>Euler’s formula for the basic waves \(e^{2\pi i \theta}\) is \(e^{2\pi i \theta} = cos(2\pi\theta) + i sin(2\pi\theta)\).</p>
 
@@ -151,7 +27,9 @@ A wavelet is a wave-like oscillation with an amplitude that begins at zero, incr
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">"figure.figsize"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s">"husl"</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">"figure.figsize"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">srate</span> <span class="o">=</span> <span class="mi">1000</span>
@@ -180,11 +58,11 @@ A wavelet is a wave-like oscillation with an amplitude that begins at zero, incr
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot_signal</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">sine_wave</span><span class="p">,</span> <span class="s">"Sine wave"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_4_0.png" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_4_0.png" height="80%" width="80%" /><figcaption align="center"></figcaption></figure>
 
 <p>We want to create a guassian with a full width at half maximum (FWHM), where the FWHM is the width of a line shape at half of its maximum amplitude, as shown below:</p>
 
-<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/FWHM.svg" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/FWHM.svg" height="80%" width="80%" /><figcaption align="center"></figcaption></figure>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># defining the gaussian
 # full width at half maximum
@@ -195,7 +73,7 @@ A wavelet is a wave-like oscillation with an amplitude that begins at zero, incr
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot_signal</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">gaussian</span><span class="p">,</span> <span class="s">"Gaussian"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_7_0.png" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_7_0.png" height="80%" width="80%" /><figcaption align="center"></figcaption></figure>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># element-wise multiplication of the sine and gaussian
 </span><span class="n">morlet_wavelet</span> <span class="o">=</span> <span class="n">sine_wave</span> <span class="o">*</span> <span class="n">gaussian</span>
@@ -204,7 +82,7 @@ A wavelet is a wave-like oscillation with an amplitude that begins at zero, incr
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot_signal</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">morlet_wavelet</span><span class="p">,</span> <span class="s">"Morlet Wavelet"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_9_0.png" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_9_0.png" height="80%" width="80%" /><figcaption align="center"></figcaption></figure>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># looking at everything at once.
 </span><span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">sine_wave</span><span class="p">)</span>
@@ -218,7 +96,7 @@ A wavelet is a wave-like oscillation with an amplitude that begins at zero, incr
 <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div></div>
 
-<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_10_0.png" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_10_0.png" height="80%" width="80%" /><figcaption align="center"></figcaption></figure>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pnts</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">mwX</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">fft</span><span class="p">.</span><span class="n">fft</span><span class="p">(</span><span class="n">morlet_wavelet</span><span class="p">)</span><span class="o">/</span><span class="n">pnts</span><span class="p">)</span>
@@ -228,12 +106,12 @@ A wavelet is a wave-like oscillation with an amplitude that begins at zero, incr
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot_signal</span><span class="p">(</span><span class="n">hz</span><span class="p">,</span> <span class="n">mwX</span><span class="p">,</span> <span class="s">"DFT"</span><span class="p">,</span> <span class="s">"Hz"</span><span class="p">,</span> <span class="s">"DFT Values"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_12_0.png" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_12_0.png" height="80%" width="80%" /><figcaption align="center"></figcaption></figure>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot_signal</span><span class="p">(</span><span class="n">hz</span><span class="p">,</span> <span class="n">mwX</span><span class="p">,</span> <span class="s">"DFT"</span><span class="p">,</span> <span class="s">"Hz"</span><span class="p">,</span> <span class="s">"DFT Values"</span><span class="p">,</span> <span class="s">"yes"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_13_0.png" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_13_0.png" height="80%" width="80%" /><figcaption align="center"></figcaption></figure>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
 
@@ -252,13 +130,13 @@ A wavelet is a wave-like oscillation with an amplitude that begins at zero, incr
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot_signal</span><span class="p">(</span><span class="n">time_series_time</span><span class="p">,</span> <span class="n">time_series_values</span><span class="p">,</span> <span class="s">"Signal"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_17_0.png" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_17_0.png" height="80%" width="80%" /><figcaption align="center"></figcaption></figure>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">convoluted_signal</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">time_series_values</span><span class="p">,</span> <span class="n">morlet_wavelet</span><span class="p">,</span> <span class="s">'full'</span><span class="p">)</span>
 <span class="n">plot_signal</span><span class="p">(</span><span class="n">time_series_time</span><span class="p">,</span> <span class="n">convoluted_signal</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">time_series_time</span><span class="p">)],</span> <span class="s">"Convoluted Signal"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_18_0.png" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_18_0.png" height="80%" width="80%" /><figcaption align="center"></figcaption></figure>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
 <span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -280,7 +158,7 @@ A wavelet is a wave-like oscillation with an amplitude that begins at zero, incr
 <span class="n">plot_signal</span><span class="p">(</span><span class="n">time_series_time_2</span><span class="p">,</span> <span class="n">time_series_values_2</span><span class="p">,</span> <span class="s">"Random Noise"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_19_0.png" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_19_0.png" height="80%" width="80%" /><figcaption align="center"></figcaption></figure>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">kernel_new</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">kernel_new</span> <span class="o">=</span> <span class="n">kernel_new</span> <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">kernel_new</span><span class="p">)</span>
@@ -290,14 +168,14 @@ A wavelet is a wave-like oscillation with an amplitude that begins at zero, incr
 <span class="n">plot_signal</span><span class="p">(</span><span class="n">kernel_time</span><span class="p">,</span> <span class="n">kernel_new</span><span class="p">,</span> <span class="s">"Guassian Kernel"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_20_0.png" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_20_0.png" height="80%" width="80%" /><figcaption align="center"></figcaption></figure>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># smooths out the signal
 </span><span class="n">convoluted_signal</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">time_series_values_2</span><span class="p">,</span> <span class="n">kernel_new</span><span class="p">,</span> <span class="s">'full'</span><span class="p">)</span>
 <span class="n">plot_signal</span><span class="p">(</span><span class="n">time_series_time</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">convoluted_signal</span><span class="p">)],</span> <span class="n">convoluted_signal</span><span class="p">,</span> <span class="s">"Convoluted Signal"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_21_0.png" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_21_0.png" height="80%" width="80%" /><figcaption align="center"></figcaption></figure>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># let's try building the edge detecting kernel
 </span>
@@ -317,7 +195,7 @@ A wavelet is a wave-like oscillation with an amplitude that begins at zero, incr
 <span class="n">plot_signal</span><span class="p">(</span><span class="n">kernel_time_edge</span><span class="p">,</span> <span class="n">kernel_edge</span><span class="p">,</span> <span class="s">"Edge Kernel"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_22_0.png" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_22_0.png" height="80%" width="80%" /><figcaption align="center"></figcaption></figure>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># signed edge detecting kernel
 </span>
@@ -325,7 +203,7 @@ A wavelet is a wave-like oscillation with an amplitude that begins at zero, incr
 <span class="n">plot_signal</span><span class="p">(</span><span class="n">time_series_time</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">convoluted_signal</span><span class="p">)],</span> <span class="n">convoluted_signal</span><span class="p">,</span> <span class="s">"Convoluted Signal"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_23_0.png" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>
+<figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_23_0.png" height="80%" width="80%" /><figcaption align="center"></figcaption></figure>
 
 <p>Links:</p>
 
@@ -339,29 +217,6 @@ A wavelet is a wave-like oscillation with an amplitude that begins at zero, incr
 
 <p>Tip: don’t do time-domain convolutions as it can lead to errors, just use the fft function.</p>
 
-<p>So like there’s a nifty detail about this type of convolution.</p>
-
-<div class="admonition note">
-<p class="admonition-title">The Convolution Theorem</p>
-<p><div class="mermaid" align="center" height="70%" width="70%">
-    flowchart LR
-    A["Signal"]--&gt;|Convolution| C("Convoluted Signal *")
-    B["Kernel"]--&gt;|Convolution| C("Convoluted Signal *")
-    C("Convoluted Signal *")--&gt;|FFT| D["Fourier Transformed Signal"]</div>
-This is just the same as doing this: <div class="mermaid" align="center" height="70%" width="70%">
-    flowchart LR
-    A["Signal"]--&gt;|FFT| C("Fourier Transformed Signal")
-    B["Kernel"]--&gt;|FFT| D("Fourier Transformed Kernel")
-    C--&gt;|Multiply| E["Fourier Transformed Signal"]
-    D--&gt;|Multiply| E["Fourier Transformed Signal"]
-    E--&gt;|IFFT| F("Convoluted Signal *")</div></p>
-    * means they are similar.
-    The reason we prefer doing fast fourier transform over the normal convolution is because it's faster and less complicated/risky.
-    Convolution in the time domain is multiplication in the frequency domain.
-</div>
-
-<p>Convolution as a spectral filter (from the PSD of the signal and kernel we can see which frequencies shall be retained.)</p>
-
 <p><a href="https://dsp.stackexchange.com/questions/4825/why-is-the-fft-mirrored">Why is the FFT “mirrored”?</a></p>
 
 <p><a href="https://e2eml.school/convolution_one_d.html">Convolution in one dimension for neural networks</a></p>
@@ -369,153 +224,4 @@ This is just the same as doing this: <div class="mermaid" align="center" height=
 <p><a href="http://www.svcl.ucsd.edu/courses/ece271B-F09/handouts/DPK.pdf">Dot-product kernels in ml</a></p>
 
 <p><a href="https://www.dcs.bbk.ac.uk/~ale/dsta/dsta-2/dsta-2018-19-zaki-meira-ch5-excerpt-v2.pdf">Kernel Methods</a></p>
-
-    <script src="https://utteranc.es/client.js" repo="psymbio/psymbio.github.io" issue-term="pathname" theme="github-dark-orange" crossorigin="anonymous" async>
-    </script>
-</section>
-
-</section>
-<section class="shore">
-    <section class="content">
-        <div class="footer"></div>
-        <section class="thanks">
-            <span>That sentence that goes before giving my email to strangers: <a href="mailto: psymbio@gmail.com">psymbio@gmail.com</a></span>
-        </section>
-        </div>
-    </section>
-</section>
-<br>
-<br>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<style>
-    .videoWrapper {
-        position: relative;
-        padding-bottom: 56.333%;
-        height: 0;
-        background: black;
-    }
-    
-    .videoWrapper iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
-    }
-</style>
-
-<script>
-    function get_youtube_id(url) {
-        var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
-        return (url.match(p)) ? RegExp.$1 : false;
-    }
-
-    function vimeo_embed(url, el) {
-        var id = false;
-        $.ajax({
-            url: 'https://vimeo.com/api/oembed.json?url=' + url,
-            async: true,
-            success: function(response) {
-                if (response.video_id) {
-                    id = response.video_id;
-                    if (url.indexOf('autoplay=1') !== -1) var autoplay = 1;
-                    else var autoplay = 0;
-                    if (url.indexOf('loop=1') !== -1) var loop = 1;
-                    else var loop = 0;
-                    var theInnerHTML = '<div class="videoWrapper"><iframe src="https://player.vimeo.com/video/' + id + '/?byline=0&title=0&portrait=0';
-                    if (autoplay == 1) theInnerHTML += '&autoplay=1';
-                    if (loop == 1) theInnerHTML += '&loop=1';
-                    theInnerHTML += '" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>';
-                    el.innerHTML = theInnerHTML;
-                }
-            }
-        });
-    }
-
-    function video_embed() {
-        var p = document.getElementsByTagName('p');
-        for (var i = 0; i < p.length; i++) {
-            //check if this is an external url (that starts with https:// or http://
-            if (p[i].innerHTML.indexOf("http://") == 0 ||
-                p[i].innerHTML.indexOf("https://") == 0) {
-                var youtube_id = get_youtube_id(p[i].innerHTML);
-                if (youtube_id) {
-                    if (p[i].innerHTML.indexOf('autoplay=1') !== -1) var autoplay = 1;
-                    else var autoplay = 0;
-                    if (p[i].innerHTML.indexOf('loop=1') !== -1) var loop = 1;
-                    else var loop = 0;
-                    var theInnerHTML = '<div class="videoWrapper"><iframe width="720" height="420" src="https://www.youtube.com/embed/' + youtube_id + '?rel=0&showinfo=0';
-                    if (autoplay == 1) theInnerHTML += '&autoplay=1';
-                    if (loop == 1) theInnerHTML += '&loop=1&playlist=' + youtube_id + '&version=3';
-                    if (p[i].innerHTML.indexOf('start=') !== -1) theInnerHTML += '&start=' + p[i].innerHTML.substring(p[i].innerHTML.indexOf('start=') + 6);
-                    theInnerHTML += '" frameborder="0" allowfullscreen></iframe></div>';
-                    p[i].innerHTML = theInnerHTML;
-                }
-                if (p[i].innerHTML.indexOf('vimeo.com') !== -1) {
-                    //ask vimeo for the id and place the embed
-                    vimeo_embed(p[i].innerHTML, p[i]);
-                }
-            }
-        }
-    }
-    video_embed();
-
-    function mp3_embed() {
-        var p = document.getElementsByTagName('p');
-        for (var i = 0; i < p.length; i++) {
-            if (p[i].innerHTML.indexOf('.mp3') !== -1) {
-                var str = p[i].innerHTML.split('?');
-                if (str.length == 1) str[1] = '';
-                var str1 = str[1];
-                str1 = str1.replace('&', '').replace('&', '');
-                str1 = str1.replace('autoplay=1', '').replace('autoplay=0', '');
-                str1 = str1.replace('loop=1', '').replace('loop=0', '');
-                str1 = str1.replace('controls=0', '').replace('controls=1', '');
-
-                if (str[0].lastIndexOf('.mp3', str[0].length - 4) === str[0].length - 4 && str1.length == 0) {
-                    if (str[1].indexOf('autoplay=1') !== -1) var autoplay = 1;
-                    else var autoplay = 0;
-                    if (str[1].indexOf('loop=1') !== -1) var loop = 1;
-                    else var loop = 0;
-                    if (str[1].indexOf('controls=0') !== -1) var controls = 0;
-                    else var controls = 1;
-                    var newInnerHTML = '<audio';
-                    if (autoplay == 1) newInnerHTML += ' autoplay';
-                    if (loop == 1) newInnerHTML += ' loop';
-                    if (controls == 1) newInnerHTML += ' controls';
-                    newInnerHTML += '><source src="' + str[0] + '" type="audio/mpeg">Your browser does not support the audio element.</audio>';
-                    p[i].innerHTML = newInnerHTML;
-                }
-            }
-        }
-    }
-    mp3_embed();
-</script>
-<script>
-    ! function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0],
-            p = /^http:/.test(d.location) ? 'http' : 'https';
-        if (!d.getElementById(id)) {
-            js = d.createElement(s);
-            js.id = id;
-            js.src = p + '://platform.twitter.com/widgets.js';
-            fjs.parentNode.insertBefore(js, fjs);
-        }
-    }(document, 'script', 'twitter-wjs');
-</script>
-
-            <section class="shore">
-    </div>
-</body>
-<script>
-    'use strict';
-    var head = document.head;
-    var link = document.createElement('link');
-    link.type = 'text/css';
-    link.rel = 'stylesheet';
-    link.href = '/css/pygments.css'
-    head.appendChild(link);
-</script>
-
-</html>
+:ET
