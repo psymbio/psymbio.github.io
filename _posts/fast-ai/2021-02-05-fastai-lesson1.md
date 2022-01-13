@@ -51,6 +51,7 @@ A PhD: No.</p>
 Another misunderstanding was that the second layer as proposed by Minsky could solve the problem of mathematical models in neural networks but often was to slow and big to be useful in the industry. What they didn't know is to get pratical good performance you need to use even more layers(make them more deep).
 </p>
 </div>
+
 <div class="admonition tubelight">
 <p class="admonition-title">
 Read this: <a href="https://www.gse.harvard.edu/news/uk/09/01/education-bat-seven-principles-educators">Education at Bat: Seven Principles for Educators</a>
@@ -72,7 +73,7 @@ Gives insight into a top down way of teching where rather than building from the
 </div>
 
 <div class="admonition note">
-<p class="admonition-title">7.Open a notebook and execute a cell containing: 1+1. What happens?</p>
+<p class="admonition-title">7. Open a notebook and execute a cell containing: 1+1. What happens?</p>
 <p>It prints out 2</p>
 </div>
 
@@ -249,22 +250,22 @@ Using a pre-trained model to do a task different from what it was originally mea
 
 <div class="admonition note">
 <p class="admonition-title">30. What is segmentation?</p>
-<p></p>
+<p><a href="https://www.v7labs.com/blog/image-segmentation-guide">check this link</a></p>
 </div>
 
 <div class="admonition note">
 <p class="admonition-title">31. What is y_range used for? When do we need it?</p>
-<p></p>
+<p>When the problem is of predicting continuous values y_rannge helps us in recognizing a domain in which the values of y must lie in.</p>
 </div>
 
 <div class="admonition note">
 <p class="admonition-title">32. What are "hyperparameters"?</p>
-<p></p>
+<p>Parameters that determine how the model is trained, like learning rate, etc. like in the kNN algorithm stated <a href="https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html">here</a> we see that all the parameters listed are actually hyperparameters. To find the best hyperparameters we can perform grid searches as stated <a href="https://scikit-learn.org/stable/modules/grid_search.html">here</a>.</p>
 </div>
 
 <div class="admonition note">
 <p class="admonition-title">33. What's the best way to avoid failures when using AI in an organization?</p>
-<p></p>
+<p>Properly define the training, validation and testing datasets. Try simple baseline models first which the model you're working on needs to beat.</p>
 </div>
 
 <div class="admonition tubelight"><p class="admonition-title">Find pretrained models:</p><p>Search up model zoos.</p></div>
@@ -272,10 +273,10 @@ Using a pre-trained model to do a task different from what it was originally mea
 
 <div class="admonition hint">
 <p class="admonition-title">1. Why is a GPU useful for deep learning? How is a CPU different, and why is it less effective for deep learning?</p>
-<p></p>
+<p>Initially designed mainly as dedicated graphical rendering workhorses of computer games, GPUs were later enhanced to accelerate other geometric calculations (for instance, transforming polygons or rotating verticals into different coordinate systems like 3D). GPUs are better for deep learning because at the heart of deep learning lies problems relating to matrix and vector operations which GPUs are better at performing.</p>
 </div>
 
 <div class="admonition hint">
 <p class="admonition-title">2. Try to think of three areas where feedback loops might impact the use of machine learning. See if you can find documented examples of that happening in practice.</p>
-<p></p>
+<p>While many developers train their AI models on large sets of labeled data and concepts, after a while, adding new, unlabeled inputs to these models can see their performances decline. The solution is a feedback loop. A feedback loop refers to the process by which an AI model’s predicted outputs are reused to train new versions of the model. When we train a computer vision model, we must first feed it a few labeled samples, showing positive and negative examples of the concepts we want it to learn. Afterward, we can then test the model using unlabeled data. By using deep learning and neural networks, the model can then make predictions on whether the desired concept/s is in these unlabeled images. Lastly, each image is given a probability score, with higher scores meaning a higher level of confidence in its predictions. Where a model gives an image a high probability score, it is auto-labeled with the predicted concept. However, in some cases, like for if the model returns a low probability score, this input is sent to a human moderator who verifies, and if necessary corrects, the result. The feedback loop occurs when this labeled data, auto-labeled or human-verified, is fed back to the model as training data.</p>
 </div>
