@@ -48,24 +48,10 @@ Velocity describes how the distance changes with time. Velocity is a rate of cha
                 datasets: [
                     {
                         label: "Crop Yield",
-                        data: [50, 100, 160, 120, 40], // Approximate parabola data
+                        data: [20, 100, 160, 120, 40], // Approximate parabola data
                         borderColor: "black",
                         fill: false,
                         tension: 0.1
-                    },
-                    {
-                        label: "Slope 50",
-                        data: [50, 100, 150], // Approximate tangent line
-                        borderColor: "blue",
-                        borderDash: [5, 5],
-                        fill: false
-                    },
-                    {
-                        label: "Slope 25",
-                        data: [160, 185, 210], // Approximate tangent line
-                        borderColor: "red",
-                        borderDash: [5, 5],
-                        fill: false
                     }
                 ]
             },
@@ -88,6 +74,8 @@ Velocity describes how the distance changes with time. Velocity is a rate of cha
         });
     </script>
 </div></p>
+
+Differential calculus is about finding the slope of a tangent to the graph of a function, or equivalently, differential calculus is about finding the rate of change of one quantity with respect to another quantity.
 
 ## Linear Regression Code
 
