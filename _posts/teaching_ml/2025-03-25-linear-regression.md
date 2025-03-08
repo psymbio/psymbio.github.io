@@ -88,3 +88,7 @@ Velocity describes how the distance changes with time. Velocity is a rate of cha
         });
     </script>
 </div></p>
+
+## Linear Regression Code
+
+https://github.com/psymbio/learning_ml/tree/main/linear_regression
