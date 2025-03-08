@@ -36,8 +36,8 @@ https://www.sydney.edu.au/content/dam/students/documents/mathematics-learning-ce
 
 Velocity describes how the distance changes with time. Velocity is a rate of change. It can be calcualted by the slope (rise/run or distance travelled/time taken) of the time (x-axis) and distance (y-axis) graph.
 
-<p>
-<canvas id="cropYieldChart"></canvas>
+<p><div class="chartjs-wrapper" style="position: center">
+<canvas canvas id="cropYieldChart" class="chartjs" width="undefined" height="undefined"></canvas>
     <script>
         const ctx = document.getElementById('cropYieldChart').getContext('2d');
 
@@ -87,4 +87,4 @@ Velocity describes how the distance changes with time. Velocity is a rate of cha
             }
         });
     </script>
-<p>
+</div></p>
