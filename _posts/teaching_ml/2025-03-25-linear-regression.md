@@ -17,18 +17,18 @@ These are the rough notes for the multiple linear regression section in the Neur
 
 ## Important Topics
 
-Lesson Plan Background
+For this tutorial you can assume that your students have learnt about:
 
-+ Differential calculus
-+ The concept of mean-squared error (MSE) and how model parameters (slope) influence the MSE+ Least-squares optimization and Maximum Likelihood Estimation
++ The mean-squared error (MSE) and how model parameters (slope) influence the MSE
++ Least-squares optimization and Maximum Likelihood Estimation
++ Implementing bootstrapping approach to build confidence intervals around the inferred linear model parameters
 
 Tutorial Description
 
-In this set of exercises we will cover the key concepts behind:
-
-+ Gradient descent
-+ PyTorch Autograd
-+ PyTorch nn module
++ Understand multidimensional linear regression;
++ Structure Design Matrix to fit a polynomial regression;
++ Visualize the different polynomial regression models;
++ Evaluate the polynomial regression models.
 
 ## Differential Calculus
 
@@ -44,7 +44,7 @@ Velocity describes how the distance changes with time. Velocity is a rate of cha
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: [0, 1, 2, 3, 4],
+                labels: [0, 1, 2, 3, 4, 5, 6, 7, 8],
                 datasets: [
                     {
                         label: "Crop Yield",
