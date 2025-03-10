@@ -13,7 +13,7 @@ These are the rough notes for the multiple linear regression section in the Neur
 
 ## Important Base Links
 
-https://github.com/NeuromatchAcademy/TA-applications#deep-learning-ta-application-video-instructions
+[](https://github.com/NeuromatchAcademy/TA-applications#deep-learning-ta-application-video-instructions)
 
 ## Important Topics
 
@@ -32,7 +32,7 @@ In this set of exercises we will cover the key concepts behind:
 
 ## Differential Calculus
 
-https://www.sydney.edu.au/content/dam/students/documents/mathematics-learning-centre/introduction-to-differential-calculus.pdf
+[](https://www.sydney.edu.au/content/dam/students/documents/mathematics-learning-centre/introduction-to-differential-calculus.pdf)
 
 Velocity describes how the distance changes with time. Velocity is a rate of change. It can be calcualted by the slope (rise/run or distance travelled/time taken) of the time (x-axis) and distance (y-axis) graph.
 
@@ -48,7 +48,7 @@ Velocity describes how the distance changes with time. Velocity is a rate of cha
                 datasets: [
                     {
                         label: "Crop Yield",
-                        data: [20, 100, 160, 120, 40], // Approximate parabola data
+                        data: [20, 40, 60, 80, 100, 80, 60, 40, 20],
                         borderColor: "black",
                         fill: false,
                         tension: 0.1
@@ -79,4 +79,5 @@ Differential calculus is about finding the slope of a tangent to the graph of a 
 
 ## Linear Regression Code
 
-https://github.com/psymbio/learning_ml/tree/main/linear_regression
+[](https://github.com/psymbio/learning_ml/tree/main/linear_regression)
+
