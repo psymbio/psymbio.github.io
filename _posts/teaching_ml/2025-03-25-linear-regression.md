@@ -78,6 +78,48 @@ Velocity describes how the distance changes with time. Velocity is a rate of cha
 
 Differential calculus is about finding the slope of a tangent to the graph of a function, or equivalently, differential calculus is about finding the rate of change of one quantity with respect to another quantity.
 
+## Mean-Squared Error
+
+For a dataset with $n$ observations, where:
+
+- $y_i$ is the actual value,
+- $\hat{y}_i$ is the predicted value,
+- $n$ is the number of observations,
+
+the Mean Squared Error is defined as:
+
+$$
+MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+$$
+
+## Explanation
+
+- The **difference** $(y_i - \hat{y}_i)$ represents the error for each prediction.
+- Squaring the error ensures that negative and positive errors don’t cancel out.
+- The **mean** ensures we get the average error over all observations.
+
+## Properties of MSE
+
+- **Always non-negative**: Since we square the errors, MSE is always $\geq 0$.
+- **Sensitive to outliers**: Larger errors contribute significantly more to MSE due to squaring.
+- **Common in optimization**: MSE is differentiable, making it useful for gradient-based optimization algorithms.
+
+## Alternative Error Metrics
+
+- **Mean Absolute Error (MAE)**: Uses absolute differences instead of squared differences.
+  
+  $$
+  MAE = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|
+  $$
+
+- **Root Mean Squared Error (RMSE)**: The square root of MSE, which brings the error back to the original unit.
+
+  $$
+  RMSE = \sqrt{MSE}
+  $$
+
+MSE is widely used in regression models, including linear regression and neural networks, as a standard performance metric.
+
 ## Linear Regression Code + Derivations
 
 [https://github.com/psymbio/learning_ml/tree/main/linear_regression](https://github.com/psymbio/learning_ml/tree/main/linear_regression)
