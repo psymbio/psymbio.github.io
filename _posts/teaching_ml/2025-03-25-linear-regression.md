@@ -11,14 +11,15 @@ pagestyle2: post
 
 These are the rough notes for the multiple linear regression section in the Neuromatch Academy course. I plan to apply as a mentor, and I don't where else to write --
 
-## Important Base Links
+## Important Base Link
 
-[](https://github.com/NeuromatchAcademy/TA-applications#deep-learning-ta-application-video-instructions)
+[https://github.com/NeuromatchAcademy/TA-applications#deep-learning-ta-application-video-instructions](https://github.com/NeuromatchAcademy/TA-applications#deep-learning-ta-application-video-instructions)
 
 ## Important Topics
 
 For this tutorial you can assume that your students have learnt about:
 
++ Differential Calculus
 + The mean-squared error (MSE) and how model parameters (slope) influence the MSE
 + Least-squares optimization and Maximum Likelihood Estimation
 + Implementing bootstrapping approach to build confidence intervals around the inferred linear model parameters
@@ -32,7 +33,7 @@ Tutorial Description
 
 ## Differential Calculus
 
-[](https://www.sydney.edu.au/content/dam/students/documents/mathematics-learning-centre/introduction-to-differential-calculus.pdf)
+[https://www.sydney.edu.au/content/dam/students/documents/mathematics-learning-centre/introduction-to-differential-calculus.pdf](https://www.sydney.edu.au/content/dam/students/documents/mathematics-learning-centre/introduction-to-differential-calculus.pdf)
 
 Velocity describes how the distance changes with time. Velocity is a rate of change. It can be calcualted by the slope (rise/run or distance travelled/time taken) of the time (x-axis) and distance (y-axis) graph.
 
@@ -48,7 +49,7 @@ Velocity describes how the distance changes with time. Velocity is a rate of cha
                 datasets: [
                     {
                         label: "Crop Yield",
-                        data: [20, 40, 60, 80, 100, 80, 60, 40, 20],
+                        data: [20, 35, 50, 65, 70, 65, 50, 35, 20],
                         borderColor: "black",
                         fill: false,
                         tension: 0.1
@@ -77,7 +78,7 @@ Velocity describes how the distance changes with time. Velocity is a rate of cha
 
 Differential calculus is about finding the slope of a tangent to the graph of a function, or equivalently, differential calculus is about finding the rate of change of one quantity with respect to another quantity.
 
-## Linear Regression Code
+## Linear Regression Code + Derivations
 
-[](https://github.com/psymbio/learning_ml/tree/main/linear_regression)
+[https://github.com/psymbio/learning_ml/tree/main/linear_regression](https://github.com/psymbio/learning_ml/tree/main/linear_regression)
 
