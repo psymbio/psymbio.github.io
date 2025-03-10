@@ -90,19 +90,17 @@ $$
 MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
 $$
 
-## Explanation
-
 - The **difference** $(y_i - \hat{y}_i)$ represents the error for each prediction.
 - Squaring the error ensures that negative and positive errors don’t cancel out.
 - The **mean** ensures we get the average error over all observations.
 
-## Properties of MSE
+### Properties of MSE
 
 - **Always non-negative**: Since we square the errors, MSE is always $\geq 0$.
 - **Sensitive to outliers**: Larger errors contribute significantly more to MSE due to squaring.
 - **Common in optimization**: MSE is differentiable, making it useful for gradient-based optimization algorithms.
 
-## Alternative Error Metrics
+### Alternative Error Metrics
 
 - **Mean Absolute Error (MAE)**: Uses absolute differences instead of squared differences.
   
@@ -118,7 +116,81 @@ $$
 
 MSE is widely used in regression models, including linear regression and neural networks, as a standard performance metric.
 
-## Linear Regression Code + Derivations
+
+## How Model Parameters (Slope) Influence MSE
+
+In a simple linear regression model:
+
+$$
+\hat{y} = \beta_1 x + \beta_0
+$$
+
+where:
+- $\hat{y}$ is the predicted value,
+- $\beta_1$ (slope) determines how much $\hat{y}$ changes with $x$,
+- $\beta_0$ (intercept) is the value of $\hat{y}$ when $x = 0$.
+
+The **Mean Squared Error (MSE)** is given by:
+
+$$
+MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+$$
+
+where $y_i$ are the actual values and $\hat{y}_i$ are the predicted values.
+
+1. **Optimal Slope Minimizes MSE**
+   - The best $\beta_1$ minimizes the difference between actual and predicted values.
+   - If $\beta_1$ is too low or too high, the predictions deviate significantly, increasing the MSE.
+2. **Underfitting (Small $\beta_1$)**
+   - A small slope means the model does not capture the relationship between $x$ and $y$ well.
+   - Predictions are nearly constant, leading to high bias and large errors.
+3. **Overfitting (Large $\beta_1$)**
+   - A very high slope can make the model too sensitive to variations in $x$.
+   - The model fits noise instead of the underlying trend, leading to poor generalization and increased MSE on new data.
+4. **Gradient of MSE with Respect to $\beta_1$**
+   - The derivative of MSE with respect to $\beta_1$ helps adjust it using gradient descent:
+  $$
+  \frac{\partial MSE}{\partial \beta_1} = -\frac{2}{n} \sum_{i=1}^{n} x_i (y_i - \hat{y}_i)
+  $$
+  - This guides how $\beta_1$ should change to minimize MSE.
+
+The slope ($\beta_1$) directly affects how well the model fits the data. A well-chosen $\beta_1$ results in a lower MSE, while an improper choice can lead to either underfitting or overfitting.
+
+- **Low $\beta_1$ → High MSE due to underfitting**
+- **Optimal $\beta_1$ → Low MSE**
+- **High $\beta_1$ → High MSE due to overfitting**
+
+## Least-Squares Optimization
+
+Least-squares optimization is a mathematical method used to minimize the difference between predicted values and actual data points in regression models. It is widely used in **linear regression** to find the best-fit line.
+
+Given a dataset with **n** observations:
+
+- $x_i$ : Independent variable (input)
+- $y_i$ : Dependent variable (output)
+- $\hat{y}_i = \beta_1 x_i + \beta_0$ : Predicted value based on the model
+
+The goal is to find **$\beta_0$ (intercept)** and **$\beta_1$ (slope)** that minimize the total squared error.
+
+The error for each prediction is the **residual**:
+
+$$
+e_i = y_i - \hat{y}_i
+$$
+
+The **Residual Sum of Squares (RSS)** is given by:
+
+$$
+RSS = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+$$
+
+Since we want to minimize this function, we take its derivative with respect to $\beta_0$ and $\beta_1$.
+
+## Linear Regression Code + Derivations of RSS
 
 [https://github.com/psymbio/learning_ml/tree/main/linear_regression](https://github.com/psymbio/learning_ml/tree/main/linear_regression)
+
+- The least-squares method **minimizes the sum of squared errors** to find the best-fit line.
+- The solution involves solving for $\beta_0$ and $\beta_1$ by taking derivatives of RSS.
+- The derived formula ensures that the estimated line **minimizes** the total squared residuals.
 
