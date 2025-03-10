@@ -17,17 +17,25 @@ These are the rough notes for the multiple linear regression section in the Neur
 
 For this tutorial you can assume that your students have learnt about:
 
-+ Differential Calculus
-+ The mean-squared error (MSE) and how model parameters (slope) influence the MSE
-+ Least-squares optimization and Maximum Likelihood Estimation
-+ Implementing bootstrapping approach to build confidence intervals around the inferred linear model parameters
+- [ ] Differential Calculus
+- [X] The mean-squared error (MSE) and how model parameters (slope) influence the MSE
+- [X] Least-squares optimization and Maximum Likelihood Estimation
 
 Tutorial Description
 
-+ Understand multidimensional linear regression;
-+ Structure Design Matrix to fit a polynomial regression;
-+ Visualize the different polynomial regression models;
-+ Evaluate the polynomial regression models.
+- [ ] Gradient descent
+- [ ] PyTorch Autograd
+- [ ] PyTorch nn module
+
+Video Outline
+
+- [ ] < 1 min: Introduce yourself. Give a few sentences about who you are!
+- [ ] ~ 2 mins: Give a very brief recap of the concept of AutoGrad and explain why it is useful. While you should imagine that you are teaching a class of students, don't feel the need to address them or ask them questions.
+- [ ] < 2 mins: Work through the Coding Exercise 2.1: Buiding a Computational Graph explaining the solution code as you go.
+
+Evaluation
+
+We are looking for people who are able to communicate well and who show their knowledge of Python including live coding during. We’re looking for quality over quantity, so don’t feel pressured to rush through everything. Instead, make sure the content you do get to is clear and easy to follow.
 
 ## Differential Calculus
 
@@ -193,4 +201,95 @@ Since we want to minimize this function, we take its derivative with respect to 
 - The least-squares method **minimizes the sum of squared errors** to find the best-fit line.
 - The solution involves solving for $\beta_0$ and $\beta_1$ by taking derivatives of RSS.
 - The derived formula ensures that the estimated line **minimizes** the total squared residuals.
+
+## Maximum Likelihood Estimation (MLE)
+
+Maximum Likelihood Estimation (MLE) is a statistical method used to estimate the parameters of a probability distribution by **maximizing the likelihood function**. It is widely used in machine learning and statistics for parameter estimation.
+
+Given a dataset **$D = \{x_1, x_2, ..., x_n\}$** and a probability distribution with parameters **$\theta$**, the likelihood function is defined as:
+
+$$
+L(\theta | D) = P(D | \theta) = \prod_{i=1}^{n} P(x_i | \theta)
+$$
+
+### **Goal**: 
+Find the parameter **$\theta$** that **maximizes** the likelihood function.
+
+## Log-Likelihood Function
+
+Since products of probabilities can be difficult to compute, we take the **logarithm** of the likelihood function:
+
+$$
+\log L(\theta) = \sum_{i=1}^{n} \log P(x_i | \theta)
+$$
+
+MLE finds **$\theta$** by solving:
+
+$$
+\theta^* = \arg\max_{\theta} \log L(\theta)
+$$
+
+## Example: Estimating Mean and Variance for a Normal Distribution
+
+Suppose we have a dataset **$D = \{x_1, x_2, ..., x_n\}$** sampled from a **normal distribution**:
+
+$$
+P(x | \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x - \mu)^2}{2\sigma^2}}
+$$
+
+The likelihood function is:
+
+$$
+L(\mu, \sigma^2) = \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x_i - \mu)^2}{2\sigma^2}}
+$$
+
+Taking the **log-likelihood**:
+
+$$
+\log L(\mu, \sigma^2) = -\frac{n}{2} \log (2\pi \sigma^2) - \frac{1}{2\sigma^2} \sum_{i=1}^{n} (x_i - \mu)^2
+$$
+
+To find **$\mu$** and **$\sigma^2$**, we take derivatives:
+
+1. **Estimating $\mu$**:
+
+   $$
+   \frac{\partial \log L}{\partial \mu} = \frac{1}{\sigma^2} \sum_{i=1}^{n} (x_i - \mu)
+   $$
+
+   Setting this to 0:
+
+   $$
+   \mu^* = \frac{1}{n} \sum_{i=1}^{n} x_i = \bar{x}
+   $$
+
+   So the **MLE estimate of the mean** is the sample mean.
+
+2. **Estimating $\sigma^2$**:
+
+   $$
+   \frac{\partial \log L}{\partial \sigma^2} = -\frac{n}{2\sigma^2} + \frac{1}{2\sigma^4} \sum_{i=1}^{n} (x_i - \mu)^2
+   $$
+
+   Solving for $\sigma^2$:
+
+   $$
+   \sigma^{2*} = \frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^2
+   $$
+
+   So the **MLE estimate of variance** is the sample variance.
+
+Properties of MLE:
+
+- **Asymptotic Consistency**: As sample size increases, MLE estimates converge to the true parameter values.
+- **Efficiency**: MLE achieves the lowest possible variance under certain conditions (Cramér-Rao bound).
+- **Bias**: MLE for variance can be slightly biased; an unbiased estimate uses $n-1$ in the denominator.
+
+Summary:
+
+- **MLE finds the parameters** that maximize the likelihood of observing the given data.
+- **Log-likelihood simplifies the computation** and avoids numerical issues.
+- **For a normal distribution**, MLE estimates the mean as the **sample mean** and variance as the **sample variance**.
+
+MLE is fundamental in **machine learning, Bayesian inference, and statistics**, used in **logistic regression, neural networks, and hidden Markov models**.
 
