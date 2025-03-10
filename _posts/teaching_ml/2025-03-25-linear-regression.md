@@ -7,8 +7,6 @@ order: 1
 pagestyle: base
 pagestyle2: post
 ---
-## Why
-
 These are the rough notes for the multiple linear regression section in the Neuromatch Academy course. I plan to apply as a mentor, and I don't where else to write --
 
 ## Important Base Link
