@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Paper Summaries
-tag: math
+tag: Agentic AI
 category: posts
 order: 1
 pagestyle: base
