@@ -292,4 +292,3 @@ Summary:
 - **For a normal distribution**, MLE estimates the mean as the **sample mean** and variance as the **sample variance**.
 
 MLE is fundamental in **machine learning, Bayesian inference, and statistics**, used in **logistic regression, neural networks, and hidden Markov models**.
-
