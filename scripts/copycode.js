@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+    console.log("copycode.js is running!"); // ✅ Check if this appears in Console
     document.querySelectorAll("pre").forEach(preBlock => {
         const button = document.createElement("button");
         button.className = "copy-btn";
