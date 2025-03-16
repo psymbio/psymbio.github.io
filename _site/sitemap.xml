@@ -19,13 +19,19 @@
     
     
     <url>
+        <loc>http://localhost:4000/posts/micrograd/</loc>
+    </url>
+    
+    
+    
+    <url>
         <loc>http://localhost:4000/posts/roman-subtraction/</loc>
     </url>
     
     
     
     <url>
-        <loc>http://localhost:4000/posts/paper-summaries/</loc>
+        <loc>http://localhost:4000/posts/experts-in-llms/</loc>
     </url>
     
     

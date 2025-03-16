@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Roman Subtraction
-tag: math
+tag: Dumb People Do the Math
 category: posts
 order: 1
 pagestyle: base
@@ -12,9 +12,10 @@ I had a fight with my dad on the dinner table over my sister's 4th grade math ho
 
 For him it kinda looked like:
 
+```bash
    V
 + IV
 ----
 
 ----
-
+```

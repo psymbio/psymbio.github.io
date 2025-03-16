@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-        Roman Subtraction &ndash; The Brain Archive
+        Micrograd &ndash; The Brain Archive
     </title>
     <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
     <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
@@ -132,19 +132,40 @@
 <script src="/assets/scripts/copycode.js"></script>
 <section class="content">
     <section class="byline">
-        March 13, 2025
+        March 16, 2025
     </section>
-    <h1>Roman Subtraction</h1>
-    <p>I had a fight with my dad on the dinner table over my sister’s 4th grade math homework - how did the Romans subtract?</p>
+    <h1>Micrograd</h1>
+    <h2 id="micrograd-overview">Micrograd Overview</h2>
 
-<p>For him it kinda looked like:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">micrograd.engine</span> <span class="kn">import</span> <span class="n">Value</span>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   V
-+ IV
-<span class="nt">----</span>
+<span class="n">a</span> <span class="o">=</span> <span class="nc">Value</span><span class="p">(</span><span class="o">-</span><span class="mf">4.0</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="nc">Value</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span> <span class="o">+</span> <span class="n">b</span><span class="o">**</span><span class="mi">3</span>
+<span class="n">c</span> <span class="o">+=</span> <span class="n">c</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">c</span> <span class="o">+=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">c</span> <span class="o">+</span> <span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">+=</span> <span class="n">d</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">b</span> <span class="o">+</span> <span class="n">a</span><span class="p">).</span><span class="nf">relu</span><span class="p">()</span>
+<span class="n">d</span> <span class="o">+=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">d</span> <span class="o">+</span> <span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">).</span><span class="nf">relu</span><span class="p">()</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">c</span> <span class="o">-</span> <span class="n">d</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">e</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">f</span> <span class="o">/</span> <span class="mf">2.0</span>
+<span class="n">g</span> <span class="o">+=</span> <span class="mf">10.0</span> <span class="o">/</span> <span class="n">f</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="si">{</span><span class="n">g</span><span class="p">.</span><span class="n">data</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="sh">'</span><span class="p">)</span> <span class="c1"># prints 24.7041, the outcome of this forward pass
+</span><span class="n">g</span><span class="p">.</span><span class="nf">backward</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="si">{</span><span class="n">a</span><span class="p">.</span><span class="n">grad</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="sh">'</span><span class="p">)</span> <span class="c1"># prints 138.8338, i.e. the numerical value of dg/da
+</span><span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="si">{</span><span class="n">b</span><span class="p">.</span><span class="n">grad</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="sh">'</span><span class="p">)</span> <span class="c1"># prints 645.5773, i.e. the numerical value of dg/db
+</span></code></pre></div></div>
 
-<span class="nt">----</span>
-</code></pre></div></div>
+<p>We want to create a library to make a graph of all these calculations so that we can compute things like the change in the value of $g$ with a slight change in the value of $a$ in this particular case shown in <code class="language-plaintext highlighter-rouge">print(f'{a.grad:.4f}')</code>.</p>
+
+<p>This version of micrograd is predominantly for pedagogical reasons - where these operations would be done on tensors - here we work with integers.</p>
+
+<p>The code is very simple: <a href="https://github.com/karpathy/micrograd">Code Repo</a></p>
+
+<p>Micrograd is all you need for neural networks and the rest is just efficiency.</p>
+
+<p>##</p>
 
     <script src="https://utteranc.es/client.js" repo="psymbio/psymbio.github.io" issue-term="pathname" theme="github-dark-orange" crossorigin="anonymous" async>
     </script>

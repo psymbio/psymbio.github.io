@@ -59,6 +59,22 @@
     src: url(fonts/basis-grotesque-regular.woff2) format("woff");
 }
 
+@font-face {
+    font-family: 'SFMono-Regular';
+    src: url(/fonts/SFMono-Regular.otf);
+    font-display: swap;
+    unicode-range: U+000-5FF;
+    font-style: swap;
+}
+
+@font-face {
+    font-family: 'SFMono-Light';
+    src: url(/fonts/SFMono-Light.otf);
+    font-display: swap;
+    unicode-range: U+000-5FF;
+    font-style: swap;
+}
+
 .og {
     font-family: og-emoji, sans-serif;
 }
@@ -573,42 +589,34 @@ button:hover {
  * Code
  *********************/
 
-code {
-    background: #b0efe6;
-    outline: 1px solid #7fe5d7;
-    font-family: 'Source Code Pro', 'fira', monospace;
+ code {
+    font-family: "SFMono-Light", monospace;
     font-size: var(--font-size-xs);
-    color: black;
-    border: 1px solid var(--accent-2);
-    background-color: rgba(123, 228, 213, 0.3);
-    /* accent-2 with opacity */
-    line-height: 1.5;
-    padding: 2px 3px;
+    background-color: #f6f8fa;
+    color: #24292e;
+    padding: 2px 4px;
+    border-radius: 6px;
 }
 
 pre {
-    background: #fefefe;
-    /*#fefefe;*/
-    /*#f5f1ec;*/
-    /*#fff1e6;*/
-    /*linen*/
-    /*f4f1de*/
-    /* fffcf8 */
-    outline: 2px solid #eeeeee;
-    border-left: 5px solid var(--accent-2);
-    padding: var(--spacing-s);
+    font-family: "SFMono-Light", monospace;
+    font-size: var(--font-size-xs);
+    background-color: #f6f8fa;
+    color: #24292e;
+    border-radius: 6px;
+    padding: 16px;
     overflow-x: auto;
-    overflow-y: hidden;
+    line-height: 1.45;
+    border: 1px solid #d0d7de;
 }
 
 pre code {
-    background: transparent !important;
-    outline: none;
-    color: black;
+    background: none;
+    color: inherit;
+    font-size: inherit;
+    padding: 0;
     border: none;
-    font-weight: normal;
 }
-
 
 /* just the code blocks */
 
@@ -619,6 +627,34 @@ h2 code {
 .code-header {
     display: flex;
     justify-content: flex-end;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: #f6f8fa;
+    color: #24292e;
+    border: 1px solid #d0d7de;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-family: inherit;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.copy-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+}
+
+.copy-btn:hover {
+    background-color: #e1e4e8;
 }
 
 /**********************
@@ -691,36 +727,6 @@ table tr td:last-child {
     border-radius: 4px;
     text-align: left;
 }
-
-/* .admonition.note {
-    color: #0e4878;
-    background-color: #d9edf7;
-    border-color: #bce8f1;
-}
-
-.admonition.hint {
-    color: #073c09;
-    background-color: #dcf9ea;
-    border-color: #90efbb;
-}
-
-.admonition.warning {
-    color: #c09853;
-    background-color: #fcf8e3;
-    border-color: #fbeed5;
-}
-
-.admonition.tubelight {
-    color: #9e6d0b;
-    background-color: #ffeddb;
-    border-color: #ffc58b;
-}
-
-.admonition.danger {
-    color: #b94a48;
-    background-color: #f2dede;
-    border-color: #eed3d7;
-} */
 
 .admonition.note {
     color: #003a5d;
