@@ -50,3 +50,11 @@ I would dig deeper if they had some code.
 
 most ulti-inducing paper was this one but I guess the way they got their roles was actually better - for very descripting answers (and this paper is basically just comparing the length of the response - sigh)
 
+---
+
+These papers lay out a base idea of what role experts play out in LLMs.
+
+## Knowledge Localization: Mission Not Accomplished? Enter Query Localization!
+
+[https://openreview.net/pdf?id=tfyHbvFZ0K](https://openreview.net/pdf?id=tfyHbvFZ0K)
+

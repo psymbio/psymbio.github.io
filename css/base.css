@@ -178,17 +178,17 @@ iframe {
 
 h1 {
     font-size: 38px;
-    font-weight: 600;
     color: var(--accent-2);
     font-family: var(--title-font);
+    font-weight: normal;
     line-height: 1.3846153846;
 }
 
 h2 {
     font-size: 26px;
-    font-weight: 500;
     color: var(--accent-2);
     font-family: var(--title-font);
+    font-weight: normal;
     line-height: 1;
 }
 
@@ -388,13 +388,7 @@ div.mermaid {
 
 .content hr {
     background-color: var(--accent-2);
-    border: 0px;
-    margin: 50px auto;
-    width: 50%;
-    height: 5px;
-    border-radius: 5px;
-    max-width: 430px;
-    clear: both;
+    height: 2px;
 }
 
 p.chunk {
