@@ -39,10 +39,13 @@ I would dig deeper if they had some code.
 [https://arxiv.org/pdf/2305.14688](https://arxiv.org/pdf/2305.14688)
 
 1. Given an input instruction $q$, an aligned LLM (such as ChatGPT or Claude) produces an output $a$, which is the model's direct response to the instruction.
+   
     $$ a = LLM(q) $$
 2. The expert identity $e_q$ is created by conditioning the LLM on multiple relevant instruction-answer pairs. The operator $\oplus$ represents concatenation or combination of these pairs, allowing the model to generate an identity description that encapsulates expertise.
+    
     $$ e_q = LLM(\{q_1, e_{q_1}\} \oplus \dots \oplus \{q_k, e_{q_k}\} \oplus q) $$
 3. By providing both the expert identity $e_q$ and the original instruction $q$, the LLM is expected to generate an improved response $\hat{a}$, which should be more authoritative and accurate compared to $a$.
+    
     $$ \hat{a} = LLM(\{e_q, q\}) $$
 
 most ulti-inducing paper was this one but I guess the way they got their roles was actually better - for very descripting answers (and this paper is basically just comparing the answer lengths - sigh)
