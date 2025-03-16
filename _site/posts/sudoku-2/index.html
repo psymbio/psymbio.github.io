@@ -106,7 +106,7 @@
     <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
     <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
     <a href="/">
-        <img src="/images/title.png" height="250" width="250" class="avatar" />
+        <img src="/images/title.png" height="150" width="150" class="avatar" />
     </a>
     <!-- Global site tag (gtag.js) - Google Analytics -->
 </header>
@@ -114,15 +114,27 @@
 <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
 <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
 <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
-<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-</script>
+<!-- <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script> -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+      
+  <script type="text/javascript"
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
 <script src="/assets/scripts/copycode.js"></script>
 <section class="content">
     <section class="byline">
         February 24, 2021
     </section>
     <h1>Reinforcement Learning based Sudoku Players, Part 2</h1>
-    <br> <p>After about a month of learning deep learning, I realized the solution to the sudoku problem after coming across one single word: Gridworld.</p>
+    <p>After about a month of learning deep learning, I realized the solution to the sudoku problem after coming across one single word: Gridworld.</p>
 
 <p>Another square matrix like sudoku, that looks like this:
 <img alt="" src="/images/2021/rl/gridworld.png" height="50%" width="50%" /></p>
@@ -215,54 +227,54 @@ a mapping from states to action probabilities \(\pi_{t}(a|s) =\)
 <p>Let’s setup a basic program:</p>
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Environment</span><span class="p">:</span>
-	<span class="k">def</span> <span class="nf">__init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-		<span class="bp">self</span><span class="p">.</span><span class="n">steps_left</span> <span class="o">=</span> <span class="mi">10</span>
+	<span class="k">def</span> <span class="nf">__init</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+		<span class="n">self</span><span class="p">.</span><span class="n">steps_left</span> <span class="o">=</span> <span class="mi">10</span>
 		<span class="c1"># initializing env by saying that only 10 steps are left
 </span>
-	<span class="k">def</span> <span class="nf">get_observations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+	<span class="k">def</span> <span class="nf">get_observations</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
 		<span class="k">return</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
 		<span class="c1"># returns the current envs observation to agent
 </span>		<span class="c1"># it's some function of the internal state of the env
 </span>		<span class="c1"># here the observation vector is always zero because the env has no internal state
 </span>
-	<span class="k">def</span> <span class="nf">get_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+	<span class="k">def</span> <span class="nf">get_actions</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
 		<span class="k">return</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 		<span class="c1"># set of actions the agent can perform
 </span>		<span class="c1"># usually this doesn't change over time
 </span>		<span class="c1"># but smetimes certain moves aren't possible
 </span>
 	<span class="k">def</span> <span class="nf">is_done</span><span class="p">():</span>
-		<span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">steps_left</span> <span class="o">==</span> <span class="mi">0</span>
+		<span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="n">steps_left</span> <span class="o">==</span> <span class="mi">0</span>
 		<span class="c1"># check if episode is completed
 </span>
-	<span class="k">def</span> <span class="nf">action</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-		<span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">is_done</span><span class="p">():</span>
-			<span class="k">raise</span> <span class="nb">Exception</span><span class="p">(</span><span class="s">"Game is Over"</span><span class="p">)</span>
-		<span class="bp">self</span><span class="p">.</span><span class="n">steps_left</span> <span class="o">-=</span> <span class="mi">1</span>
-		<span class="k">return</span> <span class="n">random</span><span class="p">.</span><span class="n">random</span><span class="p">()</span>
+	<span class="k">def</span> <span class="nf">action</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+		<span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="nf">is_done</span><span class="p">():</span>
+			<span class="k">raise</span> <span class="nc">Exception</span><span class="p">(</span><span class="sh">"</span><span class="s">Game is Over</span><span class="sh">"</span><span class="p">)</span>
+		<span class="n">self</span><span class="p">.</span><span class="n">steps_left</span> <span class="o">-=</span> <span class="mi">1</span>
+		<span class="k">return</span> <span class="n">random</span><span class="p">.</span><span class="nf">random</span><span class="p">()</span>
 		<span class="c1"># if episode is completed then raise exception
 </span>		<span class="c1"># else just take an action and subtract a step from step_left.
 </span>
 <span class="k">class</span> <span class="nc">Agent</span><span class="p">:</span>
-	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-		<span class="bp">self</span><span class="p">.</span><span class="n">total_reward</span> <span class="o">=</span> <span class="mf">0.0</span>
+	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+		<span class="n">self</span><span class="p">.</span><span class="n">total_reward</span> <span class="o">=</span> <span class="mf">0.0</span>
 
-	<span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">):</span>
-		<span class="n">current_obs</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="n">get_observation</span><span class="p">()</span>
+	<span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">env</span><span class="p">):</span>
+		<span class="n">current_obs</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">get_observation</span><span class="p">()</span>
 		<span class="c1"># observe env
-</span>		<span class="n">actions</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="n">get_actions</span><span class="p">()</span>
+</span>		<span class="n">actions</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">get_actions</span><span class="p">()</span>
 		<span class="c1"># make a decision of action to take
-</span>		<span class="n">reward</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="n">action</span><span class="p">(</span><span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">(</span><span class="n">actions</span><span class="p">))</span>
+</span>		<span class="n">reward</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="nf">action</span><span class="p">(</span><span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">actions</span><span class="p">))</span>
 		<span class="c1"># submit action and collect the rewards
-</span>		<span class="bp">self</span><span class="p">.</span><span class="n">total_reward</span> <span class="o">+=</span> <span class="n">reward</span>
+</span>		<span class="n">self</span><span class="p">.</span><span class="n">total_reward</span> <span class="o">+=</span> <span class="n">reward</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
-	<span class="n">env</span> <span class="o">=</span> <span class="n">Environment</span><span class="p">()</span>
-	<span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
+	<span class="n">env</span> <span class="o">=</span> <span class="nc">Environment</span><span class="p">()</span>
+	<span class="n">agent</span> <span class="o">=</span> <span class="nc">Agent</span><span class="p">()</span>
 
-	<span class="k">while</span> <span class="ow">not</span> <span class="n">env</span><span class="p">.</span><span class="n">is_done</span><span class="p">():</span>
-		<span class="n">agent</span><span class="p">.</span><span class="n">step</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
-	<span class="k">print</span><span class="p">(</span><span class="s">"Total reward got: %.4f"</span> <span class="o">%</span> <span class="n">agent</span><span class="p">.</span><span class="n">total_reward</span><span class="p">)</span></code></pre></figure>
+	<span class="k">while</span> <span class="ow">not</span> <span class="n">env</span><span class="p">.</span><span class="nf">is_done</span><span class="p">():</span>
+		<span class="n">agent</span><span class="p">.</span><span class="nf">step</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+	<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Total reward got: %.4f</span><span class="sh">"</span> <span class="o">%</span> <span class="n">agent</span><span class="p">.</span><span class="n">total_reward</span><span class="p">)</span></code></pre></figure>
 
 <p>This piece of code is important as it is the infrastructure of our RL agent.</p>
 

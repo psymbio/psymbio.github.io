@@ -106,7 +106,7 @@
     <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
     <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
     <a href="/">
-        <img src="/images/title.png" height="250" width="250" class="avatar" />
+        <img src="/images/title.png" height="150" width="150" class="avatar" />
     </a>
     <!-- Global site tag (gtag.js) - Google Analytics -->
 </header>
@@ -114,15 +114,27 @@
 <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
 <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
 <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
-<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-</script>
+<!-- <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script> -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+      
+  <script type="text/javascript"
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
 <script src="/assets/scripts/copycode.js"></script>
 <section class="content">
     <section class="byline">
         February 13, 2021
     </section>
     <h1>Fastbook Lesson 4</h1>
-    <br> <h2 id="questions">Questions</h2>
+    <h2 id="questions">Questions</h2>
 
 <div class="admonition note"><p class="admonition-title">1. How is a grayscale image represented on a computer? How about a color image?</p><p>Grayscale images have each of their pixels represented in the 256 different shades of gray there can be.<img alt="grayscale" src="/images/2021/fastai/grayscale.jpg" height="50%" width="50%" />Here each pixel needs one byte(8 bits) of data to be stored and their value ranges from 0 to 255. When colour is added, things get trickier. More information needs to be stored. Its no more just about what shade. Its about what shade of which "colour". Now to something there's this neat color and heaxadecimal trick. So I bet you know how the three primary colors can represent every other color, this is exactly what we use to represent other colors. If you've developed html websites you've come across something like #FFA079, now split that in three parts FF AO 79 which is basically the hex representation of 255, 160, 121. Choosing from the 256 values of red, green and blue we are able to create 16,777,216 colors.</p></div>
 <div class="admonition note"><p class="admonition-title">2. How are the files and folders in the MNIST_SAMPLE dataset structured? Why?</p><p>labels.csv  train/  valid/ where inside train/ and valid/ we have 3/ and 7/. They are divided into training  a validation sets so that the model could be trained and then checked for accuracy of the model. This prevents problems like overfitting.</p></div>

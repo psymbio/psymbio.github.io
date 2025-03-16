@@ -40,135 +40,8 @@
 }
 
 @font-face {
-    font-family: 'beirut';
-    src: url(/fonts/BeirutDisplay-Book.woff2);
-    font-display: swap;
-    unicode-range: U+000-5FF;
-    font-style: swap;
-}
-
-@font-face {
-    font-family: 'domaine';
-    src: url(/fonts/domaine-display-narrow-test-medium.woff);
-    font-display: swap;
-    unicode-range: U+000-5FF;
-    font-style: swap;
-}
-
-@font-face {
-    font-family: 'soehne-buch';
-    src: url(/fonts/soehne-buch.woff);
-    font-display: swap;
-    unicode-range: U+000-5FF;
-    font-style: swap;
-}
-
-@font-face {
-    font-family: 'soehne-buch';
-    src: url(/fonts/soehne-buch.woff);
-    font-display: swap;
-    unicode-range: U+000-5FF;
-    font-style: swap;
-}
-
-@font-face {
-    font-family: "soehne";
-    src: url("fonts/test-soehne-buch.woff") format("woff");
-}
-
-@font-face {
-    font-family: "din";
-    src: url("fonts/DINEngschriftStd.woff") format("woff");
-}
-
-@font-face {
     font-family: "untitled";
     src: url("fonts/test-untitled-sans-regular.woff") format("woff");
-}
-
-@font-face {
-    font-family: "fin-reg";
-    src: url("fonts/test-financier-text-regular.woff") format("woff");
-}
-
-@font-face {
-    font-family: "fin-ita";
-    src: url("fonts/test-financier-text-regular-italic.woff") format("woff");
-}
-
-@font-face {
-    font-family: "mercury";
-    src: url("fonts/Mercury\ Display\ Roman.otf") format("opentype");
-}
-
-@font-face {
-    font-family: "hatton";
-    src: url("fonts/Hatton-Medium.otf") format("opentype");
-}
-
-@font-face {
-    font-family: "hatton-light";
-    src: url("fonts/Hatton-Ultralight.otf") format("opentype");
-}
-
-@font-face {
-    font-family: "hk-light";
-    src: url("fonts/HKGrotesk-Light.otf") format("opentype");
-}
-
-@font-face {
-    font-family: "gtamerica";
-    src: url("fonts/GT-America-Standard-Regular-Trial.woff2") format("woff");
-}
-
-@font-face {
-    font-family: "gtamerica-light";
-    src: url("fonts/GT-America-Extended-Thin-Trial.woff2") format("woff");
-}
-
-@font-face {
-    font-family: "gtamerica-medium";
-    src: url("fonts/GT-America-Extended-Medium-Trial.woff2") format("woff");
-}
-
-@font-face {
-    font-family: "gtamerica-ex-light";
-    src: url("fonts/GT-America-Extended-Light-Trial.woff2") format("woff");
-}
-
-@font-face {
-    font-family: "gtamerica-ex-reg";
-    src: url("fonts/GT-America-Extended-Regular-Trial.woff2") format("woff");
-}
-
-@font-face {
-    font-family: "domaine";
-    src: url("fonts/TestDomaineDisplayNarrow-Regular.otf") format("opentype");
-}
-
-@font-face {
-    font-family: "forum";
-    src: url("fonts/Forum-Regular.otf") format("opentype");
-}
-
-@font-face {
-    font-family: "domaine-ita";
-    src: url(fonts/TestDomaineDisplayNarrow-RegularItalic.otf) format("opentype");
-}
-
-@font-face {
-    font-family: "geograph";
-    src: url(fonts/TestGeograph-Light.otf) format("opentype");
-}
-
-@font-face {
-    font-family: "metric";
-    src: url(fonts/TestMetric-Light.otf) format("opentype");
-}
-
-@font-face {
-    font-family: "hedane";
-    src: url(fonts/TestHeldaneDisplay-Regular.otf) format("opentype");
 }
 
 @font-face {
@@ -182,34 +55,8 @@
 }
 
 @font-face {
-    font-family: "gandhi";
-    src: url(fonts/GandhiSerif-Regular.otf) format("opentype");
-}
-
-@font-face {
-    font-family: "ogg";
-    src: url(fonts/Ogg-Roman.otf) format("opentype");
-}
-
-@font-face {
-    font-family: "ogg-ita";
-    src: url(fonts/Ogg-Italic.otf) format("opentype");
-}
-
-@font-face {
     font-family: "basis";
     src: url(fonts/basis-grotesque-regular.woff2) format("woff");
-}
-
-@font-face {
-    font-family: "chronicle";
-    src: url(fonts/Chronicle\ Display\ Roman.woff) format("woff");
-}
-
-@font-face {
-    font-family: "attila";
-    src: url("//db.onlinewebfonts.com/t/e6ecebce74f9ee16345813d47cb3cff9.eot");
-    src: url("//db.onlinewebfonts.com/t/e6ecebce74f9ee16345813d47cb3cff9.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/e6ecebce74f9ee16345813d47cb3cff9.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/e6ecebce74f9ee16345813d47cb3cff9.woff") format("woff"), url("//db.onlinewebfonts.com/t/e6ecebce74f9ee16345813d47cb3cff9.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/e6ecebce74f9ee16345813d47cb3cff9.svg#Attila Sans Black") format("svg");
 }
 
 .og {
@@ -230,25 +77,32 @@
 }
 
 html {
-    --mushroom: #EDE8D5;
     --trans: transparent;
-    --mink: #E8C9A1;
-    --slate: #7184A5;
     --spacing-xs: 8px;
     --spacing: 24px;
     --spacing-s: 12px;
     --spacing-m: 36px;
     --spacing-l: 48px;
     --foreground: black;
+    --background: #fffffe;
     --accent: #000000;
     --accent-2: #9F0D06;
-    --font-size: 18.7px;
-    --font-size-s: 16px;
-    --font-size-xs: 14.9px;
+    --accent-3: #5a5a5a;
+    --walnut: #eceadf;
+    --font-size: 16px;
+    --font-size-s: 14px;
+    --font-size-xs: 12px;
+    --basic-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    /* --title-font: "suisse", "basis", "nueue"; */
+    --title-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+.postlink {
+    font-size: var(--font-size-xs);
 }
 
 nav ul {
-    background-color: #fffaf1;
+    background-color: var(--background);
     float: left;
     margin-right: 2rem;
     position: fixed;
@@ -266,7 +120,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #9F0D06;
+    color: var(--accent-2);
     font-size: 22px;
     padding: .1rem;
     text-decoration: none;
@@ -279,99 +133,14 @@ nav ul li a:hover {
 body {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    background: #003152;
-    /*#CBFFFA;*/
-    /*rgba(27,193,187,.2);*/
-    font-family: 'messinasans', Helvetica;
-    /*you've removed fall-back fonts*/
+    font-family: var(--basic-font);
     color: var(--foreground);
     margin: 0;
-    /*wlanuts are the brain: get it?*/
-    background-color: #eceadf;
-    /*#eceadf;*/
-    /*#E2BB7B*/
-    /*#faf6eb*/
-    /*walnut brown*/
-    /*#d19950;*/
-    /*#cc8f3f;*/
-    /*#de9967;*/
-    /*was there before*/
-    background-image: linear-gradient(rgba(255, 255, 255, .5) 2px, transparent 2px), linear-gradient(90deg, rgba(255, 255, 255, .5) 2px, transparent 2px), linear-gradient(rgba(255, 255, 255, .28) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .28) 1px, transparent 1px);
-    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
-    background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
-    /*
-background-color: var(--mushroom);
-	background-image:
-		repeating-radial-gradient(
-			circle at 0.5em 0.5em,
-			var(--mushroom),
-			var(--mushroom) 0.26em,
-			var(--trans) 0.275em,
-			var(--trans) 2em),
-
-		repeating-radial-gradient(
-			circle at 0.59em 0.31em,
-			var(--mushroom),
-			var(--mushroom) 0.26em,
-			var(--trans) 0.275em,
-			var(--trans) 2em),
-		repeating-radial-gradient(
-			circle at 0.59em 0.87em,
-			var(--mushroom),
-			var(--mushroom) 0.26em,
-			var(--trans) 0.275em,
-			var(--trans) 2em),
-		repeating-radial-gradient(
-			circle at 0.31em 0.59em,
-			var(--mushroom),
-			var(--mushroom) 0.26em,
-			var(--trans) 0.275em,
-			var(--trans) 2em),
-		repeating-radial-gradient(
-			circle at 0.87em 0.59em,
-			var(--mushroom),
-			var(--mushroom) 0.26em,
-			var(--trans) 0.275em,
-			var(--trans) 2em),
-
-		repeating-radial-gradient(
-			circle at 0.59em 0.31em,
-			var(--slate),
-			var(--slate) 0.35em,
-			var(--trans) 0.351em,
-			var(--trans) 2em),
-		repeating-radial-gradient(
-			circle at 0.59em 0.87em,
-			var(--slate),
-			var(--slate) 0.35em,
-			var(--trans) 0.351em,
-			var(--trans) 2em),
-		repeating-radial-gradient(
-			circle at 0.31em 0.59em,
-			var(--slate),
-			var(--slate) 0.35em,
-			var(--trans) 0.351em,
-			var(--trans) 2em),
-		repeating-radial-gradient(
-			circle at 0.87em 0.59em,
-			var(--slate),
-			var(--slate) 0.35em,
-			var(--trans) 0.351em,
-			var(--trans) 2em);
-	background-size: 1.2em 1.2em;
-	background-position: 0.42em 0.42em;
-*/
-    /*
-background:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj48ZGVmcz48cGF0dGVybiBpZD0icGF0dGVybiIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiB2aWV3Qm94PSIwIDAgNDAsNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkgIj48cmVjdCBpZD0icGF0dGVybi1iYWNrZ3JvdW5kIiB3aWR0aD0iNDAwJSIgaGVpZ2h0PSI0MDAlIiBmaWxsPSJyZ2JhKDIzNywgMjMyLCAyMTMsMSkiPjwvcmVjdD4gPHBhdGggZmlsbD0icmdiYSgyMzcsIDIzMiwgMjEzLDEpIiBkPSJNNDAsMjAgTDM0LDE0IEwzNCw2IEwyNiw2IEwyMCwwIEwxNCw2IEw2LDYgTDYsMTQgTDAsMjAgTDYsMjYgTDYsMzQgTDE0LDM0IEwyMCw0MCBMMjYsMzQgTDM0LDM0IEwzNCwyNiB6IiBmaWx0ZXI9InVybCgjZmlsdGVyMXBhdHRlcm4pIj48L3BhdGg+PHBhdGggZmlsbD0iIzJhNDM2NSIgZD0iTTMyLDIwIEwzNCwxNCBMMzQsNiBMMjYsNiBMMjAsOCBMMTQsNiBMNiw2IEw2LDE0IEw4LDIwIEw2LDI2IEw2LDM0IEwxNCwzNCBMMjAsMzIgTDI2LDM0IEwzNCwzNCBMMzQsMjYgeiI+PC9wYXRoPjxwYXRoIGZpbGw9InJnYmEoMjM3LCAyMzIsIDIxMywxKSIgZD0iTTIsMiBMNiwxNCB2LTggaDggek0zOCwyIEwyNiw2IGg4IHY4IHpNMiwzOCBMNiwyNiB2OCBoOCB6TTM4LDM4IEwzNCwyNiB2OCBoLTggeiIgZmlsdGVyPSJ1cmwoI2ZpbHRlcjFwYXR0ZXJuKSI+PC9wYXRoPjwvcGF0dGVybj4gPGZpbHRlciBpZD0iZmlsdGVyMXBhdHRlcm4iPjxmZUdhdXNzaWFuQmx1ciBpbj0iU291cmNlR3JhcGhpYyIgc3RkRGV2aWF0aW9uPSI0Ij48L2ZlR2F1c3NpYW5CbHVyPjwvZmlsdGVyPiA8L2RlZnM+IDxyZWN0IGZpbGw9InVybCgjcGF0dGVybikiIGhlaWdodD0iMTAwJSIgd2lkdGg9IjEwMCUiPjwvcmVjdD48L3N2Zz4=")
-*/
-    /*
-background:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj48ZGVmcz48cGF0dGVybiBpZD0icGF0dGVybiIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiB2aWV3Qm94PSIwIDAgNDAsNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkgIj48cmVjdCBpZD0icGF0dGVybi1iYWNrZ3JvdW5kIiB3aWR0aD0iNDAwJSIgaGVpZ2h0PSI0MDAlIiBmaWxsPSJyZ2JhKDIzNywgMjMyLCAyMTMsMSkiPjwvcmVjdD4gPHBhdGggZmlsbD0icmdiYSgyMzcsIDIzMiwgMjEzLDEpIiBkPSJNNDAsMjAgTDM0LDE0IEwzNCw2IEwyNiw2IEwyMCwwIEwxNCw2IEw2LDYgTDYsMTQgTDAsMjAgTDYsMjYgTDYsMzQgTDE0LDM0IEwyMCw0MCBMMjYsMzQgTDM0LDM0IEwzNCwyNiB6Ij48L3BhdGg+PHBhdGggZmlsbD0iIzJhNDM2NSIgZD0iTTMyLDIwIEwzNCwxNCBMMzQsNiBMMjYsNiBMMjAsOCBMMTQsNiBMNiw2IEw2LDE0IEw4LDIwIEw2LDI2IEw2LDM0IEwxNCwzNCBMMjAsMzIgTDI2LDM0IEwzNCwzNCBMMzQsMjYgeiI+PC9wYXRoPjxwYXRoIGZpbGw9InJnYmEoMjM3LCAyMzIsIDIxMywxKSIgZD0iTTIsMiBMNiwxNCB2LTggaDggek0zOCwyIEwyNiw2IGg4IHY4IHpNMiwzOCBMNiwyNiB2OCBoOCB6TTM4LDM4IEwzNCwyNiB2OCBoLTggeiI+PC9wYXRoPjwvcGF0dGVybj4gIDwvZGVmcz4gPHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgaGVpZ2h0PSIxMDAlIiB3aWR0aD0iMTAwJSI+PC9yZWN0Pjwvc3ZnPg==")
-*/
+    background-color: var(--background);
 }
 
 .shore {
-    background-color: rgba(255, 250, 241, 0.788);
-    backdrop-filter: blur(2px);
+    background-color: var(--background);
 }
 
 p {
@@ -381,7 +150,7 @@ p {
 }
 
 .top-line {
-    border-top: 6px solid #9F0D06;
+    border-top: 6px solid var(--accent-2);
     position: fixed;
     top: 0;
     left: 0;
@@ -407,57 +176,59 @@ iframe {
  **********************/
 
 h1 {
-    font-size: 38px;
-    color: #9F0D06;
-    font-family: "suisse", "basis", "nueue";
+    font-size: 32px;
+    color: var(--accent-2);
+    font-family: var(--title-font);
     font-weight: normal;
-    /*font-family: 'soehne-buch', Helvetica;*/
     line-height: 1.3846153846;
-    /*font-weight: 550;*/
 }
 
 h2 {
-    font-size: 32px;
-    color: #9F0D06;
-    font-family: "suisse", "basis", "nueue";
+    font-size: 26px;
+    color: var(--accent-2);
+    font-family: var(--title-font);
     line-height: 1;
     font-weight: normal;
 }
 
 h3 {
-    font-size: 28px;
-    color: #9F0D06;
-    font-family: "suisse", "basis", "nueue";
+    font-size: 24px;
+    color: var(--accent-2);
+    font-family: var(--title-font);
     font-weight: normal;
     line-height: 1.0909090909;
 }
 
 h4 {
-    font-size: 24px;
-    color: #9F0D06;
-    font-family: "suisse", "basis", "nueue";
+    font-size: 22px;
+    color: var(--accent-2);
+    font-family: var(--title-font);
     font-weight: normal;
     line-height: 1.2;
 }
 
 h5 {
-    font-size: 22px;
-    color: #9F0D06;
-    font-family: "suisse", "basis", "nueue";
+    font-size: 20px;
+    color: var(--accent-2);
+    font-family: var(--title-font);
     font-weight: normal;
     line-height: 1.3333333333;
 }
 
 h6 {
-    font-size: 20px;
-    color: #9F0D06;
-    font-family: "suisse", "basis", "nueue";
+    font-size: 18px;
+    color: var(--accent-2);
+    font-family: var(--title-font);
     font-weight: normal;
     line-height: 1.5;
 }
 
 ul.listing>h3 {
     margin-top: var(--spacing-s);
+}
+
+.movelinkup {
+    transform: translateY(-15px);
 }
 
 ul {
@@ -468,7 +239,7 @@ ul {
 a.indexed {
     /* at last, it's been fixed */
     max-width: 250px;
-    font-size: 19px;
+    font-size: 16px;
 }
 
 div.mermaid {
@@ -517,7 +288,7 @@ div.mermaid {
 
 .sidebar .avatar {
     /*border-radius: 50%;*/
-    border: 6px solid #000000;
+    border: 2.5px solid #000000;
 }
 
 .sidebar .avatar:hover {
@@ -584,7 +355,7 @@ div.mermaid {
 .content .byline {
     font-weight: 500;
     font-size: var(--font-size-s);
-    color: #363636;
+    color: #6b6b6b;
     /*text-transform: uppercase;*/
     margin-bottom: -30px;
 }
@@ -676,9 +447,9 @@ blockquote p {
 }
 
 .content .listing li {
-    font-size: var(--font-size);
+    font-size: var(--font-size-s);
     list-style: none;
-    padding: 5px 3px;
+    padding-top: 4px;
     margin: 0;
     color: #777777;
 }
@@ -691,7 +462,6 @@ blockquote p {
 }
 
 .content .listing a {
-    color: black;
     padding-bottom: 2px;
     border-bottom: 1px dotted #ddd;
     text-decoration: none;
@@ -699,26 +469,25 @@ blockquote p {
 }
 
 .content .listing li span:not(.talk-title) {
-    font-size: 16px;
+    font-size: 15px;
     text-align: right;
-    letter-spacing: 0.5px;
     flex-shrink: 0;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     min-width: max-content;
-    color: black;
+    /* transform: translateY(-50%); */
 }
 
 .grid-container {
     display: grid;
     grid-column-gap: 0px;
     grid-template-columns: 1fr 1fr 1fr;
-    background-color: #9F0D06;
+    background-color: var(--accent-2);
     padding: 10px;
 }
 
 .grid-item {
     background-color: #fffaf1;
-    border: .5px solid #9F0D06;
+    border: .5px solid var(--accent-2);
     ;
     padding: 10px;
     font-size: 20px;
@@ -737,12 +506,11 @@ a {
     text-decoration: underline;
     -webkit-text-decoration-skip: ink;
     text-decoration-skip: ink;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 a:hover,
 button:hover {
-    text-decoration: underline;
     -webkit-animation: zomg 3s infinite;
     -moz-animation: zomg 3s infinite;
     animation: zomg 3s infinite;
@@ -751,24 +519,24 @@ button:hover {
 @-webkit-keyframes zomg {
     0%,
     100% {
-        color: #9F0D06;
-        fill: #9F0D06;
+        color: var(--accent-2);
+        fill: var(--accent-2);
     }
 }
 
 @-moz-keyframes zomg {
     0%,
     100% {
-        color: #9F0D06;
-        fill: #9F0D06;
+        color: var(--accent-2);
+        fill: var(--accent-2);
     }
 }
 
 @keyframes zomg {
     0%,
     100% {
-        color: #9F0D06;
-        fill: #9F0D06;
+        color: var(--accent-2);
+        fill: var(--accent-2);
     }
 }
 

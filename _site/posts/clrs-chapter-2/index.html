@@ -106,7 +106,7 @@
     <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
     <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
     <a href="/">
-        <img src="/images/title.png" height="250" width="250" class="avatar" />
+        <img src="/images/title.png" height="150" width="150" class="avatar" />
     </a>
     <!-- Global site tag (gtag.js) - Google Analytics -->
 </header>
@@ -114,15 +114,27 @@
 <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
 <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
 <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
-<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-</script>
+<!-- <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script> -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+      
+  <script type="text/javascript"
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
 <script src="/assets/scripts/copycode.js"></script>
 <section class="content">
     <section class="byline">
         October  6, 2020
     </section>
     <h1>Chapter 2: Getting Started</h1>
-    <br> <h2 id="21-insertion-sort">2.1 Insertion Sort</h2>
+    <h2 id="21-insertion-sort">2.1 Insertion Sort</h2>
 
 <p><strong>Psuedocode</strong> is a plain language description of the steps in an algorithm or another system as it has the structure of programming language it shouldn’t be hard to understand if you have some knowledge on programming languages.</p>
 
@@ -154,7 +166,7 @@
 
 <p>Here is the code in C and Python</p>
 
-<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
 #define LENGTH(array) (sizeof(array)/sizeof(array[0])
 </span>
 <span class="kt">void</span> <span class="nf">insertion_sort</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">A</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span>
@@ -187,7 +199,7 @@
 <span class="p">}</span></code></pre></figure>
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">insertion_sort</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
-   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
+   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
       <span class="n">key</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
       <span class="c1"># insert A[j] into the sorted sequence
 </span>      <span class="n">i</span> <span class="o">=</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span> <span class="c1"># important line
@@ -198,14 +210,14 @@
 
 
 <span class="n">array</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">"Enter size of array: "</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span> 
-    <span class="n">element</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span> 
-    <span class="n">array</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
-<span class="n">insertion_sort</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"The sorted array is:"</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
-   <span class="k">print</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">])</span></code></pre></figure>
+<span class="n">n</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="sh">"</span><span class="s">Enter size of array: </span><span class="sh">"</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span> 
+    <span class="n">element</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">())</span> 
+    <span class="n">array</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+<span class="nf">insertion_sort</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">The sorted array is:</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
+   <span class="nf">print</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">])</span></code></pre></figure>
 
 <p>There are three parts that make for an algorithm:</p>
 <ul>
@@ -240,7 +252,7 @@
 <p>Just need to change one little detail in the code. A[i] &gt; key needs to become A[i] &lt; key.</p>
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">insertion_sort_dsc</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
-   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
+   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
       <span class="n">key</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
       <span class="c1"># insert A[j] into the sorted sequence
 </span>      <span class="n">i</span> <span class="o">=</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span> <span class="c1"># important line
@@ -251,14 +263,14 @@
 
 
 <span class="n">array</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">"Enter size of array: "</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span> 
-    <span class="n">element</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span> 
-    <span class="n">array</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
-<span class="n">insertion_sort</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"The sorted array is:"</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
-   <span class="k">print</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">])</span></code></pre></figure>
+<span class="n">n</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="sh">"</span><span class="s">Enter size of array: </span><span class="sh">"</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span> 
+    <span class="n">element</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">())</span> 
+    <span class="n">array</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+<span class="nf">insertion_sort</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">The sorted array is:</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
+   <span class="nf">print</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">])</span></code></pre></figure>
 
 <p>2.1-3) Consider the searching problem:<br />
 Input: A sequence of n numbers A = (a_1, a_2, … a_n) and a value <em>v</em>.<br />
@@ -266,14 +278,14 @@ Output: An index i such that <em>v</em> = A[i] or the special value NIL if does 
 Write pseudo-code for linear search, which scans through the sequence, looking for <em>v</em>. Using a loop invariant, prove that your algorithm is correct. Make sure that your loop invariant fulfills the three necessary properties.</p>
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">linear_search</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
        <span class="k">if</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
            <span class="k">return</span> <span class="n">i</span>
     <span class="k">return</span> <span class="o">-</span><span class="mi">1</span></code></pre></figure>
 
 <p>Here is the code in C and Python.</p>
 
-<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
 #define LENGTH(arr) (sizeof(arr)/sizeof(arr[0]))
 </span>
 <span class="kt">int</span> <span class="nf">linear_search</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span> <span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
@@ -302,33 +314,33 @@ Write pseudo-code for linear search, which scans through the sequence, looking f
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">linear_search</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
     <span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
        <span class="k">if</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
            <span class="k">return</span> <span class="n">i</span>
     <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 
 <span class="n">array</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">"Enter size of array: "</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span> 
-    <span class="n">element</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span> 
-    <span class="n">array</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
-<span class="n">target</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">"Enter an element to find in the array: "</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"Target element found at index: "</span><span class="p">,</span> <span class="n">linear_search</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">target</span><span class="p">))</span></code></pre></figure>
+<span class="n">n</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="sh">"</span><span class="s">Enter size of array: </span><span class="sh">"</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span> 
+    <span class="n">element</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">())</span> 
+    <span class="n">array</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+<span class="n">target</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="sh">"</span><span class="s">Enter an element to find in the array: </span><span class="sh">"</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Target element found at index: </span><span class="sh">"</span><span class="p">,</span> <span class="nf">linear_search</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">target</span><span class="p">))</span></code></pre></figure>
 
 <p>2.1-4) Consider the problem of adding two n-bit binary integers, stored in two n-element arrays A and B. The sum of the two integers should be stored in binary form in an (n+1)-element array C. State the problem formally and write pseudocode for adding the two integers.</p>
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">addBinary</span><span class="p">(</span><span class="nb">int</span><span class="p">[]</span> <span class="n">a</span><span class="p">,</span> <span class="nb">int</span><span class="p">[]</span> <span class="n">b</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
 	<span class="nb">int</span> <span class="n">c</span><span class="p">[</span><span class="n">size</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
 	<span class="nb">int</span> <span class="n">carryover</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
-	<span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">length</span><span class="p">,</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">length</span><span class="p">,</span> <span class="n">i</span><span class="o">++</span><span class="p">,</span> <span class="n">j</span><span class="o">++</span><span class="p">):</span>
+	<span class="nf">for </span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">length</span><span class="p">,</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">length</span><span class="p">,</span> <span class="n">i</span><span class="o">++</span><span class="p">,</span> <span class="n">j</span><span class="o">++</span><span class="p">):</span>
 		<span class="nb">sum</span> <span class="o">=</span> <span class="n">carry</span>
-		<span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+		<span class="nf">if </span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
 			<span class="n">carry</span> <span class="o">=</span> <span class="mi">1</span>
-		<span class="k">if</span> <span class="p">((</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)):</span>
+		<span class="nf">if </span><span class="p">((</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)):</span>
 			<span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span>
-		<span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+		<span class="nf">if </span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
 			<span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span>
-		<span class="k">if</span><span class="p">((</span><span class="nb">sum</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">carry</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)):</span>  
+		<span class="nf">if</span><span class="p">((</span><span class="nb">sum</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">carry</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)):</span>  
 			<span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 			<span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span></code></pre></figure>
 
@@ -453,7 +465,7 @@ Write pseudo-code for linear search, which scans through the sequence, looking f
 			<span class="k">if</span> <span class="nb">min</span> <span class="o">&gt;</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 				<span class="nb">min</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 				<span class="n">flag</span> <span class="o">=</span> <span class="n">flag</span> <span class="o">+</span> <span class="mi">1</span>
-		<span class="n">swap</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="nb">min</span><span class="p">)</span>
+		<span class="nf">swap</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="nb">min</span><span class="p">)</span>
 		<span class="n">j</span><span class="o">++</span></code></pre></figure>
 
 <p>// needs edits</p>
@@ -536,7 +548,7 @@ Write pseudo-code for linear search, which scans through the sequence, looking f
 
 <p>If you have two sorted piles of cards and you were to merge them, then you’d select a card from either pile, compare them, and place the smallest one in the new sorted pile. This takes O(n) time. The following pseudocode implements this. Here, we also place a <strong>sentinel</strong> card at the bottom of the pile, which has a special value to simplify code. Here it has the value: infinity. Once the sentinel card is exposed that means all the non-sentinel cards of that list have already been placed. But here, we also know that we have to do this exactly r - p + 1 times.</p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">MERGE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="nc">MERGE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
 	<span class="n">n_1</span> <span class="o">=</span> <span class="n">q</span> <span class="o">-</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">1</span>
 	<span class="n">n_2</span> <span class="o">=</span> <span class="n">r</span> <span class="o">-</span> <span class="n">q</span>
 	<span class="n">let</span> <span class="n">L</span><span class="p">[</span><span class="mi">1</span> <span class="p">...</span> <span class="n">n_1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="ow">and</span> <span class="n">R</span><span class="p">[</span><span class="mi">1</span> <span class="p">...</span> <span class="n">n_2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="n">be</span> <span class="n">new</span> <span class="n">arrays</span>
@@ -560,12 +572,12 @@ Write pseudo-code for linear search, which scans through the sequence, looking f
 
 <p>MERGE routine is a subroutine of MERGE-SORT. MERGE-SORT(A, p, r) sorts elements in the subarray A[p … r]. If p &gt;= r, then the subarray has at most one element and is already sorted. Otherwise q is computed as (p + r)/2 making two sub-arrays A[p … q] and A[q+1 … r] both containing n/2 elements.</p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">MERGE</span><span class="o">-</span><span class="n">SORT</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">MERGE</span><span class="o">-</span><span class="nc">SORT</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
 	<span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">:</span>
-		<span class="n">q</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="n">r</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-		<span class="n">MERGE</span><span class="o">-</span><span class="n">SORT</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
-		<span class="n">MERGE</span><span class="o">-</span><span class="n">SORT</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">q</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
-		<span class="n">MERGE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span></code></pre></figure>
+		<span class="n">q</span> <span class="o">=</span> <span class="nf">ceil</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="n">r</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+		<span class="n">MERGE</span><span class="o">-</span><span class="nc">SORT</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+		<span class="n">MERGE</span><span class="o">-</span><span class="nc">SORT</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">q</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+		<span class="nc">MERGE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span></code></pre></figure>
 
 <p>To sort the whole array, we call MERGE-SORT(A, 1, A.length), where A.length = n. First they are broken to one item sequences which are already sorted and then combined into two sorted elements, then four, 2^k (for k = 0, 1, 2, 3 …). Until finally two sorted arrays of n/2 are combined in the last step.</p>
 
@@ -598,12 +610,12 @@ Write pseudo-code for linear search, which scans through the sequence, looking f
 			<span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
 			<span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span></code></pre></figure>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">MERGE</span><span class="o">-</span><span class="n">SORT</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">MERGE</span><span class="o">-</span><span class="nc">SORT</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
 	<span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">:</span>
-		<span class="n">q</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">((</span><span class="n">p</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-		<span class="n">MERGE</span><span class="o">-</span><span class="n">SORT</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
-		<span class="n">MERGE</span><span class="o">-</span><span class="n">SORT</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">q</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
-		<span class="n">MERGE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span></code></pre></figure>
+		<span class="n">q</span> <span class="o">=</span> <span class="nf">ceil</span><span class="p">((</span><span class="n">p</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+		<span class="n">MERGE</span><span class="o">-</span><span class="nc">SORT</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+		<span class="n">MERGE</span><span class="o">-</span><span class="nc">SORT</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">q</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+		<span class="nc">MERGE</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span></code></pre></figure>
 
 <p>2.3-3) Use mathematical induction to show that when n is an exact power of 2, the solution of the recurrence</p>
 
@@ -611,7 +623,7 @@ Write pseudo-code for linear search, which scans through the sequence, looking f
 
 <p>2.3-5) Referring back to the searching problem (see Exercise 2.1-3), observe that if the sequence A is sorted, we can check the midpoint of the sequence against and eliminate half of the sequence from further consideration. The binary search algorithm repeats this procedure, halving the size of the remaining portion of the sequence each time. Write pseudocode, either iterative or recursive, for binary search. Argue that the worst-case running time of binary search is O(lg n).I</p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">BINARY</span><span class="o">-</span><span class="n">SEARCH</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">BINARY</span><span class="o">-</span><span class="nc">SEARCH</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
 	<span class="nb">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">A</span><span class="p">.</span><span class="n">length</span><span class="p">,</span> <span class="n">location</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
 	<span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">A</span><span class="p">.</span><span class="n">length</span><span class="p">:</span>
 		<span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
@@ -695,16 +707,16 @@ Write pseudo-code for linear search, which scans through the sequence, looking f
   
     <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">start</span><span class="o">+</span><span class="n">end</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
     <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">val</span><span class="p">:</span> 
-        <span class="k">return</span> <span class="n">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span> 
+        <span class="k">return</span> <span class="nf">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span> 
     <span class="k">elif</span> <span class="n">arr</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">val</span><span class="p">:</span> 
-        <span class="k">return</span> <span class="n">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">mid</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> 
+        <span class="k">return</span> <span class="nf">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">mid</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> 
     <span class="k">else</span><span class="p">:</span> 
         <span class="k">return</span> <span class="n">mid</span> 
   
 <span class="k">def</span> <span class="nf">insertion_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span> 
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)):</span> 
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)):</span> 
         <span class="n">val</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> 
-        <span class="n">j</span> <span class="o">=</span> <span class="n">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> 
+        <span class="n">j</span> <span class="o">=</span> <span class="nf">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> 
         <span class="n">arr</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[:</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">val</span><span class="p">]</span> <span class="o">+</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">:</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span> 
     <span class="k">return</span> <span class="n">arr</span></code></pre></figure>
 

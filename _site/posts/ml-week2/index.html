@@ -106,7 +106,7 @@
     <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
     <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
     <a href="/">
-        <img src="/images/title.png" height="250" width="250" class="avatar" />
+        <img src="/images/title.png" height="150" width="150" class="avatar" />
     </a>
     <!-- Global site tag (gtag.js) - Google Analytics -->
 </header>
@@ -114,15 +114,27 @@
 <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
 <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
 <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
-<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-</script>
+<!-- <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script> -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+      
+  <script type="text/javascript"
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
 <script src="/assets/scripts/copycode.js"></script>
 <section class="content">
     <section class="byline">
         June 25, 2021
     </section>
     <h1>Lecture 3: Locally Weighted & Logistic Regression</h1>
-    <br> <p>Okay so now instead of just straight lines, we’ll be dealing with curves and so the definition of \(h(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 ...\) changes from this to something like a qudratic line \(h(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2^2\) and if we don’t want it to look like a parabola we could say \(h(x) = \theta_0 + \theta_1 x_1 + \theta_2 \sqrt[2]{x_2}\)</p>
+    <p>Okay so now instead of just straight lines, we’ll be dealing with curves and so the definition of \(h(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 ...\) changes from this to something like a qudratic line \(h(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2^2\) and if we don’t want it to look like a parabola we could say \(h(x) = \theta_0 + \theta_1 x_1 + \theta_2 \sqrt[2]{x_2}\)</p>
 
 <iframe src="https://www.desmos.com/calculator/wswxzktjwn" width="100%" style="min-height:400px"></iframe>
 

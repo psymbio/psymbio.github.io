@@ -106,7 +106,7 @@
     <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
     <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
     <a href="/">
-        <img src="/images/title.png" height="250" width="250" class="avatar" />
+        <img src="/images/title.png" height="150" width="150" class="avatar" />
     </a>
     <!-- Global site tag (gtag.js) - Google Analytics -->
 </header>
@@ -114,15 +114,27 @@
 <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
 <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
 <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
-<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-</script>
+<!-- <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script> -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+      
+  <script type="text/javascript"
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
 <script src="/assets/scripts/copycode.js"></script>
 <section class="content">
     <section class="byline">
         November 24, 2021
     </section>
     <h1>Morlet Wavelets [Part 1]</h1>
-    <br> <h2 id="morlet-wavelets-usage-and-python-implementation">Morlet Wavelets (Usage and Python Implementation)</h2>
+    <h2 id="morlet-wavelets-usage-and-python-implementation">Morlet Wavelets (Usage and Python Implementation)</h2>
 
 <p>We might lose data while converting the signals of EEG from the time to frequency domain. That’s a short-coming of static spectral analyses, and so to be able to extract frequency specific information over time we use wavelet convolution.</p>
 
@@ -148,36 +160,36 @@ A wavelet is a wave-like oscillation with an amplitude that begins at zero, incr
 
 <p>Wavelets provide temporal specificity when used as weighting functions for signals, as when these signals are convoluted(sliding dot product between the kernel and the section of signal it’s aligned with) with the kernel(in this case the morlet wavelet).</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">"figure.figsize"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">math</span>
+<span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">rcParams</span><span class="p">[</span><span class="sh">"</span><span class="s">figure.figsize</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">srate</span> <span class="o">=</span> <span class="mi">1000</span>
 <span class="c1"># changed time from [-1,1] to [-2,2] to get a better guassian resolution
-</span><span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">stop</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span>
+</span><span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="n">start</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">stop</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span>
 <span class="n">freq</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># using euler's to ceneter the sine at zero (it looks okay)
-</span><span class="n">sine_wave</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">freq</span> <span class="o">*</span> <span class="n">time</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">freq</span> <span class="o">*</span> <span class="n">time</span><span class="p">)</span>
+</span><span class="n">sine_wave</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">freq</span> <span class="o">*</span> <span class="n">time</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="nf">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">freq</span> <span class="o">*</span> <span class="n">time</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">plot_signal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">x_label</span> <span class="o">=</span> <span class="s">"Time"</span><span class="p">,</span> <span class="n">y_label</span> <span class="o">=</span> <span class="s">"Amplitude"</span><span class="p">,</span> <span class="n">zoom</span> <span class="o">=</span> <span class="s">"no"</span><span class="p">):</span>
-    <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">"#9F0D06"</span><span class="p">)</span>
-    <span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-    <span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">x_label</span><span class="p">)</span>
-    <span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">y_label</span><span class="p">)</span>
-    <span class="n">plt</span><span class="p">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s">'both'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">plot_signal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">x_label</span> <span class="o">=</span> <span class="sh">"</span><span class="s">Time</span><span class="sh">"</span><span class="p">,</span> <span class="n">y_label</span> <span class="o">=</span> <span class="sh">"</span><span class="s">Amplitude</span><span class="sh">"</span><span class="p">,</span> <span class="n">zoom</span> <span class="o">=</span> <span class="sh">"</span><span class="s">no</span><span class="sh">"</span><span class="p">):</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="sh">"</span><span class="s">#9F0D06</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="n">x_label</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">ylabel</span><span class="p">(</span><span class="n">y_label</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="sh">'</span><span class="s">both</span><span class="sh">'</span><span class="p">)</span>
     <span class="c1"># plt.axhline(y=0, color='k')
-</span>    <span class="k">if</span> <span class="n">zoom</span> <span class="o">==</span> <span class="s">"yes"</span><span class="p">:</span>
-        <span class="n">plt</span><span class="p">.</span><span class="n">margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.001</span><span class="p">)</span>
-        <span class="n">plt</span><span class="p">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">40</span><span class="p">)</span>
-    <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</span>    <span class="k">if</span> <span class="n">zoom</span> <span class="o">==</span> <span class="sh">"</span><span class="s">yes</span><span class="sh">"</span><span class="p">:</span>
+        <span class="n">plt</span><span class="p">.</span><span class="nf">margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mf">0.001</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="nf">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">40</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot_signal</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">sine_wave</span><span class="p">,</span> <span class="s">"Sine wave"</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">plot_signal</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">sine_wave</span><span class="p">,</span> <span class="sh">"</span><span class="s">Sine wave</span><span class="sh">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_4_0.png" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>
@@ -189,10 +201,10 @@ A wavelet is a wave-like oscillation with an amplitude that begins at zero, incr
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># defining the gaussian
 # full width at half maximum
 </span><span class="n">fwhm</span> <span class="o">=</span> <span class="mf">0.5</span>
-<span class="n">gaussian</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">((</span><span class="o">-</span><span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">time</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">fwhm</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">gaussian</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">exp</span><span class="p">((</span><span class="o">-</span><span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">time</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">fwhm</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot_signal</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">gaussian</span><span class="p">,</span> <span class="s">"Gaussian"</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">plot_signal</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">gaussian</span><span class="p">,</span> <span class="sh">"</span><span class="s">Gaussian</span><span class="sh">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_7_0.png" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>
@@ -201,128 +213,128 @@ A wavelet is a wave-like oscillation with an amplitude that begins at zero, incr
 </span><span class="n">morlet_wavelet</span> <span class="o">=</span> <span class="n">sine_wave</span> <span class="o">*</span> <span class="n">gaussian</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot_signal</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">morlet_wavelet</span><span class="p">,</span> <span class="s">"Morlet Wavelet"</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">plot_signal</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">morlet_wavelet</span><span class="p">,</span> <span class="sh">"</span><span class="s">Morlet Wavelet</span><span class="sh">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_9_0.png" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># looking at everything at once.
-</span><span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">sine_wave</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">gaussian</span><span class="p">,</span> <span class="s">'y'</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">morlet_wavelet</span><span class="p">,</span> <span class="s">'g'</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Morlet Wavelet'</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Time'</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Amplitude'</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s">'both'</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'k'</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</span><span class="n">plt</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">sine_wave</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">gaussian</span><span class="p">,</span> <span class="sh">'</span><span class="s">y</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">morlet_wavelet</span><span class="p">,</span> <span class="sh">'</span><span class="s">g</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">'</span><span class="s">Morlet Wavelet</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Time</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">ylabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Amplitude</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="sh">'</span><span class="s">both</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="sh">'</span><span class="s">k</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
 </code></pre></div></div>
 
 <figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_10_0.png" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pnts</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">mwX</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">fft</span><span class="p">.</span><span class="n">fft</span><span class="p">(</span><span class="n">morlet_wavelet</span><span class="p">)</span><span class="o">/</span><span class="n">pnts</span><span class="p">)</span>
-<span class="n">hz</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">stop</span> <span class="o">=</span> <span class="n">srate</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="n">pnts</span><span class="p">)</span>
+<span class="n">mwX</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nf">abs</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">fft</span><span class="p">.</span><span class="nf">fft</span><span class="p">(</span><span class="n">morlet_wavelet</span><span class="p">)</span><span class="o">/</span><span class="n">pnts</span><span class="p">)</span>
+<span class="n">hz</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="n">start</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">stop</span> <span class="o">=</span> <span class="n">srate</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="n">pnts</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot_signal</span><span class="p">(</span><span class="n">hz</span><span class="p">,</span> <span class="n">mwX</span><span class="p">,</span> <span class="s">"DFT"</span><span class="p">,</span> <span class="s">"Hz"</span><span class="p">,</span> <span class="s">"DFT Values"</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">plot_signal</span><span class="p">(</span><span class="n">hz</span><span class="p">,</span> <span class="n">mwX</span><span class="p">,</span> <span class="sh">"</span><span class="s">DFT</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Hz</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">DFT Values</span><span class="sh">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_12_0.png" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot_signal</span><span class="p">(</span><span class="n">hz</span><span class="p">,</span> <span class="n">mwX</span><span class="p">,</span> <span class="s">"DFT"</span><span class="p">,</span> <span class="s">"Hz"</span><span class="p">,</span> <span class="s">"DFT Values"</span><span class="p">,</span> <span class="s">"yes"</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">plot_signal</span><span class="p">(</span><span class="n">hz</span><span class="p">,</span> <span class="n">mwX</span><span class="p">,</span> <span class="sh">"</span><span class="s">DFT</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Hz</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">DFT Values</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">yes</span><span class="sh">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_13_0.png" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span>
 
-<span class="n">time_series</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"data.csv"</span><span class="p">)</span>
-<span class="n">time_series_values</span> <span class="o">=</span> <span class="n">time_series</span><span class="p">[</span><span class="s">"value"</span><span class="p">].</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">time_series</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">read_csv</span><span class="p">(</span><span class="sh">"</span><span class="s">data.csv</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">time_series_values</span> <span class="o">=</span> <span class="n">time_series</span><span class="p">[</span><span class="sh">"</span><span class="s">value</span><span class="sh">"</span><span class="p">].</span><span class="nf">to_numpy</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">time_series_values</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">time_series_values</span><span class="p">,</span> <span class="n">time_series_values</span><span class="p">)</span>
-<span class="n">time_series_values</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">time_series_values</span><span class="p">,</span> <span class="n">time_series_values</span><span class="p">)</span>
-<span class="n">time_series_values</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">time_series_values</span><span class="p">,</span> <span class="n">time_series_values</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">time_series_values</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">time_series_values</span><span class="p">,</span> <span class="n">time_series_values</span><span class="p">)</span>
+<span class="n">time_series_values</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">time_series_values</span><span class="p">,</span> <span class="n">time_series_values</span><span class="p">)</span>
+<span class="n">time_series_values</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">time_series_values</span><span class="p">,</span> <span class="n">time_series_values</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">time_series_time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">stop</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">time_series_values</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">time_series_time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="n">start</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">stop</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">time_series_values</span><span class="p">))</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot_signal</span><span class="p">(</span><span class="n">time_series_time</span><span class="p">,</span> <span class="n">time_series_values</span><span class="p">,</span> <span class="s">"Signal"</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">plot_signal</span><span class="p">(</span><span class="n">time_series_time</span><span class="p">,</span> <span class="n">time_series_values</span><span class="p">,</span> <span class="sh">"</span><span class="s">Signal</span><span class="sh">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_17_0.png" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">convoluted_signal</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">time_series_values</span><span class="p">,</span> <span class="n">morlet_wavelet</span><span class="p">,</span> <span class="s">'full'</span><span class="p">)</span>
-<span class="n">plot_signal</span><span class="p">(</span><span class="n">time_series_time</span><span class="p">,</span> <span class="n">convoluted_signal</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">time_series_time</span><span class="p">)],</span> <span class="s">"Convoluted Signal"</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">convoluted_signal</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">convolve</span><span class="p">(</span><span class="n">time_series_values</span><span class="p">,</span> <span class="n">morlet_wavelet</span><span class="p">,</span> <span class="sh">'</span><span class="s">full</span><span class="sh">'</span><span class="p">)</span>
+<span class="nf">plot_signal</span><span class="p">(</span><span class="n">time_series_time</span><span class="p">,</span> <span class="n">convoluted_signal</span><span class="p">[:</span><span class="nf">len</span><span class="p">(</span><span class="n">time_series_time</span><span class="p">)],</span> <span class="sh">"</span><span class="s">Convoluted Signal</span><span class="sh">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_18_0.png" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
-<span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">x3</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
-<span class="n">x4</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span>
-<span class="n">x5</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">*-</span><span class="mi">1</span>
-<span class="n">time_series_values_2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([])</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">ones</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">x3</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">x4</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">ones</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span>
+<span class="n">x5</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">ones</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">*-</span><span class="mi">1</span>
+<span class="n">time_series_values_2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([])</span>
 
-<span class="n">time_series_values_2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">time_series_values_2</span><span class="p">,</span> <span class="n">x1</span><span class="p">)</span>
-<span class="n">time_series_values_2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">time_series_values_2</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
-<span class="n">time_series_values_2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">time_series_values_2</span><span class="p">,</span> <span class="n">x3</span><span class="p">)</span>
-<span class="n">time_series_values_2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">time_series_values_2</span><span class="p">,</span> <span class="n">x4</span><span class="p">)</span>
-<span class="n">time_series_values_2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">time_series_values_2</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
-<span class="n">time_series_values_2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">time_series_values_2</span><span class="p">,</span> <span class="n">x5</span><span class="p">)</span>
-<span class="n">time_series_values_2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">time_series_values_2</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+<span class="n">time_series_values_2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">time_series_values_2</span><span class="p">,</span> <span class="n">x1</span><span class="p">)</span>
+<span class="n">time_series_values_2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">time_series_values_2</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+<span class="n">time_series_values_2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">time_series_values_2</span><span class="p">,</span> <span class="n">x3</span><span class="p">)</span>
+<span class="n">time_series_values_2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">time_series_values_2</span><span class="p">,</span> <span class="n">x4</span><span class="p">)</span>
+<span class="n">time_series_values_2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">time_series_values_2</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+<span class="n">time_series_values_2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">time_series_values_2</span><span class="p">,</span> <span class="n">x5</span><span class="p">)</span>
+<span class="n">time_series_values_2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">time_series_values_2</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
 
-<span class="n">time_series_time_2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">time_series_values_2</span><span class="p">))</span>
+<span class="n">time_series_time_2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">time_series_values_2</span><span class="p">))</span>
 
-<span class="n">plot_signal</span><span class="p">(</span><span class="n">time_series_time_2</span><span class="p">,</span> <span class="n">time_series_values_2</span><span class="p">,</span> <span class="s">"Random Noise"</span><span class="p">)</span>
+<span class="nf">plot_signal</span><span class="p">(</span><span class="n">time_series_time_2</span><span class="p">,</span> <span class="n">time_series_values_2</span><span class="p">,</span> <span class="sh">"</span><span class="s">Random Noise</span><span class="sh">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_19_0.png" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">kernel_new</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">kernel_new</span> <span class="o">=</span> <span class="n">kernel_new</span> <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">kernel_new</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">kernel_new</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">kernel_new</span> <span class="o">=</span> <span class="n">kernel_new</span> <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">kernel_new</span><span class="p">)</span>
 <span class="c1"># try these
 # kernel_new = -1 * kernel_new
-</span><span class="n">kernel_time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
-<span class="n">plot_signal</span><span class="p">(</span><span class="n">kernel_time</span><span class="p">,</span> <span class="n">kernel_new</span><span class="p">,</span> <span class="s">"Guassian Kernel"</span><span class="p">)</span>
+</span><span class="n">kernel_time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="nf">plot_signal</span><span class="p">(</span><span class="n">kernel_time</span><span class="p">,</span> <span class="n">kernel_new</span><span class="p">,</span> <span class="sh">"</span><span class="s">Guassian Kernel</span><span class="sh">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_20_0.png" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># smooths out the signal
-</span><span class="n">convoluted_signal</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">time_series_values_2</span><span class="p">,</span> <span class="n">kernel_new</span><span class="p">,</span> <span class="s">'full'</span><span class="p">)</span>
-<span class="n">plot_signal</span><span class="p">(</span><span class="n">time_series_time</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">convoluted_signal</span><span class="p">)],</span> <span class="n">convoluted_signal</span><span class="p">,</span> <span class="s">"Convoluted Signal"</span><span class="p">)</span>
+</span><span class="n">convoluted_signal</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">convolve</span><span class="p">(</span><span class="n">time_series_values_2</span><span class="p">,</span> <span class="n">kernel_new</span><span class="p">,</span> <span class="sh">'</span><span class="s">full</span><span class="sh">'</span><span class="p">)</span>
+<span class="nf">plot_signal</span><span class="p">(</span><span class="n">time_series_time</span><span class="p">[:</span><span class="nf">len</span><span class="p">(</span><span class="n">convoluted_signal</span><span class="p">)],</span> <span class="n">convoluted_signal</span><span class="p">,</span> <span class="sh">"</span><span class="s">Convoluted Signal</span><span class="sh">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_21_0.png" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># let's try building the edge detecting kernel
 </span>
-<span class="n">kernel_edge</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([])</span>
-<span class="n">x6</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">x7</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">x8</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">x9</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">kernel_edge</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([])</span>
+<span class="n">x6</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">x7</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">ones</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">x8</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">x9</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">ones</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span>
 
-<span class="n">kernel_edge</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">kernel_edge</span><span class="p">,</span> <span class="n">x6</span><span class="p">)</span>
-<span class="n">kernel_edge</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">kernel_edge</span><span class="p">,</span> <span class="n">x7</span><span class="p">)</span>
-<span class="n">kernel_edge</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">kernel_edge</span><span class="p">,</span> <span class="n">x8</span><span class="p">)</span>
-<span class="n">kernel_edge</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">kernel_edge</span><span class="p">,</span> <span class="n">x9</span><span class="p">)</span>
-<span class="n">kernel_edge</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">kernel_edge</span><span class="p">,</span> <span class="n">x6</span><span class="p">)</span>
+<span class="n">kernel_edge</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">kernel_edge</span><span class="p">,</span> <span class="n">x6</span><span class="p">)</span>
+<span class="n">kernel_edge</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">kernel_edge</span><span class="p">,</span> <span class="n">x7</span><span class="p">)</span>
+<span class="n">kernel_edge</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">kernel_edge</span><span class="p">,</span> <span class="n">x8</span><span class="p">)</span>
+<span class="n">kernel_edge</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">kernel_edge</span><span class="p">,</span> <span class="n">x9</span><span class="p">)</span>
+<span class="n">kernel_edge</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">kernel_edge</span><span class="p">,</span> <span class="n">x6</span><span class="p">)</span>
 
-<span class="n">kernel_time_edge</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">kernel_edge</span><span class="p">))</span>
-<span class="n">plot_signal</span><span class="p">(</span><span class="n">kernel_time_edge</span><span class="p">,</span> <span class="n">kernel_edge</span><span class="p">,</span> <span class="s">"Edge Kernel"</span><span class="p">)</span>
+<span class="n">kernel_time_edge</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">kernel_edge</span><span class="p">))</span>
+<span class="nf">plot_signal</span><span class="p">(</span><span class="n">kernel_time_edge</span><span class="p">,</span> <span class="n">kernel_edge</span><span class="p">,</span> <span class="sh">"</span><span class="s">Edge Kernel</span><span class="sh">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_22_0.png" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># signed edge detecting kernel
 </span>
-<span class="n">convoluted_signal</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">time_series_values_2</span><span class="p">,</span> <span class="n">kernel_edge</span><span class="p">,</span> <span class="s">'full'</span><span class="p">)</span>
-<span class="n">plot_signal</span><span class="p">(</span><span class="n">time_series_time</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">convoluted_signal</span><span class="p">)],</span> <span class="n">convoluted_signal</span><span class="p">,</span> <span class="s">"Convoluted Signal"</span><span class="p">)</span>
+<span class="n">convoluted_signal</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">convolve</span><span class="p">(</span><span class="n">time_series_values_2</span><span class="p">,</span> <span class="n">kernel_edge</span><span class="p">,</span> <span class="sh">'</span><span class="s">full</span><span class="sh">'</span><span class="p">)</span>
+<span class="nf">plot_signal</span><span class="p">(</span><span class="n">time_series_time</span><span class="p">[:</span><span class="nf">len</span><span class="p">(</span><span class="n">convoluted_signal</span><span class="p">)],</span> <span class="n">convoluted_signal</span><span class="p">,</span> <span class="sh">"</span><span class="s">Convoluted Signal</span><span class="sh">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <figure><img alt="image_alt" src="/images/2021/ants/basic-morlet-code/output_23_0.png" height="100%" width="100%" /><figcaption align="center"></figcaption></figure>

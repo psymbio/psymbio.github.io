@@ -21,6 +21,7 @@ layout: layout
     {% assign site_tags = site.tags | sort %}
     {% for tag in site_tags %}
     <h2 id="{{ tag[0] | slugify }}">{{ tag | first }}</h2>
+    <div class="movelinkup">
     <ul class="listing table">
       {% assign sorted_posts = tag[1] | sort: "order" %} {% for post in
       sorted_posts %}

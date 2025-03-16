@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-         The Brain Archive
+        Chapter 2: Electrical Signals of Nerve Cells &ndash; The Brain Archive
     </title>
     <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
     <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
@@ -110,313 +110,83 @@
     </a>
     <!-- Global site tag (gtag.js) - Google Analytics -->
 </header>
-<style>
-  .content {
-    margin-top: 0;
-  }
-  .sidebar {
-    margin-bottom: 0;
-  }
-  .something {
-    font-size: 20px;
-  }
-</style>
-<!--
-<p class="something">a brain on computer chips</p>
--->
+<link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+<link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+<link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+<link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+<!-- <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script> -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+      
+  <script type="text/javascript"
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+<script src="/assets/scripts/copycode.js"></script>
 <section class="content">
-  <ul class="listing table">
-    
-    
-    <h2 id="agentic-ai">Agentic AI</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/paper-summaries/">
-        <li>
-          <span>13 Mar 2025</span>
-          <a href="/posts/paper-summaries/" class="indexed">Paper Summaries</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="artificial-intelligence">Artificial Intelligence</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/brain-inspired-ai/">
-        <li>
-          <span>19 Sep 2020</span>
-          <a href="/posts/brain-inspired-ai/" class="indexed">Brain-inspired AI</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="clrs">CLRS</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/intro-to-algorithms/">
-        <li>
-          <span>04 Oct 2020</span>
-          <a href="/posts/intro-to-algorithms/" class="indexed">Introduction to Algorithms</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/clrs-chapter-1/">
-        <li>
-          <span>05 Oct 2020</span>
-          <a href="/posts/clrs-chapter-1/" class="indexed">Chapter 1: The Role of Algorithms in Computing</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/clrs-chapter-2/">
-        <li>
-          <span>06 Oct 2020</span>
-          <a href="/posts/clrs-chapter-2/" class="indexed">Chapter 2: Getting Started</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="cs229">CS229</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/ml-week1/">
-        <li>
-          <span>24 Jun 2021</span>
-          <a href="/posts/ml-week1/" class="indexed">Lecture 2: Introduction, Linear Regression, Gradient Descent</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/ml-week2/">
-        <li>
-          <span>25 Jun 2021</span>
-          <a href="/posts/ml-week2/" class="indexed">Lecture 3: Locally Weighted & Logistic Regression</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="computer-science">Computer Science</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/os/">
-        <li>
-          <span>20 Jan 2021</span>
-          <a href="/posts/os/" class="indexed">Designing Your Own OS from Scratch</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/compilers/">
-        <li>
-          <span>08 Dec 2020</span>
-          <a href="/posts/compilers/" class="indexed">The Meanderings of Designing Compilers</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="event-related-potential-techniques">Event-Related Potential Techniques</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/filters/">
-        <li>
-          <span>30 May 2021</span>
-          <a href="/posts/filters/" class="indexed">MNE Custom Filters</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="fast-ai">Fast.ai</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/fastai-lesson1/">
-        <li>
-          <span>05 Feb 2021</span>
-          <a href="/posts/fastai-lesson1/" class="indexed">Fastbook Lesson 1</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/fastai-lesson2/">
-        <li>
-          <span>09 Feb 2021</span>
-          <a href="/posts/fastai-lesson2/" class="indexed">Fastbook Lesson 2</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/fastai-lesson3/">
-        <li>
-          <span>11 Feb 2021</span>
-          <a href="/posts/fastai-lesson3/" class="indexed">Fastbook Lesson 3</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/fastai-lesson4/">
-        <li>
-          <span>13 Feb 2021</span>
-          <a href="/posts/fastai-lesson4/" class="indexed">Fastbook Lesson 4</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="literature">Literature</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/andrei-tarkovsky/">
-        <li>
-          <span>08 Mar 2025</span>
-          <a href="/posts/andrei-tarkovsky/" class="indexed">Andrei Tarkovsky</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/hamlet/">
-        <li>
-          <span>26 Nov 2021</span>
-          <a href="/posts/hamlet/" class="indexed">Hamlet: An Allegorical Meditation on the Enigma of Life and Human Conditions</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/the-catcher-in-the-rye/">
-        <li>
-          <span>29 Jul 2021</span>
-          <a href="/posts/the-catcher-in-the-rye/" class="indexed">The Catcher in the Rye</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/waiting-for-godot/">
-        <li>
-          <span>21 Apr 2021</span>
-          <a href="/posts/waiting-for-godot/" class="indexed">Waiting for Godot</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="ml">ML</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/linear-regression/">
-        <li>
-          <span>25 Mar 2025</span>
-          <a href="/posts/linear-regression/" class="indexed">Linear Regression</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="machine-learning">Machine Learning</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/sudoku/">
-        <li>
-          <span>04 Jan 2021</span>
-          <a href="/posts/sudoku/" class="indexed">Machine Learning based Sudoku Players</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/sudoku-2/">
-        <li>
-          <span>24 Feb 2021</span>
-          <a href="/posts/sudoku-2/" class="indexed">Reinforcement Learning based Sudoku Players, Part 2</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="mike-x-cohen-course">Mike X Cohen Course</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/agentic-ai/">
-        <li>
-          <span>25 Mar 2025</span>
-          <a href="/posts/agentic-ai/" class="indexed">Analyzing Neural Time Series Data, Part 1</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/morlet/">
-        <li>
-          <span>24 Nov 2021</span>
-          <a href="/posts/morlet/" class="indexed">Morlet Wavelets [Part 1]</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/new-ants-1/">
-        <li>
-          <span>15 Mar 2021</span>
-          <a href="/posts/new-ants-1/" class="indexed">Analyzing Neural Time Series Data, Part 1</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="neuroscience-purves-6e">Neuroscience Purves 6E</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/electrical-signals-of-nerve-cells/">
-        <li>
-          <span>02 Jan 2022</span>
-          <a href="/posts/electrical-signals-of-nerve-cells/" class="indexed">Chapter 2: Electrical Signals of Nerve Cells</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/studying-the-nervous-system/">
-        <li>
-          <span>02 Feb 2021</span>
-          <a href="/posts/studying-the-nervous-system/" class="indexed">Chapter 1: Studying the Nervous System</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="philosophy">Philosophy</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/intro-to-phil/">
-        <li>
-          <span>29 Nov 2020</span>
-          <a href="/posts/intro-to-phil/" class="indexed">Introduction to Philosophy</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/gettier-probs-in-ml/">
-        <li>
-          <span>05 Dec 2020</span>
-          <a href="/posts/gettier-probs-in-ml/" class="indexed">Gettier Problems in Machine Learning [draft]</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="math">math</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/roman-subtraction/">
-        <li>
-          <span>13 Mar 2025</span>
-          <a href="/posts/roman-subtraction/" class="indexed">Roman Subtraction</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-  </ul>
-  <br /><br />
+    <section class="byline">
+        January  2, 2022
+    </section>
+    <h1>Chapter 2: Electrical Signals of Nerve Cells</h1>
+    <p>Nerve cells generate a variety of electrical signals to transmit and store information. Usually the produce a negative potential: resting state potential (-40 to -90 mV). An action potential transiently abolishes the negative resting potential making the transmembrane positive. This transient change is what encodes information.</p>
+
+<p><strong>Receptor potentials</strong> are due to activation of sensory neurons by external stimuli: light, heat, and sound etc. These aid the transduction of sensory stimuli.</p>
+
+<p><strong>Synaptic Potentials</strong> are another type of electric signal in between the synaptic connections between neurons, which aid the transfer of information between neurons and exchange of information in complex neural circuits.</p>
+
+<p><strong>Action Potentials</strong> are electrical signals that travel along the axons, also called spikes or impulses, are responsible for long range transmission of information. To elicit a action potential we can pass an electrical current (but in normal conditions this is done through receptor and synaptic potentials). If this makes the membrane potential more negative then nothing dramatic happens, this is <strong>hyperpolarization</strong>. These create <strong>passive electrical responses</strong>. And when it becomes more positive than the resting potential, it’s called <strong>depolarization</strong> and when this positive potential is above a certain <strong>threshold potential</strong>, action potentials occur. Action potentials require selective changes in the neuronal membrane.</p>
+
+<p>Important stuff to remember about the action potentials:</p>
+<ul>
+  <li>Unlike receptor potentials, whose amplitudes are graded in proportion to the magnitude of the sensory stimulus, here the intensity is encoded by the frequency of the action potentials.</li>
+  <li><em>All-or-none</em>: they either fully occur or don’t occur at all.</li>
+</ul>
+
+<h2 id="long-distance-transmission-of-electrical-signals">Long-Distance Transmission of Electrical Signals</h2>
+
+<p>So neurons and wires are able to both passively and actively conduct electricity. But in neuron when electric signals are passively conducted (below the threshold) then the resulting potential decays with distance, falling to a small fraction of the initial value and at no more than a few millimeters away from the sight of injection. This occurs dues to injected current leaks and prevents the passive flow of the passive electric signal.</p>
+
+<p>Action potentials serve as a “booster system”, boosting the spatial spread of the signal. In this case, an action potential of constant amplitude is seen across the entire length of axon. Therefore, activate conduction is an effective way to circumvent the inherent leakiness of neurons.</p>
+
+<h2 id="how-ion-movements-produce-electric-signals">How Ion Movements Produce Electric Signals</h2>
+
+<p>Two reasons for the generation of electric potentials are:</p>
+
+<ol>
+  <li>differences in concentration of specific ions</li>
+  <li>membranes are selectively permeable</li>
+</ol>
+
+<p>Ion concentrations are established by proteins called <strong>active transporters</strong> and they actively move ions in and out of the cells.</p>
+
+<p>Selective permeability is established by proteins called <strong>ion channels</strong> and they allow only certain ions to cross the membrane.</p>
+
+<p>Channels and transporters work against each other to generate action potentials, resting potentials and synaptic potentials.</p>
+
+<p>read on: electrochemical equilibrium, Nernst equation, and Goldman equation (for when there is more than one permeant ion).</p>
+
+<h2 id="creation-of-the-action-potential">Creation of the Action Potential</h2>
+
+<p>Schematic representation of the membrane ion permeabilities associated with resting and action potentials. At rest, neuronal membranes are more permeable to K+ (gold) than to Na+ (red); accordingly, the resting membrane potential is negative and approaches the equilibrium potential for K+, \(E_K\). During an action potential, the membrane becomes very permeable to Na+ (red); thus, the membrane potential becomes positive and approaches the equilibrium potential for Na+, \(E_{Na}\). The rise in Na+ permeability is transient, however, so the membrane again becomes primarily permeable to K+, causing the potential to return to its negative resting value.</p>
+
+<p>http://hyperphysics.phy-astr.gsu.edu/hbase/Biology/actpot.html#c8</p>
+
+<h2 id="the-ionic-basis-of-the-resting-membrane-potential">The Ionic Basis of the Resting Membrane Potential</h2>
+
+<h2 id="the-ionic-basis-of-the-action-potentials">The Ionic Basis of the Action Potentials</h2>
+
+<p>Hodgkin and Katz did an experiment to test the role of Na+, so they removed it from the external medium and saw that this reduced both the amplitude of the the action potential and the rate of rise of the action potential. And they saw this almost linear relationship with the amplitude of the action potential and logarithm of the external Na+ concentration.</p>
+
+<p>Thus, while the resting neuronal membrane is only slightly permeable to Na+, the membrane becomes extraordinarily permeable to Na+ during the rising phase and overshoot phase of the action potential (see Box В for an explanation of action potential nomenclature). This temporary increase in Na+ permeability results from the opening of Na+-selective channels that are essentially closed in the resting state. Membrane pumps maintain a large electrochemical gradient for Na+, which is in much higher concentration outside the neuron than inside. When the Na+ channels open, Na+ flows into the neuron, causing the membrane potential to depolarize and approach \(E_{Na}\). The time that the membrane potential lingers near \(E_{Na}\) (about +58 mV) during the overshoot phase of an action potential is brief because the increased membrane permeability to Na+ itself is short-lived. The membrane potential rapidly repolarizes to resting levels and is actually followed by a transient undershoot.</p>
+
+    <script src="https://utteranc.es/client.js" repo="psymbio/psymbio.github.io" issue-term="pathname" theme="github-dark-orange" crossorigin="anonymous" async>
+    </script>
 </section>
 
 </section>

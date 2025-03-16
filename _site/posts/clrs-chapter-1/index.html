@@ -106,7 +106,7 @@
     <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
     <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
     <a href="/">
-        <img src="/images/title.png" height="250" width="250" class="avatar" />
+        <img src="/images/title.png" height="150" width="150" class="avatar" />
     </a>
     <!-- Global site tag (gtag.js) - Google Analytics -->
 </header>
@@ -114,15 +114,27 @@
 <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
 <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
 <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
-<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-</script>
+<!-- <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script> -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+      
+  <script type="text/javascript"
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
 <script src="/assets/scripts/copycode.js"></script>
 <section class="content">
     <section class="byline">
         October  5, 2020
     </section>
     <h1>Chapter 1: The Role of Algorithms in Computing</h1>
-    <br> <h2 id="11-algorithms">1.1 Algorithms</h2>
+    <h2 id="11-algorithms">1.1 Algorithms</h2>
 
 <p>Algorithm: a well-defined <strong>computational procedure</strong> that takes in some value/values and produces some value/values solving a <strong>computational problem</strong>.</p>
 
@@ -346,8 +358,8 @@ Approximately: find the solution of differential equations.</p>
 
 <p>I was like, “do I solve this problem by hand or… make a computer do it for me?”. It was definitely gonna be the latter, I am weak as shit at math. You should see what I use the calculator for.</p>
 
-<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;
-#include &lt;math.h&gt;
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;math.h&gt;</span><span class="cp">
 </span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 	<span class="kt">long</span> <span class="n">insertion</span><span class="p">,</span> <span class="n">merge</span><span class="p">,</span> <span class="n">i</span><span class="p">;</span>
@@ -378,17 +390,17 @@ Approximately: find the solution of differential equations.</p>
 
 <p>Something to do with C and python. So anyways, I ran it on python too.</p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">math</span>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="n">math</span>
 
-<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">):</span>
-  <span class="n">merge</span> <span class="o">=</span> <span class="mi">64</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">log2</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">):</span>
+  <span class="n">merge</span> <span class="o">=</span> <span class="mi">64</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="nf">log2</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
   <span class="n">insertion</span> <span class="o">=</span> <span class="mi">8</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">n</span>
   <span class="k">if</span> <span class="n">merge</span> <span class="o">&gt;</span> <span class="n">insertion</span><span class="p">:</span>
-      <span class="k">print</span><span class="p">(</span><span class="s">"n: "</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-      <span class="k">print</span><span class="p">(</span><span class="s">"merge: "</span><span class="p">,</span> <span class="n">merge</span><span class="p">)</span>
-      <span class="k">print</span><span class="p">(</span><span class="s">"insertion: "</span><span class="p">,</span> <span class="n">insertion</span><span class="p">)</span>
+      <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">n: </span><span class="sh">"</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+      <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">merge: </span><span class="sh">"</span><span class="p">,</span> <span class="n">merge</span><span class="p">)</span>
+      <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">insertion: </span><span class="sh">"</span><span class="p">,</span> <span class="n">insertion</span><span class="p">)</span>
   <span class="k">else</span><span class="p">:</span>
-      <span class="n">quit</span><span class="p">()</span></code></pre></figure>
+      <span class="nf">quit</span><span class="p">()</span></code></pre></figure>
 
 <p>The answer is: n = 43. For 43 elements insertion runs: 8n^2 = 14,792 steps and merge runs: 64n ln(n) = 14,933 steps.</p>
 

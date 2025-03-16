@@ -1,163 +1,193 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://psymbio.github.io/</loc>
+        <loc>http://localhost:4000</loc>
     </url>
 
     
     
     <url>
-        <loc>https://psymbio.github.io//posts/hamlet/</loc>
+        <loc>http://localhost:4000/posts/agentic-ai/</loc>
     </url>
     
     
     
     <url>
-        <loc>https://psymbio.github.io//posts/morlet/</loc>
+        <loc>http://localhost:4000/posts/linear-regression/</loc>
     </url>
     
     
     
     <url>
-        <loc>https://psymbio.github.io//posts/the-catcher-in-the-rye/</loc>
+        <loc>http://localhost:4000/posts/roman-subtraction/</loc>
     </url>
     
     
     
     <url>
-        <loc>https://psymbio.github.io//posts/ml-week2/</loc>
+        <loc>http://localhost:4000/posts/paper-summaries/</loc>
     </url>
     
     
     
     <url>
-        <loc>https://psymbio.github.io//posts/ml-week1/</loc>
+        <loc>http://localhost:4000/posts/andrei-tarkovsky/</loc>
     </url>
     
     
     
     <url>
-        <loc>https://psymbio.github.io//posts/filters/</loc>
+        <loc>http://localhost:4000/posts/electrical-signals-of-nerve-cells/</loc>
     </url>
     
     
     
     <url>
-        <loc>https://psymbio.github.io//posts/waiting-for-godot/</loc>
+        <loc>http://localhost:4000/posts/hamlet/</loc>
     </url>
     
     
     
     <url>
-        <loc>https://psymbio.github.io//posts/new-ants-1/</loc>
+        <loc>http://localhost:4000/posts/morlet/</loc>
     </url>
     
     
     
     <url>
-        <loc>https://psymbio.github.io//posts/sudoku-2/</loc>
+        <loc>http://localhost:4000/posts/the-catcher-in-the-rye/</loc>
     </url>
     
     
     
     <url>
-        <loc>https://psymbio.github.io//posts/blogs/</loc>
+        <loc>http://localhost:4000/posts/ml-week2/</loc>
     </url>
     
     
     
     <url>
-        <loc>https://psymbio.github.io//posts/fastai-lesson4/</loc>
+        <loc>http://localhost:4000/posts/ml-week1/</loc>
     </url>
     
     
     
     <url>
-        <loc>https://psymbio.github.io//posts/fastai-lesson3/</loc>
+        <loc>http://localhost:4000/posts/filters/</loc>
     </url>
     
     
     
     <url>
-        <loc>https://psymbio.github.io//posts/fastai-lesson2/</loc>
+        <loc>http://localhost:4000/posts/waiting-for-godot/</loc>
     </url>
     
     
     
     <url>
-        <loc>https://psymbio.github.io//posts/fastai-lesson1/</loc>
+        <loc>http://localhost:4000/posts/new-ants-1/</loc>
     </url>
     
     
     
     <url>
-        <loc>https://psymbio.github.io//posts/studying-the-nervous-system/</loc>
+        <loc>http://localhost:4000/posts/sudoku-2/</loc>
     </url>
     
     
     
     <url>
-        <loc>https://psymbio.github.io//posts/os/</loc>
+        <loc>http://localhost:4000/posts/blogs/</loc>
     </url>
     
     
     
     <url>
-        <loc>https://psymbio.github.io//posts/100-questions/</loc>
+        <loc>http://localhost:4000/posts/fastai-lesson4/</loc>
     </url>
     
     
     
     <url>
-        <loc>https://psymbio.github.io//posts/sudoku/</loc>
+        <loc>http://localhost:4000/posts/fastai-lesson3/</loc>
     </url>
     
     
     
     <url>
-        <loc>https://psymbio.github.io//posts/zero-to-gans/</loc>
+        <loc>http://localhost:4000/posts/fastai-lesson2/</loc>
     </url>
     
     
     
     <url>
-        <loc>https://psymbio.github.io//posts/compilers/</loc>
+        <loc>http://localhost:4000/posts/fastai-lesson1/</loc>
     </url>
     
     
     
     <url>
-        <loc>https://psymbio.github.io//posts/gettier-probs-in-ml/</loc>
+        <loc>http://localhost:4000/posts/studying-the-nervous-system/</loc>
     </url>
     
     
     
     <url>
-        <loc>https://psymbio.github.io//posts/intro-to-phil/</loc>
+        <loc>http://localhost:4000/posts/os/</loc>
     </url>
     
     
     
     <url>
-        <loc>https://psymbio.github.io//posts/clrs-chapter-2/</loc>
+        <loc>http://localhost:4000/posts/100-questions/</loc>
     </url>
     
     
     
     <url>
-        <loc>https://psymbio.github.io//posts/clrs-chapter-1/</loc>
+        <loc>http://localhost:4000/posts/sudoku/</loc>
     </url>
     
     
     
     <url>
-        <loc>https://psymbio.github.io//posts/intro-to-algorithms/</loc>
+        <loc>http://localhost:4000/posts/compilers/</loc>
     </url>
     
     
     
     <url>
-        <loc>https://psymbio.github.io//posts/brain-inspired-ai/</loc>
+        <loc>http://localhost:4000/posts/gettier-probs-in-ml/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/intro-to-phil/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/clrs-chapter-2/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/clrs-chapter-1/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/intro-to-algorithms/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/brain-inspired-ai/</loc>
     </url>
     
     
