@@ -353,8 +353,8 @@ div.mermaid {
 }
 
 .content .byline {
-    font-weight: 500;
-    font-size: var(--font-size-s);
+    /* font-weight: 500; */
+    font-size: var(--font-size);
     color: #6b6b6b;
     /*text-transform: uppercase;*/
     margin-bottom: -30px;
