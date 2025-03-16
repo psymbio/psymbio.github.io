@@ -48,4 +48,5 @@ I would dig deeper if they had some code.
     
     $$ \hat{a} = LLM(\{e_q, q\}) $$
 
-most ulti-inducing paper was this one but I guess the way they got their roles was actually better - for very descripting answers (and this paper is basically just comparing the answer lengths - sigh)
+most ulti-inducing paper was this one but I guess the way they got their roles was actually better - for very descripting answers (and this paper is basically just comparing the length of the response - sigh)
+
