@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Paper Summaries
+title: Experts in LLMs
 tag: Agentic AI
 category: posts
 order: 1
