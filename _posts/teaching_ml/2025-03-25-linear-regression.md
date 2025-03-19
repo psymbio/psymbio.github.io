@@ -108,6 +108,8 @@ $$
 - **Sensitive to outliers**: Larger errors contribute significantly more to MSE due to squaring.
 - **Common in optimization**: MSE is differentiable, making it useful for gradient-based optimization algorithms.
 
+For differentiation look at: [01_derivatives_manually.ipynb](https://github.com/psymbio/learning_ml/blob/main/micrograd/01_derivatives_manually.ipynb) created from [Andrej Kaparthy's "building micrograd"](https://www.youtube.com/watch?v=VMj-3S1tku0&t=768s&ab_channel=AndrejKarpathy)
+
 ### Alternative Error Metrics
 
 - **Mean Absolute Error (MAE)**: Uses absolute differences instead of squared differences.
