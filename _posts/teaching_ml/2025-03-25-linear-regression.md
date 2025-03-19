@@ -108,21 +108,19 @@ $$
 - **Sensitive to outliers**: Larger errors contribute significantly more to MSE due to squaring.
 - **Common in optimization**: MSE is differentiable, making it useful for gradient-based optimization algorithms.
 
+Question: MSE dealing with one huge error and a many small ones? 
+
 For differentiation look at: [01_derivatives_manually.ipynb](https://github.com/psymbio/learning_ml/blob/main/micrograd/01_derivatives_manually.ipynb) created from [Andrej Kaparthy's "building micrograd"](https://www.youtube.com/watch?v=VMj-3S1tku0&t=768s&ab_channel=AndrejKarpathy)
 
 ### Alternative Error Metrics
 
 - **Mean Absolute Error (MAE)**: Uses absolute differences instead of squared differences.
   
-  $$
-  MAE = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|
-  $$
+  $$MAE = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|$$
 
 - **Root Mean Squared Error (RMSE)**: The square root of MSE, which brings the error back to the original unit.
 
-  $$
-  RMSE = \sqrt{MSE}
-  $$
+  $$RMSE = \sqrt{MSE}$$
 
 MSE is widely used in regression models, including linear regression and neural networks, as a standard performance metric.
 
@@ -131,9 +129,7 @@ MSE is widely used in regression models, including linear regression and neural 
 
 In a simple linear regression model:
 
-$$
-\hat{y} = \beta_1 x + \beta_0
-$$
+$$\hat{y} = \beta_1 x + \beta_0$$
 
 where:
 - $\hat{y}$ is the predicted value,
@@ -142,9 +138,7 @@ where:
 
 The **Mean Squared Error (MSE)** is given by:
 
-$$
-MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
-$$
+$$MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2$$
 
 where $y_i$ are the actual values and $\hat{y}_i$ are the predicted values.
 
@@ -159,9 +153,7 @@ where $y_i$ are the actual values and $\hat{y}_i$ are the predicted values.
    - The model fits noise instead of the underlying trend, leading to poor generalization and increased MSE on new data.
 4. **Gradient of MSE with Respect to $\beta_1$**
    - The derivative of MSE with respect to $\beta_1$ helps adjust it using gradient descent:
-  $$
-  \frac{\partial MSE}{\partial \beta_1} = -\frac{2}{n} \sum_{i=1}^{n} x_i (y_i - \hat{y}_i)
-  $$
+  $$\frac{\partial MSE}{\partial \beta_1} = -\frac{2}{n} \sum_{i=1}^{n} x_i (y_i - \hat{y}_i)$$
   - This guides how $\beta_1$ should change to minimize MSE.
 
 The slope ($\beta_1$) directly affects how well the model fits the data. A well-chosen $\beta_1$ results in a lower MSE, while an improper choice can lead to either underfitting or overfitting.
@@ -184,15 +176,11 @@ The goal is to find **$\beta_0$ (intercept)** and **$\beta_1$ (slope)** that min
 
 The error for each prediction is the **residual**:
 
-$$
-e_i = y_i - \hat{y}_i
-$$
+$$e_i = y_i - \hat{y}_i$$
 
 The **Residual Sum of Squares (RSS)** is given by:
 
-$$
-RSS = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
-$$
+$$RSS = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2$$
 
 Since we want to minimize this function, we take its derivative with respect to $\beta_0$ and $\beta_1$.
 
@@ -210,74 +198,53 @@ Maximum Likelihood Estimation (MLE) is a statistical method used to estimate the
 
 Given a dataset **$D = \{x_1, x_2, ..., x_n\}$** and a probability distribution with parameters **$\theta$**, the likelihood function is defined as:
 
-$$
-L(\theta | D) = P(D | \theta) = \prod_{i=1}^{n} P(x_i | \theta)
-$$
+$$L(\theta | D) = P(D | \theta) = \prod_{i=1}^{n} P(x_i | \theta)$$
 
-### **Goal**: 
-Find the parameter **$\theta$** that **maximizes** the likelihood function.
+Goal: Find the parameter **$\theta$** that **maximizes** the likelihood function.
 
 ## Log-Likelihood Function
 
 Since products of probabilities can be difficult to compute, we take the **logarithm** of the likelihood function:
 
-$$
-\log L(\theta) = \sum_{i=1}^{n} \log P(x_i | \theta)
-$$
+$$\log L(\theta) = \sum_{i=1}^{n} \log P(x_i | \theta)$$
 
 MLE finds **$\theta$** by solving:
 
-$$
-\theta^* = \arg\max_{\theta} \log L(\theta)
-$$
+$$\theta^* = \arg\max_{\theta} \log L(\theta)$$
 
 ## Example: Estimating Mean and Variance for a Normal Distribution
 
 Suppose we have a dataset **$D = \{x_1, x_2, ..., x_n\}$** sampled from a **normal distribution**:
 
-$$
-P(x | \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x - \mu)^2}{2\sigma^2}}
-$$
+$$P(x | \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x - \mu)^2}{2\sigma^2}}$$
 
 The likelihood function is:
 
-$$
-L(\mu, \sigma^2) = \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x_i - \mu)^2}{2\sigma^2}}
-$$
+$$L(\mu, \sigma^2) = \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x_i - \mu)^2}{2\sigma^2}}$$
 
 Taking the **log-likelihood**:
 
-$$
-\log L(\mu, \sigma^2) = -\frac{n}{2} \log (2\pi \sigma^2) - \frac{1}{2\sigma^2} \sum_{i=1}^{n} (x_i - \mu)^2
-$$
+$$\log L(\mu, \sigma^2) = -\frac{n}{2} \log (2\pi \sigma^2) - \frac{1}{2\sigma^2} \sum_{i=1}^{n} (x_i - \mu)^2$$
 
 To find **$\mu$** and **$\sigma^2$**, we take derivatives:
 
 1. **Estimating $\mu$**:
 
-   $$
-   \frac{\partial \log L}{\partial \mu} = \frac{1}{\sigma^2} \sum_{i=1}^{n} (x_i - \mu)
-   $$
+   $$\frac{\partial \log L}{\partial \mu} = \frac{1}{\sigma^2} \sum_{i=1}^{n} (x_i - \mu)$$
 
    Setting this to 0:
 
-   $$
-   \mu^* = \frac{1}{n} \sum_{i=1}^{n} x_i = \bar{x}
-   $$
+   $$\mu^* = \frac{1}{n} \sum_{i=1}^{n} x_i = \bar{x}$$
 
    So the **MLE estimate of the mean** is the sample mean.
 
 2. **Estimating $\sigma^2$**:
 
-   $$
-   \frac{\partial \log L}{\partial \sigma^2} = -\frac{n}{2\sigma^2} + \frac{1}{2\sigma^4} \sum_{i=1}^{n} (x_i - \mu)^2
-   $$
+   $$\frac{\partial \log L}{\partial \sigma^2} = -\frac{n}{2\sigma^2} + \frac{1}{2\sigma^4} \sum_{i=1}^{n} (x_i - \mu)^2$$
 
    Solving for $\sigma^2$:
 
-   $$
-   \sigma^{2*} = \frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^2
-   $$
+   $$\sigma^{2*} = \frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^2$$
 
    So the **MLE estimate of variance** is the sample variance.
 
