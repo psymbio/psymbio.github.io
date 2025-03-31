@@ -58,3 +58,19 @@ These papers lay out a base idea of what role experts play out in LLMs.
 
 [https://openreview.net/pdf?id=tfyHbvFZ0K](https://openreview.net/pdf?id=tfyHbvFZ0K)
 
+(Need to come back to this)
+
+---
+
+## Thought Vectors
+
+[Blog Post](https://gabgoh.github.io/ThoughtVectors/)
+
+Vectors do have meaning - and it has been especially seen in like anything with encoders. Then the question ultimately becomes if vectors have some underlying meaning can we do some math with them and see the results ourselves?
+
+Like when you create a photo: man in short hair wearing sunglasses, for example, a decomposition might look like
+
+$$\text{Encoder}(x) \approx (2 \cdot d_{\text{smile}}) - (1.5 \cdot d_{\text{long-hair}}) + (4 \cdot d_{\text{sunglass}}) + (1 \cdot d_{\text{masculinity}})$$
+
+(If we were to look at the same thing in LLMs what kind of added functionality are we looking at?)
+

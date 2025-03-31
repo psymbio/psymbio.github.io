@@ -84,6 +84,8 @@ Velocity describes how the distance changes with time. Velocity is a rate of cha
 
 Differential calculus is about finding the slope of a tangent to the graph of a function, or equivalently, differential calculus is about finding the rate of change of one quantity with respect to another quantity.
 
+For differentiation look at: [01_derivatives_manually.ipynb](https://github.com/psymbio/learning_ml/blob/main/micrograd/01_derivatives_manually.ipynb) created from [Andrej Kaparthy's "building micrograd"](https://www.youtube.com/watch?v=VMj-3S1tku0&t=768s&ab_channel=AndrejKarpathy)
+
 ## Mean-Squared Error
 
 For a dataset with $n$ observations, where:
@@ -94,9 +96,7 @@ For a dataset with $n$ observations, where:
 
 the Mean Squared Error is defined as:
 
-$$
-MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
-$$
+$$MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2$$
 
 - The **difference** $(y_i - \hat{y}_i)$ represents the error for each prediction.
 - Squaring the error ensures that negative and positive errors don’t cancel out.
@@ -108,9 +108,7 @@ $$
 - **Sensitive to outliers**: Larger errors contribute significantly more to MSE due to squaring.
 - **Common in optimization**: MSE is differentiable, making it useful for gradient-based optimization algorithms.
 
-Question: MSE dealing with one huge error and a many small ones? 
-
-For differentiation look at: [01_derivatives_manually.ipynb](https://github.com/psymbio/learning_ml/blob/main/micrograd/01_derivatives_manually.ipynb) created from [Andrej Kaparthy's "building micrograd"](https://www.youtube.com/watch?v=VMj-3S1tku0&t=768s&ab_channel=AndrejKarpathy)
+Question: MSE dealing with one huge error and a many small ones?
 
 ### Alternative Error Metrics
 
