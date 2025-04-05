@@ -4,5 +4,7 @@ url: https://psymbio.github.io/
 description: A personal blog
 future: true
 twitter: psybio
-gravatar_url: 
-google_analytics_tracking_id: 
+scholar:
+  bibliography_template: bib
+  source: _posts
+  bibliography: _bibliography/default.bib

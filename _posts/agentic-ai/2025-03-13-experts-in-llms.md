@@ -6,7 +6,6 @@ category: posts
 order: 1
 pagestyle: base
 pagestyle2: post
-bibliography: references_experts.bib
 ---
 
 ## When "A Helpful Assistant" Is Not Really Helpful: Personas in System Prompts Do Not Improve Performances of Large Language Models
