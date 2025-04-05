@@ -81,9 +81,3 @@ $$\text{Encoder}(x) \approx (2 \cdot d_{\text{smile}}) - (1.5 \cdot d_{\text{lon
 Many papers have studied the effects of the presence of an expert in the prompt to improve the accuracy. In our previous paper we have also seen an improvement 
 
 In this paper we hope to understand what causes this improvement by looking at what components of the model architecture are responsible for this improvement
-
-{% cite smith2020 %}
-
-
-
-{% bibliography %}
