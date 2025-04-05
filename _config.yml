@@ -3,8 +3,4 @@ name: The Brain Archive
 url: https://psymbio.github.io/
 description: A personal blog
 future: true
-twitter: psybio
-scholar:
-  bibliography_template: bib
-  source: _posts
-  bibliography: _bibliography/default.bib
+twitter: psymbio
