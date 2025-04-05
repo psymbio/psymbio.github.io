@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,600&display=swap");
+
 @font-face {
     font-family: og-emoji;
     src: url(/fonts/og-dcm-emoji.ttf);
@@ -277,6 +278,7 @@ div.mermaid {
     text-transform: none;
     font-size: var(--font-size);
     line-height: var(--spacing);
+    z-index: 0;
 }
 
 .footer>.thanks {
@@ -498,7 +500,7 @@ blockquote p {
  * Links
  *********************/
 
- a {
+a {
     color: var(--accent);
     transition: color .3s ease-in-out;
     text-decoration: underline;
@@ -513,6 +515,7 @@ button:hover {
 
 
 @-webkit-keyframes zomg {
+
     0%,
     100% {
         color: var(--accent-2);
@@ -521,6 +524,7 @@ button:hover {
 }
 
 @-moz-keyframes zomg {
+
     0%,
     100% {
         color: var(--accent-2);
@@ -529,6 +533,7 @@ button:hover {
 }
 
 @keyframes zomg {
+
     0%,
     100% {
         color: var(--accent-2);
@@ -537,48 +542,60 @@ button:hover {
 }
 
 @-webkit-keyframes avatarzomg {
+
     0%,
     100% {
         -webkit-filter: invert(0) saturate(100%) hue-rotate(0deg);
     }
+
     25% {
         -webkit-filter: invert(10%) saturate(500%) hue-rotate(180deg);
     }
+
     50% {
         -webkit-filter: invert(10%) saturate(300%) hue-rotate(300deg);
     }
+
     75% {
         -webkit-filter: invert(10%) saturate(500%) hue-rotate(90deg);
     }
 }
 
 @-moz-keyframes avatarzomg {
+
     0%,
     100% {
         filter: invert(0) saturate(100%) hue-rotate(0deg);
     }
+
     25% {
         filter: invert(10%) saturate(500%) hue-rotate(180deg);
     }
+
     50% {
         filter: invert(10%) saturate(300%) hue-rotate(300deg);
     }
+
     75% {
         filter: invert(10%) saturate(500%) hue-rotate(90deg);
     }
 }
 
 @keyframes avatarzomg {
+
     0%,
     100% {
         filter: invert(0) saturate(100%) hue-rotate(0deg);
     }
+
     25% {
         filter: invert(10%) saturate(500%) hue-rotate(180deg);
     }
+
     50% {
         filter: invert(10%) saturate(300%) hue-rotate(300deg);
     }
+
     75% {
         filter: invert(10%) saturate(500%) hue-rotate(90deg);
     }
@@ -589,7 +606,7 @@ button:hover {
  * Code
  *********************/
 
- code {
+code {
     font-family: "SFMono-Light", monospace;
     font-size: var(--font-size-xs);
     background-color: #f6f8fa;
@@ -926,13 +943,43 @@ mark {
 [data-tooltip]:hover:before,
 [data-tooltip]:hover:after {
     display: block;
-    z-index: 50;
+    z-index: 100;
 }
 
 .wikipedia {
-  font-family: sans-serif;
-  background-color: #ffffff;
-  font-size: 20px;
-  margin: 30px 48px;
-  padding: 14px 12px;
+    font-family: sans-serif;
+    background-color: #ffffff;
+    font-size: 20px;
+    margin: 30px 48px;
+    padding: 14px 12px;
+}
+
+.citation-tooltip {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 35vw;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    border-radius: 6px;
+    z-index: 100;
+}
+
+@media (max-width: 800px) {
+    .citation-tooltip {
+        width: 90vw;
+    }
+}
+
+.citation-tooltip hr {
+    border: none;
+}
+
+.citation-entry {
+    margin-bottom: 8px;
+}
+
+.bottomline {
+    z-index: 1;
 }

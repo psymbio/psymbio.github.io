@@ -78,9 +78,39 @@ $$\text{Encoder}(x) \approx (2 \cdot d_{\text{smile}}) - (1.5 \cdot d_{\text{lon
 
 ## Ablation Study Structure
 
-Many papers have studied the effects of the presence of an expert in the prompt to improve the accuracy. In our previous paper we have also seen an improvement <span data-cite="Figueredo:2009dg,Hao:gidmaps:2014"></span>. In this paper we hope to understand what causes this improvement by looking at what components of the model architecture are responsible for this improvement
+Many papers have studied the effects of the presence of an expert in the prompt to improve the accuracy of an LM while answering questions. In our previous paper we have also seen an improvement [?]. In this paper we hope to understand what causes this improvement by looking at what components of the model architecture are responsible for this improvement using transcoders <span data-cite="dunefsky2024transcodersinterpretablellmfeature"></span> (While SAE <span data-cite="marks2025sparsefeaturecircuitsdiscovering"></span> features are often interpretable, they are typically dense combinations of many neurons, making it difficult to mechanistically trace how one feature influences another across layers. Previous work has used causal interventions and gradient-based techniques to study these interactions. Building on these ideas, we investigate how the presence of an expert in the prompt affects specific model features, aiming to identify which parts of the architecture drive the improvement in performance.). 
 
-<span data-cite="Figueredo:2009dg,Hao:gidmaps:2014,Hao:gidmaps:737"></span>
+Ablation study first <span data-cite="pearl2013directindirecteffects"></span> (this first step is defined from SAE paper) We want to understand the direct and indirect effects of the presence of an expert in the prompt. 
+
+It states:
+
+A classical example of the ubiquity of direct effects
+(Hesslow 1976) tells the story of a birth-control pill
+that is suspect of producing thrombosis in women and,
+at the same time, has a negative indirect effect on
+thrombosis by reducing the rate of pregnancies (pregnancy is known to encourage thrombosis). In this example, interest is focused on the direct effect of the
+pill because it represents a stable biological relationship that, unlike the total effect, is invariant to marital status and other factors that may affect women's
+chances of getting pregnant or of sustaining pregnancy.
+This invariance makes the direct effect transportable
+across cultural and sociological boundaries and, hence,
+a more useful quantity in scientific explanation and
+policy analysis. 
+
+Taking this criterion as a guideline, the direct effect
+of $X$ on $Y$ (in our case $X=$gender $Y=$hiring) can
+roughly be defined as the response of $Y$ to change in
+$X$ (say from $X = x^*$ to $X = x$) while keeping all
+other accessible variables at their initial value, namely,
+the value they would have attained under $X = x^*$. This doubly-hypothetical criterion will be given precise mathematical formulation in Section 3, using the
+language and semantics of structural counterfactuals
+(Pearl 2000; chapter 7). 
+
+As a third example, one that illustrates the policymaking ramifications of direct and total effects, consider a drug treatment that has a side effect - headache. Patients who suffer from headache tend to take aspirin which, in turn may have its own effect on the disease or, may strengthen (or weaken) the impact of the drug on the disease. To determine how beneficial the drug is to the population as a whole, under existing patterns of aspirin usage, the total effect of the drug is the target of analysis, and the difference $P(Y_x = y) - P(Y_x^* = y)$ may serve to assist the decision, with $x$ and $x^*$ being any two treatment levels. However, to decide whether aspirin should be encouraged or discouraged during the treatment, the direct
+effect of the drug on the disease, both with aspirin and
+without aspirin, should be the target of investigation.
+The appropriate expression for analysis would then be
+the difference $P(Y_{xz} = y) - P(Y_{x*z} = y)$, where z
+stands for any specified level of aspirin intake. 
 
 <script>
 document.addEventListener('DOMContentLoaded', async () => {
@@ -93,7 +123,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.querySelectorAll('span[data-cite]').forEach(span => {
     const keys = span.getAttribute('data-cite').split(',').map(k => k.trim());
     const numbers = [];
-    let tooltipTexts = [];
+    let citationDiv = document.createElement('div');
+    citationDiv.className = 'citation-tooltip';
+    citationDiv.style.display = 'none';
 
     keys.forEach(key => {
       if (!(key in citationMap)) {
@@ -102,36 +134,42 @@ document.addEventListener('DOMContentLoaded', async () => {
       const number = citationMap[key];
       numbers.push(number);
 
+      const wrapper = document.createElement('div');
+      wrapper.className = 'citation-entry';
+      
       if (papers[key]) {
         const paper = papers[key];
-        const tooltipText = `
-          <div style="padding: 4px 0;">
-            <b>${paper.author}</b> (${paper.year})<br/>
-            <i>${paper.title}</i><br/>
-            ${paper.journal || paper.howpublished || ''}<br/>
-            ${paper.doi ? `DOI: <a href="https://doi.org/${paper.doi}" target="_blank">${paper.doi}</a>` : ''}
-          </div>
-          <hr/>
+        wrapper.innerHTML = `
+          <b>${paper.author}</b> (${paper.year})<br/>
+          <i>${paper.title}</i><br/>
+          ${paper.journal || paper.howpublished || ''}<br/>
+          ${paper.doi ? `DOI: <a href="https://doi.org/${paper.doi}" target="_blank">${paper.doi}</a>` : ''}
         `;
-        tooltipTexts.push(tooltipText);
       } else {
-        tooltipTexts.push('<div>Citation not found.</div><hr/>');
+        wrapper.innerHTML = 'Citation not found.';
+      }
+      
+      citationDiv.appendChild(wrapper);
+
+      // Add <hr> after each paper except last one
+      if (key !== keys[keys.length - 1]) {
+        citationDiv.appendChild(document.createElement('hr'));
       }
     });
 
-    const finalTooltip = tooltipTexts.join('').replace(/<hr\/>$/, ''); // remove last <hr>
-
     // Set text content like [1, 2, 3]
     span.textContent = `[${numbers.join(', ')}]`;
+    span.style.cursor = 'pointer'; // indicate it's hoverable
+    span.style.position = 'relative'; // so tooltip is relative to this span
 
-    // Use Tippy.js to create an HTML tooltip
-    tippy(span, {
-      content: finalTooltip,
-      allowHTML: true,
-      placement: 'bottom',
-      interactive: true,
-      theme: 'light-border',
-      maxWidth: 300,
+    span.appendChild(citationDiv);
+
+    // Show/hide logic
+    span.addEventListener('mouseenter', () => {
+      citationDiv.style.display = 'block';
+    });
+    span.addEventListener('mouseleave', () => {
+      citationDiv.style.display = 'none';
     });
   });
 });
