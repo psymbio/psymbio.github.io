@@ -99,18 +99,17 @@ policy analysis.
 Taking this criterion as a guideline, the direct effect
 of $X$ on $Y$ (in our case $X=$gender $Y=$hiring) can
 roughly be defined as the response of $Y$ to change in
-$X$ (say from $X = x^*$ to $X = x$) while keeping all
+$X$ (say from $X = x^\ast$ to $X = x$) while keeping all
 other accessible variables at their initial value, namely,
-the value they would have attained under $X = x^*$. This doubly-hypothetical criterion will be given precise mathematical formulation in Section 3, using the
+the value they would have attained under $X = x^\ast$. This doubly-hypothetical criterion will be given precise mathematical formulation in Section 3, using the
 language and semantics of structural counterfactuals
 (Pearl 2000; chapter 7). 
 
-As a third example, one that illustrates the policymaking ramifications of direct and total effects, consider a drug treatment that has a side effect - headache. Patients who suffer from headache tend to take aspirin which, in turn may have its own effect on the disease or, may strengthen (or weaken) the impact of the drug on the disease. To determine how beneficial the drug is to the population as a whole, under existing patterns of aspirin usage, the total effect of the drug is the target of analysis, and the difference $P(Y_x = y) - P(Y_x^* = y)$ may serve to assist the decision, with $x$ and $x^*$ being any two treatment levels. However, to decide whether aspirin should be encouraged or discouraged during the treatment, the direct
+As a third example, one that illustrates the policymaking ramifications of direct and total effects, consider a drug treatment that has a side effect - headache. Patients who suffer from headache tend to take aspirin which, in turn may have its own effect on the disease or, may strengthen (or weaken) the impact of the drug on the disease. To determine how beneficial the drug is to the population as a whole, under existing patterns of aspirin usage, the total effect of the drug is the target of analysis, and the difference $P(Y_x = y) - P(Y_x^\ast = y)$ may serve to assist the decision, with $x$ and $x^\ast$ being any two treatment levels. However, to decide whether aspirin should be encouraged or discouraged during the treatment, the direct
 effect of the drug on the disease, both with aspirin and
 without aspirin, should be the target of investigation.
 The appropriate expression for analysis would then be
-the difference $P(Y_{xz} = y) - P(Y_{x*z} = y)$, where z
-stands for any specified level of aspirin intake. 
+the difference $P(Y_{xz} = y) - P(Y_{x^\ast z} = y)$, where $z$ stands for any specified level of aspirin intake. 
 
 <script>
 document.addEventListener('DOMContentLoaded', async () => {
