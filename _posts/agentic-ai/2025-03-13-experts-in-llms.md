@@ -78,6 +78,61 @@ $$\text{Encoder}(x) \approx (2 \cdot d_{\text{smile}}) - (1.5 \cdot d_{\text{lon
 
 ## Ablation Study Structure
 
-Many papers have studied the effects of the presence of an expert in the prompt to improve the accuracy. In our previous paper we have also seen an improvement 
+Many papers have studied the effects of the presence of an expert in the prompt to improve the accuracy. In our previous paper we have also seen an improvement <span data-cite="Figueredo:2009dg,Hao:gidmaps:2014"></span>. In this paper we hope to understand what causes this improvement by looking at what components of the model architecture are responsible for this improvement
 
-In this paper we hope to understand what causes this improvement by looking at what components of the model architecture are responsible for this improvement
+<span data-cite="Figueredo:2009dg,Hao:gidmaps:2014,Hao:gidmaps:737"></span>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  const response = await fetch('/assets/papers.json');
+  const papers = await response.json();
+  
+  const citationMap = {}; // BibtexKey -> Number
+  let citationCounter = 1; // Start numbering from 1
+
+  document.querySelectorAll('span[data-cite]').forEach(span => {
+    const keys = span.getAttribute('data-cite').split(',').map(k => k.trim());
+    const numbers = [];
+    let tooltipTexts = [];
+
+    keys.forEach(key => {
+      if (!(key in citationMap)) {
+        citationMap[key] = citationCounter++;
+      }
+      const number = citationMap[key];
+      numbers.push(number);
+
+      if (papers[key]) {
+        const paper = papers[key];
+        const tooltipText = `
+          <div style="padding: 4px 0;">
+            <b>${paper.author}</b> (${paper.year})<br/>
+            <i>${paper.title}</i><br/>
+            ${paper.journal || paper.howpublished || ''}<br/>
+            ${paper.doi ? `DOI: <a href="https://doi.org/${paper.doi}" target="_blank">${paper.doi}</a>` : ''}
+          </div>
+          <hr/>
+        `;
+        tooltipTexts.push(tooltipText);
+      } else {
+        tooltipTexts.push('<div>Citation not found.</div><hr/>');
+      }
+    });
+
+    const finalTooltip = tooltipTexts.join('').replace(/<hr\/>$/, ''); // remove last <hr>
+
+    // Set text content like [1, 2, 3]
+    span.textContent = `[${numbers.join(', ')}]`;
+
+    // Use Tippy.js to create an HTML tooltip
+    tippy(span, {
+      content: finalTooltip,
+      allowHTML: true,
+      placement: 'bottom',
+      interactive: true,
+      theme: 'light-border',
+      maxWidth: 300,
+    });
+  });
+});
+</script>
