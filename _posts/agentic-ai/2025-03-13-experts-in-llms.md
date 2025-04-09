@@ -111,13 +111,121 @@ without aspirin, should be the target of investigation.
 The appropriate expression for analysis would then be
 the difference $P(Y_{xz} = y) - P(Y_{x^\ast z} = y)$, where $z$ stands for any specified level of aspirin intake. 
 
+Example: Controlled Direct Effect (Quantitative)
+
+Suppose we are studying the effect of a medicine ($X$) on a patient's health score ($Y$), while controlling for the patient's diet ($Z$).
+
++ $X = 0$ means the patient doesm not take the medicine.
++ $X = 1$ means the patient takes the medicine.
++ $Z$ represents the patient's die, and we fix it at a healthy setting.
+
+We observe the following:
++ When the patient does not take the medicine ($X = 0$) and has a healthy diet ($Z = \text{healthy}$), the health score is:
+    
+$$Y_{0, \text{healthy}}(u) = 50$$
+
++ When the patient takes the medicine ($X = 1$) and still has a healthy diet, the health score is:
+
+$$Y_{1, \text{healthy}}(u) = 80$$
+
+The controlled direct effect of taking the medicine, while fixing the diet, is then calculated as:
+
+$$CDE_{\text{healthy}}(0, 1; Y, u) = Y_{1, \text{healthy}}(u) - Y_{0, \text{healthy}}(u) = 80 - 50 = 30$$
+
+Thus, the controlled direct effect is 30 points. This means that, holding the diet constant, taking the medicine increases the patient's health score by 30 points.
+
+We can also compute other measures:
+
++ Ratio (multiplicative effect):
+  + $$\frac{Y_{1, \text{healthy}}(u)}{Y_{0, \text{healthy}}(u)} = \frac{80}{50} = 1.6$$
+  + Thus, the health score under the medicine is 1.6 times the score without the medicine.
++ Proportional Difference (relative increase):
+  + $$\frac{Y_{1, \text{healthy}}(u) - Y_{0, \text{healthy}}(u)}{Y_{0, \text{healthy}}(u)} = \frac{80 - 50}{50} = \frac{30}{50} = 0.6$$
+  + Thus, taking the medicine increases the patient's health score by 60%.
+
+### 1. Possible Direct Effect
+
+If the presence of the expert in the prompt directly enhances the model's output quality (e.g., by triggering better-aligned weights or activating more relevant knowledge), this would be a direct effect.
+
+Mechanism:  
+The explicit mention of an expert may steer the model toward higher-confidence reasoning paths or authoritative sources without intermediate steps.
+
+Example:
+
+Prompt:  
+> "As a medical expert, explain X."
+
+Model behavior:  
+- Model taps into medically trained patterns more directly.
+
+Causal Path:  
+$$
+\text{Expert cue } (X) \rightarrow \text{Better output } (Y)
+$$
+
+---
+
+### 2. Possible Indirect Effect
+
+If the expert reference improves performance by implicitly changing how the model processes intermediate steps (e.g., encouraging chain-of-thought reasoning or stricter verification), this would be an indirect effect.
+
+Mechanism:  
+The expert label alters the model's internal process (e.g., "I should be more careful/accurate") rather than directly retrieving better answers.
+
+Example:
+
+Prompt:  
+> "As a scientist, solve this step-by-step."
+
+Model behavior:  
+- Model engages in more rigorous reasoning first, leading to better output.
+
+Causal Path:  
+$$
+\text{Expert cue } (X) \rightarrow \text{Deliberate reasoning } (M) \rightarrow \text{Better output } (Y)
+$$
+
+---
+
+### Key Consideration: Task Dependency
+
+- Direct Effect Likely:  
+  If the task relies on retrieval (e.g., factual QA) and the expert cue activates domain-specific knowledge.
+  
+- Indirect Effect Likely:  
+  If the task requires reasoning (e.g., math, analysis) and the expert cue induces behavioral changes (e.g., showing work).
+
+---
+
+### How to Test This?
+
+- Ablation Study:  
+  Remove the expert reference but keep the other prompt structure identical.  
+  If performance drops sharply, it suggests a direct role.
+
+- Process Tracing:  
+  Analyze whether the expert cue changes the model's intermediate steps (e.g., longer chains of thought).  
+  If so, it's likely an indirect effect.
+
+
+Basically understanding both the direct and effect and the indirect effect - so the paper shall be divided into two parts.
+
+We need to do a study in the mechanistic interpretability ([Anthropic blog on In-context Learning and Induction Heads](https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html)). For CNNs we can can sort of gauge what is happening using the weights in each of the layers and trying to interpret the features that ([OpenAI blog on CNN interpretability](https://distill.pub/2020/circuits/)). I think the start of all this requires a breakdown of the transformer architecture ([A Mathematical Framework for Transformer Circuits](https://transformer-circuits.pub/2021/framework/index.html))
+
+
+[2025/4/7] Okay, so I am basically going to do another blog before this one and understand transformers then come back here.
+
+https://www.youtube.com/watch?v=XfpMkf4rD6E&t=199s&ab_channel=StanfordOnline
+
+https://www.youtube.com/watch?v=kCc8FmEb1nY&ab_channel=AndrejKarpathy
+
 <script>
 document.addEventListener('DOMContentLoaded', async () => {
   const response = await fetch('/assets/papers.json');
   const papers = await response.json();
   
-  const citationMap = {}; // BibtexKey -> Number
-  let citationCounter = 1; // Start numbering from 1
+  const citationMap = {};
+  let citationCounter = 1;
 
   document.querySelectorAll('span[data-cite]').forEach(span => {
     const keys = span.getAttribute('data-cite').split(',').map(k => k.trim());
