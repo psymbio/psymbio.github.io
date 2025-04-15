@@ -1,17 +1,224 @@
----
-layout: nil
----
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>{{ site.url }}</loc>
+        <loc>http://localhost:4000</loc>
     </url>
 
-    {% for post in site.posts %}
-    {% unless post.draft %}
+    
+    
     <url>
-        <loc>{{ site.url }}{{ post.url }}</loc>
+        <loc>http://localhost:4000/posts/differentiation/</loc>
     </url>
-    {% endunless %}
-    {% endfor %}
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/rnns-from-scratch/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/transformers/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/week1/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/agentic-ai/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/linear-regression/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/micrograd/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/roman-subtraction/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/experts-in-llms/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/andrei-tarkovsky/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/electrical-signals-of-nerve-cells/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/hamlet/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/morlet/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/the-catcher-in-the-rye/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/ml-week2/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/ml-week1/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/filters/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/waiting-for-godot/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/new-ants-1/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/sudoku-2/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/blogs/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/fastai-lesson4/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/fastai-lesson3/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/fastai-lesson2/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/fastai-lesson1/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/studying-the-nervous-system/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/os/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/100-questions/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/sudoku/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/compilers/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/gettier-probs-in-ml/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/intro-to-phil/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/clrs-chapter-2/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/clrs-chapter-1/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/intro-to-algorithms/</loc>
+    </url>
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/posts/brain-inspired-ai/</loc>
+    </url>
+    
+    
 </urlset>

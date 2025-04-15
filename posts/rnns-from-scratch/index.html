@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-         The Brain Archive
+        RNNs from Scratch &ndash; The Brain Archive
     </title>
     <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
     <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2"
@@ -114,356 +114,52 @@
     </a>
     <!-- Global site tag (gtag.js) - Google Analytics -->
 </header>
-<style>
-  .content {
-    margin-top: 0;
-  }
-  .sidebar {
-    margin-bottom: 0;
-  }
-  .something {
-    font-size: 20px;
-  }
-</style>
-<!--
-<p class="something">a brain on computer chips</p>
--->
+<link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+<link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+<link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+<link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+<!-- <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script> -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+      
+  <script type="text/javascript"
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
 <section class="content">
-  <ul class="listing table">
-    
-    
-    <h2 id="agentic-ai">Agentic AI</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/experts-in-llms/">
-        <li>
-          <span>13 Mar 2025</span>
-          <a href="/posts/experts-in-llms/" class="indexed">Experts in LLMs</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="artificial-intelligence">Artificial Intelligence</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/brain-inspired-ai/">
-        <li>
-          <span>19 Sep 2020</span>
-          <a href="/posts/brain-inspired-ai/" class="indexed">Brain-inspired AI</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="clrs">CLRS</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/intro-to-algorithms/">
-        <li>
-          <span>04 Oct 2020</span>
-          <a href="/posts/intro-to-algorithms/" class="indexed">Introduction to Algorithms</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/clrs-chapter-1/">
-        <li>
-          <span>05 Oct 2020</span>
-          <a href="/posts/clrs-chapter-1/" class="indexed">Chapter 1: The Role of Algorithms in Computing</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/clrs-chapter-2/">
-        <li>
-          <span>06 Oct 2020</span>
-          <a href="/posts/clrs-chapter-2/" class="indexed">Chapter 2: Getting Started</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="cs229">CS229</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/ml-week1/">
-        <li>
-          <span>24 Jun 2021</span>
-          <a href="/posts/ml-week1/" class="indexed">Lecture 2: Introduction, Linear Regression, Gradient Descent</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/ml-week2/">
-        <li>
-          <span>25 Jun 2021</span>
-          <a href="/posts/ml-week2/" class="indexed">Lecture 3: Locally Weighted & Logistic Regression</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="computer-science">Computer Science</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/os/">
-        <li>
-          <span>20 Jan 2021</span>
-          <a href="/posts/os/" class="indexed">Designing Your Own OS from Scratch</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/compilers/">
-        <li>
-          <span>08 Dec 2020</span>
-          <a href="/posts/compilers/" class="indexed">The Meanderings of Designing Compilers</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="dumb-people-do-the-math">Dumb People Do the Math</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/roman-subtraction/">
-        <li>
-          <span>13 Mar 2025</span>
-          <a href="/posts/roman-subtraction/" class="indexed">Roman Subtraction</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="event-related-potential-techniques">Event-Related Potential Techniques</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/filters/">
-        <li>
-          <span>30 May 2021</span>
-          <a href="/posts/filters/" class="indexed">MNE Custom Filters</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="fast-ai">Fast.ai</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/fastai-lesson1/">
-        <li>
-          <span>05 Feb 2021</span>
-          <a href="/posts/fastai-lesson1/" class="indexed">Fastbook Lesson 1</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/fastai-lesson2/">
-        <li>
-          <span>09 Feb 2021</span>
-          <a href="/posts/fastai-lesson2/" class="indexed">Fastbook Lesson 2</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/fastai-lesson3/">
-        <li>
-          <span>11 Feb 2021</span>
-          <a href="/posts/fastai-lesson3/" class="indexed">Fastbook Lesson 3</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/fastai-lesson4/">
-        <li>
-          <span>13 Feb 2021</span>
-          <a href="/posts/fastai-lesson4/" class="indexed">Fastbook Lesson 4</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="literature">Literature</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/andrei-tarkovsky/">
-        <li>
-          <span>08 Mar 2025</span>
-          <a href="/posts/andrei-tarkovsky/" class="indexed">Andrei Tarkovsky</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/hamlet/">
-        <li>
-          <span>26 Nov 2021</span>
-          <a href="/posts/hamlet/" class="indexed">Hamlet: An Allegorical Meditation on the Enigma of Life and Human Conditions</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/the-catcher-in-the-rye/">
-        <li>
-          <span>29 Jul 2021</span>
-          <a href="/posts/the-catcher-in-the-rye/" class="indexed">The Catcher in the Rye</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/waiting-for-godot/">
-        <li>
-          <span>21 Apr 2021</span>
-          <a href="/posts/waiting-for-godot/" class="indexed">Waiting for Godot</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="ml">ML</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/differentiation/">
-        <li>
-          <span>16 Apr 2025</span>
-          <a href="/posts/differentiation/" class="indexed">Differentiation</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/rnns-from-scratch/">
-        <li>
-          <span>15 Apr 2025</span>
-          <a href="/posts/rnns-from-scratch/" class="indexed">RNNs from Scratch</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/transformers/">
-        <li>
-          <span>07 Apr 2025</span>
-          <a href="/posts/transformers/" class="indexed">Transformers</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/linear-regression/">
-        <li>
-          <span>25 Mar 2025</span>
-          <a href="/posts/linear-regression/" class="indexed">Linear Regression</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/micrograd/">
-        <li>
-          <span>16 Mar 2025</span>
-          <a href="/posts/micrograd/" class="indexed">Micrograd</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="machine-learning">Machine Learning</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/sudoku/">
-        <li>
-          <span>04 Jan 2021</span>
-          <a href="/posts/sudoku/" class="indexed">Machine Learning based Sudoku Players</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/sudoku-2/">
-        <li>
-          <span>24 Feb 2021</span>
-          <a href="/posts/sudoku-2/" class="indexed">Reinforcement Learning based Sudoku Players, Part 2</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="mike-x-cohen-course">Mike X Cohen Course</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/agentic-ai/">
-        <li>
-          <span>25 Mar 2025</span>
-          <a href="/posts/agentic-ai/" class="indexed">Analyzing Neural Time Series Data, Part 1</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/morlet/">
-        <li>
-          <span>24 Nov 2021</span>
-          <a href="/posts/morlet/" class="indexed">Morlet Wavelets [Part 1]</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/new-ants-1/">
-        <li>
-          <span>15 Mar 2021</span>
-          <a href="/posts/new-ants-1/" class="indexed">Analyzing Neural Time Series Data, Part 1</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="neuroscience-purves-6e">Neuroscience Purves 6E</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/electrical-signals-of-nerve-cells/">
-        <li>
-          <span>02 Jan 2022</span>
-          <a href="/posts/electrical-signals-of-nerve-cells/" class="indexed">Chapter 2: Electrical Signals of Nerve Cells</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/studying-the-nervous-system/">
-        <li>
-          <span>02 Feb 2021</span>
-          <a href="/posts/studying-the-nervous-system/" class="indexed">Chapter 1: Studying the Nervous System</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="philosophy">Philosophy</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/intro-to-phil/">
-        <li>
-          <span>29 Nov 2020</span>
-          <a href="/posts/intro-to-phil/" class="indexed">Introduction to Philosophy</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/gettier-probs-in-ml/">
-        <li>
-          <span>05 Dec 2020</span>
-          <a href="/posts/gettier-probs-in-ml/" class="indexed">Gettier Problems in Machine Learning [draft]</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="probablistic-machine-learning">Probablistic Machine Learning</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/week1/">
-        <li>
-          <span>31 Mar 2025</span>
-          <a href="/posts/week1/" class="indexed">Week 1</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-  </ul>
-  <br /><br />
-</section>
+    <section class="byline">
+        April 15, 2025
+    </section>
+    <h1>RNNs from Scratch</h1>
+    <p>I tried to recreate <a href="https://dennybritz.com/posts/wildml/recurrent-neural-networks-tutorial-part-2/">Denny Britz’s blog on it</a> the code is <a href="https://github.com/psymbio/learning_machine_learning/blob/main/rnns_from_scratch/poem_generator.py">here</a>. This is mostly a copy with some changes to exercise re-writing the code which allows me to understand the code - changes include -</p>
 
+<ol>
+  <li>The dataset (yeah, it is interesting to deal with different datasets, I tried dealing with Paul Graham’s essays but that leads to a 21,000 vocab_size which is would then lead to some chopping to a 8000 size - but I just didn’t want to generate output with a lot of “<UNK>" tags).</UNK></li>
+  <li>The preprocessing and tokenization technique - we use the more prevalent tiktoken library (because it is reversible and lossless, so you can convert tokens back into the original text and 
+it works on arbitrary text, even text that is not in the tokeniser’s training data).</li>
+</ol>
+
+<p>His blog does an exceptional job handling everything except when it came to the bptt formulae - he says: For now you can treat BPTT as a black box.</p>
+
+<h2 id="back-propagation-through-time">Back Propagation through Time</h2>
+
+<p>I do hope you are half aware of gradient descent - but if not I recommend <a href="https://www.youtube.com/watch?v=VMj-3S1tku0&amp;ab_channel=AndrejKarpathy">the micrograd video</a> and <a href="https://psymbio.github.io/posts/micrograd/">blog post</a>. It truly is the only way I understood the concepts of back propogation, weight updation and gradient descent.</p>
+
+<p>The thing is I can’t do calculus anymore - yeah. Only because in school I didn’t really see the application of it and I was more interested in the prospect of bunking classes. So, basically now at this age I can either go back to like solving a bunch of questions on diffferentiation or look at this in a more backward fashion. Backward learning: we look at something complicated, not understand it but know it is composed of easier concepts and understand those and build towards the whole.</p>
+
+<p>This basically makes this blog a mess, but chronologically accurate - I am learning things backwards and not forwards.</p>
+
+<p>Go to my writeup on <a href="">differentiation here</a>.</p>
+
+    <script src="https://utteranc.es/client.js" repo="psymbio/psymbio.github.io" issue-term="pathname" theme="github-dark-orange" crossorigin="anonymous" async>
+    </script>
+</section>
 <section class="thanks">
     <span>That sentence that goes before giving my email to strangers: <a href="mailto: psymbio@gmail.com">psymbio@gmail.com</a></span>
 </section>
