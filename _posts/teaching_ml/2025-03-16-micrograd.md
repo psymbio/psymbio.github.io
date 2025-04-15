@@ -41,6 +41,6 @@ Micrograd is all you need for neural networks and the rest is just efficiency.
 
 Okay so basically after this point I just went through the video and noted like everything Kaparthy says in Jupyter Notebooks(-s) (extremely long ones at that but basically the entire idea of a neural network and like backprop starts to make sense for a newbie after that entire exercise, if you are like starting out I think the two people in the area of making sense is Kaparthy and Andrew Ng - it's like they live inside networks or something). 
 
-[Link to the notebooks](https://github.com/psymbio/learning_ml/tree/main/micrograd)
+[Link to the notebooks](https://github.com/psymbio/learning_machine_learning/tree/main/micrograd)
 
 [Link to the video](https://www.youtube.com/watch?v=VMj-3S1tku0&ab_channel=AndrejKarpathy)

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        Week 1 &ndash; The Brain Archive
+    </title>
+    <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2"
+        crossorigin="messinasans-semi">
+    <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+    <meta name="author" content="psymbio" />
+    <meta name="description" content="psymbio's blog" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+    <link rel="alternate" type="application/rss+xml" href="/atom.xml" />
+    <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+    <link rel="shortcut icon" type="image/x-icon" href="/icons/icon.png" />
+    <link rel="icon" type="image/png" href="/icons/icon.png">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- See https://goo.gl/OOhYW5 -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- See https://goo.gl/qRE0vM -->
+    <meta name="theme-color" content="#C1272D">
+
+    <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="psymbio's blog">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="psymbio's blog">
+
+    <!-- Homescreen icons -->
+    <link rel="apple-touch-icon" sizes="192x192" href="icons/icon.png">
+
+    <!-- Tile icon for Windows 8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="icons/icon.png">
+    <meta name="msapplication-TileColor" content="#C1272D">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Default twitter cards -->
+    <meta name="twitter:card" content="psymbio's blog">
+    <meta name="twitter:site" content="@psymbio">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="my-app">
+    <meta property="og:image" content="icons/icon.png" />
+
+    <!--clicky analytics-->
+
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+        </script>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js"
+        integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.1.2/es5/startup.js"
+        integrity="sha512-umLk4jlqS6v3HF06nsUFlzLGh3yp1A9X+hhlGOEstnLdkphT8w0O8nJJi2Pf28kfIFQvYzMg7ODPluFlkc/WzQ=="
+        crossorigin="anonymous"></script>
+
+    <!--flowcharts-->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true
+        });
+    </script>
+    <!--2d plots-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <!--3d plots-->
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+
+    <!-- Add these in your <head> or right before </body> -->
+
+    <!--python for browser: brython
+<script type="text/javascript" src="/scripts/brython.js"></script>
+<script type="text/javascript" src="/scripts/brython_stdlib.js"></script>
+--->
+    <!--particles on the background-->
+    <!-- <script src="/assets/scripts/particle.js"></script> -->
+
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+    <meta name="google-site-verification" content="3PIlzxg_Fq6uuVEqKvNXrVj8NuWqIA9_hqCxWLcnU-4" />
+    <!--
+<nav>
+  <ul>
+      <li><a href="/">Blog</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+-->
+</head>
+
+<body>
+    <div class="top-line"></div>
+    <div class="container">
+        <section class="shore">
+            <header class="sidebar">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+    <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+    <a href="/">
+        <img src="/images/title.png" height="150" width="150" class="avatar" />
+    </a>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+</header>
+<link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+<link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+<link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+<link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+<!-- <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script> -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+      
+  <script type="text/javascript"
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+<section class="content">
+    <section class="byline">
+        March 31, 2025
+    </section>
+    <h1>Week 1</h1>
+    <h1 id="knowledge-check-standard-distributions">[Knowledge check] Standard distributions</h1>
+
+<h2 id="q1-variance-of-the-bernoulli-distribution">Q1. Variance of the Bernoulli Distribution</h2>
+
+<h3 id="1-expected-value-ex">1. Expected Value $E[X]$</h3>
+<p>The expected value (mean) is defined as: \(E[X] = \sum_{i=1}^{k} x_i \cdot p_i\), it represents the <strong>long-run average</strong> value of $X$ if the experiment is repeated many times. Here,</p>
+
+<ul>
+  <li>$x_i$ are the possible values of $X$.</li>
+  <li>$p_i = P(X = x_i)$ is the probability of each value occurring.</li>
+  <li>The probabilities must sum to 1: $p_1 + p_2 + \dots + p_k = 1$.</li>
+</ul>
+
+<p>Consider a random variable $X$ representing the result of rolling a fair six-sided die. Each face of the die is equally likely, so the probability of each outcome is:</p>
+
+\[P(X = x_i) = \frac{1}{6}, \quad \text{for } i = 1, 2, \dots, 6.\]
+
+<p>Using the expectation formula:</p>
+
+\[E[X] = \frac{1 + 2 + 3 + 4 + 5 + 6}{6} = 3.5\]
+
+<h3 id="2-expected-value-of-x-for-bernoulli-distribution">2. Expected Value of $X$ for Bernoulli distribution</h3>
+
+<p>In a <strong>Bernoulli distribution</strong> a random variable $X$ takes values:</p>
+
+\[X = \begin{cases} 1, &amp; \text{with probability } p \\ 0, &amp; \text{with probability } 1 - p\end{cases}\]
+
+<p>So, the expectation is:</p>
+
+\[E[X] = (1 \cdot p) + (0 \cdot (1 - p)) = p\]
+
+<h3 id="3-expected-value-of-x2-for-bernoulli-distribution">3. Expected Value of $X^2$ for Bernoulli distribution</h3>
+
+<ol>
+  <li><strong>Compute $X^2$</strong>:
+    <ul>
+      <li>$X = 1 \implies X^2 = 1$</li>
+      <li>$X = 0 \implies X^2 = 0$</li>
+      <li>Thus, $X^2 = X$.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Apply expectation formula</strong>:
+\(E[X^2] = (1^2 \cdot p) + (0^2 \cdot (1 - p)) = p\)</p>
+  </li>
+  <li><strong>Result</strong>:<br />
+\(E[X^2] = p\)</li>
+</ol>
+
+<p>This result makes sense because, for a Bernoulli variable, squaring does not change the value, meaning $E[X^2]$ is the same as $E[X]$.</p>
+
+<h3 id="4-variance-formula">4. Variance Formula</h3>
+<p>Variance is defined as:</p>
+
+\[\text{Var}(X) = E[X^2] - (E[X])^2\]
+
+<p>Substituting the values:</p>
+
+\[\text{Var}(X) = p - p^2 = p(1 - p)\]
+
+<h3 id="4-interpretation">4. Interpretation</h3>
+<ul>
+  <li>The variance is highest when $p = 0.5$, meaning maximum uncertainty.</li>
+  <li>The variance is $0$ when $p = 0$ or $p = 1$, meaning no uncertainty (constant outcomes).</li>
+  <li>The formula $p(1 - p)$ represents the spread of probability between success $(1)$ and failure $(0)$.</li>
+</ul>
+
+<p>Thus, the <strong>variance of a Bernoulli distribution</strong> is:</p>
+
+\[\text{Var}(X) = p(1 - p)\]
+
+<p>References:</p>
+<ol>
+  <li><a href="https://en.wikipedia.org/wiki/Expected_value">https://en.wikipedia.org/wiki/Expected_value</a></li>
+</ol>
+
+<hr />
+
+<h2 id="probability-density-function-pdf-of-a-univariate-gaussian-distribution">Probability Density Function (PDF) of a Univariate Gaussian Distribution</h2>
+
+<p>The probability density function (PDF) of a <strong>univariate Gaussian (normal) distribution</strong> with mean $\mu$ and variance $\sigma^2$ is given by:</p>
+
+\[f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)\]
+
+<h3 id="explanation">Explanation:</h3>
+<ul>
+  <li>$x$: The random variable.</li>
+  <li>$\mu$: The <strong>mean</strong> (expected value) of the distribution, representing its center.</li>
+  <li>$\sigma^2$: The <strong>variance</strong>, measuring the spread of the distribution.</li>
+  <li>$\sigma = \sqrt{\sigma^2}$: The <strong>standard deviation</strong>.</li>
+  <li>$\exp(-z)$: The exponential function, ensuring values remain positive.</li>
+</ul>
+
+<h3 id="intuition">Intuition:</h3>
+<ol>
+  <li><strong>Normalization Factor</strong> $\frac{1}{\sqrt{2\pi\sigma^2}}$:
+    <ul>
+      <li>Ensures the total area under the curve is <strong>1</strong>, making it a valid probability distribution.</li>
+    </ul>
+  </li>
+  <li><strong>Exponential Term</strong> $\exp(-\frac{(x - \mu)^2}{2\sigma^2})$:
+    <ul>
+      <li>Determines how likely $x$ is based on its distance from $\mu$.</li>
+      <li>Values closer to $\mu$ have <strong>higher</strong> probability.</li>
+      <li>Larger variance ($\sigma^2$) results in a <strong>wider</strong> distribution.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="key-properties">Key Properties:</h3>
+<ul>
+  <li><strong>Bell-shaped curve</strong>: Symmetric around $\mu$.</li>
+  <li><strong>68-95-99.7 Rule</strong>: About 68% of values fall within $\mu \pm \sigma$, 95% within $\mu \pm 2\sigma$, and 99.7% within $\mu \pm 3\sigma$.</li>
+  <li><strong>Peaks at $x = \mu$</strong> and decreases as $x$ moves away from $\mu$.</li>
+</ul>
+
+<p>This function models many natural phenomena like heights, test scores, and measurement errors.</p>
+
+<hr />
+
+<h1 id="effect-of-adding-a-constant-on-variance">Effect of Adding a Constant on Variance</h1>
+
+<p>For any random variable $X$ and constant $a$:</p>
+
+\[\text{Var}(X + a) = \text{Var}(X)\]
+
+<h3 id="key-insight">Key Insight:</h3>
+<ul>
+  <li><strong>Variance is unaffected by additive constants</strong> because it measures <em>spread</em> (deviation from the mean), not location.</li>
+  <li>Shifting all values by $a$ shifts the mean by $a$, but the deviations $(X + a) - E[X + a] = X - E[X]$ remain unchanged.</li>
+</ul>
+
+<h3 id="proof">Proof:</h3>
+<p>\(\begin{align*}
+\text{Var}(X + a) &amp;= E\left[ \left( (X + a) - E[X + a] \right)^2 \right] \\
+&amp;= E\left[ \left( X + a - E[X] - a \right)^2 \right] \\
+&amp;= E\left[ \left( X - E[X] \right)^2 \right] \\
+&amp;= \text{Var}(X)
+\end{align*}\)</p>
+
+<h3 id="intuition-1">Intuition:</h3>
+<p>Adding $a$ moves the entire distribution left/right without changing its shape or variability.</p>
+
+<h1 id="effect-of-multiplying-by-a-constant-on-variance">Effect of Multiplying by a Constant on Variance</h1>
+
+<p>For a random variable $X$ and constant $a$:</p>
+
+\[\text{Var}(aX) = a^2 \text{Var}(X)\]
+
+<h3 id="derivation">Derivation:</h3>
+<ol>
+  <li>
+    <p><strong>Definition of Variance</strong>:
+\(\text{Var}(aX) = E\left[ \left( aX - E[aX] \right)^2 \right]\)</p>
+  </li>
+  <li>
+    <p><strong>Linearity of Expectation</strong> ($E[aX] = aE[X]$):
+\(\text{Var}(aX) = E\left[ \left( aX - aE[X] \right)^2 \right] = E\left[ a^2(X - E[X])^2 \right]\)</p>
+  </li>
+  <li>
+    <p><strong>Factor out $a^2$</strong> (constants move outside expectations):
+\(\text{Var}(aX) = a^2 E\left[ (X - E[X])^2 \right] = a^2 \text{Var}(X)\)</p>
+  </li>
+</ol>
+
+<h3 id="intuition-2">Intuition:</h3>
+<ul>
+  <li>Multiplying by $a$ scales both the <strong>values</strong> and their <strong>deviations from the mean</strong> by $a$.</li>
+  <li>Squaring these deviations introduces the $a^2$ term.</li>
+</ul>
+
+<h3 id="example">Example:</h3>
+<p>If $\text{Var}(X) = 4$ and $a = 3$:
+\(\text{Var}(3X) = 9 \times 4 = 36\)</p>
+
+<h3 id="key-property">Key Property:</h3>
+<p>Variance is <strong>not linear</strong>—it scales quadratically with multiplicative constants.</p>
+
+
+    <script src="https://utteranc.es/client.js" repo="psymbio/psymbio.github.io" issue-term="pathname" theme="github-dark-orange" crossorigin="anonymous" async>
+    </script>
+</section>
+<section class="thanks">
+    <span>That sentence that goes before giving my email to strangers: <a href="mailto: psymbio@gmail.com">psymbio@gmail.com</a></span>
+</section>
+<br>
+<br>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<style>
+    .videoWrapper {
+        position: relative;
+        padding-bottom: 56.333%;
+        height: 0;
+        background: black;
+    }
+    
+    .videoWrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+</style>
+
+<script>
+    function get_youtube_id(url) {
+        var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+        return (url.match(p)) ? RegExp.$1 : false;
+    }
+
+    function vimeo_embed(url, el) {
+        var id = false;
+        $.ajax({
+            url: 'https://vimeo.com/api/oembed.json?url=' + url,
+            async: true,
+            success: function(response) {
+                if (response.video_id) {
+                    id = response.video_id;
+                    if (url.indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (url.indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    var theInnerHTML = '<div class="videoWrapper"><iframe src="https://player.vimeo.com/video/' + id + '/?byline=0&title=0&portrait=0';
+                    if (autoplay == 1) theInnerHTML += '&autoplay=1';
+                    if (loop == 1) theInnerHTML += '&loop=1';
+                    theInnerHTML += '" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>';
+                    el.innerHTML = theInnerHTML;
+                }
+            }
+        });
+    }
+
+    function video_embed() {
+        var p = document.getElementsByTagName('p');
+        for (var i = 0; i < p.length; i++) {
+            //check if this is an external url (that starts with https:// or http://
+            if (p[i].innerHTML.indexOf("http://") == 0 ||
+                p[i].innerHTML.indexOf("https://") == 0) {
+                var youtube_id = get_youtube_id(p[i].innerHTML);
+                if (youtube_id) {
+                    if (p[i].innerHTML.indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (p[i].innerHTML.indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    var theInnerHTML = '<div class="videoWrapper"><iframe width="720" height="420" src="https://www.youtube.com/embed/' + youtube_id + '?rel=0&showinfo=0';
+                    if (autoplay == 1) theInnerHTML += '&autoplay=1';
+                    if (loop == 1) theInnerHTML += '&loop=1&playlist=' + youtube_id + '&version=3';
+                    if (p[i].innerHTML.indexOf('start=') !== -1) theInnerHTML += '&start=' + p[i].innerHTML.substring(p[i].innerHTML.indexOf('start=') + 6);
+                    theInnerHTML += '" frameborder="0" allowfullscreen></iframe></div>';
+                    p[i].innerHTML = theInnerHTML;
+                }
+                if (p[i].innerHTML.indexOf('vimeo.com') !== -1) {
+                    //ask vimeo for the id and place the embed
+                    vimeo_embed(p[i].innerHTML, p[i]);
+                }
+            }
+        }
+    }
+    video_embed();
+
+    function mp3_embed() {
+        var p = document.getElementsByTagName('p');
+        for (var i = 0; i < p.length; i++) {
+            if (p[i].innerHTML.indexOf('.mp3') !== -1) {
+                var str = p[i].innerHTML.split('?');
+                if (str.length == 1) str[1] = '';
+                var str1 = str[1];
+                str1 = str1.replace('&', '').replace('&', '');
+                str1 = str1.replace('autoplay=1', '').replace('autoplay=0', '');
+                str1 = str1.replace('loop=1', '').replace('loop=0', '');
+                str1 = str1.replace('controls=0', '').replace('controls=1', '');
+
+                if (str[0].lastIndexOf('.mp3', str[0].length - 4) === str[0].length - 4 && str1.length == 0) {
+                    if (str[1].indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (str[1].indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    if (str[1].indexOf('controls=0') !== -1) var controls = 0;
+                    else var controls = 1;
+                    var newInnerHTML = '<audio';
+                    if (autoplay == 1) newInnerHTML += ' autoplay';
+                    if (loop == 1) newInnerHTML += ' loop';
+                    if (controls == 1) newInnerHTML += ' controls';
+                    newInnerHTML += '><source src="' + str[0] + '" type="audio/mpeg">Your browser does not support the audio element.</audio>';
+                    p[i].innerHTML = newInnerHTML;
+                }
+            }
+        }
+    }
+    mp3_embed();
+</script>
+<script>
+    ! function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+            p = /^http:/.test(d.location) ? 'http' : 'https';
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.id = id;
+            js.src = p + '://platform.twitter.com/widgets.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    }(document, 'script', 'twitter-wjs');
+</script>
+
+            <section class="shore">
+    </div>
+</body>
+<script>
+    'use strict';
+    var head = document.head;
+    var link = document.createElement('link');
+    link.type = 'text/css';
+    link.rel = 'stylesheet';
+    link.href = '/css/pygments.css'
+    head.appendChild(link);
+</script>
+<!--copy code to clipboard-->
+<script src="/assets/scripts/copycode.js"></script>
+
+</html>

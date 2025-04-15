@@ -84,7 +84,7 @@ Velocity describes how the distance changes with time. Velocity is a rate of cha
 
 Differential calculus is about finding the slope of a tangent to the graph of a function, or equivalently, differential calculus is about finding the rate of change of one quantity with respect to another quantity.
 
-For differentiation look at: [01_derivatives_manually.ipynb](https://github.com/psymbio/learning_ml/blob/main/micrograd/01_derivatives_manually.ipynb) created from [Andrej Kaparthy's "building micrograd"](https://www.youtube.com/watch?v=VMj-3S1tku0&t=768s&ab_channel=AndrejKarpathy)
+For differentiation look at: [01_derivatives_manually.ipynb](https://github.com/psymbio/learning_machine_learning/blob/main/micrograd/01_derivatives_manually.ipynb) created from [Andrej Kaparthy's "building micrograd"](https://www.youtube.com/watch?v=VMj-3S1tku0&t=768s&ab_channel=AndrejKarpathy)
 
 ## Mean-Squared Error
 
@@ -184,7 +184,7 @@ Since we want to minimize this function, we take its derivative with respect to 
 
 ## Linear Regression Code + Derivations of RSS
 
-[https://github.com/psymbio/learning_ml/tree/main/linear_regression](https://github.com/psymbio/learning_ml/tree/main/linear_regression)
+[https://github.com/psymbio/learning_machine_learning/tree/main/linear_regression](https://github.com/psymbio/learning_ml/tree/main/linear_regression)
 
 - The least-squares method **minimizes the sum of squared errors** to find the best-fit line.
 - The solution involves solving for $\beta_0$ and $\beta_1$ by taking derivatives of RSS.
