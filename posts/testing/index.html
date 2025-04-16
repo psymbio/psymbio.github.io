@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-        RNNs from Scratch &ndash; The Brain Archive
+        Testing &ndash; The Brain Archive
     </title>
     <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
     <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2"
@@ -136,26 +136,8 @@
     <section class="byline">
         April 15, 2025
     </section>
-    <h1>RNNs from Scratch</h1>
-    <p>I tried to recreate <a href="https://dennybritz.com/posts/wildml/recurrent-neural-networks-tutorial-part-2/">Denny Britz’s blog on it</a> the code is <a href="https://github.com/psymbio/learning_machine_learning/blob/main/rnns_from_scratch/poem_generator.py">here</a>. This is mostly a copy with some changes to exercise re-writing the code which allows me to understand the code - changes include -</p>
-
-<ol>
-  <li>The dataset (yeah, it is interesting to deal with different datasets, I tried dealing with Paul Graham’s essays but that leads to a 21,000 vocab_size which is would then lead to some chopping to a 8000 size - but I just didn’t want to generate output with a lot of <code class="language-plaintext highlighter-rouge">"&lt;UNK&gt;"</code> tags).</li>
-  <li>The preprocessing and tokenization technique - we use the more prevalent tiktoken library (because it is reversible and lossless, so you can convert tokens back into the original text and 
-it works on arbitrary text, even text that is not in the tokeniser’s training data).</li>
-</ol>
-
-<p>His blog does an exceptional job handling everything except when it came to the bptt formulae - he says: For now you can treat BPTT as a black box.</p>
-
-<h2 id="back-propagation-through-time">Back Propagation through Time</h2>
-
-<p>I do hope you are half aware of gradient descent - but if not I recommend <a href="https://www.youtube.com/watch?v=VMj-3S1tku0&amp;ab_channel=AndrejKarpathy">the micrograd video</a> and <a href="https://psymbio.github.io/posts/micrograd/">this blog post for notes and code of the video</a>. It truly is the only way I understood the concepts of back propogation, weight updation and gradient descent.</p>
-
-<p>I tried writing up the formulae for this on my own but the thing is I can’t do calculus anymore - yeah. Only because in school I didn’t really see the application of it and I was more interested in the prospect of bunking classes. So, basically now at this age I can either go back to like solving a bunch of questions on differentiation or look at this in a more backward fashion. Backward learning: we look at something complicated, not understand it but know it is composed of easier concepts and understand those and build towards the whole (we also don’t meander too much).</p>
-
-<p>This basically makes this blog a mess, but chronologically accurate - I am learning things backwards and not forwards.</p>
-
-<p>Go to my writeup on <a href="https://psymbio.github.io/posts/differentiation/">differentiation here</a>.</p>
+    <h1>Testing</h1>
+    <p>It all starts from this one simple formula:</p>
 
     <script src="https://utteranc.es/client.js" repo="psymbio/psymbio.github.io" issue-term="pathname" theme="github-dark-orange" crossorigin="anonymous" async>
     </script>
