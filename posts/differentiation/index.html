@@ -137,19 +137,162 @@
         April 16, 2025
     </section>
     <h1>Differentiation</h1>
-    <p>It all starts from this one simple formula:</p>
+    <p>For any function, what we fundamentally want to understand is: if the input changes by an infinitesimally small amount, how does the output of the function respond?</p>
 
-<p>A function of a real variable $f(x)$ is differentiable at a point $a$ of its domain, if its domain contains an open interval containing $a$, and the limit</p>
+<p>Before we dive into the idea of differentiation, it’s helpful to first understand two key concepts: what a function is, and what we mean by the slope of a line.</p>
 
-\[L=\lim_{h \to 0}\frac{f(a+h)-f(a)}{h}\]
+<ol>
+  <li>A <strong>function</strong> is a rule that takes an input and gives exactly one output. For example, if we have a function $f(x) = x^2$, then inputting $x = 2$ gives us the output $f(2) = 4$. Every valid input $x$ is mapped to a corresponding output $f(x)$.</li>
+  <li>The <strong>slope</strong> measures how steep a line is — it tells us how much the value of $y$ changes for a given change in $x$. For two points on a line, say $(x_1, y_1)$ and $(x_2, y_2)$, the slope is given by: $\text{slope} = \frac{y_2 - y_1}{x_2 - x_1} = \frac{\text{rise}}{\text{run}}$</li>
+</ol>
 
-<p>This is really the only formula we need for all of differentiation and here’s how you want to understand it:</p>
-
-<p>Think of $h$ as a small step away from $a$. The quantity $\frac{f(a+h) - f(a)}{h}$ is the slope of the secant line connecting the points $(a, f(a))$ and $(a+h, f(a+h))$. As $h$ gets closer and closer to $0$, the secant line approaches the tangent line to the curve at $x = a$, and its slope becomes the derivative $f’(a)$, i.e., how does the function change with a small change $h$.</p>
+<p>Now let’s start to look into the definition of a derivative through an illustration:</p>
 
 <center>
-<embed src="/svg/differentiation/removeable-discontinuity.svg" type="image/svg+xml" />
+<embed src="/svg/differentiation/derivative-parabola-fixed.svg" type="image/svg+xml" />
 </center>
+
+<p>Using the illustration, we can understand how the function changes when its input changes by a small amount $\Delta x$. To do this, we calculate the slope of the line passing through two points on the function: $P = (x, f(x))$ and $Q = (x + \Delta x, f(x + \Delta x))$. This line is called the <strong>secant line</strong>, and its slope is given by:</p>
+
+\[\frac{f(x + \Delta x) - f(x)}{(x + \Delta x) - x} = \frac{f(x + \Delta x) - f(x)}{\Delta x}.\]
+
+<p>This slope represents the <strong>average rate of change</strong> of the function between the two points.</p>
+
+<p>To find the <strong>instantaneous rate of change</strong> at the point $x$, we bring point $Q$ closer and closer to point $P$ by letting $\Delta x$ approach zero. As this happens, the secant line approaches the <strong>tangent line</strong> at $x$, and its slope becomes the <strong>derivative</strong> of the function at that point:</p>
+
+\[f'(x) = \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x}.\]
+
+<p>This limit, if it exists, tells us how the function responds to an infinitesimally small change in the input. A function $f(x)$ is said to be <strong>differentiable</strong> at a point $x$ if this limit exists and yields a finite value. In other words, the function must be smooth (no sharp corners or breaks) in an open interval around $x$.</p>
+
+<p>Now, given we know that one fundamental formulae, yopu are supposed to like whiz through the sections below - you can occasionally take a pen and paper to solve it for yourself - but otherwise just accept it and move on.</p>
+
+<h2 id="constant-rule">Constant Rule</h2>
+
+<p>If $f(x) = c$, where $c$ is a constant, then the output of the function is the same for every input $x$. That is, no matter how $x$ changes, $f(x)$ remains unchanged. This means the rate of change, or the slope of the function, is zero at all points:</p>
+
+\[f'(x) = \frac{d}{dx}(c) = 0\]
+
+<p>Using the definition of the derivative:</p>
+
+\[f'(x) = \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x}\]
+
+<p>Since the function always outputs the same value $c$, we have:</p>
+
+\[f(x + \Delta x) = c \quad \text{and} \quad f(x) = c\]
+
+<p>So the difference in output is:</p>
+
+\[\frac{c - c}{\Delta x} = \frac{0}{\Delta x} = 0\]
+
+<p>Therefore:</p>
+
+\[f'(x) = \lim_{\Delta x \to 0} 0 = 0\]
+
+<p>A constant function has no change, and hence its derivative is zero everywhere.</p>
+
+<h2 id="sum-rule">Sum Rule</h2>
+
+\[(a \cdot f(x) + b \cdot g(x))' = \frac{d}{dx} (a \cdot f(x) + b \cdot g(x))\]
+
+<p>then using,</p>
+
+\[f'(x) = \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x}\]
+
+<p>we have:</p>
+
+\[\begin{aligned}
+&amp;= \lim_{h \to 0} \frac{a \cdot f(x + h) + b \cdot g(x + h) - (a \cdot f(x) + b \cdot g(x))}{h} \\
+&amp;= a \cdot \frac{f(x+h) - f(x)}{h} + b \cdot \frac{g(x+h) - g(x)}{h} \\
+&amp;= a \cdot f'(x) + b \cdot g'(x)
+\end{aligned}\]
+
+<h2 id="product-rule">Product Rule</h2>
+
+<p>If $f(x)$ and $g(x)$ are both differentiable functions, then the derivative of their product is:</p>
+
+\[\frac{d}{dx} \left[ f(x) \cdot g(x) \right] = f'(x) \cdot g(x) + f(x) \cdot g'(x)\]
+
+<p>We start with the definition of the derivative:</p>
+
+\[\frac{d}{dx} \left[ f(x) \cdot g(x) \right] = \lim_{\Delta x \to 0} \frac{f(x + \Delta x)g(x + \Delta x) - f(x)g(x)}{\Delta x}\]
+
+<p>We add and subtract a middle term $f(x + \Delta x)g(x)$ to split the expression:</p>
+
+\[= \lim_{\Delta x \to 0} \frac{f(x + \Delta x)g(x + \Delta x) - f(x + \Delta x)g(x) + f(x + \Delta x)g(x) - f(x)g(x)}{\Delta x}\]
+
+<p>Group the terms:</p>
+
+\[= \lim_{\Delta x \to 0} \left[ \frac{f(x + \Delta x)\left(g(x + \Delta x) - g(x)\right)}{\Delta x} + \frac{g(x)\left(f(x + \Delta x) - f(x)\right)}{\Delta x} \right]\]
+
+<p>Take the limit of each part:</p>
+
+\[= f(x) \cdot \lim_{\Delta x \to 0} \frac{g(x + \Delta x) - g(x)}{\Delta x} + g(x) \cdot \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x}\]
+
+<p>Which simplifies to:</p>
+
+\[f(x) \cdot g'(x) + g(x) \cdot f'(x)\]
+
+<p>So,</p>
+
+\[\frac{d}{dx} \left[ f(x) \cdot g(x) \right] = f'(x)g(x) + f(x)g'(x)\]
+
+<h2 id="chain-rule">Chain Rule</h2>
+
+<p>If $y = f(g(x))$, where both $f$ and $g$ are differentiable functions, then the derivative of the composition is:</p>
+
+\[\frac{dy}{dx} = f'(g(x)) \cdot g'(x)\]
+
+<p>Let’s consider the function $y = f(g(x))$. To find $\frac{dy}{dx}$, we start with the definition of the derivative:</p>
+
+\[\frac{dy}{dx} = \lim_{\Delta x \to 0} \frac{f(g(x + \Delta x)) - f(g(x))}{\Delta x}\]
+
+<p>Let $\Delta g = g(x + \Delta x) - g(x)$. Since $g$ is differentiable at $x$, as $\Delta x \to 0$, we also have $\Delta g \to 0$.</p>
+
+<p>We now rewrite the difference quotient as:</p>
+
+\[\frac{f(g(x + \Delta x)) - f(g(x))}{\Delta x} = \frac{f(g(x) + \Delta g) - f(g(x))}{\Delta g} \cdot \frac{\Delta g}{\Delta x}\]
+
+<p>Take the limit of both parts:</p>
+
+\[\lim_{\Delta x \to 0} \left[ \frac{f(g(x) + \Delta g) - f(g(x))}{\Delta g} \cdot \frac{\Delta g}{\Delta x} \right]\]
+
+<p>As $\Delta g \to 0$, the first term becomes $f’(g(x))$, and the second becomes $g’(x)$. So:</p>
+
+\[\frac{dy}{dx} = f'(g(x)) \cdot g'(x)\]
+
+<h2 id="summary">Summary</h2>
+
+<ol>
+  <li>
+    <p>Constant Rule:
+\(\frac{d}{dx}[c] = 0\)</p>
+  </li>
+  <li>
+    <p>Sum Rule:
+\(\frac{d}{dx}[a \cdot f(x) + b \cdot g(x)] = a \cdot f'(x) + b \cdot g'(x)\)</p>
+  </li>
+  <li>
+    <p>Product Rule:
+\(\frac{d}{dx}[f(x) \cdot g(x)] = f(x) \cdot g'(x) + f'(x) \cdot g(x)\)</p>
+  </li>
+  <li>
+    <p>Quotient Rule:
+\(\frac{d}{dx} \left[\frac{f(x)}{g(x)}\right] = \frac{f'(x) \cdot g(x) - f(x) \cdot g'(x)}{[g(x)]^2}\)</p>
+  </li>
+  <li>
+    <p>Chain Rule:
+\(\frac{d}{dx}[f(g(x))] = f'(g(x)) \cdot g'(x)\)</p>
+  </li>
+</ol>
+
+<h2 id="references">References</h2>
+
+<ol>
+  <li><a href="https://math.hmc.edu/calculus/hmc-mathematics-calculus-online-tutorials/single-variable-calculus/limit-definition-of-the-derivative/">Limit Definition and Illustration</a></li>
+  <li><a href="https://d2l.ai/chapter_recurrent-neural-networks/bptt.html">Backpropagation Through Time</a></li>
+  <li><a href="https://math.libretexts.org/Workbench/Numerical_Methods_with_Applications_(Kaw)/8%3A_Ordinary_Differential_Equations/8.02%3A_Euler%E2%80%99s_Method_for_Solving_Ordinary_Differential_Equations">Unrelated read on ODEs and euler</a></li>
+  <li><a href="https://www3.cs.stonybrook.edu/~algorith/video-lectures/1997/lecture16.pdf">Unrelated read on Topological sorting - this is used in both micrograd and DNAs</a></li>
+</ol>
 
     <script src="https://utteranc.es/client.js" repo="psymbio/psymbio.github.io" issue-term="pathname" theme="github-dark-orange" crossorigin="anonymous" async>
     </script>
