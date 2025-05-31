@@ -41,9 +41,7 @@ function copySiteToFolder(){
 
 #Clone only the branch "gh-pages" to the folder "PUSH_FOLDER". 
 function cloneGhpages(){
-    git config user.name "psymbio"
-    git config user.email "psymbio@gmail.com"
-    echo "$(GIT_SSH_COMMAND='ssh -i ~/.ssh/psymbio -o IdentitiesOnly=yes' git clone --branch gh-pages `git config remote.origin.url` $PUSH_FOLDER)"
+    echo "$(git clone --branch gh-pages `git config remote.origin.url` $PUSH_FOLDER)"
 }
 
 function prepareThePushFolder(){
@@ -76,11 +74,9 @@ function setMessageCommit(){
 }
 
 function pushBranchGhpages(){
-    git config user.name "psymbio"
-    git config user.email "psymbio@gmail.com"
-    git add -A
+    git add .
     git commit -m "$COMMIT_MESSAGE"
-    GIT_SSH_COMMAND='ssh -i ~/.ssh/psymbio -o IdentitiesOnly=yes' git push
+    git push
 }
 
 function changeDirectoryBack(){
