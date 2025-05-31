@@ -285,6 +285,42 @@
   </li>
 </ol>
 
+<h2 id="let-the-complication-begin">Let the complication begin!</h2>
+
+<p>Okay, so now that we’ve formed a basis for like the normal-ass differentiation we cna start to tackle the really complicated. If you’ve like taken an introductory differentiation course or something, depending on the country of your orgin - you might have been given a list to memorize - mostly I think the concern behind that was that you not in a million years would be able to derive eveyrthing from scratch in the 3 hours stipulated for the exam that decides your life so -</p>
+
+<h2 id="derivative-of-cosx">Derivative of $\cos(x)$</h2>
+
+<p>We want to compute the derivative of $f(x) = \cos(x)$. By definition, the derivative is:</p>
+
+\[f'(x) = \lim_{\Delta x \to 0} \frac{\cos(x + \Delta x) - \cos(x)}{\Delta x}\]
+
+<p>Now apply the trigonometric identity for $\cos(A + B)$:</p>
+
+\[\cos(x + \Delta x) = \cos(x)\cos(\Delta x) - \sin(x)\sin(\Delta x)\]
+
+<p>Substitute this into the limit:</p>
+
+\[f'(x) = \lim_{\Delta x \to 0} \frac{\cos(x)\cos(\Delta x) - \sin(x)\sin(\Delta x) - \cos(x)}{\Delta x}\]
+
+<p>Group terms:</p>
+
+\[= \lim_{\Delta x \to 0} \left[ \cos(x) \cdot \frac{\cos(\Delta x) - 1}{\Delta x} - \sin(x) \cdot \frac{\sin(\Delta x)}{\Delta x} \right]\]
+
+<p>Now use the standard limits:</p>
+
+\[\lim_{\Delta x \to 0} \frac{\cos(\Delta x) - 1}{\Delta x} = 0, \quad \lim_{\Delta x \to 0} \frac{\sin(\Delta x)}{\Delta x} = 1\]
+
+<p>(the quick explanation for $\lim_{\Delta x \to 0} \frac{\sin(\Delta x)}{\Delta x} = 1$ is that $\sin(0) = 0$, so $\sin(\Delta x)$ is not exactly $0$ but like somewhere near it, and so we say $\sin(\Delta x) = \Delta x$, and $ \lim_{\Delta x \to 0} \frac{\Delta x}{\Delta x} = 1$)</p>
+
+<p>So we get:</p>
+
+\[f'(x) = \cos(x) \cdot 0 - \sin(x) \cdot 1 = -\sin(x)\]
+
+<p>Therefore:</p>
+
+\[\frac{d}{dx}[\cos(x)] = -\sin(x)\]
+
 <h2 id="references">References</h2>
 
 <ol>
@@ -297,9 +333,7 @@
     <script src="https://utteranc.es/client.js" repo="psymbio/psymbio.github.io" issue-term="pathname" theme="github-dark-orange" crossorigin="anonymous" async>
     </script>
 </section>
-<section class="thanks">
-    <span>That sentence that goes before giving my email to strangers: <a href="mailto: psymbio@gmail.com">psymbio@gmail.com</a></span>
-</section>
+<span>That sentence that goes before giving my email to strangers: <a href="mailto: psymbio@gmail.com">psymbio@gmail.com</a></span>
 <br>
 <br>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
