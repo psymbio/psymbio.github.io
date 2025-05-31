@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        Basic Stats &ndash; The Brain Archive
+    </title>
+    <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2"
+        crossorigin="messinasans-semi">
+    <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+    <meta name="author" content="psymbio" />
+    <meta name="description" content="psymbio's blog" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+    <link rel="alternate" type="application/rss+xml" href="/atom.xml" />
+    <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+    <link rel="shortcut icon" type="image/x-icon" href="/icons/icon.png" />
+    <link rel="icon" type="image/png" href="/icons/icon.png">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- See https://goo.gl/OOhYW5 -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- See https://goo.gl/qRE0vM -->
+    <meta name="theme-color" content="#C1272D">
+
+    <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="psymbio's blog">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="psymbio's blog">
+
+    <!-- Homescreen icons -->
+    <link rel="apple-touch-icon" sizes="192x192" href="icons/icon.png">
+
+    <!-- Tile icon for Windows 8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="icons/icon.png">
+    <meta name="msapplication-TileColor" content="#C1272D">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Default twitter cards -->
+    <meta name="twitter:card" content="psymbio's blog">
+    <meta name="twitter:site" content="@psymbio">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="my-app">
+    <meta property="og:image" content="icons/icon.png" />
+
+    <!--clicky analytics-->
+
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+        </script>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js"
+        integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.1.2/es5/startup.js"
+        integrity="sha512-umLk4jlqS6v3HF06nsUFlzLGh3yp1A9X+hhlGOEstnLdkphT8w0O8nJJi2Pf28kfIFQvYzMg7ODPluFlkc/WzQ=="
+        crossorigin="anonymous"></script>
+
+    <!--flowcharts-->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true
+        });
+    </script>
+    <!--2d plots-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <!--3d plots-->
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+
+    <!-- Add these in your <head> or right before </body> -->
+
+    <!--python for browser: brython
+<script type="text/javascript" src="/scripts/brython.js"></script>
+<script type="text/javascript" src="/scripts/brython_stdlib.js"></script>
+--->
+    <!--particles on the background-->
+    <!-- <script src="/assets/scripts/particle.js"></script> -->
+
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+    <meta name="google-site-verification" content="3PIlzxg_Fq6uuVEqKvNXrVj8NuWqIA9_hqCxWLcnU-4" />
+    <!--
+<nav>
+  <ul>
+      <li><a href="/">Blog</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+-->
+</head>
+
+<body>
+    <div class="top-line"></div>
+    <div class="container">
+        <section class="shore">
+            <header class="sidebar">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+    <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+    <a href="/">
+        <img src="/images/title.png" height="150" width="150" class="avatar" />
+    </a>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+</header>
+<link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+<link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+<link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+<link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+<!-- <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script> -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+      
+  <script type="text/javascript"
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+<section class="content">
+    <section class="byline">
+        May 29, 2025
+    </section>
+    <h1>Basic Stats</h1>
+    <p>I keep forgetting basic stats every other month - would be nice to have a cute summary that get’s you up to speed in 30 minutes or so.</p>
+
+<p>I’m reading <a href="https://leanpub.com/os">OpenIntro Statistics - Fourth Edition</a> (free to download).</p>
+
+<p>How do if a cure for a disease actually works? How do we know if - yeah, you guessed it - STATS.</p>
+
+<h2 id="clinical-experiments">Clinical Experiments</h2>
+
+<p>Treatment group: Patients in the treatment group receive the medication.</p>
+
+<p>Control group: Patients in the control group receive a placebo.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Group</th>
+      <th>Improvement</th>
+      <th>No Improvement</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Treatment (n=100)</td>
+      <td>80</td>
+      <td>20</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <td>Control (n=100)</td>
+      <td>10</td>
+      <td>90</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <td>Total</td>
+      <td>90</td>
+      <td>110</td>
+      <td>200</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>(a) What percent of patients in the treatment group experienced improvement in symptoms? 80/100 * 100 = 80%
+(b) What percent experienced improvement in symptoms in the control group? 10%
+(c) In which group did a higher percentage of patients experience improvement in symptoms? The treatment group had a higher percentage (80%) than the control group (10%).
+(d) One other possible explanation for the observed difference:
+While the data suggests that the treatment (possibly an antibiotic) is more effective than the placebo, another possible explanation is:</p>
+
+<p>The placebo group may have had more severe or prolonged cases of sinusitis at baseline, or there may have been random variation in patient characteristics (like age, immune response, or coexisting conditions) despite random assignment.</p>
+
+<p>Other possibilities:</p>
+
+<ol>
+  <li>Self-reporting bias: Patients in the treatment group might expect to feel better and report improvement even if the effect is psychological (placebo effect).</li>
+  <li>Sampling error: The sample size (n=100 per group) might be too small to rule out chance variation.</li>
+  <li>Natural recovery: Sinusitis often resolves without treatment. Those in the treatment group may have coincidentally improved due to natural healing, not the medication.</li>
+</ol>
+
+<h2 id="types-of-variables">Types of Variables</h2>
+
+<div class="mermaid" align="center" height="70%" width="70%">
+flowchart TD
+    A["Variables"]
+    A --&gt; B["Numerical"]
+    A --&gt; C["Categorical"]
+    
+    B --&gt; B1["Continuous"]
+    B --&gt; B2["Discrete"]
+    
+    C --&gt; C1["Nominal"]
+    C --&gt; C2["Ordinal"]
+    
+    B1 --&gt; E1["e.g. Height, Temperature, Weight"]
+    B2 --&gt; E2["e.g. Number of Children, Shoe Size"]
+    
+    C1 --&gt; E3["e.g. Gender, Eye Color, Country"]
+    C2 --&gt; E4["e.g. Education Level, Customer Satisfaction"]
+</div>
+
+<h2 id="sampling">Sampling</h2>
+
+<p>Sampling is selecting a part of a population to study.</p>
+
+<ul>
+  <li>Simple random sample: Everyone has an equal chance of being chosen.</li>
+  <li>Stratified sample: Population is split into groups (strata), and a random sample is taken from each group.</li>
+  <li>Cluster sample: Population is divided into clusters, some clusters are randomly chosen, and all members in them are surveyed.</li>
+  <li>Multistage sample: Combines several sampling methods (e.g., choose clusters, then randomly select people within them).</li>
+</ul>
+
+<h2 id="sampling-biases">Sampling Biases</h2>
+
+<ul>
+  <li>Non-response bias: Some people don’t respond, possibly affecting results.</li>
+  <li>Convenience sample: Picking people who are easy to reach.</li>
+  <li>Voluntary response bias: Only those with strong opinions respond.</li>
+  <li>Undercoverage bias: Some groups are left out of the sample.</li>
+</ul>
+
+<h2 id="observational-studies-and-causality">Observational Studies and Causality</h2>
+
+<p>In observational studies, no treatment is applied or withheld. They can show associations, but not causation.</p>
+
+<p>An observational study finds that people who use more sunscreen are more likely to get skin cancer. Does sunscreen cause cancer? Likely not.</p>
+
+<div class="mermaid" align="center" height="70%" width="70%">
+flowchart LR
+    A["Sun Exposure"]
+    B["Skin Cancer"]
+    C["Use Sunscreen"]
+    
+    A --&gt; B
+    A --&gt; C
+    C -. ? .-&gt; B
+</div>
+
+<p>A confounding variable—like sun exposure—affects both sunscreen use (explanatory) and skin cancer risk (response). People in the sun more often both use more sunscreen and are more at risk.</p>
+
+<h2 id="principles-of-experimental-design">Principles of Experimental Design</h2>
+
+<p>Randomized experiments are based on four key principles:</p>
+
+<ol>
+  <li>Controlling: Keep variables consistent across groups to isolate the treatment effect. Example: All patients take a pill with 12 oz of water to control water intake differences.</li>
+  <li>Randomization: Randomly assign participants to groups to balance out unknown or uncontrollable variables and avoid bias.</li>
+  <li>Replication: Use a large sample to improve accuracy. Repeating studies also helps verify findings.</li>
+  <li>Blocking: Group participants by variables known to affect the outcome (e.g., risk level) before randomizing within each group. Ensures treatment groups are balanced on those variables.</li>
+</ol>
+
+<p>First three principles are essential in any experiment. Blocking is optional but useful when applicable.</p>
+
+<h2 id="reducing-bias-in-human-experiments">Reducing Bias in Human Experiments</h2>
+
+<p>Randomized experiments are ideal for studying cause-and-effect but can still suffer from bias, especially in human studies.</p>
+<ol>
+  <li>Emotional Effects &amp; Bias: Participants may react emotionally—those receiving treatment might feel hopeful, while control group members may feel neglected. This emotional effect can unintentionally bias results.</li>
+  <li>Blinding: To reduce bias, researchers blind patients so they don’t know whether they’re receiving the treatment or not.</li>
+  <li>Placebo: A fake treatment (e.g., sugar pill) given to control group participants to maintain blinding. Placebo Effect: When patients show slight improvement simply from believing they’re receiving treatment.</li>
+  <li>Double-Blind Studies: Doctors and researchers can also introduce bias. A double-blind study ensures that neither the patients nor the medical staff know who is receiving the actual treatment. This helps maintain objectivity and improves the reliability of results.</li>
+</ol>
+
+<div class="admonition note">
+  <p class="admonition-title">Random Question - Chia seeds and weight loss</p>
+
+  <p>Chia Pets – those terra-cotta figurines that sprout fuzzy green hair – made the chia plant a household name. But chia has gained an entirely new reputation as a diet supplement. In one 2009 study, a team of researchers recruited 38 men and divided them randomly into two groups: treatment or control. They also recruited 38 women, and they randomly placed half of these participants into the treatment group and the other half into the control group. One group was given 25 grams of chia seeds twice a day, and the other was given a placebo. The subjects volunteered to be a part of the study. After 12 weeks, the scientists found no significant difference between the groups in appetite or weight loss.</p>
+
+  <p>(a) What type of study is this?<br />
+  Experimental – participants were randomly assigned and conditions were controlled.</p>
+
+  <p>(b) What are the experimental and control treatments?<br />
+  Treatment: 25g chia seeds twice daily<br />
+  Control: Placebo</p>
+
+  <p>(c) Has blocking been used? If so, what is the blocking variable?<br />
+  Yes. Blocking by gender (men and women split evenly).</p>
+
+  <p>(d) Has blinding been used?<br />
+  Not explicitly stated, but likely single-blind due to use of a placebo.</p>
+
+  <p>(e) Can we make a causal statement? Can we generalize the results?<br />
+  Causal: Yes, due to random assignment.<br />
+  Generalization: Limited. Volunteers and small sample size reduce broader applicability.</p>
+</div>
+
+<div class="admonition note">
+  <p class="admonition-title">Flawed Reasoning - Survey and Observational Study Biases</p>
+
+  <p>(a) Students at an elementary school are given a questionnaire that they are asked to return after their parents have completed it. One of the questions asked is, “Do you find that your work schedule makes it difficult for you to spend time with your kids after school?” Of the parents who replied, 85% said “no”. Based on these results, the school officials conclude that a great majority of the parents have no difficulty spending time with their kids after school.<br />
+  Flaw: Non-response bias – only those who responded are included, possibly skewing the results. The question is also leading, possibly inducing socially desirable answers.<br />
+  Improvement: Increase response rate with follow-ups or incentives. Rephrase question neutrally (e.g., use options like "Often", "Sometimes", etc.). Acknowledge and account for non-response bias.</p>
+
+  <p>(b) A survey is conducted on a simple random sample of 1,000 women who recently gave birth, asking them about whether or not they smoked during pregnancy. A follow-up survey asking if the children have respiratory problems is conducted 3 years later. However, only 567 of these women are reached at the same address. The researcher reports that these 567 women are representative of all mothers.<br />
+  Flaw: Attrition bias – only 567 of the 1,000 women could be reached for the follow-up. The remaining group may not be representative.<br />
+  Improvement: Better tracking methods, compare demographics of those reached vs. not reached, adjust using statistical techniques, and report limitations due to attrition.</p>
+
+  <p>(c) An orthopedist administers a questionnaire to 30 of his patients who do not have any joint problems and finds that 20 of them regularly go running. He concludes that running decreases the risk of joint problems.<br />
+  Flaw: Selection bias – only surveys his own healthy patients. No control group. Possibility of reverse causality (healthy joints lead to running).<br />
+  Improvement: Use a prospective design tracking runners and non-runners over time. Include a control group and sample a more diverse population.</p>
+</div>
+
+<h2 id="mean-standard-deviation-and-variance">Mean, Standard Deviation, and Variance</h2>
+
+<ol>
+  <li>Mean (Average): The mean is the average value of a dataset.
+\(\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i\)
+Where:
+    <ul>
+      <li>$x_i$ are the individual data values</li>
+      <li>$\bar{x}$ is the sample mean</li>
+      <li>$n$ is the number of values</li>
+    </ul>
+  </li>
+  <li>Variance measures how spread out the data is around the mean.
+\(s^2 = \frac{1}{n - 1} \sum_{i=1}^{n} (x_i - \bar{x})^2\)
+Population Variance:
+\(\sigma^2 = \frac{1}{n} \sum_{i=1}^{n} (x_i - \mu)^2\)</li>
+  <li>Standard Deviation is the square root of variance
+\(s = \sqrt{s^2}\)
+It is in the same unit as the data and describes how far data values typically are from the mean.</li>
+</ol>
+
+<p>The variance is the average squared distance from the mean. The standard deviation is the square root of the variance. The standard deviation is useful when considering how far the data are distributed from the mean.</p>
+
+<p>The standard deviation represents the typical deviation of observations from the mean. Usually about 70% of the data will be within one standard deviation of the mean and about 95% will be within two standard deviations. However, these percentages are not strict rules.</p>
+
+<h2 id="bessels-correction">Bessel’s Correction</h2>
+
+<p>In sample statistics, we divide by $n - 1$ instead of $n$ when calculating sample variance.</p>
+
+<p>Why?<br />
+Because using $n$ tends to underestimate the population variance.<br />
+Dividing by $n - 1$ corrects this bias and gives an unbiased estimator.</p>
+
+<h2 id="sample-data">Sample Data</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Value ($x_i$)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>7</td>
+    </tr>
+    <tr>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>$n = 8$</li>
+  <li>$\bar{x} = \frac{2 + 4 + 4 + 4 + 5 + 5 + 7 + 9}{8} = 5$</li>
+</ul>
+
+<p>Deviations and Squared Deviations:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>$x_i$</th>
+      <th>$x_i - \bar{x}$</th>
+      <th>$(x_i - \bar{x})^2$</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2</td>
+      <td>-3</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>-1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>-1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>-1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>2</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>4</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Total</td>
+      <td>32</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Sample Variance:</p>
+
+\[s^2 = \frac{32}{8 - 1} = \frac{32}{7} \approx 4.57\]
+
+<p>Sample Standard Deviation:</p>
+
+\[s = \sqrt{4.57} \approx 2.14\]
+
+<h3 id="box-plots-quartiles-and-the-median">Box Plots, Quartiles, and the Median</h3>
+
+<ol>
+  <li>Box Plot: A box plot is a graphical summary of data that shows the distribution’s center and spread. It displays:
+    <ul>
+      <li>Minimum</li>
+      <li>First quartile (Q1)</li>
+      <li>Median (Q2)</li>
+      <li>Third quartile (Q3)</li>
+      <li>Maximum
+ The “box” represents the interquartile range (IQR), from Q1 to Q3. “Whiskers” extend from the box to the minimum and maximum values, often excluding outliers.</li>
+    </ul>
+  </li>
+  <li>Median (Q2): The median is the middle value of a dataset when ordered from smallest to largest. If there are an even number of observations, it is the average of the two middle values.</li>
+  <li>Quartiles: Quartiles split the data into four equal parts:
+    <ul>
+      <li>Q1 (first quartile): the median of the lower half (25th percentile)</li>
+      <li>Q2 (second quartile): the overall median (50th percentile)</li>
+      <li>Q3 (third quartile): the median of the upper half (75th percentile)</li>
+    </ul>
+  </li>
+  <li>Interquartile Range (IQR): measures the middle 50% of the data:
+\(\text{IQR} = Q3 - Q1\)
+It is a measure of spread that is not affected by extreme values or outliers.
+Example: Suppose we have the following sorted dataset:
+3, 5, 7, 8, 9, 10, 12, 13, 15
+    <ul>
+      <li>Median (Q2) = 9</li>
+      <li>Q1 = median of [3, 5, 7, 8] = (5 + 7)/2 = 6</li>
+      <li>Q3 = median of [10, 12, 13, 15] = (12 + 13)/2 = 12.5</li>
+      <li>IQR = 12.5 - 6 = 6.5</li>
+    </ul>
+  </li>
+  <li>Outliers
+An observation is typically considered an outlier if it is:
+    <ul>
+      <li>Below Q1 - 1.5 * IQR</li>
+      <li>Above Q3 + 1.5 * IQR</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="robust-statistics">Robust Statistics</h2>
+<p>The median and IQR are called robust statistics because extreme observations have little effect on their values: moving the most extreme value generally has little influence on these statistics.
+On the other hand, the mean and standard deviation are more heavily influenced by changes in extreme observations, which can be important in some situations.</p>
+
+<h2 id="transforming-data">Transforming Data</h2>
+<p>When data are very strongly skewed, we sometimes transform them so they are easier to model. Like using a log transform</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Data_transformation_(statistics)">https://en.wikipedia.org/wiki/Data_transformation_(statistics)</a></p>
+
+<h2 id="data-visualization-tips">Data Visualization Tips</h2>
+
+<ol>
+  <li>Don’t use pie charts</li>
+  <li>Hollow histograms when comparing two or more things</li>
+  <li>Mosaic plots help visualize differences between groups of people and the decisions they make.</li>
+</ol>
+
+<p>Data scientists are sometimes called upon to evaluate the strength of evidence. When looking at the rates of infection for patients in the two groups in this study, what comes to mind as we try to determine whether the data show convincing evidence of a real difference?</p>
+
+<p>This is a reminder that the observed outcomes in the data sample may not perfectly reflect the true relationships between variables since there is random noise. While the observed difference in rates of infection is large, the sample size for the study is small, making it unclear if this observed difference represents efficacy of the vaccine or whether it is simply due to chance. We label these two competing claims, H0 and HA, which are spoken as “H-nought” and “H-A”:</p>
+
+<p><strong>H0: Independence model</strong><br />
+The variables treatment and outcome are independent. They have
+no relationship, and the observed difference between the proportion of patients who developed an infection in the two groups, 64.3%, was due to chance.</p>
+
+<p><strong>HA: Alternative model</strong><br />
+The variables are not independent. The difference in infection rates of 64.3% was not due to chance, and the vaccine affected the rate of infection.</p>
+
+<p>What would it mean if the independence model, which says the vaccine had no influence on the rate of infection, is true? It would mean 11 patients were going to develop an infection no matter which group they were randomized into, and 9 patients would not develop an infection no matter which group they were randomized into. That is, if the vaccine did not affect the rate of infection, the difference in the infection rates was due to chance alone in how the patients were randomized.</p>
+
+<p>Now consider the alternative model: infection rates were influenced by whether a patient received the vaccine or not. If this was true, and especially if this influence was substantial, we would expect to see some difference in the infection rates of patients in the groups.</p>
+
+<p>We choose between these two competing claims by assessing if the data conflict so much with H0 that the independence model cannot be deemed reasonable. If this is the case, and the data support HA, then we will reject the notion of independence and conclude the vaccine was effective.</p>
+
+    <script src="https://utteranc.es/client.js" repo="psymbio/psymbio.github.io" issue-term="pathname" theme="github-dark-orange" crossorigin="anonymous" async>
+    </script>
+</section>
+<section class="thanks">
+    <span>That sentence that goes before giving my email to strangers: <a href="mailto: psymbio@gmail.com">psymbio@gmail.com</a></span>
+</section>
+<br>
+<br>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<style>
+    .videoWrapper {
+        position: relative;
+        padding-bottom: 56.333%;
+        height: 0;
+        background: black;
+    }
+    
+    .videoWrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+</style>
+
+<script>
+    function get_youtube_id(url) {
+        var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+        return (url.match(p)) ? RegExp.$1 : false;
+    }
+
+    function vimeo_embed(url, el) {
+        var id = false;
+        $.ajax({
+            url: 'https://vimeo.com/api/oembed.json?url=' + url,
+            async: true,
+            success: function(response) {
+                if (response.video_id) {
+                    id = response.video_id;
+                    if (url.indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (url.indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    var theInnerHTML = '<div class="videoWrapper"><iframe src="https://player.vimeo.com/video/' + id + '/?byline=0&title=0&portrait=0';
+                    if (autoplay == 1) theInnerHTML += '&autoplay=1';
+                    if (loop == 1) theInnerHTML += '&loop=1';
+                    theInnerHTML += '" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>';
+                    el.innerHTML = theInnerHTML;
+                }
+            }
+        });
+    }
+
+    function video_embed() {
+        var p = document.getElementsByTagName('p');
+        for (var i = 0; i < p.length; i++) {
+            //check if this is an external url (that starts with https:// or http://
+            if (p[i].innerHTML.indexOf("http://") == 0 ||
+                p[i].innerHTML.indexOf("https://") == 0) {
+                var youtube_id = get_youtube_id(p[i].innerHTML);
+                if (youtube_id) {
+                    if (p[i].innerHTML.indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (p[i].innerHTML.indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    var theInnerHTML = '<div class="videoWrapper"><iframe width="720" height="420" src="https://www.youtube.com/embed/' + youtube_id + '?rel=0&showinfo=0';
+                    if (autoplay == 1) theInnerHTML += '&autoplay=1';
+                    if (loop == 1) theInnerHTML += '&loop=1&playlist=' + youtube_id + '&version=3';
+                    if (p[i].innerHTML.indexOf('start=') !== -1) theInnerHTML += '&start=' + p[i].innerHTML.substring(p[i].innerHTML.indexOf('start=') + 6);
+                    theInnerHTML += '" frameborder="0" allowfullscreen></iframe></div>';
+                    p[i].innerHTML = theInnerHTML;
+                }
+                if (p[i].innerHTML.indexOf('vimeo.com') !== -1) {
+                    //ask vimeo for the id and place the embed
+                    vimeo_embed(p[i].innerHTML, p[i]);
+                }
+            }
+        }
+    }
+    video_embed();
+
+    function mp3_embed() {
+        var p = document.getElementsByTagName('p');
+        for (var i = 0; i < p.length; i++) {
+            if (p[i].innerHTML.indexOf('.mp3') !== -1) {
+                var str = p[i].innerHTML.split('?');
+                if (str.length == 1) str[1] = '';
+                var str1 = str[1];
+                str1 = str1.replace('&', '').replace('&', '');
+                str1 = str1.replace('autoplay=1', '').replace('autoplay=0', '');
+                str1 = str1.replace('loop=1', '').replace('loop=0', '');
+                str1 = str1.replace('controls=0', '').replace('controls=1', '');
+
+                if (str[0].lastIndexOf('.mp3', str[0].length - 4) === str[0].length - 4 && str1.length == 0) {
+                    if (str[1].indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (str[1].indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    if (str[1].indexOf('controls=0') !== -1) var controls = 0;
+                    else var controls = 1;
+                    var newInnerHTML = '<audio';
+                    if (autoplay == 1) newInnerHTML += ' autoplay';
+                    if (loop == 1) newInnerHTML += ' loop';
+                    if (controls == 1) newInnerHTML += ' controls';
+                    newInnerHTML += '><source src="' + str[0] + '" type="audio/mpeg">Your browser does not support the audio element.</audio>';
+                    p[i].innerHTML = newInnerHTML;
+                }
+            }
+        }
+    }
+    mp3_embed();
+</script>
+<script>
+    ! function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+            p = /^http:/.test(d.location) ? 'http' : 'https';
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.id = id;
+            js.src = p + '://platform.twitter.com/widgets.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    }(document, 'script', 'twitter-wjs');
+</script>
+
+            <section class="shore">
+    </div>
+</body>
+<script>
+    'use strict';
+    var head = document.head;
+    var link = document.createElement('link');
+    link.type = 'text/css';
+    link.rel = 'stylesheet';
+    link.href = '/css/pygments.css'
+    head.appendChild(link);
+</script>
+<!--copy code to clipboard-->
+<script src="/assets/scripts/copycode.js"></script>
+
+</html>
