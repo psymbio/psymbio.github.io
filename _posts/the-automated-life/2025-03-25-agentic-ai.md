@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Analyzing Neural Time Series Data, Part 1
-tag: Mike X Cohen Course
+title: Agentic AI
+tag: Automated Life
 category: posts
 order: 1
 pagestyle: base

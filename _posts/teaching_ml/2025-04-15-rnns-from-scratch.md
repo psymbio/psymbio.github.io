@@ -20,7 +20,7 @@ His blog does an exceptional job handling everything except when it came to the 
 
 I do hope you are half aware of gradient descent - but if not I recommend [the micrograd video](https://www.youtube.com/watch?v=VMj-3S1tku0&ab_channel=AndrejKarpathy) and [this blog post for notes and code of the video](https://psymbio.github.io/posts/micrograd/). It truly is the only way I understood the concepts of back propogation, weight updation and gradient descent.
 
-I tried writing up the formulae for this on my own but the thing is I can't do calculus anymore - yeah. Only because in school I didn't really see the application of it and I was more interested in the prospect of bunking classes. So, basically now at this age I can either go back to like solving a bunch of questions on differentiation or look at this in a more backward fashion. Backward learning: we look at something complicated, not understand it but know it is composed of easier concepts and understand those and build towards the whole (we also don't meander too much).
+I tried writing up the formulae for this on my own but the thing is I can't do calculus anymore - yeah. Only because in school I didn't really see the application of it and I was more interested in the prospect of bunking classes. So, basically now at this age I can either go back to like solving a bunch of questions on differentiation or look at this in a more backward fashion. Backward learning: we look at something complicated, not understand it but know it is composed of easier concepts and understand those and build towards the whole (provided we don't meander too much).
 
 This basically makes this blog a mess, but chronologically accurate - I am learning things backwards and not forwards.
 

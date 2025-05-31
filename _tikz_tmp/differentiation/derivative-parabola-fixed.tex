@@ -1,0 +1,58 @@
+  \documentclass{standalone}
+  \usepackage{amsmath}
+  \usepackage{amsfonts}
+  \usepackage{tikz}
+  \usepackage{tikz-3dplot}
+  \usepackage{pgfplots}
+  \usepackage{pst-plot}
+  \pgfplotsset{compat=1.18} % version number
+  \usepackage{physics}
+  \usepackage[outline]{contour} % glow around text
+  \begin{document}
+  \begin{tikzpicture}
+
+\pgfplotsset{
+    soldot/.style={color=black,only marks,mark=*},
+    opendot/.style={color=black,fill=white,only marks,mark=*},
+    compat=1.12
+}
+\begin{axis}[
+    axis lines=middle,
+    grid=both,
+    xlabel=\(x\),
+    ylabel=\(y\),
+    xmin=-1.5, xmax=4.5,
+    ymin=-2, ymax=5,
+    xtick=\empty,
+    ytick=\empty,
+    samples=200,
+    width=10cm,
+    height=8cm,
+    domain=-0.5:4.5,
+    ticklabel style={fill=white},
+]
+    % Parabola (passes through P)
+    \addplot[blue, thick, smooth] {0.5*(x-1)^2 + 2};
+
+    % Points P and Q
+    \addplot[soldot] coordinates{(1,2)} node[below left] {P};
+    \addplot[soldot] coordinates{(3,4)} node[above right] {Q};
+
+    % Secant line PQ
+    \addplot[dashed, domain=0.5:3.5] {1*(x-1)+2};
+
+    % Dotted lines to axes from P and Q
+    \draw[dashed] (axis cs:1,0) -- (axis cs:1,2);
+    \draw[dashed] (axis cs:0,2) -- (axis cs:1,2);
+    \draw[dashed] (axis cs:3,0) -- (axis cs:3,4);
+    \draw[dashed] (axis cs:0,4) -- (axis cs:3,4);
+
+    % Labels
+    \node at (axis cs:1,-0.4) {\(x\)};
+    \node at (axis cs:3,-0.4) {\(x+\Delta x\)};
+    \node at (axis cs:-0.4,2) {\(f(x)\)};
+    \node at (axis cs:-0.7,4) {\(f(x+\Delta x)\)};
+    \node at (axis cs:2,-0.8) {\(\Delta x\)};
+\end{axis}
+  \end{tikzpicture}
+  \end{document}
