@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-         The Brain Archive
+        Simple Probability &ndash; The Brain Archive
     </title>
     <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
     <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2"
@@ -114,387 +114,244 @@
     </a>
     <!-- Global site tag (gtag.js) - Google Analytics -->
 </header>
-<style>
-  .content {
-    margin-top: 0;
-  }
-  .sidebar {
-    margin-bottom: 0;
-  }
-  .something {
-    font-size: 20px;
-  }
-</style>
-<!--
-<p class="something">a brain on computer chips</p>
--->
+<link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+<link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+<link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+<link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+<!-- <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script> -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+      
+  <script type="text/javascript"
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
 <section class="content">
-  <ul class="listing table">
-    
-    
-    <h2 id="agentic-ai">Agentic AI</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/experts-in-llms/">
-        <li>
-          <span>13 Mar 2025</span>
-          <a href="/posts/experts-in-llms/" class="indexed">Experts in LLMs</a>
-        </li>
-      </a>
-      
+    <section class="byline">
+        May 31, 2025
+    </section>
+    <h1>Simple Probability</h1>
+    <p>I’m reading <a href="https://leanpub.com/os">OpenIntro Statistics - Fourth Edition</a> (free to download). This is a summary of chapters 3 and 4, and covers topics like: probablity, condtional probability,</p>
+
+<h1 id="rules-and-concepts-in-basic-probability">Rules and Concepts in Basic Probability</h1>
+
+<h2 id="definition-of-probability">Definition of Probability</h2>
+<ul>
+  <li>Probability is the <strong>long-run proportion</strong> of times an outcome would occur if a random process were repeated infinitely.</li>
+  <li>It ranges from <strong>0 to 1</strong> (or 0% to 100%).</li>
+</ul>
+
+<h2 id="law-of-large-numbers">Law of Large Numbers</h2>
+<ul>
+  <li>As the number of trials increases, the <strong>observed proportion</strong> of outcomes approaches the <strong>true probability</strong>.</li>
+  <li>Example: With enough die rolls, the proportion of 1s will converge to 1/6.</li>
+</ul>
+
+<h2 id="disjoint-mutually-exclusive-events">Disjoint (Mutually Exclusive) Events</h2>
+<ul>
+  <li>Two events are <strong>disjoint</strong> if they <strong>cannot both occur</strong> at the same time.</li>
+  <li>Example: Rolling a 1 and a 2 on a single die roll are disjoint.</li>
+  <li>For disjoint events A and B:
+\(P(A \text{ or } B) = P(A) + P(B)\)</li>
+</ul>
+
+<h2 id="addition-rule-for-multiple-disjoint-events">Addition Rule for Multiple Disjoint Events</h2>
+<ul>
+  <li>If outcomes A₁, A₂, …, Aₖ are all disjoint:
+\(P(A₁ \text{ or } A₂ \text{ or } \cdots \text{ or } Aₖ) = P(A₁) + P(A₂) + \cdots + P(Aₖ)\)</li>
+  <li>Example: 
+\(P(1 \text{ or } 2) = P(1) + P(2) = \frac{1}{6} + \frac{1}{6} = \frac{1}{3}\)</li>
+</ul>
+
+<h2 id="complement-rule">Complement Rule</h2>
+<ul>
+  <li>The probability of <strong>not</strong> A:
+\(P(\text{not } A) = 1 - P(A)\)</li>
+  <li>Example: 
+\(P(\text{not 2}) = 1 - \frac{1}{6} = \frac{5}{6}\)</li>
+</ul>
+
+<h2 id="probability-of-independent-events">Probability of Independent Events</h2>
+<ul>
+  <li>For <strong>independent events</strong> A and B:
+\(P(A \text{ and } B) = P(A) \times P(B)\)</li>
+  <li>Example: Probability both dice show 1:
+\(\frac{1}{6} \times \frac{1}{6} = \frac{1}{36}\)</li>
+</ul>
+
+<h2 id="general-addition-rule-for-any-two-events">General Addition Rule (For Any Two Events)</h2>
+<ul>
+  <li>If A and B are any events (disjoint or not):
+\(P(A \text{ or } B) = P(A) + P(B) - P(A \text{ and } B)\)</li>
+  <li>This avoids <strong>double-counting</strong> overlapping outcomes.</li>
+</ul>
+
+<h3 id="example-using-a-deck-of-cards">Example Using a Deck of Cards</h3>
+<ul>
+  <li>Probability of drawing a diamond or a face card:
+    <ul>
+      <li>Diamonds: 13/52</li>
+      <li>Face cards: 12/52</li>
+      <li>Diamond face cards: 3/52
+\(P(\text{diamond or face}) = \frac{13}{52} + \frac{12}{52} - \frac{3}{52} = \frac{22}{52} = \frac{11}{26}\)</li>
     </ul>
-    
-    <h2 id="artificial-intelligence">Artificial Intelligence</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/brain-inspired-ai/">
-        <li>
-          <span>19 Sep 2020</span>
-          <a href="/posts/brain-inspired-ai/" class="indexed">Brain-inspired AI</a>
-        </li>
-      </a>
-      
+  </li>
+</ul>
+
+<h2 id="independence">Independence</h2>
+<ul>
+  <li>Two <strong>random processes</strong> are <strong>independent</strong> if the outcome of one does <strong>not affect</strong> the outcome of the other.</li>
+  <li>Example: Flipping a coin and rolling a die. Knowing the coin landed on heads gives no clue about the die’s result.</li>
+  <li>Non-example: Stock prices – they often move together, so they are <strong>not independent</strong>.</li>
+</ul>
+
+<h2 id="dice-example-independence-in-action">Dice Example: Independence in Action</h2>
+<ul>
+  <li>Consider rolling a <strong>red die</strong> and a <strong>white die</strong>.
+    <ul>
+      <li>The probability both show a 1:
+\(P(\text{red} = 1 \text{ and } \text{white} = 1) = \frac{1}{6} \times \frac{1}{6} = \frac{1}{36}\)</li>
     </ul>
-    
-    <h2 id="automated-life">Automated Life</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/agentic-ai/">
-        <li>
-          <span>25 Mar 2025</span>
-          <a href="/posts/agentic-ai/" class="indexed">Agentic AI</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="clrs">CLRS</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/intro-to-algorithms/">
-        <li>
-          <span>04 Oct 2020</span>
-          <a href="/posts/intro-to-algorithms/" class="indexed">Introduction to Algorithms</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/clrs-chapter-1/">
-        <li>
-          <span>05 Oct 2020</span>
-          <a href="/posts/clrs-chapter-1/" class="indexed">Chapter 1: The Role of Algorithms in Computing</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/clrs-chapter-2/">
-        <li>
-          <span>06 Oct 2020</span>
-          <a href="/posts/clrs-chapter-2/" class="indexed">Chapter 2: Getting Started</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="cs229">CS229</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/ml-week1/">
-        <li>
-          <span>24 Jun 2021</span>
-          <a href="/posts/ml-week1/" class="indexed">Lecture 2: Introduction, Linear Regression, Gradient Descent</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/ml-week2/">
-        <li>
-          <span>25 Jun 2021</span>
-          <a href="/posts/ml-week2/" class="indexed">Lecture 3: Locally Weighted & Logistic Regression</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="computer-science">Computer Science</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/os/">
-        <li>
-          <span>20 Jan 2021</span>
-          <a href="/posts/os/" class="indexed">Designing Your Own OS from Scratch</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/compilers/">
-        <li>
-          <span>08 Dec 2020</span>
-          <a href="/posts/compilers/" class="indexed">The Meanderings of Designing Compilers</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="dumb-people-do-the-math">Dumb People Do the Math</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/roman-subtraction/">
-        <li>
-          <span>13 Mar 2025</span>
-          <a href="/posts/roman-subtraction/" class="indexed">Roman Subtraction</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="event-related-potential-techniques">Event-Related Potential Techniques</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/filters/">
-        <li>
-          <span>30 May 2021</span>
-          <a href="/posts/filters/" class="indexed">MNE Custom Filters</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="fast-ai">Fast.ai</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/fastai-lesson1/">
-        <li>
-          <span>05 Feb 2021</span>
-          <a href="/posts/fastai-lesson1/" class="indexed">Fastbook Lesson 1</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/fastai-lesson2/">
-        <li>
-          <span>09 Feb 2021</span>
-          <a href="/posts/fastai-lesson2/" class="indexed">Fastbook Lesson 2</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/fastai-lesson3/">
-        <li>
-          <span>11 Feb 2021</span>
-          <a href="/posts/fastai-lesson3/" class="indexed">Fastbook Lesson 3</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/fastai-lesson4/">
-        <li>
-          <span>13 Feb 2021</span>
-          <a href="/posts/fastai-lesson4/" class="indexed">Fastbook Lesson 4</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="literature">Literature</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/andrei-tarkovsky/">
-        <li>
-          <span>08 Mar 2025</span>
-          <a href="/posts/andrei-tarkovsky/" class="indexed">Andrei Tarkovsky</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/hamlet/">
-        <li>
-          <span>26 Nov 2021</span>
-          <a href="/posts/hamlet/" class="indexed">Hamlet: An Allegorical Meditation on the Enigma of Life and Human Conditions</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/the-catcher-in-the-rye/">
-        <li>
-          <span>29 Jul 2021</span>
-          <a href="/posts/the-catcher-in-the-rye/" class="indexed">The Catcher in the Rye</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/waiting-for-godot/">
-        <li>
-          <span>21 Apr 2021</span>
-          <a href="/posts/waiting-for-godot/" class="indexed">Waiting for Godot</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="ml">ML</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/differentiation/">
-        <li>
-          <span>16 Apr 2025</span>
-          <a href="/posts/differentiation/" class="indexed">Differentiation</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/testing/">
-        <li>
-          <span>15 Apr 2025</span>
-          <a href="/posts/testing/" class="indexed">Testing</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/rnns-from-scratch/">
-        <li>
-          <span>15 Apr 2025</span>
-          <a href="/posts/rnns-from-scratch/" class="indexed">RNNs from Scratch</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/transformers/">
-        <li>
-          <span>07 Apr 2025</span>
-          <a href="/posts/transformers/" class="indexed">Transformers</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/linear-regression/">
-        <li>
-          <span>25 Mar 2025</span>
-          <a href="/posts/linear-regression/" class="indexed">Linear Regression</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/micrograd/">
-        <li>
-          <span>16 Mar 2025</span>
-          <a href="/posts/micrograd/" class="indexed">Micrograd</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="machine-learning">Machine Learning</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/sudoku/">
-        <li>
-          <span>04 Jan 2021</span>
-          <a href="/posts/sudoku/" class="indexed">Machine Learning based Sudoku Players</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/sudoku-2/">
-        <li>
-          <span>24 Feb 2021</span>
-          <a href="/posts/sudoku-2/" class="indexed">Reinforcement Learning based Sudoku Players, Part 2</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="mike-x-cohen-course">Mike X Cohen Course</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/morlet/">
-        <li>
-          <span>24 Nov 2021</span>
-          <a href="/posts/morlet/" class="indexed">Morlet Wavelets [Part 1]</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/new-ants-1/">
-        <li>
-          <span>15 Mar 2021</span>
-          <a href="/posts/new-ants-1/" class="indexed">Analyzing Neural Time Series Data, Part 1</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="neuroscience-purves-6e">Neuroscience Purves 6E</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/electrical-signals-of-nerve-cells/">
-        <li>
-          <span>02 Jan 2022</span>
-          <a href="/posts/electrical-signals-of-nerve-cells/" class="indexed">Chapter 2: Electrical Signals of Nerve Cells</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/studying-the-nervous-system/">
-        <li>
-          <span>02 Feb 2021</span>
-          <a href="/posts/studying-the-nervous-system/" class="indexed">Chapter 1: Studying the Nervous System</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="philosophy">Philosophy</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/intro-to-phil/">
-        <li>
-          <span>29 Nov 2020</span>
-          <a href="/posts/intro-to-phil/" class="indexed">Introduction to Philosophy</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/gettier-probs-in-ml/">
-        <li>
-          <span>05 Dec 2020</span>
-          <a href="/posts/gettier-probs-in-ml/" class="indexed">Gettier Problems in Machine Learning [draft]</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="probablistic-machine-learning">Probablistic Machine Learning</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/week1/">
-        <li>
-          <span>31 Mar 2025</span>
-          <a href="/posts/week1/" class="indexed">Week 1</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-    <h2 id="your-shitty-guide-to">Your Shitty Guide To</h2>
-    <div class="movelinkup">
-    <ul class="listing table">
-       
-      <a class="post-title" href="/posts/simple-probability/">
-        <li>
-          <span>31 May 2025</span>
-          <a href="/posts/simple-probability/" class="indexed">Simple Probability</a>
-        </li>
-      </a>
-      
-      <a class="post-title" href="/posts/basic-stats/">
-        <li>
-          <span>30 May 2025</span>
-          <a href="/posts/basic-stats/" class="indexed">Basic Stats</a>
-        </li>
-      </a>
-      
-    </ul>
-    
-  </ul>
-  <br /><br />
+  </li>
+</ul>
+
+<h2 id="three-independent-dice">Three Independent Dice</h2>
+<ul>
+  <li>Add a <strong>blue die</strong>, also independent of the others.</li>
+  <li>Probability all three dice show a 1:
+\(P(\text{red} = 1 \text{ and } \text{white} = 1 \text{ and } \text{blue} = 1) = \frac{1}{6} \times \frac{1}{6} \times \frac{1}{6} = \frac{1}{216}\)</li>
+</ul>
+
+<h2 id="multiplication-rule-for-independent-processes">Multiplication Rule for Independent Processes</h2>
+<ul>
+  <li>For two independent events A and B:
+\(P(A \text{ and } B) = P(A) \times P(B)\)</li>
+  <li>For multiple independent events A₁ through Aₖ:
+\(P(A_1 \text{ and } A_2 \text{ and } \cdots \text{ and } A_k) = P(A_1) \times P(A_2) \times \cdots \times P(A_k)\)</li>
+</ul>
+
+<div class="admonition note">
+  <p class="admonition-title">Guided Practice 3.22</p>
+
+  <p>
+  About 9% of people are left-handed. Suppose 2 people are selected at random from the U.S. population. Because the sample size of 2 is very small relative to the population, it is reasonable to assume these two people are independent. (a) What is the probability that both are left-handed? (b) What is the probability that both are right-handed?
+  </p>
+
+  <p>(a) The probability of two randomly selected people both being left-handed is calculated using the multiplication rule: 0.09 × 0.09 = 0.0081. This assumes that the handedness of the first person has no effect on the second, which is generally reasonable given a large population.</p>
+
+  <p>(b) The calculation for both being right-handed is 0.91 × 0.91 = 0.8281, again assuming independence, i.e, there are no people that are ambidextrous.</p>
+
+  <p>(d) The probability that 5 right-handed people are selected is:
+  0.91⁵ = 0.6240 (rounded to four decimal places), assuming independence.</p>
+
+  <p>(e) The probability that 5 left-handed people are selected is:
+  0.09⁵ = 0.0000059049 (about 0.000006), a very rare occurrence.</p>
+
+  <p>(f) The probability that not all of the people are right-handed is the complement of all five being right-handed:
+  1 − 0.91⁵ = 1 − 0.6240 = 0.3760</p>
+</div>
+
+<div class="admonition note">
+<p class="admonition-title">Guided Practice 3.24</p>
+    <p>Suppose the variables handedness and sex are independent, i.e. knowing someone’s sex provides no useful information about their handedness and vice-versa. Then we can compute whether a randomly selected person is right-handed and female using the Multiplication Rule:</p>
+  <p>P(right-handed and female) = P(right-handed) × P(female) = 0.91 × 0.50 = 0.455</p>
+  <p>Three people are selected at random.</p>
+  <p>(a) What is the probability that the first person is male and right-handed?<br />
+  0.50 × 0.91 = 0.455</p>
+
+  <p>(b) What is the probability that the first two people are male and right-handed?<br />
+  (0.50 × 0.91)² = 0.455² = 0.207</p>
+
+  <p>(c) What is the probability that the third person is female and left-handed?<br />
+  0.50 × 0.09 = 0.045</p>
+
+  <p>(d) What is the probability that the first two people are male and right-handed and the third
+  person is female and left-handed?<br />
+  0.455 × 0.455 × 0.045 = 0.0093 (approximately)</p>
+</div>
+
+<h2 id="marginal-joint-and-conditional-probability">Marginal, Joint and Conditional Probability</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>mach_learn</th>
+      <th>truth: fashion</th>
+      <th>truth: not</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>pred_fashion</td>
+      <td>197</td>
+      <td>22</td>
+      <td>219</td>
+    </tr>
+    <tr>
+      <td>pred_not</td>
+      <td>112</td>
+      <td>1491</td>
+      <td>1603</td>
+    </tr>
+    <tr>
+      <td><strong>Total</strong></td>
+      <td><strong>309</strong></td>
+      <td><strong>1513</strong></td>
+      <td><strong>1822</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="marginal-probability">Marginal Probability</h3>
+<p>Marginal probabilities are the totals for each row or column, representing the probability of a single event regardless of other variables.</p>
+
+<ul>
+  <li>$P(\text{fashion}) = \frac{309}{1822} \approx 0.1695$</li>
+  <li>$P(\text{not}) = \frac{1513}{1822} \approx 0.8305$</li>
+  <li>$P(\text{pred_fashion}) = \frac{219}{1822} \approx 0.1202$</li>
+  <li>$P(\text{pred_not}) = \frac{1603}{1822} \approx 0.8798$</li>
+</ul>
+
+<h3 id="joint-probability">Joint Probability</h3>
+<p>Joint probabilities represent the probability of two events occurring together, corresponding to the individual cells in the table.</p>
+
+<ul>
+  <li>$P(\text{pred_fashion} \land \text{fashion}) = \frac{197}{1822} \approx 0.1081$</li>
+  <li>$P(\text{pred_fashion} \land \text{not}) = \frac{22}{1822} \approx 0.0121$</li>
+  <li>$P(\text{pred_not} \land \text{fashion}) = \frac{112}{1822} \approx 0.0615$</li>
+  <li>$P(\text{pred_not} \land \text{not}) = \frac{1491}{1822} \approx 0.8183$</li>
+</ul>
+
+<h3 id="conditional-probability">Conditional Probability</h3>
+<p>Conditional probabilities describe the probability of one event given that another event has occurred.</p>
+
+<p>The conditional probability of outcome A given condition B is computed as the following:</p>
+
+\[P(A \mid B) = \frac{P(A \text{ and } B)}{P(B)}\]
+
+<p>This reads as: the probability of event $A$ given $B$ is equal to the joint probability of $A$ and $B$ divided by the probability of $B$.</p>
+
+<p>Examples:</p>
+<ul>
+  <li>$P(\text{fashion} \, \mid \, \text{pred_fashion}) = \frac{197}{219} \approx 0.8995$</li>
+  <li>$P(\text{not} \, \mid \, \text{pred_fashion}) = \frac{22}{219} \approx 0.1005$</li>
+  <li>$P(\text{fashion} \, \mid \, \text{pred_not}) = \frac{112}{1603} \approx 0.0699$</li>
+  <li>$P(\text{not} \, \mid \, \text{pred_not}) = \frac{1491}{1603} \approx 0.9301$</li>
+  <li>$P(\text{pred_fashion} \, \mid \, \text{fashion}) = \frac{197}{309} \approx 0.6375$</li>
+  <li>$P(\text{pred_not} \, \mid \, \text{fashion}) = \frac{112}{309} \approx 0.3625$</li>
+</ul>
+
+<p>— stopped at page 100</p>
+
+    <script src="https://utteranc.es/client.js" repo="psymbio/psymbio.github.io" issue-term="pathname" theme="github-dark-orange" crossorigin="anonymous" async>
+    </script>
 </section>
 <section class="thanks">
     <span>That sentence that goes before giving my email to strangers: <a href="mailto: psymbio@gmail.com">psymbio@gmail.com</a></span>
