@@ -139,23 +139,21 @@
     <h1>Simple Probability</h1>
     <p>I’m reading <a href="https://leanpub.com/os">OpenIntro Statistics - Fourth Edition</a> (free to download). This is a summary of chapters 3 and 4, and covers topics like: probablity, condtional probability,</p>
 
-<h1 id="rules-and-concepts-in-basic-probability">Rules and Concepts in Basic Probability</h1>
-
 <h2 id="definition-of-probability">Definition of Probability</h2>
 <ul>
-  <li>Probability is the <strong>long-run proportion</strong> of times an outcome would occur if a random process were repeated infinitely.</li>
-  <li>It ranges from <strong>0 to 1</strong> (or 0% to 100%).</li>
+  <li>Probability is the long-run proportion of times an outcome would occur if a random process were repeated infinitely.</li>
+  <li>It ranges from 0 to 1 (or 0% to 100%).</li>
 </ul>
 
 <h2 id="law-of-large-numbers">Law of Large Numbers</h2>
 <ul>
-  <li>As the number of trials increases, the <strong>observed proportion</strong> of outcomes approaches the <strong>true probability</strong>.</li>
+  <li>As the number of trials increases, the observed proportion of outcomes approaches the true probability.</li>
   <li>Example: With enough die rolls, the proportion of 1s will converge to 1/6.</li>
 </ul>
 
 <h2 id="disjoint-mutually-exclusive-events">Disjoint (Mutually Exclusive) Events</h2>
 <ul>
-  <li>Two events are <strong>disjoint</strong> if they <strong>cannot both occur</strong> at the same time.</li>
+  <li>Two events are disjoint if they cannot both occur at the same time.</li>
   <li>Example: Rolling a 1 and a 2 on a single die roll are disjoint.</li>
   <li>For disjoint events A and B:
 \(P(A \text{ or } B) = P(A) + P(B)\)</li>
@@ -171,7 +169,7 @@
 
 <h2 id="complement-rule">Complement Rule</h2>
 <ul>
-  <li>The probability of <strong>not</strong> A:
+  <li>The probability of not A:
 \(P(\text{not } A) = 1 - P(A)\)</li>
   <li>Example: 
 \(P(\text{not 2}) = 1 - \frac{1}{6} = \frac{5}{6}\)</li>
@@ -179,7 +177,7 @@
 
 <h2 id="probability-of-independent-events">Probability of Independent Events</h2>
 <ul>
-  <li>For <strong>independent events</strong> A and B:
+  <li>For independent events A and B:
 \(P(A \text{ and } B) = P(A) \times P(B)\)</li>
   <li>Example: Probability both dice show 1:
 \(\frac{1}{6} \times \frac{1}{6} = \frac{1}{36}\)</li>
@@ -189,10 +187,10 @@
 <ul>
   <li>If A and B are any events (disjoint or not):
 \(P(A \text{ or } B) = P(A) + P(B) - P(A \text{ and } B)\)</li>
-  <li>This avoids <strong>double-counting</strong> overlapping outcomes.</li>
+  <li>This avoids double-counting overlapping outcomes.</li>
 </ul>
 
-<h3 id="example-using-a-deck-of-cards">Example Using a Deck of Cards</h3>
+<p>Example Using a Deck of Cards</p>
 <ul>
   <li>Probability of drawing a diamond or a face card:
     <ul>
@@ -206,14 +204,14 @@
 
 <h2 id="independence">Independence</h2>
 <ul>
-  <li>Two <strong>random processes</strong> are <strong>independent</strong> if the outcome of one does <strong>not affect</strong> the outcome of the other.</li>
+  <li>Two random processes are independent if the outcome of one does not affect the outcome of the other.</li>
   <li>Example: Flipping a coin and rolling a die. Knowing the coin landed on heads gives no clue about the die’s result.</li>
-  <li>Non-example: Stock prices – they often move together, so they are <strong>not independent</strong>.</li>
+  <li>Non-example: Stock prices – they often move together, so they are not independent.</li>
 </ul>
 
 <h2 id="dice-example-independence-in-action">Dice Example: Independence in Action</h2>
 <ul>
-  <li>Consider rolling a <strong>red die</strong> and a <strong>white die</strong>.
+  <li>Consider rolling a red die and a white die.
     <ul>
       <li>The probability both show a 1:
 \(P(\text{red} = 1 \text{ and } \text{white} = 1) = \frac{1}{6} \times \frac{1}{6} = \frac{1}{36}\)</li>
@@ -223,7 +221,7 @@
 
 <h2 id="three-independent-dice">Three Independent Dice</h2>
 <ul>
-  <li>Add a <strong>blue die</strong>, also independent of the others.</li>
+  <li>Add a blue die, also independent of the others.</li>
   <li>Probability all three dice show a 1:
 \(P(\text{red} = 1 \text{ and } \text{white} = 1 \text{ and } \text{blue} = 1) = \frac{1}{6} \times \frac{1}{6} \times \frac{1}{6} = \frac{1}{216}\)</li>
 </ul>
@@ -259,7 +257,7 @@
 
 <div class="admonition note">
 <p class="admonition-title">Guided Practice 3.24</p>
-    <p>Suppose the variables handedness and sex are independent, i.e. knowing someone’s sex provides no useful information about their handedness and vice-versa. Then we can compute whether a randomly selected person is right-handed and female using the Multiplication Rule:</p>
+    <p>Suppose the variables handedness and sex are independent, i.e. knowing someone's sex provides no useful information about their handedness and vice-versa. Then we can compute whether a randomly selected person is right-handed and female using the Multiplication Rule:</p>
   <p>P(right-handed and female) = P(right-handed) × P(female) = 0.91 × 0.50 = 0.455</p>
   <p>Three people are selected at random.</p>
   <p>(a) What is the probability that the first person is male and right-handed?<br />
@@ -301,15 +299,15 @@
       <td>1603</td>
     </tr>
     <tr>
-      <td><strong>Total</strong></td>
-      <td><strong>309</strong></td>
-      <td><strong>1513</strong></td>
-      <td><strong>1822</strong></td>
+      <td>Total</td>
+      <td>309</td>
+      <td>1513</td>
+      <td>1822</td>
     </tr>
   </tbody>
 </table>
 
-<h3 id="marginal-probability">Marginal Probability</h3>
+<h2 id="marginal-probability">Marginal Probability</h2>
 <p>Marginal probabilities are the totals for each row or column, representing the probability of a single event regardless of other variables.</p>
 
 <ul>
@@ -319,7 +317,7 @@
   <li>$P(\text{pred_not}) = \frac{1603}{1822} \approx 0.8798$</li>
 </ul>
 
-<h3 id="joint-probability">Joint Probability</h3>
+<h2 id="joint-probability">Joint Probability</h2>
 <p>Joint probabilities represent the probability of two events occurring together, corresponding to the individual cells in the table.</p>
 
 <ul>
@@ -329,7 +327,7 @@
   <li>$P(\text{pred_not} \land \text{not}) = \frac{1491}{1822} \approx 0.8183$</li>
 </ul>
 
-<h3 id="conditional-probability">Conditional Probability</h3>
+<h2 id="conditional-probability">Conditional Probability</h2>
 <p>Conditional probabilities describe the probability of one event given that another event has occurred.</p>
 
 <p>The conditional probability of outcome A given condition B is computed as the following:</p>
@@ -348,7 +346,1316 @@
   <li>$P(\text{pred_not} \, \mid \, \text{fashion}) = \frac{112}{309} \approx 0.3625$</li>
 </ul>
 
-<p>— stopped at page 100</p>
+<h2 id="general-multiplication-rule">General Multiplication Rule</h2>
+
+<p>General Multiplication Rule for events that might not be independent states:</p>
+
+<p>If $A$ and $B$ represent two outcomes or events, then:</p>
+
+\[P(A \text{ and } B) = P(A|B) \times P(B)\]
+
+<p>It is useful to think of $A$ as the outcome of interest and $B$ as the condition.</p>
+
+<h2 id="relationship-to-conditional-probability">Relationship to Conditional Probability</h2>
+
+<p>This General Multiplication Rule is simply a rearrangement of the conditional probability formula:</p>
+
+\[P(A|B) = \frac{P(A \text{ and } B)}{P(B)}\]
+
+<p>Multiplying both sides by $P(B)$ gives:</p>
+
+\[P(A \text{ and } B) = P(A|B) \times P(B)\]
+
+<p>Example: Smallpox Inoculation</p>
+
+<p>Consider the smallpox dataset. Suppose we are given:</p>
+
+<ul>
+  <li>$P(\text{inoculated} = \text{no}) = 0.9608$</li>
+  <li>$P(\text{result} = \text{lived} \mid \text{inoculated} = \text{no}) = 0.8588$</li>
+</ul>
+
+<p>We want to find the probability that a resident was not inoculated and lived:</p>
+
+\[P(\text{result} = \text{lived and inoculated} = \text{no})\]
+
+\[= P(\text{result} = \text{lived} \mid \text{inoculated} = \text{no}) \times P(\text{inoculated} = \text{no})\]
+
+\[= 0.8588 \times 0.9608 = 0.8251\]
+
+<p>This shows how we can apply the General Multiplication Rule to compute joint probabilities when events are not necessarily independent.</p>
+
+<h2 id="independence-considerations-in-conditional-probability">Independence Considerations in Conditional Probability</h2>
+
+<p>If two events are independent, then knowing the outcome of one should provide no information about the other. This idea can be verified using conditional probability.</p>
+
+<div class="admonition note">
+  <p class="admonition-title">Guided Practice 3.38</p>
+  <p>Let <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>X</mi></math> and <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>Y</mi></math> represent the outcomes of rolling two dice.</p>
+
+  <p><strong>(a)</strong> What is the probability that the first die, <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>X</mi></math>, is 1?<br />
+  ⇒ <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mrow>
+      <mi>P</mi>
+      <mo stretchy="false">(</mo>
+      <mi>X</mi>
+      <mo>=</mo>
+      <mn>1</mn>
+      <mo stretchy="false">)</mo>
+      <mo>=</mo>
+      <mfrac>
+        <mn>1</mn>
+        <mn>6</mn>
+      </mfrac>
+    </mrow>
+  </math></p>
+
+  <p><strong>(b)</strong> What is the probability that both <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>X</mi></math> and <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>Y</mi></math> are 1?<br />
+  ⇒ <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mrow>
+      <mi>P</mi>
+      <mo stretchy="false">(</mo>
+      <mi>X</mi>
+      <mo>=</mo>
+      <mn>1</mn>
+      <mtext>&#xA0;and&#xA0;</mtext>
+      <mi>Y</mi>
+      <mo>=</mo>
+      <mn>1</mn>
+      <mo stretchy="false">)</mo>
+      <mo>=</mo>
+      <mfrac>
+        <mn>1</mn>
+        <mn>36</mn>
+      </mfrac>
+    </mrow>
+  </math></p>
+
+  <p><strong>(c)</strong> Use the formula for conditional probability to compute 
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mrow>
+      <mi>P</mi>
+      <mo stretchy="false">(</mo>
+      <mi>Y</mi>
+      <mo>=</mo>
+      <mn>1</mn>
+      <mo>&#x2223;</mo>
+      <mi>X</mi>
+      <mo>=</mo>
+      <mn>1</mn>
+      <mo stretchy="false">)</mo>
+    </mrow>
+  </math>:</p>
+
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mrow>
+      <mi>P</mi>
+      <mo stretchy="false">(</mo>
+      <mi>Y</mi>
+      <mo>=</mo>
+      <mn>1</mn>
+      <mo>&#x2223;</mo>
+      <mi>X</mi>
+      <mo>=</mo>
+      <mn>1</mn>
+      <mo stretchy="false">)</mo>
+      <mo>=</mo>
+      <mfrac>
+        <mrow>
+          <mi>P</mi>
+          <mo stretchy="false">(</mo>
+          <mi>Y</mi>
+          <mo>=</mo>
+          <mn>1</mn>
+          <mtext>&#xA0;and&#xA0;</mtext>
+          <mi>X</mi>
+          <mo>=</mo>
+          <mn>1</mn>
+          <mo stretchy="false">)</mo>
+        </mrow>
+        <mrow>
+          <mi>P</mi>
+          <mo stretchy="false">(</mo>
+          <mi>X</mi>
+          <mo>=</mo>
+          <mn>1</mn>
+          <mo stretchy="false">)</mo>
+        </mrow>
+      </mfrac>
+      <mo>=</mo>
+      <mfrac>
+        <mrow>
+          <mn>1</mn>
+          <mo>/</mo>
+          <mn>36</mn>
+        </mrow>
+        <mrow>
+          <mn>1</mn>
+          <mo>/</mo>
+          <mn>6</mn>
+        </mrow>
+      </mfrac>
+      <mo>=</mo>
+      <mfrac>
+        <mn>1</mn>
+        <mn>6</mn>
+      </mfrac>
+    </mrow>
+  </math>
+
+  <p><strong>(d)</strong> What is 
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mrow><mi>P</mi><mo stretchy="false">(</mo><mi>Y</mi><mo>=</mo><mn>1</mn><mo stretchy="false">)</mo></mrow>
+  </math>? Is this different from part (c)?<br />
+  ⇒ 
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mrow><mi>P</mi><mo stretchy="false">(</mo><mi>Y</mi><mo>=</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo><mfrac><mn>1</mn><mn>6</mn></mfrac></mrow>
+  </math>
+  </p>
+
+  <p><strong>Conclusion:</strong><br />
+  No, the result is the same. This demonstrates that knowing 
+  <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>X</mi><mo>=</mo><mn>1</mn></math>
+  does not affect the probability of 
+  <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>Y</mi><mo>=</mo><mn>1</mn></math>, 
+  meaning the two events are <em>independent</em>.</p>
+
+  <p>Even though the conditional probability 
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mi>P</mi><mo stretchy="false">(</mo><mi>Y</mi><mo>=</mo><mn>1</mn><mo>&#x2223;</mo><mi>X</mi><mo>=</mo><mn>1</mn><mo stretchy="false">)</mo>
+  </math> 
+  equals 
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mi>P</mi><mo stretchy="false">(</mo><mi>Y</mi><mo>=</mo><mn>1</mn><mo stretchy="false">)</mo>
+  </math>, the joint probability</p>
+
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mrow>
+      <mi>P</mi>
+      <mo stretchy="false">(</mo>
+      <mi>X</mi>
+      <mo>=</mo>
+      <mn>1</mn>
+      <mtext>&#xA0;and&#xA0;</mtext>
+      <mi>Y</mi>
+      <mo>=</mo>
+      <mn>1</mn>
+      <mo stretchy="false">)</mo>
+      <mo>=</mo>
+      <mfrac>
+        <mn>1</mn>
+        <mn>36</mn>
+      </mfrac>
+    </mrow>
+  </math>
+
+  <p>is much lower than either individual probability.</p>
+
+  <p><strong>Conditional independence does not imply high joint probability; it simply means that knowing one event does not affect the probability of the other.</strong></p>
+</div>
+
+<div class="admonition note">
+  <p class="admonition-title">Guided Practice 3.39</p>
+  <p>Ron is watching a roulette table in a casino and notices that the last five outcomes were black. He figures that the chances of getting black six times in a row is very small (about 1/64) and puts his paycheck on red.</p>
+  <p><strong>What is wrong with his reasoning?</strong></p>
+  <p>Ron is falling victim to the gambler's fallacy—the mistaken belief that previous independent outcomes (such as the last five black spins) affect the probability of future outcomes. In a fair game of roulette, each spin is independent, meaning that the probability of black or red remains the same on every spin regardless of previous results. Roulette outcomes are <em>independent events</em>, meaning each spin is unaffected by previous results. The probability of black or red on any single spin remains approximately 18/38 (on a standard American roulette wheel), regardless of prior outcomes. Thus, the chance of red remains the same as always, and previous black spins do not increase its likelihood.</p>
+</div>
+
+<h2 id="tree-diagrams">Tree Diagrams</h2>
+
+<p>Tree diagrams are a tool to organize outcomes and probabilities around the structure of the data. They are most useful when two or more processes occur in a sequence and each process is conditioned on its predecessors.</p>
+
+<p>The smallpox data fit this description. We see the population as split by inoculation: yes and no. Following this split, survival rates were observed for each group. This structure is reflected in the tree diagram shown below. The first branch for inoculation is said to be the <em>primary branch</em>, while the other branches are <em>secondary</em>.</p>
+
+<p>Tree diagrams are annotated with marginal and conditional probabilities. This tree diagram splits the smallpox data by inoculation into the yes and no groups with respective marginal probabilities 0.0392 and 0.9608. The secondary branches are conditioned on the first, so we assign conditional probabilities to these branches.</p>
+
+<p>For example, the top branch is the probability that result = lived conditioned on the information that inoculated = yes. We may (and usually do) construct joint probabilities at the end of each branch in our tree by multiplying the numbers we come across as we move from left to right.</p>
+
+<p>These joint probabilities are computed using the General Multiplication Rule:</p>
+
+\[P(\text{inoculated} = \text{yes and result} = \text{lived})\]
+
+\[= P(\text{inoculated} = \text{yes}) \times P(\text{result} = \text{lived} \mid \text{inoculated} = \text{yes})\]
+
+\[= 0.0392 \times 0.9754 = 0.0382\]
+
+<div class="mermaid" align="center" height="70%" width="70%">
+flowchart TD
+    A[Population] --&gt; B1[Inoculated Yes 0.0392]
+    A --&gt; B2[Inoculated No 0.9608]
+
+    B1 --&gt; C1[Lived 0.9754<br />0.0392 * 0.9754 = 0.03824]
+    B1 --&gt; C2[Died 0.0246<br />0.0392 * 0.0246 = 0.00096]
+
+    B2 --&gt; C3[Lived 0.8589<br />0.9608 * 0.8589 = 0.82523]
+    B2 --&gt; C4[Died 0.1411<br />0.9608 * 0.1411 = 0.13557]
+</div>
+
+<p>Tree diagrams are annotated with marginal and conditional probabilities. This tree diagram splits the smallpox data by inoculation into the yes and no groups with respective marginal probabilities 0.0392 and 0.9608. The secondary branches are conditioned on the first, so we assign conditional probabilities to these branches. For example, the top branch is the probability that result = lived conditioned on the information that inoculated = yes. We may (and usually do) construct joint probabilities at the end of each branch in our tree by multiplying the numbers we come across as we move from left to right. These joint probabilities are computed using the General Multiplication Rule.</p>
+
+<h2 id="bayes-theorem">Bayes’ Theorem</h2>
+
+<p>In many situations, we are given a conditional probability of the form $P(A \mid B)$ but we are interested in finding the reversed conditional probability $P(B \mid A)$. Bayes’ Theorem provides a way to compute this when direct calculation is not possible or when a tree diagram becomes too cumbersome.</p>
+
+\[P(B \mid A) = \frac{P(A \mid B) \cdot P(B)}{P(A)}\]
+
+<p>This theorem is especially useful when we want to “invert” a conditional probability — i.e., to switch the condition and the outcome.</p>
+
+<p>Example: Smallpox Inoculation and Survival</p>
+
+<p>Suppose we want to compute the probability that someone was inoculated, given that they lived — in other words, $P(\text{inoculated = yes} \mid \text{lived})$.</p>
+
+<p>We already have:</p>
+
+<ul>
+  <li>$P(\text{lived} \mid \text{inoculated = yes}) = 0.9754$</li>
+  <li>$P(\text{inoculated = yes}) = 0.0392$</li>
+  <li>$P(\text{lived}) = 0.03824 + 0.82523 = 0.86347$</li>
+</ul>
+
+<p>Using Bayes’ Theorem:</p>
+
+\[P(\text{inoculated = yes} \mid \text{lived}) = \frac{P(\text{lived} \mid \text{inoculated = yes}) \cdot P(\text{inoculated = yes})}{P(\text{lived})}\]
+
+\[= \frac{0.9754 \cdot 0.0392}{0.86347} \approx \frac{0.03824}{0.86347} \approx 0.0443\]
+
+<p>So, even though the probability of surviving given inoculation is very high (97.54%), the probability of having been inoculated given that the person survived is only about 4.43%. This is because the vast majority of the population was not inoculated. Bayes’ Theorem lets us work backwards to compute the reverse conditional probability.</p>
+
+<h2 id="mutually-exclusive-vs-independent-events-dice-example">Mutually Exclusive vs Independent Events (Dice Example)</h2>
+
+<p>To explain the difference between mutually exclusive and independent events using a dice example, let’s first define these concepts and then illustrate them with scenarios involving a standard six-sided die.</p>
+
+<ul>
+  <li>
+    <p>Mutually Exclusive Events: Two events are mutually exclusive if they cannot occur at the same time. The occurrence of one event means the other cannot happen in the same trial.</p>
+
+\[P(A \text{ and } B) = 0\]
+  </li>
+  <li>
+    <p>Independent Events: Two events are independent if the occurrence of one does not affect the probability of the other occurring.</p>
+
+\[P(A \text{ and } B) = P(A) \cdot P(B)\]
+  </li>
+</ul>
+
+<p>Example: Assume we are rolling a single fair six-sided die (with faces numbered 1 to 6) unless stated otherwise.</p>
+
+<h2 id="mutually-exclusive-events">Mutually Exclusive Events</h2>
+
+<p>Example: Rolling an even number (2, 4, or 6) and rolling a 3 in a single roll of the die.</p>
+
+<ul>
+  <li>
+    <p>Event A: Roll an even number ${2, 4, 6}$<br />
+\(P(A) = \frac{3}{6} = \frac{1}{2}\)</p>
+  </li>
+  <li>
+    <p>Event B: Roll a 3 ${3}$<br />
+\(P(B) = \frac{1}{6}\)</p>
+  </li>
+</ul>
+
+<p>Explanation: These events are mutually exclusive because a single roll cannot result in both an even number and a 3 (since 3 is odd). The outcomes ${2, 4, 6}$ and ${3}$ have no overlap.</p>
+
+<ul>
+  <li>
+    <p>Probability of both occurring:<br />
+\(P(A \text{ and } B) = 0\)</p>
+  </li>
+  <li>
+    <p>Probability of either occurring:<br />
+\(P(A \text{ or } B) = P(A) + P(B) = \frac{1}{2} + \frac{1}{6} = \frac{2}{3}\)</p>
+  </li>
+</ul>
+
+<h2 id="independent-events">Independent Events</h2>
+
+<p>Example: Rolling an even number on the first roll and rolling a number greater than 4 (i.e., 5 or 6) on a second roll of the same die.</p>
+
+<ul>
+  <li>
+    <p>Event A: Roll an even number on the first roll ${2, 4, 6}$<br />
+\(P(A) = \frac{3}{6} = \frac{1}{2}\)</p>
+  </li>
+  <li>
+    <p>Event B: Roll a number greater than 4 on the second roll ${5, 6}$<br />
+\(P(B) = \frac{2}{6} = \frac{1}{3}\)</p>
+  </li>
+</ul>
+
+<p>Explanation: These events are independent because the outcome of the first roll does not affect the outcome of the second roll. The die has no memory.</p>
+
+<ul>
+  <li>
+    <p>Probability of both occurring:<br />
+\(P(A \text{ and } B) = P(A) \cdot P(B) = \frac{1}{2} \cdot \frac{1}{3} = \frac{1}{6}\)</p>
+  </li>
+  <li>
+    <p>Probability of either occurring:<br />
+\(\begin{align*}
+P(A \text{ or } B) &amp;= P(A) + P(B) - P(A \text{ and } B) \\
+                   &amp;= \frac{1}{2} + \frac{1}{3} - \frac{1}{6} \\
+                   &amp;= \frac{3}{6} + \frac{2}{6} - \frac{1}{6} = \frac{4}{6} = \frac{2}{3}
+\end{align*}\)</p>
+  </li>
+  <li>Mutually Exclusive: Cannot happen together (e.g., rolling a 3 and an even number in one roll is impossible).</li>
+  <li>Independent: Can happen together, and one event doesn’t influence the other (e.g., first roll even, second roll &gt; 4).</li>
+</ul>
+
+<h2 id="sampling-from-a-small-population">Sampling from a Small Population</h2>
+
+<p>When sampling from a population, we typically assume the population is large, and sampling one observation doesn’t meaningfully affect the rest. However, when sampling without replacement from a small population, or when we sample more than 10% of the population, probabilities shift because each draw slightly alters the composition of the remaining population.</p>
+
+<div class="admonition note">
+  <p class="admonition-title">Example 3.47</p>
+  <p>A professor selects a student at random to answer a question. There are 15 students in class.</p>
+
+  <p>Probability that <strong>you</strong> are selected:</p>
+
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mrow>
+      <mi>P</mi>
+      <mo stretchy="false">(</mo>
+      <mtext>You are picked</mtext>
+      <mo stretchy="false">)</mo>
+      <mo>=</mo>
+      <mfrac>
+        <mn>1</mn>
+        <mn>15</mn>
+      </mfrac>
+      <mo>&#x2248;</mo>
+      <mn>0.067</mn>
+    </mrow>
+  </math>
+</div>
+
+<div class="admonition note">
+  <p class="admonition-title">Example 3.48</p>
+  <p>The professor asks <strong>3 questions</strong> and does <strong>not repeat</strong> students. What’s the probability <strong>you’re not picked</strong> for any of them?</p>
+
+  <p>Let’s compute the probability of <em>not being picked</em> for each question, step by step:</p>
+
+  <p>First question:</p>
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mrow>
+      <mi>P</mi>
+      <mo stretchy="false">(</mo>
+      <msub><mi>Q</mi><mn>1</mn></msub>
+      <mo>=</mo>
+      <mtext>not picked</mtext>
+      <mo stretchy="false">)</mo>
+      <mo>=</mo>
+      <mfrac>
+        <mn>14</mn>
+        <mn>15</mn>
+      </mfrac>
+    </mrow>
+  </math>
+
+  <p>Second question (given you weren’t picked before):</p>
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mrow>
+      <mi>P</mi>
+      <mo stretchy="false">(</mo>
+      <msub><mi>Q</mi><mn>2</mn></msub>
+      <mo>=</mo>
+      <mtext>not picked</mtext>
+      <mo>&#x2223;</mo>
+      <msub><mi>Q</mi><mn>1</mn></msub>
+      <mo>=</mo>
+      <mtext>not picked</mtext>
+      <mo stretchy="false">)</mo>
+      <mo>=</mo>
+      <mfrac>
+        <mn>13</mn>
+        <mn>14</mn>
+      </mfrac>
+    </mrow>
+  </math>
+
+  <p>Third question (given you weren’t picked in first two):</p>
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mrow>
+      <mi>P</mi>
+      <mo stretchy="false">(</mo>
+      <msub><mi>Q</mi><mn>3</mn></msub>
+      <mo>=</mo>
+      <mtext>not picked</mtext>
+      <mo>&#x2223;</mo>
+      <msub><mi>Q</mi><mn>1</mn></msub>
+      <mo>=</mo>
+      <mtext>not picked</mtext>
+      <mo>,</mo>
+      <msub><mi>Q</mi><mn>2</mn></msub>
+      <mo>=</mo>
+      <mtext>not picked</mtext>
+      <mo stretchy="false">)</mo>
+      <mo>=</mo>
+      <mfrac>
+        <mn>12</mn>
+        <mn>13</mn>
+      </mfrac>
+    </mrow>
+  </math>
+
+  <p>To get the overall probability that you are <strong>not picked in all three questions</strong>, multiply:</p>
+
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mtable columnalign="left">
+      <mtr>
+        <mtd>
+          <mi>P</mi>
+          <mo stretchy="false">(</mo>
+          <mtext>not picked in 3 questions</mtext>
+          <mo stretchy="false">)</mo>
+          <mo>=</mo>
+          <mi>P</mi>
+          <mo stretchy="false">(</mo>
+          <msub><mi>Q</mi><mn>1</mn></msub>
+          <mo>=</mo>
+          <mtext>not picked</mtext>
+          <mo stretchy="false">)</mo>
+          <mo>&#x22C5;</mo>
+        </mtd>
+      </mtr>
+      <mtr>
+        <mtd>
+          <mi>P</mi>
+          <mo stretchy="false">(</mo>
+          <msub><mi>Q</mi><mn>2</mn></msub>
+          <mo>=</mo>
+          <mtext>not picked</mtext>
+          <mo>&#x2223;</mo>
+          <msub><mi>Q</mi><mn>1</mn></msub>
+          <mo>=</mo>
+          <mtext>not picked</mtext>
+          <mo stretchy="false">)</mo>
+          <mo>&#x22C5;</mo>
+        </mtd>
+      </mtr>
+      <mtr>
+        <mtd>
+          <mi>P</mi>
+          <mo stretchy="false">(</mo>
+          <msub><mi>Q</mi><mn>3</mn></msub>
+          <mo>=</mo>
+          <mtext>not picked</mtext>
+          <mo>&#x2223;</mo>
+          <msub><mi>Q</mi><mn>1</mn></msub>
+          <mo>=</mo>
+          <mtext>not picked</mtext>
+          <mo>,</mo>
+          <msub><mi>Q</mi><mn>2</mn></msub>
+          <mo>=</mo>
+          <mtext>not picked</mtext>
+          <mo stretchy="false">)</mo>
+        </mtd>
+      </mtr>
+      <mtr>
+        <mtd>
+          <mo>=</mo>
+          <mfrac><mn>14</mn><mn>15</mn></mfrac>
+          <mo>&#x22C5;</mo>
+          <mfrac><mn>13</mn><mn>14</mn></mfrac>
+          <mo>&#x22C5;</mo>
+          <mfrac><mn>12</mn><mn>13</mn></mfrac>
+        </mtd>
+      </mtr>
+      <mtr>
+        <mtd>
+          <mo>=</mo>
+          <mfrac><mn>12</mn><mn>15</mn></mfrac>
+          <mo>=</mo>
+          <mn>0.80</mn>
+        </mtd>
+      </mtr>
+    </mtable>
+  </math>
+</div>
+
+<h2 id="what-rule-justified-the-multiplication">What Rule Justified the Multiplication?</h2>
+
+<p>This is an application of the General Multiplication Rule, which says:</p>
+
+<blockquote>
+  <p>The probability of multiple events all occurring is the product of each event’s probability, conditioned on the events that came before it.</p>
+</blockquote>
+
+<p>Mathematically, for three events $A$, $B$, and $C$:</p>
+
+\[P(A \text{ and } B \text{ and } C) = P(A) \cdot P(B \mid A) \cdot P(C \mid A \text{ and } B)\]
+
+<p>In Example 3.48:</p>
+
+<ul>
+  <li>$A = Q_1 = \text{not picked}$</li>
+  <li>$B = Q_2 = \text{not picked}$</li>
+  <li>$C = Q_3 = \text{not picked}$</li>
+</ul>
+
+<p>So:</p>
+
+\[P(\text{not picked all 3 times}) = P(A) \cdot P(B \mid A) \cdot P(C \mid A \text{ and } B)\]
+
+<p>This rule allows us to break down complex, dependent events into smaller conditional steps that we can compute.</p>
+
+<h3 id="random-variables">Random Variables</h3>
+
+<p>A random variable is a numerical outcome of a random process. We typically represent it using capital letters like $X$, $Y$, or $Z$. For instance, in a statistics class, the amount of money a student spends on books is a random variable $X$.</p>
+
+<div class="admonition note">
+  <p class="admonition-title">Example 3.54: Bookstore Book Sales</p>
+  <p>Let’s say:</p>
+  <ul>
+    <li>20% of students buy no books: $0</li>
+    <li>55% buy only the textbook: $137</li>
+    <li>25% buy both books: $170</li>
+  </ul>
+  <p>These percentages remain stable across terms. If there are 100 students, the expected number of books sold is:</p>
+  <ul>
+    <li>20 students buy 0 books → 0 books</li>
+    <li>55 students buy 1 book → 55 books</li>
+    <li>25 students buy 2 books → 50 books</li>
+  </ul>
+  <p>Total expected books sold:</p>
+
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mrow>
+      <mn>0</mn>
+      <mo>+</mo>
+      <mn>55</mn>
+      <mo>+</mo>
+      <mn>50</mn>
+      <mo>=</mo>
+      <mn>105</mn>
+      <mtext>&#xA0;books</mtext>
+    </mrow>
+  </math>
+</div>
+
+<h2 id="expectation">Expectation</h2>
+
+<p>Let $X$ be the amount spent by a single student. The values it can take are:</p>
+
+<ul>
+  <li>$x_1 = 0$, with $P(X = 0) = 0.20$</li>
+  <li>$x_2 = 137$, with $P(X = 137) = 0.55$</li>
+  <li>$x_3 = 170$, with $P(X = 170) = 0.25$</li>
+</ul>
+
+<p>To compute the expected value, $E(X)$:</p>
+
+\[E(X) = \sum x_i \cdot P(X = x_i) = 0 \cdot 0.20 + 137 \cdot 0.55 + 170 \cdot 0.25 = 0 + 75.35 + 42.5 = 117.85\]
+
+<p>So the expected revenue from one student is:</p>
+
+\[\mu = E(X) = 117.85\]
+
+<h2 id="variability-in-random-variables">Variability in Random Variables</h2>
+
+<p>To measure variability, we use variance and standard deviation. These indicate how much outcomes typically differ from the mean.</p>
+
+<p>Let $X$ have outcomes $x_1, …, x_k$ with probabilities $P(X = x_1), …, P(X = x_k)$, and mean $\mu$.</p>
+
+<p>The variance of $X$ is:</p>
+
+\[\sigma^2 = \sum_{j=1}^{k} (x_j - \mu)^2 \cdot P(X = x_j)\]
+
+<p>The standard deviation is:</p>
+
+\[\sigma = \sqrt{\sigma^2}\]
+
+<div class="admonition note">
+  <p class="admonition-title">Example 3.58: Compute Variance and Standard Deviation</p>
+
+  <p>We already have:</p>
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mrow>
+      <mi>E</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo>
+      <mo>=</mo>
+      <mi>&#x03BC;</mi>
+      <mo>=</mo>
+      <mn>117.85</mn>
+    </mrow>
+  </math>
+
+  <p>Now build a table:</p>
+  <br />
+  <table border="1" cellpadding="6" cellspacing="0">
+    <thead>
+      <tr>
+        <th>i</th>
+        <th><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>x</mi><sub>i</sub></math></th>
+        <th><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo>=</mo><mi>x</mi><sub>i</sub><mo stretchy="false">)</mo></math></th>
+        <th><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>x</mi><sub>i</sub><mo>&#x22C5;</mo><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo>=</mo><mi>x</mi><sub>i</sub><mo stretchy="false">)</mo></math></th>
+        <th><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>x</mi><sub>i</sub><mo>&#x2212;</mo><mi>&#x03BC;</mi></math></th>
+        <th><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">(</mo><mi>x</mi><sub>i</sub><mo>&#x2212;</mo><mi>&#x03BC;</mi><mo stretchy="false">)</mo><msup><mo> </mo><mn>2</mn></msup></math></th>
+        <th><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">(</mo><mi>x</mi><sub>i</sub><mo>&#x2212;</mo><mi>&#x03BC;</mi><mo stretchy="false">)</mo><msup><mo> </mo><mn>2</mn></msup><mo>&#x22C5;</mo><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo>=</mo><mi>x</mi><sub>i</sub><mo stretchy="false">)</mo></math></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>0</td>
+        <td>0.20</td>
+        <td>0</td>
+        <td>-117.85</td>
+        <td>13888.62</td>
+        <td>2777.72</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>137</td>
+        <td>0.55</td>
+        <td>75.35</td>
+        <td>19.15</td>
+        <td>366.72</td>
+        <td>201.70</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>170</td>
+        <td>0.25</td>
+        <td>42.50</td>
+        <td>52.15</td>
+        <td>2719.62</td>
+        <td>679.91</td>
+      </tr>
+      <tr>
+        <td colspan="3"><strong>Total</strong></td>
+        <td><strong>117.85</strong></td>
+        <td></td>
+        <td></td>
+        <td><strong>Variance = 3659.33</strong></td>
+      </tr>
+    </tbody>
+  </table>
+  <br />
+  <p>So:</p>
+
+  <p>Variance:</p>
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mrow>
+      <msup><mi>&#x03C3;</mi><mn>2</mn></msup>
+      <mo>=</mo>
+      <mn>3659.33</mn>
+    </mrow>
+  </math>
+
+  <p>Standard Deviation:</p>
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mrow>
+      <mi>&#x03C3;</mi>
+      <mo>=</mo>
+      <msqrt>
+        <mn>3659.33</mn>
+      </msqrt>
+      <mo>=</mo>
+      <mn>60.49</mn>
+    </mrow>
+  </math>
+</div>
+
+<ul>
+  <li>Expected Value $E(X)$ gives the average expected outcome.</li>
+  <li>Variance $\sigma^2$ and Standard Deviation $\sigma$ measure the spread of outcomes around the mean, indicating how much the values of a random variable deviate from the expected value on average. A larger variance or standard deviation means the outcomes are more dispersed and less predictable, while smaller values suggest the outcomes are more tightly clustered around the mean.</li>
+  <li>This framework allows the bookstore to anticipate average revenue and understand volatility.</li>
+</ul>
+
+<h2 id="linear-combinations-of-random-variables">Linear Combinations of Random Variables</h2>
+
+<p>In many real-world scenarios, a total quantity of interest is composed of multiple random variables. This total can often be represented as a linear combination of those variables. A linear combination is any sum of random variables where each variable may be multiplied by a constant.</p>
+
+<p>For example, if $X_1, X_2, \dots, X_5$ represent the travel time on Monday through Friday, then the total weekly travel time $W$ is:</p>
+
+\[W = X_1 + X_2 + X_3 + X_4 + X_5\]
+
+<p>This representation helps us understand the total quantity by analyzing the components individually.</p>
+
+<div class="admonition note">
+  <p class="admonition-title">Example 3.60</p>
+
+  <p><strong>Scenario:</strong><br />
+  John travels to work five days a week. Let 
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <msub><mi>X</mi><mi>i</mi></msub>
+  </math> 
+  represent his commute time on day 
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mi>i</mi>
+  </math>, for 
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mi>i</mi><mo>=</mo><mn>1</mn>
+  </math> 
+  to 
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mn>5</mn>
+  </math>.
+  </p>
+
+  <p>His total weekly travel time is:</p>
+
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mi>W</mi>
+    <mo>=</mo>
+    <msub><mi>X</mi><mn>1</mn></msub>
+    <mo>+</mo>
+    <msub><mi>X</mi><mn>2</mn></msub>
+    <mo>+</mo>
+    <msub><mi>X</mi><mn>3</mn></msub>
+    <mo>+</mo>
+    <msub><mi>X</mi><mn>4</mn></msub>
+    <mo>+</mo>
+    <msub><mi>X</mi><mn>5</mn></msub>
+  </math>
+
+  <p>This is a linear combination of five random variables.</p>
+</div>
+
+<h2 id="expectation-of-a-linear-combination">Expectation of a Linear Combination</h2>
+
+<p>A key property of expectation is linearity. That is, for any random variables $X_1, X_2, \dots, X_n$:</p>
+
+\[E(X_1 + X_2 + \dots + X_n) = E(X_1) + E(X_2) + \dots + E(X_n)\]
+
+<p>Even if the variables are dependent, this property still holds.</p>
+
+<div class="admonition note">
+  <p class="admonition-title">Example 3.61</p>
+
+  <p><strong>Given:</strong><br />
+  Each daily commute has an expected value of 
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mn>18</mn>
+  </math> minutes, i.e.,
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mi>E</mi><mo stretchy="false">(</mo><msub><mi>X</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo>=</mo><mn>18</mn>
+  </math>.
+  </p>
+
+  <p><strong>To find:</strong><br />Expected weekly commute time:</p>
+
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mrow>
+      <mi>E</mi><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo><mo>=</mo>
+      <mi>E</mi><mo stretchy="false">(</mo>
+      <msub><mi>X</mi><mn>1</mn></msub><mo>+</mo>
+      <msub><mi>X</mi><mn>2</mn></msub><mo>+</mo>
+      <msub><mi>X</mi><mn>3</mn></msub>
+    </mrow>
+  </math>
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mrow>
+      <mo>+</mo>
+      <msub><mi>X</mi><mn>4</mn></msub><mo>+</mo>
+      <msub><mi>X</mi><mn>5</mn></msub><mo>)</mo><mo>=</mo>
+      <mi>E</mi><mo stretchy="false">(</mo><msub><mi>X</mi><mn>1</mn></msub><mo stretchy="false">)</mo><mo>+</mo>
+      <mi>E</mi><mo stretchy="false">(</mo><msub><mi>X</mi><mn>2</mn></msub><mo stretchy="false">)</mo><mo>+</mo>
+      <mi>E</mi><mo stretchy="false">(</mo><msub><mi>X</mi><mn>3</mn></msub><mo stretchy="false">)</mo>
+    </mrow>
+  </math>
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mrow>
+      <mo>+</mo>
+      <mi>E</mi><mo stretchy="false">(</mo><msub><mi>X</mi><mn>4</mn></msub><mo stretchy="false">)</mo><mo>+</mo>
+      <mi>E</mi><mo stretchy="false">(</mo><msub><mi>X</mi><mn>5</mn></msub><mo stretchy="false">)</mo>
+    </mrow>
+  </math>
+
+  <p>Since each 
+    <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+      <mi>E</mi><mo stretchy="false">(</mo><msub><mi>X</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo>=</mo><mn>18</mn>
+    </math>:
+  </p>
+
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mrow>
+      <mi>E</mi><mo stretchy="false">(</mo><mi>W</mi><mo stretchy="false">)</mo>
+      <mo>=</mo>
+      <mn>5</mn><mo>&#xD7;</mo><mn>18</mn><mo>=</mo><mn>90</mn>
+    </mrow>
+  </math>
+
+  <p>So John is expected to spend <strong>90 minutes</strong> commuting in total per week.</p>
+</div>
+
+<ul>
+  <li>A linear combination of random variables lets us model total quantities that are sums (or scaled sums) of parts.</li>
+  <li>The expected value of a sum is always the sum of the expected values, regardless of whether the variables are dependent or independent.</li>
+</ul>
+
+<h2 id="linear-combinations-of-random-variables-1">Linear Combinations of Random Variables</h2>
+
+<p>In many real-world scenarios, a total quantity of interest is composed of multiple random variables. This total can often be represented as a linear combination of those variables. A linear combination is any sum of random variables where each variable may be multiplied by a constant.</p>
+
+<p>For example, if $X_1, X_2, \dots, X_5$ represent the travel time on Monday through Friday, then the total weekly travel time $W$ is:</p>
+
+\[W = X_1 + X_2 + X_3 + X_4 + X_5\]
+
+<p>This representation helps us understand the total quantity by analyzing the components individually.</p>
+
+<div class="admonition note">
+  <p class="admonition-title">Guided Practice 3.63</p>
+
+  <p><strong>Scenario:</strong><br />
+  Based on past auctions, Elena figures she should expect to make 
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mn>175</mn></math> dollars on the TV and pay 
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mn>23</mn></math> dollars for the toaster oven.
+  </p>
+
+  <p>We let:</p>
+  <ul>
+  <li>
+    <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+      <mi>X</mi>
+    </math> = revenue from the TV = 
+    <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+      <mo>+</mo><mn>175</mn>
+    </math>
+  </li>
+  <li>
+    <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+      <mi>Y</mi>
+    </math> = cost of the toaster oven = 
+    <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+      <mo>&#x2212;</mo><mn>23</mn>
+    </math>
+  </li>
+</ul>
+
+  <p>Elena’s net gain is:</p>
+
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mi>G</mi>
+    <mo>=</mo>
+    <mi>X</mi>
+    <mo>−</mo>
+    <mi>Y</mi>
+    <mo>=</mo>
+    <mn>175</mn>
+    <mo>−</mo>
+    <mn>23</mn>
+    <mo>=</mo>
+    <mn>152</mn>
+  </math>
+
+  <p>So, Elena should expect to make <strong>$152</strong> in total.</p>
+</div>
+
+<div class="admonition note">
+  <p class="admonition-title">Guided Practice 3.64</p>
+
+  <p><strong>Question:</strong><br />
+  Would you be surprised if John’s weekly commute wasn’t exactly 
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mn>90</mn></math> minutes or if Elena didn’t make exactly 
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mn>152</mn></math>?
+  </p>
+
+  <p><strong>Answer:</strong><br />
+  No, we wouldn’t be surprised.  
+  The expected value 
+  (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mn>90</mn></math> minutes for John, 
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mn>152</mn></math> for Elena) 
+  represents the <em>average</em> over many repeated trials—not a guaranteed result for a single instance.
+  </p>
+
+  <p>Due to <strong>variability</strong> (randomness), actual outcomes will often differ from expected values.</p>
+</div>
+
+<p>Two important concepts have been introduced:</p>
+
+<ol>
+  <li>A final quantity can often be represented as a sum of random components, i.e., a linear combination.</li>
+  <li>The expected value of a linear combination is the sum of the expected values of its components.</li>
+</ol>
+
+<h2 id="linear-combinations-of-random-variables-and-the-average-result">Linear Combinations of Random Variables and the Average Result</h2>
+
+<p>A linear combination of two random variables $X$ and $Y$ is:</p>
+
+\[aX + bY\]
+
+<p>where $a$ and $b$ are constants. To compute the expected value of a linear combination, use:</p>
+
+\[E(aX + bY) = a \cdot E(X) + b \cdot E(Y)\]
+
+<p>This rule holds regardless of whether $X$ and $Y$ are dependent or independent.</p>
+
+<div class="admonition note">
+  <p class="admonition-title">Example 3.65</p>
+
+  <p><strong>Scenario:</strong><br />
+  Leonard has invested:</p>
+  <ul>
+    <li>
+      <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mn>6000</mn></math> in Caterpillar Inc (CAT)
+    </li>
+    <li>
+      <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mn>2000</mn></math> in Exxon Mobil Corp (XOM)
+    </li>
+  </ul>
+
+  <p>Let:</p>
+  <ul>
+    <li>
+      <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>X</mi></math> = monthly return (as a decimal) of CAT
+    </li>
+    <li>
+      <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mi>Y</mi></math> = monthly return of XOM
+    </li>
+  </ul>
+
+  <p>Then Leonard’s portfolio change is:</p>
+
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mtext>Portfolio change</mtext>
+    <mo>=</mo>
+    <mn>6000</mn>
+    <mo>&#x22C5;</mo>
+    <mi>X</mi>
+    <mo>+</mo>
+    <mn>2000</mn>
+    <mo>&#x22C5;</mo>
+    <mi>Y</mi>
+  </math>
+
+  <p>A positive value indicates a gain, and a negative value indicates a loss.</p>
+</div>
+
+<div class="admonition note">
+  <p class="admonition-title">Guided Practice 3.66</p>
+
+  <p><strong>Suppose:</strong></p>
+  <ul>
+    <li>
+      <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+        <mi>E</mi><mo>(</mo><mi>X</mi><mo>)</mo> <mo>=</mo> <mn>0.02</mn>
+      </math> &nbsp; (CAT rises 2.0%)
+    </li>
+    <li>
+      <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+        <mi>E</mi><mo>(</mo><mi>Y</mi><mo>)</mo> <mo>=</mo> <mn>0.002</mn>
+      </math> &nbsp; (XOM rises 0.2%)
+    </li>
+  </ul>
+
+  <p>Then the expected change in Leonard’s portfolio is:</p>
+
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mi>E</mi>
+    <mo>(</mo>
+    <mn>6000</mn>
+    <mo>&#x22C5;</mo>
+    <mi>X</mi>
+    <mo>+</mo>
+    <mn>2000</mn>
+    <mo>&#x22C5;</mo>
+    <mi>Y</mi>
+    <mo>)</mo>
+    <mo>=</mo>
+    <mn>6000</mn>
+    <mo>&#x22C5;</mo>
+    <mi>E</mi><mo>(</mo><mi>X</mi><mo>)</mo>
+    <mo>+</mo>
+    <mn>2000</mn>
+    <mo>&#x22C5;</mo>
+    <mi>E</mi><mo>(</mo><mi>Y</mi><mo>)</mo>
+  </math>
+
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mo>=</mo>
+    <mn>6000</mn>
+    <mo>&#x22C5;</mo>
+    <mn>0.02</mn>
+    <mo>+</mo>
+    <mn>2000</mn>
+    <mo>&#x22C5;</mo>
+    <mn>0.002</mn>
+    <mo>=</mo>
+    <mn>120</mn>
+    <mo>+</mo>
+    <mn>4</mn>
+    <mo>=</mo>
+    <mn>124</mn>
+  </math>
+
+  <p><strong>Answer:</strong><br />
+  Leonard should expect to make 
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mn>124</mn></math> dollars next month from his investments.
+  </p>
+</div>
+
+<h2 id="variability-in-linear-combinations-of-random-variables">Variability in Linear Combinations of Random Variables</h2>
+
+<p>Quantifying the average outcome from a linear combination of random variables is helpful, but it is also important to understand the uncertainty or variability of that outcome. In the case of Leonard’s stock portfolio (from Guided Practice 3.66), we calculated an expected monthly gain of $124. However, this gain is not guaranteed.</p>
+
+<p>Figure 3.22 illustrates the monthly changes in a portfolio like Leonard’s over a three-year period. The gains and losses vary considerably, underscoring the need to quantify volatility.</p>
+
+<p>To do this, we use variance and standard deviation, just as we have in earlier sections. The variances for the monthly returns of the stocks in Leonard’s portfolio are shown in Figure 3.23. We assume the stock returns are independent.</p>
+
+<p>To compute the variance of a linear combination of independent random variables, we use the following rule:</p>
+
+\[\text{Var}(aX + bY) = a^2 \cdot \text{Var}(X) + b^2 \cdot \text{Var}(Y)\]
+
+<p>This rule assumes that $X$ and $Y$ are independent. If they are not, then the formula would require an additional covariance term, which is beyond the scope of this course.</p>
+
+<h4 id="example-leonards-portfolio">Example: Leonard’s Portfolio</h4>
+
+<p>Leonard’s portfolio return is:</p>
+
+\[6000 \cdot X + 2000 \cdot Y\]
+
+<p>Using the formula:</p>
+
+\[\text{Var}(6000X + 2000Y) = 6000^2 \cdot \text{Var}(X) + 2000^2 \cdot \text{Var}(Y)\]
+
+<p>From Figure 3.23:</p>
+
+<ul>
+  <li>$\text{Var}(X) = 0.0057$ for CAT</li>
+  <li>$\text{Var}(Y) = 0.0021$ for XOM</li>
+</ul>
+
+<p>Plugging in:</p>
+
+\[= 36,\!000,\!000 \cdot 0.0057 + 4,\!000,\!000 \cdot 0.0021\]
+
+\[= 205,\!200 + 8,\!400 = 213,\!600\]
+
+<p>Then:</p>
+
+\[\text{SD} = \sqrt{213,\!600} \approx 463\]
+
+<p>So, while Leonard expects to gain $124 each month, the standard deviation is $463, indicating a high level of volatility.</p>
+
+<h2 id="summary-statistics-from-historical-stock-data">Summary Statistics from Historical Stock Data</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Stock</th>
+      <th>Mean ($\bar{x}$)</th>
+      <th>SD ($s$)</th>
+      <th>Variance ($s^2$)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>CAT</td>
+      <td>0.0204</td>
+      <td>0.0757</td>
+      <td>0.0057</td>
+    </tr>
+    <tr>
+      <td>XOM</td>
+      <td>0.0025</td>
+      <td>0.0455</td>
+      <td>0.0021</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="variability-of-linear-combinations-summary">Variability of Linear Combinations (Summary)</h2>
+
+<p>For independent random variables $X$ and $Y$, the variance of a linear combination $aX + bY$ is:</p>
+
+\[\text{Var}(aX + bY) = a^2 \cdot \text{Var}(X) + b^2 \cdot \text{Var}(Y)\]
+
+<p>The standard deviation is the square root of the variance:</p>
+
+\[\text{SD}(aX + bY) = \sqrt{\text{Var}(aX + bY)}\]
+
+<p>Negative coefficients do not affect the variance, since they are squared.</p>
+
+<div class="admonition note">
+  <p class="admonition-title">Example 3.68: John’s Weekly Commute</p>
+
+  <p>Suppose John's daily commute has a standard deviation of 4 minutes. His total commute time for the week is:</p>
+
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mi>W</mi> <mo>=</mo> 
+    <msub><mi>X</mi><mn>1</mn></msub> <mo>+</mo>
+    <msub><mi>X</mi><mn>2</mn></msub> <mo>+</mo>
+    <msub><mi>X</mi><mn>3</mn></msub> <mo>+</mo>
+    <msub><mi>X</mi><mn>4</mn></msub> <mo>+</mo>
+    <msub><mi>X</mi><mn>5</mn></msub>
+  </math>
+
+  <p>Each 
+    <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>X</mi><mi>i</mi></msub></math> 
+    has:
+  </p>
+
+  <ul>
+    <li>
+      <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+        <mi>SD</mi><mo>(</mo><msub><mi>X</mi><mi>i</mi></msub><mo>)</mo> <mo>=</mo> <mn>4</mn>
+      </math>
+    </li>
+    <li>
+      <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+        <mi>Var</mi><mo>(</mo><msub><mi>X</mi><mi>i</mi></msub><mo>)</mo> <mo>=</mo> <mn>4</mn><msup><mn>2</mn><mo>=</mo><mn>16</mn></msup>
+      </math>
+    </li>
+  </ul>
+
+  <p>Assuming independence, the total variance is:</p>
+
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mi>Var</mi><mo>(</mo><mi>W</mi><mo>)</mo> <mo>=</mo>
+    <mn>5</mn><mo>&#x22C5;</mo><mn>16</mn> <mo>=</mo> <mn>80</mn>
+  </math>
+
+  <p>So:</p>
+
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mi>SD</mi><mo>(</mo><mi>W</mi><mo>)</mo> <mo>=</mo> 
+    <msqrt><mn>80</mn></msqrt> <mo>&#x2248;</mo> <mn>8.94</mn> 
+    <mtext>&#xA0;minutes</mtext>
+  </math>
+</div>
+
+<div class="admonition note">
+  <p class="admonition-title">Guided Practice 3.69</p>
+  <p>The computation in Example 3.68 assumes that daily commute times are independent. Do you think this is reasonable?</p>
+  <p><em>Possibly not.</em> If there's heavy traffic on Monday, it might also affect Tuesday’s commute due to road conditions, or John might leave at a different time on subsequent days. In reality, daily commute times might be slightly correlated.</p>
+</div>
+
+<div class="admonition note">
+  <p class="admonition-title">Guided Practice 3.70</p>
+
+  <p>From Guided Practice 3.62, Elena has:</p>
+  <ul>
+    <li>
+      <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>X</mi></math> = TV revenue, SD = $25
+    </li>
+    <li>
+      <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>Y</mi></math> = toaster oven cost, SD = $8
+    </li>
+    <li>Net gain = 
+      <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>X</mi><mo>-</mo><mi>Y</mi></math>
+    </li>
+  </ul>
+
+  <p>We compute:</p>
+
+  <ul>
+    <li>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <mi>Var</mi><mo>(</mo><mi>X</mi><mo>)</mo><mo>=</mo><msup><mn>25</mn><mn>2</mn></msup><mo>=</mo><mn>625</mn>
+      </math>
+    </li>
+    <li>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <mi>Var</mi><mo>(</mo><mi>Y</mi><mo>)</mo><mo>=</mo><msup><mn>8</mn><mn>2</mn></msup><mo>=</mo><mn>64</mn>
+      </math>
+    </li>
+  </ul>
+
+  <p>Then:</p>
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+  <mi>Var</mi>
+  <mo stretchy="false">(</mo>
+  <mi>X</mi>
+  <mo>−</mo>
+  <mi>Y</mi>
+  <mo stretchy="false">)</mo>
+  <mo>=</mo>
+  <msup>
+    <mn>1</mn>
+    <mn>2</mn>
+  </msup>
+  <mo>&#x22C5;</mo>
+  <mn>625</mn>
+  <mo>+</mo>
+  <msup>
+    <mrow>
+      <mo>−</mo>
+      <mn>1</mn>
+    </mrow>
+    <mn>2</mn>
+  </msup>
+  <mo>&#x22C5;</mo>
+  <mn>64</mn>
+  <mo>=</mo>
+  <mn>625</mn>
+  <mo>+</mo>
+  <mn>64</mn>
+  <mo>=</mo>
+  <mn>689</mn>
+</math>
+
+
+  <p>So:</p>
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mi>SD</mi><mo>(</mo><mi>X</mi><mo>-</mo><mi>Y</mi><mo>)</mo>
+    <mo>=</mo><msqrt><mn>689</mn></msqrt>
+    <mo>&#x2248;</mo><mn>26.26</mn>
+  </math>
+
+  <p>Even though <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>Y</mi></math> has a negative coefficient, it does not affect the variance due to squaring.</p>
+</div>
+
+<h2 id="continuous-distributions">Continuous Distributions</h2>
+
+<div class="admonition note">
+  <p class="admonition-title">Example 3.72</p>
+
+  <p>What proportion of the sample is between 180 cm and 185 cm tall (about 5’11” to 6’1”)?</p>
+  <p>We can add up the counts of the two histogram bins that fall in this range and divide by the total sample size. The two bins in this region have:</p>
+
+  <ul>
+    <li>195,307 people in the first bin</li>
+    <li>156,239 people in the second bin</li>
+  </ul>
+
+  <p>Then:</p>
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mfrac>
+      <mrow>
+        <mn>195307</mn>
+        <mo>+</mo>
+        <mn>156239</mn>
+      </mrow>
+      <mn>3000000</mn>
+    </mfrac>
+    <mo>=</mo>
+    <mn>0.1172</mn>
+  </math>
+
+  <p>This means that approximately 11.72% of the sample falls between 180 cm and 185 cm in height. This proportion is also equal to the area under the histogram in that range.</p>
+</div>
+
+<p>We computed the proportion of individuals with heights 180 to 185 cm in Example 3.72 as a fraction:</p>
+
+\[\frac{\text{number of people between 180 and 185}}{\text{total sample size}}\]
+
+<p>We found the number of people with heights between 180 and 185 cm by determining the fraction of the histogram’s area in this region. Similarly, we can use the area in the shaded region under the curve to find a probability (with the help of a computer):</p>
+
+\[P(\text{height between } 180 \text{ and } 185) = \text{area between 180 and 185} = 0.1157\]
+
+<p>The probability that a randomly selected person is between 180 and 185 cm is $0.1157$. This is very close to the estimate from Example 3.72: $0.1172$.</p>
+
+<div class="admonition note">
+  <p class="admonition-title">Guided Practice 3.73</p>
+  <p>Three US adults are randomly selected. The probability a single adult is between 180 and 185 cm is 0.1157.</p>
+  <ul>
+    <li><strong>(a)</strong> What is the probability that all three are between 180 and 185 cm tall?</li>
+    <p>
+      $$P(\text{all three}) = 0.1157^3 \approx 0.0015$$
+    </p>
+    <li><strong>(b)</strong> What is the probability that none are between 180 and 185 cm?</li>
+    <p>
+      $$P(\text{none}) = (1 - 0.1157)^3 \approx 0.6966$$
+    </p>
+  </ul>
+</div>
+
+<div class="admonition note">
+  <p class="admonition-title">Guided Practice 3.75</p>
+  <p>Suppose a person’s height is rounded to the nearest centimeter. Is there a chance that a random person’s measured height will be 180 cm?</p>
+  <p><em>Yes.</em> When height is rounded, there is a nonzero probability that someone’s recorded height is 180 cm, even though the true height may not be exactly 180 cm. Rounding introduces discrete outcomes, so the area under the curve over an interval (e.g., 179.5 to 180.5 cm) now corresponds to a positive probability.</p>
+</div>
 
     <script src="https://utteranc.es/client.js" repo="psymbio/psymbio.github.io" issue-term="pathname" theme="github-dark-orange" crossorigin="anonymous" async>
     </script>
