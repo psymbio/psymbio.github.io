@@ -175,6 +175,33 @@
 \(P(\text{not 2}) = 1 - \frac{1}{6} = \frac{5}{6}\)</li>
 </ul>
 
+<h2 id="complementary-vs-disjoint-events">Complementary vs Disjoint Events</h2>
+<ul>
+  <li>Complementary events are a special case of disjoint events:<br />
+They are disjoint and together cover the entire sample space.</li>
+  <li>
+    <p>If A and B are complementary, then:
+\(P(A) + P(B) = 1\)</p>
+  </li>
+  <li>All complementary events are disjoint, but not all disjoint events are complementary.</li>
+</ul>
+
+<h2 id="example-1-complementary-events">Example 1: Complementary Events</h2>
+<p>Let A = “roll a 2”, B = “not roll a 2” on a die:</p>
+<ul>
+  <li>A = {2}, B = {1, 3, 4, 5, 6}</li>
+  <li>A and B are disjoint (no common outcomes)</li>
+  <li>A and B are complementary because they cover all outcomes.</li>
+</ul>
+
+<h2 id="example-2-disjoint-but-not-complementary">Example 2: Disjoint but Not Complementary</h2>
+<p>Let A = “roll a 1”, B = “roll a 2”:</p>
+<ul>
+  <li>A = {1}, B = {2}</li>
+  <li>A and B are disjoint (cannot happen together)</li>
+  <li>But they are not complementary because other outcomes (3–6) exist.</li>
+</ul>
+
 <h2 id="probability-of-independent-events">Probability of Independent Events</h2>
 <ul>
   <li>For independent events A and B:
@@ -346,6 +373,94 @@
   <li>$P(\text{pred_not} \, \mid \, \text{fashion}) = \frac{112}{309} \approx 0.3625$</li>
 </ul>
 
+<h2 id="marginal-probability-question">Marginal Probability Question</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Subjective Social Class Identity</th>
+      <th>Working Class</th>
+      <th>Upper Middle Class</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Poor</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Working Class</td>
+      <td>8</td>
+      <td>0</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <td>Middle Class</td>
+      <td>32</td>
+      <td>13</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <td>Upper Middle Class</td>
+      <td>8</td>
+      <td>37</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <td>Upper Class</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Total</td>
+      <td>48</td>
+      <td>50</td>
+      <td>98</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>What is the probability that a student’s objective social class position is upper middle class?</p>
+
+\[P(\text{Objective = Upper Middle Class}) = \frac{50}{98} \approx 0.51\]
+
+<h2 id="conditional-probability-question">Conditional Probability Question</h2>
+
+<p>What is the probability that a student who is objectively in the working class associates with upper middle class?</p>
+
+<p>We are asked to find the probability that a student’s subjective identity is “upper middle class” given their objective class is “working class”:</p>
+
+\[P(\text{Subjective = Upper Middle Class} \mid \text{Objective = Working Class}) = \frac{8}{48} \approx 0.17\]
+
+<h2 id="conditional-probability-question-2">Conditional Probability Question 2</h2>
+
+<p>Given:</p>
+<ul>
+  <li>14.6% of Americans live below the poverty line<br />
+→ $P(\text{Below PL}) = 0.146$</li>
+  <li>20.7% of Americans speak a language other than English at home<br />
+→ $P(\text{Speak non-Eng}) = 0.207$</li>
+  <li>4.2% fall into both categories<br />
+→ $P(\text{Below PL and Speak non-Eng}) = 0.042$</li>
+</ul>
+
+<p>What percent of Americans who live below the poverty line also speak a language other than English at home?</p>
+
+<p>We are looking for the conditional probability:<br />
+$P(\text{Speak non-Eng} \mid \text{Below PL})$</p>
+
+<p>Using the formula:</p>
+
+\[P(\text{Speak non-Eng} \mid \text{Below PL}) = \frac{P(\text{Below PL and Speak non-Eng})}{P(\text{Below PL})}\]
+
+\[= \frac{0.042}{0.146} \approx 0.2877\]
+
+<p>Approximately 28.8% of Americans who live below the poverty line speak a language other than English at home.</p>
+
 <h2 id="general-multiplication-rule">General Multiplication Rule</h2>
 
 <p>General Multiplication Rule for events that might not be independent states:</p>
@@ -393,7 +508,7 @@
   <p class="admonition-title">Guided Practice 3.38</p>
   <p>Let <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>X</mi></math> and <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>Y</mi></math> represent the outcomes of rolling two dice.</p>
 
-  <p><strong>(a)</strong> What is the probability that the first die, <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>X</mi></math>, is 1?<br />
+  <p>(a) What is the probability that the first die, <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>X</mi></math>, is 1?<br />
   ⇒ <math xmlns="http://www.w3.org/1998/Math/MathML">
     <mrow>
       <mi>P</mi>
@@ -410,7 +525,7 @@
     </mrow>
   </math></p>
 
-  <p><strong>(b)</strong> What is the probability that both <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>X</mi></math> and <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>Y</mi></math> are 1?<br />
+  <p>(b) What is the probability that both <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>X</mi></math> and <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>Y</mi></math> are 1?<br />
   ⇒ <math xmlns="http://www.w3.org/1998/Math/MathML">
     <mrow>
       <mi>P</mi>
@@ -431,7 +546,7 @@
     </mrow>
   </math></p>
 
-  <p><strong>(c)</strong> Use the formula for conditional probability to compute 
+  <p>(c) Use the formula for conditional probability to compute 
   <math xmlns="http://www.w3.org/1998/Math/MathML">
     <mrow>
       <mi>P</mi>
@@ -503,7 +618,7 @@
     </mrow>
   </math>
 
-  <p><strong>(d)</strong> What is 
+  <p>(d) What is 
   <math xmlns="http://www.w3.org/1998/Math/MathML">
     <mrow><mi>P</mi><mo stretchy="false">(</mo><mi>Y</mi><mo>=</mo><mn>1</mn><mo stretchy="false">)</mo></mrow>
   </math>? Is this different from part (c)?<br />
@@ -513,12 +628,12 @@
   </math>
   </p>
 
-  <p><strong>Conclusion:</strong><br />
+  <p>Conclusion:<br />
   No, the result is the same. This demonstrates that knowing 
   <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>X</mi><mo>=</mo><mn>1</mn></math>
   does not affect the probability of 
   <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>Y</mi><mo>=</mo><mn>1</mn></math>, 
-  meaning the two events are <em>independent</em>.</p>
+  meaning the two events are independent.</p>
 
   <p>Even though the conditional probability 
   <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -551,14 +666,14 @@
 
   <p>is much lower than either individual probability.</p>
 
-  <p><strong>Conditional independence does not imply high joint probability; it simply means that knowing one event does not affect the probability of the other.</strong></p>
+  <p>Conditional independence does not imply high joint probability; it simply means that knowing one event does not affect the probability of the other.</p>
 </div>
 
 <div class="admonition note">
   <p class="admonition-title">Guided Practice 3.39</p>
   <p>Ron is watching a roulette table in a casino and notices that the last five outcomes were black. He figures that the chances of getting black six times in a row is very small (about 1/64) and puts his paycheck on red.</p>
-  <p><strong>What is wrong with his reasoning?</strong></p>
-  <p>Ron is falling victim to the gambler's fallacy—the mistaken belief that previous independent outcomes (such as the last five black spins) affect the probability of future outcomes. In a fair game of roulette, each spin is independent, meaning that the probability of black or red remains the same on every spin regardless of previous results. Roulette outcomes are <em>independent events</em>, meaning each spin is unaffected by previous results. The probability of black or red on any single spin remains approximately 18/38 (on a standard American roulette wheel), regardless of prior outcomes. Thus, the chance of red remains the same as always, and previous black spins do not increase its likelihood.</p>
+  <p>What is wrong with his reasoning?</p>
+  <p>Ron is falling victim to the gambler's fallacy—the mistaken belief that previous independent outcomes (such as the last five black spins) affect the probability of future outcomes. In a fair game of roulette, each spin is independent, meaning that the probability of black or red remains the same on every spin regardless of previous results. Roulette outcomes are independent events, meaning each spin is unaffected by previous results. The probability of black or red on any single spin remains approximately 18/38 (on a standard American roulette wheel), regardless of prior outcomes. Thus, the chance of red remains the same as always, and previous black spins do not increase its likelihood.</p>
 </div>
 
 <h2 id="tree-diagrams">Tree Diagrams</h2>
@@ -620,6 +735,32 @@ flowchart TD
 \[= \frac{0.9754 \cdot 0.0392}{0.86347} \approx \frac{0.03824}{0.86347} \approx 0.0443\]
 
 <p>So, even though the probability of surviving given inoculation is very high (97.54%), the probability of having been inoculated given that the person survived is only about 4.43%. This is because the vast majority of the population was not inoculated. Bayes’ Theorem lets us work backwards to compute the reverse conditional probability.</p>
+
+<h2 id="bayes-theorem-question">Bayes’ Theorem Question</h2>
+
+<p>The American Community Survey is an ongoing survey that provides data every year to help communities plan investments and services.</p>
+
+<p>The 2010 American Community Survey estimates that:</p>
+
+<ul>
+  <li>14.6% of Americans live below the poverty line</li>
+  <li>20.7% speak a language other than English at home</li>
+  <li>4.2% fall into both categories</li>
+</ul>
+
+<p>What percent of Americans live below the poverty line given that they speak a language other than English at home?</p>
+
+<p>Using Bayes’ Theorem:</p>
+
+\[P(\text{Below PL} \mid \text{Speak non-Eng}) = \frac{P(\text{Below PL} \ \&amp; \ \text{Speak non-Eng})}{P(\text{Speak non-Eng})}\]
+
+\[= \frac{0.042}{0.207} \approx 0.2\]
+
+<p>So, about 20% of Americans who speak a language other than English at home live below the poverty line.</p>
+
+<p>Bayes’ Theorem Formula:</p>
+
+\[P(A \mid B) = \frac{P(A \ \&amp; \ B)}{P(B)}\]
 
 <h2 id="mutually-exclusive-vs-independent-events-dice-example">Mutually Exclusive vs Independent Events (Dice Example)</h2>
 
@@ -710,7 +851,7 @@ P(A \text{ or } B) &amp;= P(A) + P(B) - P(A \text{ and } B) \\
   <p class="admonition-title">Example 3.47</p>
   <p>A professor selects a student at random to answer a question. There are 15 students in class.</p>
 
-  <p>Probability that <strong>you</strong> are selected:</p>
+  <p>Probability that you are selected:</p>
 
   <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
     <mrow>
@@ -731,9 +872,9 @@ P(A \text{ or } B) &amp;= P(A) + P(B) - P(A \text{ and } B) \\
 
 <div class="admonition note">
   <p class="admonition-title">Example 3.48</p>
-  <p>The professor asks <strong>3 questions</strong> and does <strong>not repeat</strong> students. What’s the probability <strong>you’re not picked</strong> for any of them?</p>
+  <p>The professor asks 3 questions and does not repeat students. What's the probability you're not picked for any of them?</p>
 
-  <p>Let’s compute the probability of <em>not being picked</em> for each question, step by step:</p>
+  <p>Let's compute the probability of not being picked for each question, step by step:</p>
 
   <p>First question:</p>
   <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
@@ -752,7 +893,7 @@ P(A \text{ or } B) &amp;= P(A) + P(B) - P(A \text{ and } B) \\
     </mrow>
   </math>
 
-  <p>Second question (given you weren’t picked before):</p>
+  <p>Second question (given you weren't picked before):</p>
   <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
     <mrow>
       <mi>P</mi>
@@ -773,7 +914,7 @@ P(A \text{ or } B) &amp;= P(A) + P(B) - P(A \text{ and } B) \\
     </mrow>
   </math>
 
-  <p>Third question (given you weren’t picked in first two):</p>
+  <p>Third question (given you weren't picked in first two):</p>
   <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
     <mrow>
       <mi>P</mi>
@@ -798,7 +939,7 @@ P(A \text{ or } B) &amp;= P(A) + P(B) - P(A \text{ and } B) \\
     </mrow>
   </math>
 
-  <p>To get the overall probability that you are <strong>not picked in all three questions</strong>, multiply:</p>
+  <p>To get the overall probability that you are not picked in all three questions, multiply:</p>
 
   <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
     <mtable columnalign="left">
@@ -905,7 +1046,7 @@ P(A \text{ or } B) &amp;= P(A) + P(B) - P(A \text{ and } B) \\
 
 <div class="admonition note">
   <p class="admonition-title">Example 3.54: Bookstore Book Sales</p>
-  <p>Let’s say:</p>
+  <p>Let's say:</p>
   <ul>
     <li>20% of students buy no books: $0</li>
     <li>55% buy only the textbook: $137</li>
@@ -1022,11 +1163,11 @@ P(A \text{ or } B) &amp;= P(A) + P(B) - P(A \text{ and } B) \\
         <td>679.91</td>
       </tr>
       <tr>
-        <td colspan="3"><strong>Total</strong></td>
-        <td><strong>117.85</strong></td>
+        <td colspan="3">Total</td>
+        <td>117.85</td>
         <td></td>
         <td></td>
-        <td><strong>Variance = 3659.33</strong></td>
+        <td>Variance = 3659.33</td>
       </tr>
     </tbody>
   </table>
@@ -1075,7 +1216,7 @@ P(A \text{ or } B) &amp;= P(A) + P(B) - P(A \text{ and } B) \\
 <div class="admonition note">
   <p class="admonition-title">Example 3.60</p>
 
-  <p><strong>Scenario:</strong><br />
+  <p>Scenario:<br />
   John travels to work five days a week. Let 
   <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
     <msub><mi>X</mi><mi>i</mi></msub>
@@ -1123,7 +1264,7 @@ P(A \text{ or } B) &amp;= P(A) + P(B) - P(A \text{ and } B) \\
 <div class="admonition note">
   <p class="admonition-title">Example 3.61</p>
 
-  <p><strong>Given:</strong><br />
+  <p>Given:<br />
   Each daily commute has an expected value of 
   <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
     <mn>18</mn>
@@ -1133,7 +1274,7 @@ P(A \text{ or } B) &amp;= P(A) + P(B) - P(A \text{ and } B) \\
   </math>.
   </p>
 
-  <p><strong>To find:</strong><br />Expected weekly commute time:</p>
+  <p>To find:<br />Expected weekly commute time:</p>
 
   <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
     <mrow>
@@ -1176,7 +1317,7 @@ P(A \text{ or } B) &amp;= P(A) + P(B) - P(A \text{ and } B) \\
     </mrow>
   </math>
 
-  <p>So John is expected to spend <strong>90 minutes</strong> commuting in total per week.</p>
+  <p>So John is expected to spend 90 minutes commuting in total per week.</p>
 </div>
 
 <ul>
@@ -1197,7 +1338,7 @@ P(A \text{ or } B) &amp;= P(A) + P(B) - P(A \text{ and } B) \\
 <div class="admonition note">
   <p class="admonition-title">Guided Practice 3.63</p>
 
-  <p><strong>Scenario:</strong><br />
+  <p>Scenario:<br />
   Based on past auctions, Elena figures she should expect to make 
   <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mn>175</mn></math> dollars on the TV and pay 
   <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mn>23</mn></math> dollars for the toaster oven.
@@ -1223,7 +1364,7 @@ P(A \text{ or } B) &amp;= P(A) + P(B) - P(A \text{ and } B) \\
   </li>
 </ul>
 
-  <p>Elena’s net gain is:</p>
+  <p>Elena's net gain is:</p>
 
   <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
     <mi>G</mi>
@@ -1239,27 +1380,27 @@ P(A \text{ or } B) &amp;= P(A) + P(B) - P(A \text{ and } B) \\
     <mn>152</mn>
   </math>
 
-  <p>So, Elena should expect to make <strong>$152</strong> in total.</p>
+  <p>So, Elena should expect to make $152 in total.</p>
 </div>
 
 <div class="admonition note">
   <p class="admonition-title">Guided Practice 3.64</p>
 
-  <p><strong>Question:</strong><br />
-  Would you be surprised if John’s weekly commute wasn’t exactly 
-  <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mn>90</mn></math> minutes or if Elena didn’t make exactly 
+  <p>Question:<br />
+  Would you be surprised if John's weekly commute wasn't exactly 
+  <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mn>90</mn></math> minutes or if Elena didn't make exactly 
   <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mn>152</mn></math>?
   </p>
 
-  <p><strong>Answer:</strong><br />
-  No, we wouldn’t be surprised.  
+  <p>Answer:<br />
+  No, we wouldn't be surprised.  
   The expected value 
   (<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mn>90</mn></math> minutes for John, 
   <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mn>152</mn></math> for Elena) 
-  represents the <em>average</em> over many repeated trials—not a guaranteed result for a single instance.
+  represents the average over many repeated trials—not a guaranteed result for a single instance.
   </p>
 
-  <p>Due to <strong>variability</strong> (randomness), actual outcomes will often differ from expected values.</p>
+  <p>Due to variability (randomness), actual outcomes will often differ from expected values.</p>
 </div>
 
 <p>Two important concepts have been introduced:</p>
@@ -1284,7 +1425,7 @@ P(A \text{ or } B) &amp;= P(A) + P(B) - P(A \text{ and } B) \\
 <div class="admonition note">
   <p class="admonition-title">Example 3.65</p>
 
-  <p><strong>Scenario:</strong><br />
+  <p>Scenario:<br />
   Leonard has invested:</p>
   <ul>
     <li>
@@ -1305,7 +1446,7 @@ P(A \text{ or } B) &amp;= P(A) + P(B) - P(A \text{ and } B) \\
     </li>
   </ul>
 
-  <p>Then Leonard’s portfolio change is:</p>
+  <p>Then Leonard's portfolio change is:</p>
 
   <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
     <mtext>Portfolio change</mtext>
@@ -1325,7 +1466,7 @@ P(A \text{ or } B) &amp;= P(A) + P(B) - P(A \text{ and } B) \\
 <div class="admonition note">
   <p class="admonition-title">Guided Practice 3.66</p>
 
-  <p><strong>Suppose:</strong></p>
+  <p>Suppose:</p>
   <ul>
     <li>
       <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
@@ -1339,7 +1480,7 @@ P(A \text{ or } B) &amp;= P(A) + P(B) - P(A \text{ and } B) \\
     </li>
   </ul>
 
-  <p>Then the expected change in Leonard’s portfolio is:</p>
+  <p>Then the expected change in Leonard's portfolio is:</p>
 
   <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
     <mi>E</mi>
@@ -1379,7 +1520,7 @@ P(A \text{ or } B) &amp;= P(A) + P(B) - P(A \text{ and } B) \\
     <mn>124</mn>
   </math>
 
-  <p><strong>Answer:</strong><br />
+  <p>Answer:<br />
   Leonard should expect to make 
   <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mn>124</mn></math> dollars next month from his investments.
   </p>
@@ -1468,7 +1609,7 @@ P(A \text{ or } B) &amp;= P(A) + P(B) - P(A \text{ and } B) \\
 <p>Negative coefficients do not affect the variance, since they are squared.</p>
 
 <div class="admonition note">
-  <p class="admonition-title">Example 3.68: John’s Weekly Commute</p>
+  <p class="admonition-title">Example 3.68: John's Weekly Commute</p>
 
   <p>Suppose John's daily commute has a standard deviation of 4 minutes. His total commute time for the week is:</p>
 
@@ -1518,7 +1659,7 @@ P(A \text{ or } B) &amp;= P(A) + P(B) - P(A \text{ and } B) \\
 <div class="admonition note">
   <p class="admonition-title">Guided Practice 3.69</p>
   <p>The computation in Example 3.68 assumes that daily commute times are independent. Do you think this is reasonable?</p>
-  <p><em>Possibly not.</em> If there's heavy traffic on Monday, it might also affect Tuesday’s commute due to road conditions, or John might leave at a different time on subsequent days. In reality, daily commute times might be slightly correlated.</p>
+  <p>Possibly not. If there's heavy traffic on Monday, it might also affect Tuesday's commute due to road conditions, or John might leave at a different time on subsequent days. In reality, daily commute times might be slightly correlated.</p>
 </div>
 
 <div class="admonition note">
@@ -1601,7 +1742,7 @@ P(A \text{ or } B) &amp;= P(A) + P(B) - P(A \text{ and } B) \\
 <div class="admonition note">
   <p class="admonition-title">Example 3.72</p>
 
-  <p>What proportion of the sample is between 180 cm and 185 cm tall (about 5’11” to 6’1”)?</p>
+  <p>What proportion of the sample is between 180 cm and 185 cm tall (about 5'11" to 6'1")?</p>
   <p>We can add up the counts of the two histogram bins that fall in this range and divide by the total sample size. The two bins in this region have:</p>
 
   <ul>
@@ -1640,11 +1781,11 @@ P(A \text{ or } B) &amp;= P(A) + P(B) - P(A \text{ and } B) \\
   <p class="admonition-title">Guided Practice 3.73</p>
   <p>Three US adults are randomly selected. The probability a single adult is between 180 and 185 cm is 0.1157.</p>
   <ul>
-    <li><strong>(a)</strong> What is the probability that all three are between 180 and 185 cm tall?</li>
+    <li>(a) What is the probability that all three are between 180 and 185 cm tall?</li>
     <p>
       $$P(\text{all three}) = 0.1157^3 \approx 0.0015$$
     </p>
-    <li><strong>(b)</strong> What is the probability that none are between 180 and 185 cm?</li>
+    <li>(b) What is the probability that none are between 180 and 185 cm?</li>
     <p>
       $$P(\text{none}) = (1 - 0.1157)^3 \approx 0.6966$$
     </p>
@@ -1653,8 +1794,130 @@ P(A \text{ or } B) &amp;= P(A) + P(B) - P(A \text{ and } B) \\
 
 <div class="admonition note">
   <p class="admonition-title">Guided Practice 3.75</p>
-  <p>Suppose a person’s height is rounded to the nearest centimeter. Is there a chance that a random person’s measured height will be 180 cm?</p>
-  <p><em>Yes.</em> When height is rounded, there is a nonzero probability that someone’s recorded height is 180 cm, even though the true height may not be exactly 180 cm. Rounding introduces discrete outcomes, so the area under the curve over an interval (e.g., 179.5 to 180.5 cm) now corresponds to a positive probability.</p>
+  <p>Suppose a person's height is rounded to the nearest centimeter. Is there a chance that a random person's measured height will be 180 cm?</p>
+  <p>Yes. When height is rounded, there is a nonzero probability that someone's recorded height is 180 cm, even though the true height may not be exactly 180 cm. Rounding introduces discrete outcomes, so the area under the curve over an interval (e.g., 179.5 to 180.5 cm) now corresponds to a positive probability.</p>
+</div>
+
+<div class="admonition note">
+  <p class="admonition-title">Guided Practice: Chickenpox Probability</p>
+  <p>The National Vaccine Information Center estimates that 
+    <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+      <mn>90</mn><mo>%</mo>
+    </math> 
+    of Americans have had the disease chickenpox by adulthood. What is the probability that exactly 
+    <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+      <mn>92</mn>
+    </math> 
+    out of 
+    <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+      <mn>100</mn>
+    </math> 
+    randomly sampled American adults had chickenpox during childhood?
+  </p>
+
+  <ul>
+    <li>(a) Using the Binomial Formula</li>
+    <p>
+      Let 
+      <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+        <mi>X</mi>
+      </math> 
+      be the number of adults (out of 100) who had chickenpox.  
+      <br />
+      <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+        <mi>X</mi>
+        <mo>&#x223C;</mo> <!-- Tilde for "distributed as" -->
+        <mtext>Binomial</mtext>
+        <mo>(</mo>
+        <mi>n</mi><mo>=</mo><mn>100</mn>
+        <mo>,</mo>
+        <mi>p</mi><mo>=</mo><mn>0.9</mn>
+        <mo>)</mo>
+      </math>
+      We want 
+      <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+        <mi>P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mn>92</mn><mo>)</mo>
+      </math>:
+    </p>
+    <p>
+      $$
+      P(X = 92) = \binom{100}{92} (0.9)^{92} (0.1)^8 \approx 0.1113
+      $$
+    </p>
+
+    <li>(b) Using Python Code</li>
+    <p>
+      <pre><code>from scipy.stats import binom
+prob = binom.pmf(92, n=100, p=0.9)
+print(round(prob, 4))  # Output: 0.1113
+      </code></pre>
+      Result: 
+      <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+        <mi>P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mn>92</mn><mo>)</mo> <mo>&#x2248;</mo> <mn>0.1113</mn>
+      </math>
+    </p>
+
+    <li>(c) Using the Normal Approximation</li>
+    <p>
+      Since 
+      <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+        <mi>n</mi><mo>=</mo><mn>100</mn>
+      </math> and 
+      <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+        <mi>p</mi><mo>=</mo><mn>0.9</mn>
+      </math>, we approximate using a normal distribution:  
+      <br />
+      Mean: 
+      <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+        <mi>&mu;</mi><mo>=</mo><mi>np</mi><mo>=</mo><mn>90</mn>
+      </math>  
+      <br />
+      Standard deviation: 
+      <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+        <mi>&sigma;</mi><mo>=</mo><msqrt><mn>100</mn><mo>&#x22C5;</mo><mn>0.9</mn><mo>&#x22C5;</mo><mn>0.1</mn></msqrt><mo>=</mo><mn>3</mn>
+      </math>
+    </p>
+     <p>
+    When using the normal approximation to estimate binomial probabilities, we apply a continuity correction. This adjustment is necessary because the binomial distribution is discrete (only whole number outcomes are possible), while the normal distribution is continuous (all real numbers are possible).
+    </p>
+
+    <p>
+      For example, if we want to approximate:
+      <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+        <mi>P</mi><mo>(</mo><mi>X</mi><mo>=</mo><mn>92</mn><mo>)</mo>
+      </math>
+      using the normal distribution, we can't calculate the probability at a single point. Instead, we estimate the area under the normal curve over an interval that surrounds 92. This is done by adjusting both the lower and upper bounds by 0.5:
+    </p>
+
+    <p>
+      Apply continuity correction:  
+      <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+        <mi>P</mi><mo>(</mo><mn>91.5</mn> <mo>&lt;</mo> <mi>X</mi> <mo>&lt;</mo> <mn>92.5</mn><mo>)</mo>
+      </math>
+    </p>
+
+    <p>
+      $$
+      Z_1 = \frac{91.5 - 90}{3} = 0.5, \quad Z_2 = \frac{92.5 - 90}{3} = 0.8333
+      $$
+    </p>
+
+    <p>
+      $$
+      \begin{align*}
+      P(91.5 &lt; X &lt; 92.5) &amp;= P(0.5 &lt; Z &lt; 0.8333) \\
+      &amp;\approx \Phi(0.8333) - \Phi(0.5) \\
+      &amp;\approx 0.7977 - 0.6915 = 0.1062
+      \end{align*}
+      $$
+    </p>
+    <p>
+      Approximate probability: 
+      <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+          <mn>0.1062</mn>
+      </math>
+    </p>
+  </ul>
 </div>
 
     <script src="https://utteranc.es/client.js" repo="psymbio/psymbio.github.io" issue-term="pathname" theme="github-dark-orange" crossorigin="anonymous" async>
