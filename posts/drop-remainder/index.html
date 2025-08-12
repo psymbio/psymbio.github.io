@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        drop_remainder=True for batched datasets &ndash; The Brain Archive
+    </title>
+    <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2"
+        crossorigin="messinasans-semi">
+    <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+    <meta name="author" content="psymbio" />
+    <meta name="description" content="psymbio's blog" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+    <link rel="alternate" type="application/rss+xml" href="/atom.xml" />
+    <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+    <link rel="shortcut icon" type="image/x-icon" href="/icons/icon.png" />
+    <link rel="icon" type="image/png" href="/icons/icon.png">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- See https://goo.gl/OOhYW5 -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- See https://goo.gl/qRE0vM -->
+    <meta name="theme-color" content="#C1272D">
+
+    <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="psymbio's blog">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="psymbio's blog">
+
+    <!-- Homescreen icons -->
+    <link rel="apple-touch-icon" sizes="192x192" href="icons/icon.png">
+
+    <!-- Tile icon for Windows 8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="icons/icon.png">
+    <meta name="msapplication-TileColor" content="#C1272D">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Default twitter cards -->
+    <meta name="twitter:card" content="psymbio's blog">
+    <meta name="twitter:site" content="@psymbio">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="my-app">
+    <meta property="og:image" content="icons/icon.png" />
+
+    <!--clicky analytics-->
+
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+        </script>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js"
+        integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.1.2/es5/startup.js"
+        integrity="sha512-umLk4jlqS6v3HF06nsUFlzLGh3yp1A9X+hhlGOEstnLdkphT8w0O8nJJi2Pf28kfIFQvYzMg7ODPluFlkc/WzQ=="
+        crossorigin="anonymous"></script>
+
+    <!--flowcharts-->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true
+        });
+    </script>
+    <!--2d plots-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <!--3d plots-->
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+
+    <!-- Add these in your <head> or right before </body> -->
+
+    <!--python for browser: brython
+<script type="text/javascript" src="/scripts/brython.js"></script>
+<script type="text/javascript" src="/scripts/brython_stdlib.js"></script>
+--->
+    <!--particles on the background-->
+    <!-- <script src="/assets/scripts/particle.js"></script> -->
+
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+    <meta name="google-site-verification" content="3PIlzxg_Fq6uuVEqKvNXrVj8NuWqIA9_hqCxWLcnU-4" />
+    <!--
+<nav>
+  <ul>
+      <li><a href="/">Blog</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+-->
+</head>
+
+<body>
+    <div class="top-line"></div>
+    <div class="container">
+        <section class="shore">
+            <header class="sidebar">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+    <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+    <a href="/">
+        <img src="/images/title.png" height="150" width="150" class="avatar" />
+    </a>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+</header>
+<link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+<link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+<link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+<link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+<!-- <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script> -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+      
+  <script type="text/javascript"
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+<section class="content">
+    <section class="byline">
+        August 12, 2025
+    </section>
+    <h1>drop_remainder=True for batched datasets</h1>
+    <p>In machine learning, particularly when working with TensorFlow’s <code class="language-plaintext highlighter-rouge">tf.data.Dataset</code>, the <code class="language-plaintext highlighter-rouge">drop_remainder</code> parameter is used in batching operations (like <code class="language-plaintext highlighter-rouge">batch()</code>) to control whether to discard the last batch if it has fewer samples than the specified batch size. Here’s why and when you should use it:</p>
+
+<h3 id="why-use-drop_remaindertrue">Why Use drop_remainder=True?</h3>
+
+<ol>
+  <li>Fixed Batch Size for Training Stability
+    <ul>
+      <li>Many models (especially in deep learning) expect fixed-size batches during training (e.g., for GPU parallelism, batch normalization, or recurrent networks like RNNs/LSTMs).</li>
+      <li>If the last batch is smaller (e.g., when the dataset size isn’t divisible by the batch size), it can cause errors or require special handling.</li>
+      <li>
+        <p>Example:</p>
+
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">Dataset</span><span class="p">.</span><span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="nf">batch</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">drop_remainder</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># Drops last batch (size 1)
+</span>  <span class="c1"># Output: Batches of [0,1,2], [3,4,5], [6,7,8] (last batch [9] is dropped)
+</span>        
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Avoiding Shape Inconsistencies
+    <ul>
+      <li>Layers like <code class="language-plaintext highlighter-rouge">Dense</code> or <code class="language-plaintext highlighter-rouge">Conv2D</code> assume fixed input dimensions. A smaller final batch can break shape compatibility.</li>
+      <li>Example: A model expecting <code class="language-plaintext highlighter-rouge">(batch_size, 32, 32, 3)</code> will fail if the last batch has shape <code class="language-plaintext highlighter-rouge">(5, 32, 32, 3)</code> when <code class="language-plaintext highlighter-rouge">batch_size=32</code>.</li>
+    </ul>
+  </li>
+  <li>Better Performance on GPUs/TPUs
+    <ul>
+      <li>Hardware accelerators (GPUs/TPUs) optimize for fixed-size batches. Irregular batch sizes may underutilize hardware or require recompilation.</li>
+    </ul>
+  </li>
+  <li>Simpler Code for Distributed Training
+    <ul>
+      <li>In multi-GPU or distributed training, uneven batch splits complicate synchronization. Dropping the remainder ensures uniformity.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="when-to-use-drop_remainderfalse-default">When to Use drop_remainder=False (Default)</h3>
+
+<ol>
+  <li>Small Datasets or Evaluation
+    <ul>
+      <li>For validation/test sets, preserving all data (even partial batches) avoids losing information.</li>
+      <li>
+        <p>Example:</p>
+
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">Dataset</span><span class="p">.</span><span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="nf">batch</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">drop_remainder</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+  <span class="c1"># Output: [0,1,2], [3,4,5], [6,7,8], [9] (keeps partial batch)
+</span>        
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Online Learning/Streaming Data
+    <ul>
+      <li>When processing real-time data where batch size may vary naturally.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="key-trade-offs">Key Trade-offs</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scenario</th>
+      <th><code class="language-plaintext highlighter-rouge">drop_remainder=True</code></th>
+      <th><code class="language-plaintext highlighter-rouge">drop_remainder=False</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Batch Size Consistency</td>
+      <td>Guaranteed fixed size</td>
+      <td>Last batch may be smaller</td>
+    </tr>
+    <tr>
+      <td>Data Utilization</td>
+      <td>Drops samples</td>
+      <td>Uses all data</td>
+    </tr>
+    <tr>
+      <td>Hardware Optimization</td>
+      <td>Better for GPUs/TPUs</td>
+      <td>May cause inefficiencies</td>
+    </tr>
+    <tr>
+      <td>Model Compatibility</td>
+      <td>Works with fixed-shape models</td>
+      <td>May need error handling</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="practical-example">Practical Example</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+
+<span class="c1"># Create dataset of 1000 samples, batch size 128
+</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">Dataset</span><span class="p">.</span><span class="nf">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># Case 1: Drop remainder (for training)
+</span><span class="n">train_data</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">.</span><span class="nf">batch</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">drop_remainder</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># 7 full batches (128x7=896), drops last 104 samples
+</span>
+<span class="c1"># Case 2: Keep remainder (for validation)
+</span><span class="n">val_data</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">.</span><span class="nf">batch</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">drop_remainder</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>   <span class="c1"># 7 full batches + 1 partial batch (104 samples)
+</span>
+</code></pre></div></div>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<ul>
+  <li>Use <code class="language-plaintext highlighter-rouge">drop_remainder=True</code> for training to ensure stability and performance.</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">drop_remainder=False</code> for validation/testing to avoid discarding data.</li>
+</ul>
+
+<p>This choice depends on your model’s requirements and how critical it is to preserve every sample.</p>
+
+    <script src="https://utteranc.es/client.js" repo="psymbio/psymbio.github.io" issue-term="pathname" theme="github-dark-orange" crossorigin="anonymous" async>
+    </script>
+</section>
+<section style="padding-left: var(--spacing); width: 100%; max-width: 700px; margin: 0 auto;">
+    <span>That sentence that goes before giving my email to strangers: <a href="mailto: psymbio@gmail.com">psymbio@gmail.com</a></span>
+</section>
+<br>
+<br>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<style>
+    .videoWrapper {
+        position: relative;
+        padding-bottom: 56.333%;
+        height: 0;
+        background: black;
+    }
+    
+    .videoWrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+</style>
+
+<script>
+    function get_youtube_id(url) {
+        var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+        return (url.match(p)) ? RegExp.$1 : false;
+    }
+
+    function vimeo_embed(url, el) {
+        var id = false;
+        $.ajax({
+            url: 'https://vimeo.com/api/oembed.json?url=' + url,
+            async: true,
+            success: function(response) {
+                if (response.video_id) {
+                    id = response.video_id;
+                    if (url.indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (url.indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    var theInnerHTML = '<div class="videoWrapper"><iframe src="https://player.vimeo.com/video/' + id + '/?byline=0&title=0&portrait=0';
+                    if (autoplay == 1) theInnerHTML += '&autoplay=1';
+                    if (loop == 1) theInnerHTML += '&loop=1';
+                    theInnerHTML += '" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>';
+                    el.innerHTML = theInnerHTML;
+                }
+            }
+        });
+    }
+
+    function video_embed() {
+        var p = document.getElementsByTagName('p');
+        for (var i = 0; i < p.length; i++) {
+            //check if this is an external url (that starts with https:// or http://
+            if (p[i].innerHTML.indexOf("http://") == 0 ||
+                p[i].innerHTML.indexOf("https://") == 0) {
+                var youtube_id = get_youtube_id(p[i].innerHTML);
+                if (youtube_id) {
+                    if (p[i].innerHTML.indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (p[i].innerHTML.indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    var theInnerHTML = '<div class="videoWrapper"><iframe width="720" height="420" src="https://www.youtube.com/embed/' + youtube_id + '?rel=0&showinfo=0';
+                    if (autoplay == 1) theInnerHTML += '&autoplay=1';
+                    if (loop == 1) theInnerHTML += '&loop=1&playlist=' + youtube_id + '&version=3';
+                    if (p[i].innerHTML.indexOf('start=') !== -1) theInnerHTML += '&start=' + p[i].innerHTML.substring(p[i].innerHTML.indexOf('start=') + 6);
+                    theInnerHTML += '" frameborder="0" allowfullscreen></iframe></div>';
+                    p[i].innerHTML = theInnerHTML;
+                }
+                if (p[i].innerHTML.indexOf('vimeo.com') !== -1) {
+                    //ask vimeo for the id and place the embed
+                    vimeo_embed(p[i].innerHTML, p[i]);
+                }
+            }
+        }
+    }
+    video_embed();
+
+    function mp3_embed() {
+        var p = document.getElementsByTagName('p');
+        for (var i = 0; i < p.length; i++) {
+            if (p[i].innerHTML.indexOf('.mp3') !== -1) {
+                var str = p[i].innerHTML.split('?');
+                if (str.length == 1) str[1] = '';
+                var str1 = str[1];
+                str1 = str1.replace('&', '').replace('&', '');
+                str1 = str1.replace('autoplay=1', '').replace('autoplay=0', '');
+                str1 = str1.replace('loop=1', '').replace('loop=0', '');
+                str1 = str1.replace('controls=0', '').replace('controls=1', '');
+
+                if (str[0].lastIndexOf('.mp3', str[0].length - 4) === str[0].length - 4 && str1.length == 0) {
+                    if (str[1].indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (str[1].indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    if (str[1].indexOf('controls=0') !== -1) var controls = 0;
+                    else var controls = 1;
+                    var newInnerHTML = '<audio';
+                    if (autoplay == 1) newInnerHTML += ' autoplay';
+                    if (loop == 1) newInnerHTML += ' loop';
+                    if (controls == 1) newInnerHTML += ' controls';
+                    newInnerHTML += '><source src="' + str[0] + '" type="audio/mpeg">Your browser does not support the audio element.</audio>';
+                    p[i].innerHTML = newInnerHTML;
+                }
+            }
+        }
+    }
+    mp3_embed();
+</script>
+<script>
+    ! function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+            p = /^http:/.test(d.location) ? 'http' : 'https';
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.id = id;
+            js.src = p + '://platform.twitter.com/widgets.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    }(document, 'script', 'twitter-wjs');
+</script>
+
+            <section class="shore">
+    </div>
+</body>
+<script>
+    'use strict';
+    var head = document.head;
+    var link = document.createElement('link');
+    link.type = 'text/css';
+    link.rel = 'stylesheet';
+    link.href = '/css/pygments.css'
+    head.appendChild(link);
+</script>
+<!--copy code to clipboard-->
+<script src="/assets/scripts/copycode.js"></script>
+
+</html>

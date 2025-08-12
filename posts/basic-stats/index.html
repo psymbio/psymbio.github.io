@@ -256,6 +256,30 @@ flowchart LR
 
 <p>A confounding variable—like sun exposure—affects both sunscreen use (explanatory) and skin cancer risk (response). People in the sun more often both use more sunscreen and are more at risk.</p>
 
+<h2 id="relationship-between-sampling-assignment-and-study-outcomes">Relationship between Sampling, Assignment, and Study Outcomes</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Random Assignment</th>
+      <th>No Random Assignment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Random Sampling</td>
+      <td>causal and generalizable</td>
+      <td>not causal, but generalizable</td>
+    </tr>
+    <tr>
+      <td>No Random Sampling</td>
+      <td>causal, but not generalizable</td>
+      <td>neither causal nor generalizable</td>
+    </tr>
+  </tbody>
+</table>
+
 <h2 id="principles-of-experimental-design">Principles of Experimental Design</h2>
 
 <p>Randomized experiments are based on four key principles:</p>
@@ -505,9 +529,89 @@ An observation is typically considered an outlier if it is:
 <p>-&gt; right -&gt; mean is to the right of the median but the data is bunched up at the left side
 in a left skewed data distribution, less than 50% of the data are below the data mean</p>
 
-<h2 id="measures-of-spread-in-data">Measures of spread in Data</h2>
+<h2 id="measures-of-spread-in-data">Measures of Spread in Data</h2>
+
+<p>Once we understand the center of a distribution, it’s important to explore spread, or how much the data vary.</p>
+
+<ul>
+  <li>Visual Understanding: Two distributions can have the same center but different spreads. A narrow curve means low variability, while a wider curve means high variability.</li>
+</ul>
+
+<h3 id="common-measures-of-spread">Common Measures of Spread</h3>
+
+<ol>
+  <li>Range
+    <ul>
+      <li>Formula: Max − Min</li>
+      <li>Issue: Relies only on extremes (outliers), so it’s unreliable.</li>
+    </ul>
+  </li>
+  <li>Variance
+    <ul>
+      <li>Formula:<br />
+\(s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2\)</li>
+      <li>Measures average squared distance from the mean.</li>
+      <li>Units are squared (e.g., years²), which are hard to interpret.</li>
+      <li>Why square?
+        <ul>
+          <li>Eliminates negatives (so they don’t cancel out)</li>
+          <li>Amplifies larger deviations</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Standard Deviation (SD)
+    <ul>
+      <li>Formula: Square root of the variance</li>
+      <li>Returns the spread in the same unit as the original data</li>
+      <li>Symbols:
+        <ul>
+          <li>$s$ for sample standard deviation</li>
+          <li>$\sigma$ for population standard deviation</li>
+        </ul>
+      </li>
+      <li>Preferred for interpretability</li>
+    </ul>
+  </li>
+  <li>Interquartile Range (IQR)
+    <ul>
+      <li>Formula: $Q3 - Q1$</li>
+      <li>Represents the range of the middle 50% of the data</li>
+      <li>Less affected by outliers compared to the range</li>
+      <li>Useful for comparing distributions via box plots</li>
+    </ul>
+  </li>
+</ol>
 
 <h2 id="variability-vs-diversity">Variability vs. Diversity</h2>
+
+<p>These two are often confused but represent different ideas:</p>
+
+<ul>
+  <li>Diversity refers to the variety or composition of categories.
+    <ul>
+      <li>Example: A set of cars with all different colors is more diverse than one with repeated colors.</li>
+    </ul>
+  </li>
+  <li>Variability refers to numerical spread in data values.
+    <ul>
+      <li>Example: Two car mileage sets:
+        <ul>
+          <li>Set 1: 10, 20, 30, 50, 50 (closer to mean → less variable)</li>
+          <li>Set 2: 10, 10, 10, 50, 50 (values farther from mean → more variable)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>In short:</p>
+<ul>
+  <li>Diversity = “How many types?”</li>
+  <li>Variability = “How far apart?”</li>
+</ul>
+
+<p>Both are important, but they serve different analytical purposes.</p>
 
 <h2 id="robust-statistics">Robust Statistics</h2>
 <p>The median and IQR are called robust statistics because extreme observations have little effect on their values: moving the most extreme value generally has little influence on these statistics.
@@ -531,11 +635,11 @@ On the other hand, the mean and standard deviation are more heavily influenced b
 
 <p>This is a reminder that the observed outcomes in the data sample may not perfectly reflect the true relationships between variables since there is random noise. While the observed difference in rates of infection is large, the sample size for the study is small, making it unclear if this observed difference represents efficacy of the vaccine or whether it is simply due to chance. We label these two competing claims, H0 and HA, which are spoken as “H-nought” and “H-A”:</p>
 
-<p><strong>H0: Independence model</strong><br />
+<p>H0: Independence model<br />
 The variables treatment and outcome are independent. They have
 no relationship, and the observed difference between the proportion of patients who developed an infection in the two groups, 64.3%, was due to chance.</p>
 
-<p><strong>HA: Alternative model</strong><br />
+<p>HA: Alternative model<br />
 The variables are not independent. The difference in infection rates of 64.3% was not due to chance, and the vaccine affected the rate of infection.</p>
 
 <p>What would it mean if the independence model, which says the vaccine had no influence on the rate of infection, is true? It would mean 11 patients were going to develop an infection no matter which group they were randomized into, and 9 patients would not develop an infection no matter which group they were randomized into. That is, if the vaccine did not affect the rate of infection, the difference in the infection rates was due to chance alone in how the patients were randomized.</p>
@@ -543,6 +647,122 @@ The variables are not independent. The difference in infection rates of 64.3% wa
 <p>Now consider the alternative model: infection rates were influenced by whether a patient received the vaccine or not. If this was true, and especially if this influence was substantial, we would expect to see some difference in the infection rates of patients in the groups.</p>
 
 <p>We choose between these two competing claims by assessing if the data conflict so much with H0 that the independence model cannot be deemed reasonable. If this is the case, and the data support HA, then we will reject the notion of independence and conclude the vaccine was effective.</p>
+
+<h2 id="inference-via-simulation-gender-discrimination-case-study">Inference via Simulation: Gender Discrimination Case Study</h2>
+
+<p>This case study demonstrates statistical inference using simulation to test for gender discrimination in promotion decisions.</p>
+
+<h2 id="background">Background</h2>
+
+<p>In 1972, 48 male bank supervisors were each given a personnel file and asked to decide whether the candidate should be promoted to branch manager. Files were identical, except for the gender:</p>
+
+<ul>
+  <li>24 showed a male candidate</li>
+  <li>24 showed a female candidate</li>
+  <li>Assignments were randomized</li>
+</ul>
+
+<h3 id="observed-results">Observed Results</h3>
+
+<ul>
+  <li>Males promoted: 21/24 ≈ 88%</li>
+  <li>Females promoted: 14/24 ≈ 58%</li>
+</ul>
+
+<p>Observed difference in promotion rate:
+\(0.88 - 0.58 = 0.30 \quad \text{or} \quad 30\%\)</p>
+
+<h2 id="hypotheses">Hypotheses</h2>
+
+<h3 id="null-hypothesis-h_0">Null Hypothesis ($H_0$)</h3>
+
+<p>There is no gender discrimination. Promotion decisions and gender are independent. The observed difference is due to chance.</p>
+
+<h3 id="alternative-hypothesis-h_a">Alternative Hypothesis ($H_A$)</h3>
+
+<p>There is gender discrimination. Promotion decisions and gender are dependent. The observed difference is not due to chance.</p>
+
+<h2 id="hypothesis-testing-analogy">Hypothesis Testing Analogy</h2>
+
+<p>Hypothesis testing is like a court trial:</p>
+
+<ul>
+  <li>$H_0$: The defendant is innocent</li>
+  <li>$H_A$: The defendant is guilty</li>
+</ul>
+
+<p>We collect data (evidence), then ask: could this data plausibly have happened by chance under $H_0$?</p>
+
+<ul>
+  <li>If yes: Fail to reject $H_0$</li>
+  <li>If no: Reject $H_0$ in favor of $H_A$</li>
+</ul>
+
+<h2 id="simulation-process">Simulation Process</h2>
+
+<p>To simulate the scenario under $H_0$ (no discrimination), use a standard deck of playing cards:</p>
+
+<ul>
+  <li>Face cards = Not promoted</li>
+  <li>Number cards = Promoted</li>
+</ul>
+
+<h3 id="setup">Setup</h3>
+
+<p>Remove 3 aces and 1 number card to simulate 48 files:</p>
+<ul>
+  <li>35 number cards (promoted)</li>
+  <li>13 face cards (not promoted)</li>
+</ul>
+
+<h3 id="steps">Steps</h3>
+
+<ol>
+  <li>Shuffle the 48 cards</li>
+  <li>Split into two groups of 24 (males and females)</li>
+  <li>Count number cards in each group = promoted files</li>
+  <li>Calculate the proportion promoted in each group</li>
+  <li>Take the difference in proportions</li>
+  <li>Repeat many times to build a distribution</li>
+</ol>
+
+<h2 id="example-simulation-outcome">Example Simulation Outcome</h2>
+
+<ul>
+  <li>Male group: 18 number cards → 75% promoted</li>
+  <li>Female group: 17 number cards → 70.8% promoted</li>
+</ul>
+
+<p>Difference in simulated promotion rates:
+\(0.75 - 0.708 \approx 0.042 \quad \text{or} \quad 4.2\%\)</p>
+
+<h2 id="simulation-distribution">Simulation Distribution</h2>
+
+<p>Repeat the simulation many times (e.g., 100+) and build a distribution of differences under $H_0$.</p>
+
+<p>This distribution is centered around:
+\(\text{Null value} = 0\)</p>
+
+<p>The original observed difference was 30%. If this result is rare under the simulated distribution, we reject $H_0$.</p>
+
+<h2 id="decision-rule">Decision Rule</h2>
+
+<ul>
+  <li>If the observed difference is typical in the simulation → Fail to reject $H_0$</li>
+  <li>If the observed difference is rare → Reject $H_0$</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>A 30% difference is rare in simulations assuming no discrimination. Therefore, we reject the null hypothesis.</p>
+
+<p>There is convincing evidence of an association between gender and promotion decisions.</p>
+
+<h2 id="key-concept-p-value">Key Concept: P-value</h2>
+
+<p>The p-value is the probability of observing a result at least as extreme as the original, assuming $H_0$ is true.</p>
+
+<p>A small p-value suggests that the observed data is unlikely under $H_0$, and provides evidence in favor of $H_A$.</p>
 
     <script src="https://utteranc.es/client.js" repo="psymbio/psymbio.github.io" issue-term="pathname" theme="github-dark-orange" crossorigin="anonymous" async>
     </script>

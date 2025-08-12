@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        argmin &ndash; The Brain Archive
+    </title>
+    <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2"
+        crossorigin="messinasans-semi">
+    <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+    <meta name="author" content="psymbio" />
+    <meta name="description" content="psymbio's blog" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+    <link rel="alternate" type="application/rss+xml" href="/atom.xml" />
+    <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+    <link rel="shortcut icon" type="image/x-icon" href="/icons/icon.png" />
+    <link rel="icon" type="image/png" href="/icons/icon.png">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- See https://goo.gl/OOhYW5 -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- See https://goo.gl/qRE0vM -->
+    <meta name="theme-color" content="#C1272D">
+
+    <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="psymbio's blog">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="psymbio's blog">
+
+    <!-- Homescreen icons -->
+    <link rel="apple-touch-icon" sizes="192x192" href="icons/icon.png">
+
+    <!-- Tile icon for Windows 8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="icons/icon.png">
+    <meta name="msapplication-TileColor" content="#C1272D">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Default twitter cards -->
+    <meta name="twitter:card" content="psymbio's blog">
+    <meta name="twitter:site" content="@psymbio">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="my-app">
+    <meta property="og:image" content="icons/icon.png" />
+
+    <!--clicky analytics-->
+
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+        </script>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js"
+        integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.1.2/es5/startup.js"
+        integrity="sha512-umLk4jlqS6v3HF06nsUFlzLGh3yp1A9X+hhlGOEstnLdkphT8w0O8nJJi2Pf28kfIFQvYzMg7ODPluFlkc/WzQ=="
+        crossorigin="anonymous"></script>
+
+    <!--flowcharts-->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true
+        });
+    </script>
+    <!--2d plots-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <!--3d plots-->
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+
+    <!-- Add these in your <head> or right before </body> -->
+
+    <!--python for browser: brython
+<script type="text/javascript" src="/scripts/brython.js"></script>
+<script type="text/javascript" src="/scripts/brython_stdlib.js"></script>
+--->
+    <!--particles on the background-->
+    <!-- <script src="/assets/scripts/particle.js"></script> -->
+
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+    <meta name="google-site-verification" content="3PIlzxg_Fq6uuVEqKvNXrVj8NuWqIA9_hqCxWLcnU-4" />
+    <!--
+<nav>
+  <ul>
+      <li><a href="/">Blog</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+-->
+</head>
+
+<body>
+    <div class="top-line"></div>
+    <div class="container">
+        <section class="shore">
+            <header class="sidebar">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+    <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+    <a href="/">
+        <img src="/images/title.png" height="150" width="150" class="avatar" />
+    </a>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+</header>
+<link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+<link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+<link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+<link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+<!-- <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script> -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+      
+  <script type="text/javascript"
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+<section class="content">
+    <section class="byline">
+        August 12, 2025
+    </section>
+    <h1>argmin</h1>
+    <p>The term <em>argmin</em> stands for “argument of the minimum”.<br />
+It identifies the input values (arguments) that minimize a given function, rather than the minimum value itself.</p>
+
+<h2 id="min-vs-argmin">Min vs. Argmin</h2>
+
+<ul>
+  <li>
+    <p>$\min f(x)$ → the smallest <strong>output</strong> value of the function.<br />
+Example: for $f(x) = x^2$, $\min f(x) = 0$.</p>
+  </li>
+  <li>
+    <p>$\arg\min f(x)$ → the <strong>input</strong> $x$ that achieves this minimum.<br />
+Example: for $f(x) = x^2$, $\arg\min f(x) = 0$ (since $x=0$ minimizes the function).</p>
+  </li>
+</ul>
+
+<h2 id="formal-definition">Formal Definition</h2>
+
+<p>For a function $f(x)$:</p>
+
+\[\arg\min_{x \in S} f(x) = \{ x^* \in S \mid f(x^*) \leq f(x) \ \text{for all} \ x \in S \}\]
+
+<p>This means $\arg\min$ returns the set of points $x^*$ in the domain $S$ where $f(x)$ attains its smallest value.</p>
+
+<h2 id="example">Example</h2>
+
+<p>Function:</p>
+
+\[f(x) = (x - 3)^2 + 2\]
+
+<ul>
+  <li>Minimum value: $\min f(x) = 2$ (when $x = 3$)</li>
+  <li>Argmin: $\arg\min f(x) = 3$</li>
+</ul>
+
+<p>At $x = 3$:</p>
+
+\[f(3) = (3 - 3)^2 + 2 = 2\]
+
+<h2 id="multiple-minimizers">Multiple Minimizers</h2>
+
+<p>If multiple inputs yield the same minimum, $\arg\min$ returns all such points.</p>
+
+<p>Example:</p>
+
+\[g(x) = \cos(x)\]
+
+<p>Minimum value: $-1$</p>
+
+\[\arg\min g(x) = \{ (2k+1)\pi \mid k \in \mathbb{Z} \}\]
+
+<p>(all odd multiples of $\pi$)</p>
+
+<h2 id="domain-restriction">Domain Restriction</h2>
+
+<p>$\arg\min$ can be restricted to a subset $S$ of the domain.</p>
+
+<p>Example: for $h(x) = x^2$ with</p>
+
+\[S = \{ 2, 3, 4 \}\]
+
+\[\arg\min_{x \in S} h(x) = 2\]
+
+<p>since $2^2 = 4 &lt; 3^2 = 9 &lt; 4^2 = 16$.</p>
+
+<h2 id="multivariable-functions">Multivariable Functions</h2>
+
+<p>$\arg\min$ works similarly for functions with multiple inputs.</p>
+
+<p>Example:</p>
+
+\[f(x, y) = x^2 + y^2\]
+
+\[\arg\min f(x, y) = (0, 0)\]
+
+<h2 id="why-use-argmin">Why Use Argmin?</h2>
+
+<ul>
+  <li>In optimization, machine learning, and statistics, $\arg\min$ identifies the optimal parameters (e.g., weights in regression, cluster centers in k-means).</li>
+  <li>It answers: <em>“Which inputs lead to the best solution?”</em> rather than just <em>“What is the best value?”</em></li>
+</ul>
+
+<h2 id="argmin-in-machine-learning">Argmin in Machine Learning</h2>
+
+<p>In mathematics and machine learning, the symbol $\arg\min$ — short for “argument of the minimum” — is used to describe the input values that minimize a given function. Rather than returning the smallest output value (which $\min$ does), $\arg\min$ tells us <em>where</em> that smallest value occurs. For example, for $f(x) = x^2$, we have $\min f(x) = 0$, but $\arg\min f(x) = 0$ because $x = 0$ is the point that achieves this minimum. In higher dimensions, $\arg\min$ works the same way: for $f(x, y) = x^2 + y^2$, the minimum occurs at $(0, 0)$.</p>
+
+<p>This concept is central to optimization problems in machine learning. One way to define the problem of model fitting or training is to find parameter values $\theta$ that minimize the <strong>empirical risk</strong> on the training set:</p>
+
+\[\hat{\theta} = \arg\min_{\theta} L(\theta) = \arg\min_{\theta} \frac{1}{N} \sum_{n=1}^N \ell(y_n, f(x_n; \theta))\]
+
+<p>This approach is called <strong>empirical risk minimization (ERM)</strong>. However, our real objective is not just to do well on the training data, but to minimize the <strong>expected loss</strong> on <em>future</em> unseen data:</p>
+
+\[\theta^* = \arg\min_{\theta} \mathbb{E}_{(x, y) \sim p_{\text{data}}} \big[ \ell(y, f(x; \theta)) \big]\]
+
+<p>Because the true data distribution $p_{\text{data}}$ is unknown, we use the training set as an approximation, but must take care to avoid overfitting. Regularization, validation, and early stopping are common tools to ensure good generalization.</p>
+
+    <script src="https://utteranc.es/client.js" repo="psymbio/psymbio.github.io" issue-term="pathname" theme="github-dark-orange" crossorigin="anonymous" async>
+    </script>
+</section>
+<section style="padding-left: var(--spacing); width: 100%; max-width: 700px; margin: 0 auto;">
+    <span>That sentence that goes before giving my email to strangers: <a href="mailto: psymbio@gmail.com">psymbio@gmail.com</a></span>
+</section>
+<br>
+<br>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<style>
+    .videoWrapper {
+        position: relative;
+        padding-bottom: 56.333%;
+        height: 0;
+        background: black;
+    }
+    
+    .videoWrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+</style>
+
+<script>
+    function get_youtube_id(url) {
+        var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+        return (url.match(p)) ? RegExp.$1 : false;
+    }
+
+    function vimeo_embed(url, el) {
+        var id = false;
+        $.ajax({
+            url: 'https://vimeo.com/api/oembed.json?url=' + url,
+            async: true,
+            success: function(response) {
+                if (response.video_id) {
+                    id = response.video_id;
+                    if (url.indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (url.indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    var theInnerHTML = '<div class="videoWrapper"><iframe src="https://player.vimeo.com/video/' + id + '/?byline=0&title=0&portrait=0';
+                    if (autoplay == 1) theInnerHTML += '&autoplay=1';
+                    if (loop == 1) theInnerHTML += '&loop=1';
+                    theInnerHTML += '" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>';
+                    el.innerHTML = theInnerHTML;
+                }
+            }
+        });
+    }
+
+    function video_embed() {
+        var p = document.getElementsByTagName('p');
+        for (var i = 0; i < p.length; i++) {
+            //check if this is an external url (that starts with https:// or http://
+            if (p[i].innerHTML.indexOf("http://") == 0 ||
+                p[i].innerHTML.indexOf("https://") == 0) {
+                var youtube_id = get_youtube_id(p[i].innerHTML);
+                if (youtube_id) {
+                    if (p[i].innerHTML.indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (p[i].innerHTML.indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    var theInnerHTML = '<div class="videoWrapper"><iframe width="720" height="420" src="https://www.youtube.com/embed/' + youtube_id + '?rel=0&showinfo=0';
+                    if (autoplay == 1) theInnerHTML += '&autoplay=1';
+                    if (loop == 1) theInnerHTML += '&loop=1&playlist=' + youtube_id + '&version=3';
+                    if (p[i].innerHTML.indexOf('start=') !== -1) theInnerHTML += '&start=' + p[i].innerHTML.substring(p[i].innerHTML.indexOf('start=') + 6);
+                    theInnerHTML += '" frameborder="0" allowfullscreen></iframe></div>';
+                    p[i].innerHTML = theInnerHTML;
+                }
+                if (p[i].innerHTML.indexOf('vimeo.com') !== -1) {
+                    //ask vimeo for the id and place the embed
+                    vimeo_embed(p[i].innerHTML, p[i]);
+                }
+            }
+        }
+    }
+    video_embed();
+
+    function mp3_embed() {
+        var p = document.getElementsByTagName('p');
+        for (var i = 0; i < p.length; i++) {
+            if (p[i].innerHTML.indexOf('.mp3') !== -1) {
+                var str = p[i].innerHTML.split('?');
+                if (str.length == 1) str[1] = '';
+                var str1 = str[1];
+                str1 = str1.replace('&', '').replace('&', '');
+                str1 = str1.replace('autoplay=1', '').replace('autoplay=0', '');
+                str1 = str1.replace('loop=1', '').replace('loop=0', '');
+                str1 = str1.replace('controls=0', '').replace('controls=1', '');
+
+                if (str[0].lastIndexOf('.mp3', str[0].length - 4) === str[0].length - 4 && str1.length == 0) {
+                    if (str[1].indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (str[1].indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    if (str[1].indexOf('controls=0') !== -1) var controls = 0;
+                    else var controls = 1;
+                    var newInnerHTML = '<audio';
+                    if (autoplay == 1) newInnerHTML += ' autoplay';
+                    if (loop == 1) newInnerHTML += ' loop';
+                    if (controls == 1) newInnerHTML += ' controls';
+                    newInnerHTML += '><source src="' + str[0] + '" type="audio/mpeg">Your browser does not support the audio element.</audio>';
+                    p[i].innerHTML = newInnerHTML;
+                }
+            }
+        }
+    }
+    mp3_embed();
+</script>
+<script>
+    ! function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+            p = /^http:/.test(d.location) ? 'http' : 'https';
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.id = id;
+            js.src = p + '://platform.twitter.com/widgets.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    }(document, 'script', 'twitter-wjs');
+</script>
+
+            <section class="shore">
+    </div>
+</body>
+<script>
+    'use strict';
+    var head = document.head;
+    var link = document.createElement('link');
+    link.type = 'text/css';
+    link.rel = 'stylesheet';
+    link.href = '/css/pygments.css'
+    head.appendChild(link);
+</script>
+<!--copy code to clipboard-->
+<script src="/assets/scripts/copycode.js"></script>
+
+</html>

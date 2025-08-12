@@ -1920,6 +1920,59 @@ print(round(prob, 4))  # Output: 0.1113
   </ul>
 </div>
 
+<h2 id="summary-bayesian-inference-game-using-dice">Summary: Bayesian Inference Game Using Dice</h2>
+
+<p>This video introduces Bayesian inference through a simple game involving two dice: a six-sided die and a twelve-sided die. One die is hidden in each hand, and the viewer’s objective is to determine which hand holds the “good” die (the 12-sided one, which has a higher chance of rolling a number ≥ 4).</p>
+
+<h2 id="game-setup">Game Setup</h2>
+
+<ul>
+  <li>The viewer selects a hand.</li>
+  <li>The instructor rolls the die in that hand and reports whether the outcome is ≥ 4.</li>
+  <li>The exact number is not revealed to prevent certainty about which die is in which hand.</li>
+  <li>The viewer may collect more data by asking for another roll, but each roll is “costly,” simulating real-world data collection constraints.</li>
+</ul>
+
+<h2 id="initial-probabilities">Initial Probabilities</h2>
+
+<p>Before any data is collected, the viewer assumes a 50% prior probability that the good die is in either hand. This prior may be updated based on observed outcomes.</p>
+
+<h2 id="probability-of-rolling--4">Probability of Rolling ≥ 4</h2>
+
+<ul>
+  <li>Six-sided die: $P(\geq 4) = \frac{3}{6} = 0.5$</li>
+  <li>Twelve-sided die: $P(\geq 4) = \frac{9}{12} = 0.75$</li>
+</ul>
+
+<h2 id="updating-beliefs-with-bayes-theorem">Updating Beliefs with Bayes’ Theorem</h2>
+
+<p>After a roll showing a value ≥ 4 from the right hand, the viewer should revise their belief that the good die is on the right. Using Bayes’ Theorem:</p>
+
+<ul>
+  <li>Prior: $P(\text{Good die on right}) = 0.5$</li>
+  <li>Likelihood: $P(\text{≥ 4} \mid \text{Good die}) = 0.75$</li>
+  <li>$P(\text{≥ 4} \mid \text{Bad die}) = 0.5$</li>
+  <li>Posterior:<br />
+\(P(\text{Good die on right} \mid \text{≥ 4 observed}) = \frac{0.375}{0.375 + 0.25} = 0.6\)</li>
+</ul>
+
+<h2 id="posterior-probability">Posterior Probability</h2>
+
+<p>This 60% becomes the new prior if another round of data collection occurs. With each new data point, the prior is updated to the most recent posterior, illustrating the Bayesian process of iterative learning.</p>
+
+<h2 id="bayesian-vs-frequentist-thinking">Bayesian vs Frequentist Thinking</h2>
+
+<p>Unlike frequentist inference, which uses p-values to evaluate the likelihood of data under the null hypothesis, the Bayesian approach focuses on the probability of a hypothesis being true given the observed data (posterior probability).</p>
+
+<h2 id="key-takeaways">Key Takeaways</h2>
+
+<ul>
+  <li>Bayesian inference allows the integration of prior beliefs with new data.</li>
+  <li>Posterior probabilities offer intuitive decision-making tools.</li>
+  <li>While priors matter, their influence diminishes with more data.</li>
+  <li>Bayesian thinking supports real-world constraints by balancing data costs with decision certainty.</li>
+</ul>
+
     <script src="https://utteranc.es/client.js" repo="psymbio/psymbio.github.io" issue-term="pathname" theme="github-dark-orange" crossorigin="anonymous" async>
     </script>
 </section>

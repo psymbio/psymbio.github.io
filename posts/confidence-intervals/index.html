@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        Confidence Intervals &ndash; The Brain Archive
+    </title>
+    <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2"
+        crossorigin="messinasans-semi">
+    <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+    <meta name="author" content="psymbio" />
+    <meta name="description" content="psymbio's blog" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+    <link rel="alternate" type="application/rss+xml" href="/atom.xml" />
+    <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+    <link rel="shortcut icon" type="image/x-icon" href="/icons/icon.png" />
+    <link rel="icon" type="image/png" href="/icons/icon.png">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- See https://goo.gl/OOhYW5 -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- See https://goo.gl/qRE0vM -->
+    <meta name="theme-color" content="#C1272D">
+
+    <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="psymbio's blog">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="psymbio's blog">
+
+    <!-- Homescreen icons -->
+    <link rel="apple-touch-icon" sizes="192x192" href="icons/icon.png">
+
+    <!-- Tile icon for Windows 8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="icons/icon.png">
+    <meta name="msapplication-TileColor" content="#C1272D">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Default twitter cards -->
+    <meta name="twitter:card" content="psymbio's blog">
+    <meta name="twitter:site" content="@psymbio">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="my-app">
+    <meta property="og:image" content="icons/icon.png" />
+
+    <!--clicky analytics-->
+
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+        </script>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js"
+        integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.1.2/es5/startup.js"
+        integrity="sha512-umLk4jlqS6v3HF06nsUFlzLGh3yp1A9X+hhlGOEstnLdkphT8w0O8nJJi2Pf28kfIFQvYzMg7ODPluFlkc/WzQ=="
+        crossorigin="anonymous"></script>
+
+    <!--flowcharts-->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true
+        });
+    </script>
+    <!--2d plots-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <!--3d plots-->
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+
+    <!-- Add these in your <head> or right before </body> -->
+
+    <!--python for browser: brython
+<script type="text/javascript" src="/scripts/brython.js"></script>
+<script type="text/javascript" src="/scripts/brython_stdlib.js"></script>
+--->
+    <!--particles on the background-->
+    <!-- <script src="/assets/scripts/particle.js"></script> -->
+
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+    <meta name="google-site-verification" content="3PIlzxg_Fq6uuVEqKvNXrVj8NuWqIA9_hqCxWLcnU-4" />
+    <!--
+<nav>
+  <ul>
+      <li><a href="/">Blog</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+-->
+</head>
+
+<body>
+    <div class="top-line"></div>
+    <div class="container">
+        <section class="shore">
+            <header class="sidebar">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+    <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+    <a href="/">
+        <img src="/images/title.png" height="150" width="150" class="avatar" />
+    </a>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+</header>
+<link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+<link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+<link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+<link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+<!-- <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script> -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+      
+  <script type="text/javascript"
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+<section class="content">
+    <section class="byline">
+        July 11, 2025
+    </section>
+    <h1>Confidence Intervals</h1>
+    <p>https://gallery.shinyapps.io/CLT_mean/</p>
+
+<p>We shall cover key concepts such as sampling variability, confidence intervals, and hypothesis testing, with a real-world example from a 2011 Pew Research Center survey.</p>
+
+<h2 id="survey-context">Survey Context</h2>
+
+<ul>
+  <li>Title: <em>Young, Underemployed, and Optimistic</em></li>
+  <li>Method: Telephone interviews (Dec 6–19, 2011)</li>
+  <li>Sample: 2,048 adults (18+ years) in the continental U.S.</li>
+  <li>Purpose: Measure public opinion on which age group is struggling most in the economy</li>
+</ul>
+
+<h2 id="key-findings">Key Findings</h2>
+
+<ul>
+  <li>41% ± 2.9% (95% CI): Estimated that 38.1% to 43.9% of the public believe young adults are having the toughest time.</li>
+  <li>49% ± 4.4% (95% CI): Among adults aged 18–34, estimated that 44.6% to 53.4% took unwanted jobs just to pay bills.</li>
+</ul>
+
+<h2 id="margin-of-error">Margin of Error</h2>
+
+<ul>
+  <li>General sample: ±2.9%</li>
+  <li>Subsample (18–34): ±4.4%</li>
+  <li>Confidence Level: 95%</li>
+</ul>
+
+<h2 id="statistical-concepts-introduced">Statistical Concepts Introduced</h2>
+
+<ul>
+  <li>Point Estimate: Sample statistic used to estimate population parameters (e.g. 41%, 49%)</li>
+  <li>Confidence Interval (CI): A range that likely contains the true population parameter with a given level of confidence (e.g., 95%)</li>
+  <li>Sampling Variability: Different samples yield different estimates</li>
+  <li>Central Limit Theorem (CLT): Explains how the distribution of sample means approximates a normal distribution under certain conditions</li>
+  <li>Inference Techniques:
+    <ul>
+      <li>Confidence Intervals</li>
+      <li>Hypothesis Testing</li>
+    </ul>
+  </li>
+  <li>Statistical vs Practical Significance: Emphasis on interpreting results beyond just p-values</li>
+  <li>Statistical Power: Discussed in the context of effect size, sample size, and significance level</li>
+</ul>
+
+<h3 id="sampling-and-sample-distributions">Sampling and Sample Distributions</h3>
+
+<p>Suppose we have a population of interest.<br />
+We take a random sample from this population and calculate a sample statistic, such as the sample mean ($\bar{x}$).</p>
+
+<p>Now suppose we repeat this process many times:</p>
+
+<ol>
+  <li>Take a random sample</li>
+  <li>Calculate the sample mean</li>
+  <li>Record the result</li>
+  <li>Repeat steps 1–3 many times</li>
+</ol>
+
+<p>Each sample will have its own sample distribution — this is the distribution of individual values within that specific sample (e.g., heights of 100 randomly selected women).</p>
+
+<h3 id="sampling-distribution">Sampling Distribution</h3>
+
+<p>The sampling distribution is the distribution of a sample statistic (like $\bar{x}$) across many samples.</p>
+
+<ul>
+  <li>Each data point in this distribution is not an individual from the population, but a summary statistic from a sample.</li>
+  <li>In our example: each point is a sample mean $\bar{x}_1, \bar{x}_2, \bar{x}_3, \dots$</li>
+</ul>
+
+<h3 id="example">Example</h3>
+
+<p>Suppose we’re interested in the average height of U.S. women.<br />
+Let’s define:</p>
+
+<ul>
+  <li>Population mean: $\mu$</li>
+  <li>Population standard deviation: $\sigma$</li>
+  <li>Sample size: $n$</li>
+</ul>
+
+<p>If we take many random samples of size $n$, the sampling distribution of the sample mean $\bar{x}$ will have:</p>
+
+<ul>
+  <li>Mean: $\mu_{\bar{x}} = \mu$</li>
+  <li>Standard deviation (Standard Error):<br />
+\(\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}\)</li>
+</ul>
+
+<p>This is where the Central Limit Theorem becomes essential.</p>
+
+<h3 id="central-limit-theorem-clt">Central Limit Theorem (CLT)</h3>
+
+<p>Statement:<br />
+If random samples of size $n$ are taken from any population with mean $\mu$ and standard deviation $\sigma$, then the sampling distribution of the sample mean $\bar{x}$:</p>
+
+<ul>
+  <li>Will be approximately normal</li>
+  <li>Has mean $\mu_{\bar{x}} = \mu$</li>
+  <li>Has standard deviation $\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}$</li>
+</ul>
+
+<p>As long as:</p>
+<ul>
+  <li>$n$ is large (typically $n \geq 30$)</li>
+  <li>The population is not extremely skewed or has extreme outliers</li>
+</ul>
+
+<h2 id="population-and-parameter">Population and Parameter</h2>
+
+<p>Our population of interest is U.S. women, denoted with size $N$.<br />
+The parameter of interest is the average height of all women in the U.S., denoted as $\mu$.<br />
+From complete data, we assume $\mu = 65$ inches.<br />
+The population standard deviation is denoted by $\sigma$.</p>
+
+<h2 id="sampling-across-states">Sampling Across States</h2>
+
+<p>We take random samples of 1000 women from each U.S. state.<br />
+For each state, we denote individual observations as $x_{s,i}$, where $s$ is the state and $i = 1, \dots, 1000$.<br />
+Each state’s sample yields a sample mean $\bar{x}_s$.</p>
+
+<p>This results in 50 sample means, one per state, forming the sampling distribution.</p>
+
+<h2 id="properties-of-the-sampling-distribution">Properties of the Sampling Distribution</h2>
+
+<ul>
+  <li>The mean of the sampling distribution $\mu_{\bar{x}}$ will be approximately equal to $\mu$, the population mean.</li>
+  <li>The spread (standard deviation) of the sampling distribution is the standard error, denoted as:</li>
+</ul>
+
+\[SE = \frac{\sigma}{\sqrt{n}}\]
+
+<ul>
+  <li>Because $n = 1000$, the standard error is much smaller than $\sigma$.</li>
+  <li>For example, if $\sigma = 20$, then:</li>
+</ul>
+
+\[SE = \frac{20}{\sqrt{1000}} \approx 0.63\]
+
+<h2 id="effect-of-increasing-sample-size">Effect of Increasing Sample Size</h2>
+
+<p>As sample size $n$ increases:</p>
+
+<ul>
+  <li>The variability in sample means decreases.</li>
+  <li>The sampling distribution becomes narrower (i.e., less spread).</li>
+  <li>This is evident visually and numerically.</li>
+</ul>
+
+<p>For example:</p>
+
+<ul>
+  <li>With $n = 45$, $SE \approx 2.93$</li>
+  <li>With $n = 500$, $SE$ is even smaller, producing a skinnier sampling distribution</li>
+</ul>
+
+<h2 id="central-limit-theorem-clt-1">Central Limit Theorem (CLT)</h2>
+
+<p>The Central Limit Theorem states:</p>
+
+<blockquote>
+  <p>The distribution of sample statistics (like the sample mean) is nearly normal, centered at the population mean, and has standard deviation equal to the population standard deviation divided by the square root of the sample size.</p>
+</blockquote>
+
+<h2 id="mathematical-formulation">Mathematical Formulation</h2>
+
+\[\bar{x} \sim N\left(\mu, \frac{\sigma}{\sqrt{n}}\right)\]
+
+<ul>
+  <li>Shape: Nearly normal</li>
+  <li>Center: $\mu$ (population mean)</li>
+  <li>Spread: Standard error = $\displaystyle \frac{\sigma}{\sqrt{n}}$</li>
+</ul>
+
+<p>If $\sigma$ (population standard deviation) is unknown, use the sample standard deviation $s$ to estimate standard error.</p>
+
+<h2 id="conditions-for-the-clt-to-apply">Conditions for the CLT to Apply</h2>
+
+<ol>
+  <li>Independence
+    <ul>
+      <li>Observations must be independent.</li>
+      <li>Achieved through:
+        <ul>
+          <li>Random sampling (observational studies)</li>
+          <li>Random assignment (experiments)</li>
+        </ul>
+      </li>
+      <li>If sampling without replacement: ensure $n &lt; 10\%$ of the population.</li>
+    </ul>
+  </li>
+  <li>Sample Size / Skew
+    <ul>
+      <li>If the population is normal, the sample size does not matter.</li>
+      <li>If the population is skewed or unknown:
+        <ul>
+          <li>Sample size should be large for CLT to apply.</li>
+          <li>Rule of thumb: $n &gt; 30$ for moderately skewed distributions.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="10-condition-for-independence">10% Condition for Independence</h2>
+
+<p>If sampling without replacement, $n$ should be less than 10% of the population. This ensures approximate independence among observations.</p>
+
+<p>Example: In a population of 1000, a sample size of 10 makes it unlikely to include multiple members of the same family. But if 500 are sampled, the chance of including genetically related individuals increases, violating independence.</p>
+
+<p>When sampling with replacement, each draw is independent by design, so the 10% condition does not apply. However, in realistic survey settings, we sample without replacement, so the 10% condition becomes important.</p>
+
+<h2 id="sample-size-and-skew">Sample Size and Skew</h2>
+
+<p>The shape of the sampling distribution depends on the population distribution and sample size.</p>
+
+<p>If the population distribution is normal, the sampling distribution of the sample mean is nearly normal regardless of sample size.</p>
+
+<p>If the population distribution is skewed:</p>
+<ul>
+  <li>Small $n$ leads to a skewed sampling distribution</li>
+  <li>Larger $n$ yields a more symmetric, unimodal, nearly normal sampling distribution</li>
+</ul>
+
+<p>Rule of thumb: For moderately skewed populations, CLT applies when $n &gt; 30$</p>
+
+<h2 id="simulation-examples">Simulation Examples</h2>
+
+<ul>
+  <li>Extremely right-skewed population: $n = 10$ leads to skewed sampling distribution</li>
+  <li>Increase to $n = 100$ or $n = 200$: sampling distribution becomes more symmetric and closer to normal</li>
+  <li>Uniform population distribution with $n = 15$: sampling distribution already looks symmetric and unimodal</li>
+  <li>Right-skewed population with $n = 15$: sampling distribution is skewed</li>
+  <li>Increase to $n = 500$: distribution appears nearly normal</li>
+  <li>Left-skewed population: $n = 500$ yields nearly normal sampling distribution; $n = 24$ or $n = 12$ yields skewed distribution</li>
+</ul>
+
+<p>If the population is not very skewed, even a small $n = 12$ may result in a nearly normal sampling distribution</p>
+
+<div class="admonition note">
+  <p class="admonition-title">Guided Practice: Sampling Variability</p>
+  <p><strong>Question:</strong> Which of the following would you expect to be more variable?</p>
+  <ul>
+    <li>Overall population distribution of all women in the US.</li>
+    <li>Distribution of sample means of random samples of 1000 women from each state.</li>
+  </ul>
+  <p><strong>Answer:</strong> Overall population distribution of all women in the US.</p>
+  <p><strong>Explanation:</strong> The sample mean is an average of many observations, and due to the Central Limit Theorem, the distribution of sample means will have lower variability and be more tightly clustered around the population mean. In contrast, individual observations in the full population vary more widely, making the overall population distribution more variable.</p>
+</div>
+
+<div class="admonition note">
+  <p class="admonition-title">Guided Practice: Visualizing Distribution Shape</p>
+  <p><strong>Question:</strong> Which of the below visualizations is not appropriate for checking the shape of the distribution of the sample, and hence the population?</p>
+  <ul>
+    <li>histogram</li>
+    <li>boxplot</li>
+    <li>normal probability plot</li>
+    <li>barplot</li>
+  </ul>
+  <p><strong>Answer:</strong> barplot</p>
+  <p><strong>Explanation:</strong> A barplot is used for displaying categorical data, not numerical distributions. To check the shape of a numerical sample distribution, visualizations like histograms, boxplots, and normal probability plots are appropriate, as they display the spread, skew, and modality of the data.</p>
+</div>
+
+<p>Suppose my iPod has 3,000 songs. The histogram below shows the distribution of the lengths of these songs. We also know that, for this iPod, the mean length is 3.45 minutes and the standard deviation is 1.63 minutes. Calculate the probability that a randomly selected song lasts more than 5 minutes.</p>
+
+<center>
+<embed src="/svg/confidence-intervals/song-length-histogram.svg" type="image/svg+xml" />
+</center>
+
+<p>We are asked to calculate $P(X &gt; 5)$, where $X$ is the length of a randomly selected song.</p>
+
+<p>Although we are given the mean and standard deviation, the distribution is clearly right-skewed and not approximately normal, so using Z-scores or normal distribution tables is not appropriate.</p>
+
+<p>Instead, we can directly estimate the probability from the histogram. From the histogram bars, we observe:</p>
+
+<ul>
+  <li>5–6 minutes: 350 songs</li>
+  <li>6–7 minutes: 100 songs</li>
+  <li>7–8 minutes: 25 songs</li>
+  <li>8–9 minutes: 20 songs</li>
+  <li>9–10 minutes: 5 songs</li>
+</ul>
+
+<p>So the number of songs longer than 5 minutes is:</p>
+
+\[350 + 100 + 25 + 20 + 5 = 500\]
+
+<p>Since there are 3,000 songs in total, the probability that a randomly selected song lasts more than 5 minutes is:</p>
+
+\[P(X &gt; 5) = \frac{500}{3000} = 0.17\]
+
+<p>So, approximately 17% of the songs on the iPod last more than 5 minutes.</p>
+
+<h2 id="playlist-duration-probability">Playlist Duration Probability</h2>
+
+<p>I’m about to take a trip to visit my parents and the drive is 6 hours. I make a random playlist of 100 songs. What is the probability that my playlist lasts the entire drive?</p>
+
+<p>We need the playlist to last at least 6 hours, or 360 minutes. The total length of 100 songs should exceed 360 minutes:</p>
+
+\[P(X_1 + X_2 + \cdots + X_{100} &gt; 360)\]
+
+<p>This is equivalent to:</p>
+
+\[P(\bar{X} &gt; 3.6)\]
+
+<p>where $\bar{X}$ is the average length of the 100 randomly chosen songs.</p>
+
+<p>By the Central Limit Theorem:</p>
+
+\[\bar{X} \sim N(\mu = 3.45, SE = \frac{\sigma}{\sqrt{n}} = \frac{1.63}{\sqrt{100}} = 0.163)\]
+
+<p>Now, we compute the Z-score:</p>
+
+\[Z = \frac{3.6 - 3.45}{0.163} = 0.92\]
+
+<p>Using the standard normal distribution:</p>
+
+\[P(\bar{X} &gt; 3.6) = P(Z &gt; 0.92) \approx 0.179\]
+
+<p>So, there is approximately a 17.9% chance that the playlist will last the entire 6-hour drive.</p>
+
+<h2 id="explanation-of-central-limit-theorem-application">Explanation of Central Limit Theorem Application</h2>
+
+<p>By the Central Limit Theorem (CLT), when we take a large enough sample (usually $n \geq 30$) from any population with a finite mean and standard deviation, the sampling distribution of the sample mean $\bar{X}$ will be approximately normal.</p>
+
+<p>In this case, we are sampling $n = 100$ songs from a population where:</p>
+
+<ul>
+  <li>the population mean $\mu = 3.45$ minutes</li>
+  <li>the population standard deviation $\sigma = 1.63$ minutes</li>
+</ul>
+
+<p>According to the CLT:</p>
+
+\[\bar{X} \sim N(\mu, SE)\]
+
+<p>where $SE$ is the standard error of the mean, given by:</p>
+
+\[SE = \frac{\sigma}{\sqrt{n}}\]
+
+<p>Plugging in our values:</p>
+
+\[SE = \frac{1.63}{\sqrt{100}} = \frac{1.63}{10} = 0.163\]
+
+<p>So, the sampling distribution of the average song length from a playlist of 100 songs is approximately normal, with:</p>
+
+\[\bar{X} \sim N(3.45, 0.163)\]
+
+<p>This allows us to compute probabilities using the standard normal (Z) distribution.</p>
+
+<h2 id="matching-distributions-with-sampling-contexts">Matching Distributions with Sampling Contexts</h2>
+
+<p>We are given four histograms and asked to match each with one of the following descriptions:</p>
+
+<center>
+<embed src="/svg/confidence-intervals/plot-distributions-a.svg" type="image/svg+xml" />
+</center>
+
+<center>
+<embed src="/svg/confidence-intervals/plot-distributions-b.svg" type="image/svg+xml" />
+</center>
+
+<center>
+<embed src="/svg/confidence-intervals/plot-distributions-c.svg" type="image/svg+xml" />
+</center>
+
+<ol>
+  <li>The distribution for a population ($\mu = 10, \sigma = 7$)</li>
+  <li>A single random sample of 100 observations from this population</li>
+  <li>A distribution of 100 sample means from random samples with size 7</li>
+  <li>A distribution of 100 sample means from random samples with size 49</li>
+</ol>
+
+<p>To do this, we use the Central Limit Theorem, which says that the sampling distribution of the sample mean becomes approximately normal as the sample size $n$ increases, regardless of the shape of the original population.</p>
+
+<h2 id="reasoning">Reasoning:</h2>
+
+<ul>
+  <li>
+    <p>The Population distribution is given directly: it is right-skewed with large variability. This is the bottom-left plot.</p>
+  </li>
+  <li>
+    <p>Plot C is the most symmetric and bell-shaped. Since the CLT says that large samples make the sampling distribution of the mean more normal, this must be the distribution of sample means with $n=49$.</p>
+  </li>
+  <li>
+    <p>Plot B is also right-skewed, and it has a wide spread, similar to the population distribution. This must be the single random sample of 100 observations.</p>
+  </li>
+  <li>
+    <p>Plot A is a bit more symmetric than B but still rough, with moderate spread. It is the distribution of sample means with $n=7$.</p>
+  </li>
+</ul>
+
+<h3 id="final-matching">Final Matching:</h3>
+
+<ul>
+  <li>Population distribution: Bottom-left large plot</li>
+  <li>Plot A: Distribution of 100 sample means ($n = 7$)</li>
+  <li>Plot B: Single random sample of 100 observations</li>
+  <li>Plot C: Distribution of 100 sample means ($n = 49$)</li>
+</ul>
+
+<div class="admonition note">
+  <p class="admonition-title">Guided Practice</p>
+  <p>Given that the population is right skewed, which of the following distributions will resemble a normal distribution most closely?</p>
+  <ul>
+    <li>a single random sample of 100 observations from this population</li>
+    <li>a distribution of 100 sample means from random samples with size 7</li>
+    <li>a distribution of 100 sample means from random samples with size 49</li>
+  </ul>
+  <p><strong>Answer:</strong> A distribution of 100 sample means from random samples with size 49.</p>
+  <p>Explanation: The Central Limit Theorem tells us that the sampling distribution of the sample mean becomes approximately normal as the sample size increases, regardless of the shape of the original population. Since the population is right skewed, individual samples or small sample sizes will still reflect this skewness. However, when we take larger samples (e.g., of size 49), the distribution of the sample means will be much closer to normal. Thus, the third option will resemble a normal distribution most closely.</p>
+</div>
+
+<p>see:</p>
+
+<h2 id="behavioral-asymmetry-question">Behavioral Asymmetry Question</h2>
+
+<p>One of the earliest examples of behavioral asymmetry is a preference in humans for turning the head to the right, rather than to the left, during the final weeks of gestation and for the first 6 months after birth. This is thought to influence subsequent development of perceptual and motor preferences. A study of 124 couples found that 64.5% turned their heads to the right when kissing. The standard error associated with this estimate is roughly 4%. Which of the below is false?</p>
+
+<p>(a) A higher sample size would yield a lower standard error.<br />
+(b) The margin of error for a 95% CI for the percentage of kissers who turn their heads to the right is roughly 8%.<br />
+(c) The 95% CI for the percentage of kissers who turn their heads to the right is roughly 64.5% ± 4%.<br />
+(d) The 99.7% CI for the percentage of kissers who turn their heads to the right is roughly 64.5% ± 12%.</p>
+
+<p>Answer: (c) The 95% CI for the percentage of kissers who turn their heads to the right is roughly 64.5% ± 4%.</p>
+
+<p>The standard error (SE) is given as 4%, and confidence intervals (CIs) are computed using:</p>
+
+\[\text{Margin of Error} = z^* \cdot \text{SE}\]
+
+<p>For a 95% CI, the critical value is approximately $z^* = 2$, so:</p>
+
+\[\text{Margin of Error}_{95\%} \approx 2 \cdot 4\% = 8\%\]
+
+<p>Thus, the 95% CI should be approximately:</p>
+
+\[64.5\% \pm 8\%\]
+
+<p>Option (b) is true.<br />
+Option (d) is also true: for a 99.7% CI, $z^* \approx 3$, so:</p>
+
+\[\text{Margin of Error}_{99.7\%} \approx 3 \cdot 4\% = 12\%\]
+
+<p>Option (a) is true because increasing sample size reduces the standard error. (A higher sample size would yield a lower standard error. We know that this is always true. We’ve seen this with the central limit theorem as well. Conceptually this is because the higher your sample sizes, the less variable your point estimates from those samples are going to be. Mathematically speaking, the standard error is always sigma over square root of n so that n and the standard error are going to be inversely proportional, in other words if n goes up, the standard error is going to go down, so this is correct.)
+Option (c) is false because it uses the standard error directly instead of the full margin of error for a 95% confidence level.</p>
+
+<h2 id="confidence-interval-for-a-population-mean">Confidence interval for a population mean</h2>
+
+<p>A confidence interval for a population mean is computed as:</p>
+
+\[\bar{x} \pm z^* \cdot \frac{s}{\sqrt{n}}\]
+
+<p>where $\bar{x}$ is the sample mean, $z^*$ is the critical value corresponding to the desired confidence level, $s$ is the sample standard deviation, and $n$ is the sample size.</p>
+
+<h2 id="conditions-for-using-the-confidence-interval">Conditions for using the confidence interval</h2>
+
+<ol>
+  <li>Independence
+    <ul>
+      <li>Observations must be independent</li>
+      <li>Achieved via random sampling or random assignment</li>
+      <li>If sampling without replacement: $n &lt; 10\%$ of the population</li>
+    </ul>
+  </li>
+  <li>Sample size and skew
+    <ul>
+      <li>If population distribution is normal, any sample size is acceptable</li>
+      <li>Otherwise, $n \geq 30$, or larger if population distribution is very skewed</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="determining-the-critical-value">Determining the critical value</h2>
+
+<p>The critical value $z^*$ corresponds to the middle percentage of the normal distribution associated with the confidence level. For example:</p>
+
+<ul>
+  <li>For a 95% confidence interval:
+    <ul>
+      <li>Middle area = 0.95</li>
+      <li>Tails = $(1 - 0.95)/2 = 0.025$ on each side</li>
+      <li>Look up 0.025 in the standard normal table</li>
+      <li>Lower bound $z = -1.96$, upper bound $z = 1.96$</li>
+      <li>So, $z^* = 1.96$</li>
+    </ul>
+  </li>
+  <li>For a 98% confidence interval:
+    <ul>
+      <li>Tails = $(1 - 0.98)/2 = 0.01$ on each side</li>
+      <li>Cumulative from left = $1 - 0.01 = 0.99$</li>
+      <li>$z^* = \text{qnorm}(0.99) = 2.33$</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="accuracy-and-precision-of-confidence-intervals">Accuracy and precision of confidence intervals</h2>
+
+<p>Accuracy refers to whether or not the confidence interval contains the true population parameter. Precision refers to the width of the confidence interval.</p>
+
+<h2 id="confidence-level">Confidence level</h2>
+
+<p>The confidence level is the proportion of intervals (constructed from repeated random samples) that are expected to contain the true population parameter. For example, using the formula:</p>
+
+\[\text{CI} = \text{point estimate} \pm z^* \cdot \text{SE}\]
+
+<p>about 95% of intervals constructed this way from repeated samples will contain the true population mean $\mu$.</p>
+
+<h2 id="confidence-level-is-a-choice">Confidence level is a choice</h2>
+
+<p>In practice, we typically select the confidence level rather than calculate it. Common levels are 90%, 95%, 98%, and 99%. The confidence level affects the value of the critical value $z^*$.</p>
+
+<h2 id="confidence-level-and-width">Confidence level and width</h2>
+
+<p>As the confidence level increases, the critical value $z^*$ increases, which increases the margin of error and hence the width of the confidence interval:</p>
+
+\[\text{Margin of error} = z^* \cdot \text{SE}\]
+
+<p>A higher confidence level leads to greater accuracy (more likely to capture $\mu$), but lower precision (wider interval).</p>
+
+<h2 id="trade-off-example">Trade-off example</h2>
+
+<p>A weather forecast stating tomorrow’s temperature will be between $-20^\circ$F and $110^\circ$F is accurate but not precise. Wide intervals may be accurate but not informative.</p>
+
+<h2 id="increasing-both-accuracy-and-precision">Increasing both accuracy and precision</h2>
+
+<p>To achieve both higher accuracy and higher precision, increase the sample size $n$. This reduces the standard error:</p>
+
+\[\text{SE} = \frac{s}{\sqrt{n}}\]
+
+<p>Reducing SE decreases the margin of error while keeping the same confidence level, leading to narrower (more precise) intervals that still capture the true parameter reliably.</p>
+
+<h2 id="evaluating-statements-about-a-confidence-interval">Evaluating statements about a confidence interval</h2>
+
+<p>Based on a 2010 GSS survey of 1,154 U.S. residents, a 95% confidence interval for the average number of hours Americans relax after a workday was found to be 3.53 to 3.83 hours. Let’s evaluate the truth of each statement using the explanations from the video.</p>
+
+<p>(a) 95% of Americans spend 3.53 to 3.83 hours relaxing after a work day.<br />
+False<br />
+This statement incorrectly interprets the confidence interval as describing individuals in the population. A confidence interval gives a range for the average (the population mean), not individual data points. The interval says nothing about what percentage of individuals fall within it. So this is a misuse of the confidence interval.</p>
+
+<p>(b) 95% of random samples of 1,154 Americans will yield confidence intervals that contain the true average number of hours Americans spend relaxing after a work day.<br />
+True<br />
+This is the correct interpretation of a 95% confidence level. If we repeatedly took random samples of size 1,154 and constructed a 95% confidence interval for each, about 95% of those intervals would contain the true population mean. This aligns directly with the definition of confidence level.</p>
+
+<p>(c) 95% of the time the true average number of hours Americans spend relaxing after a work day is between 3.53 and 3.83 hours.<br />
+False<br />
+This suggests that the population mean is a moving target or that it sometimes falls in the interval and sometimes doesn’t. But the population mean is fixed—it either is or isn’t in the interval we computed. The randomness is in the sampling process, not in the population parameter. Therefore, this statement misrepresents what a confidence interval means.</p>
+
+<p>(d) We are 95% confident that Americans in this sample spend on average 3.53 to 3.83 hours relaxing after a work day.<br />
+False<br />
+This describes the sample mean, but we already know the sample mean—it lies at the center of the interval. We are 100% sure what the sample mean is. Confidence intervals are constructed to estimate the population mean, not the mean of the sample. Therefore, this statement confuses the known sample statistic with the unknown population parameter.</p>
+
+<h2 id="evaluating-statements-about-the-gss-confidence-interval">Evaluating statements about the GSS confidence interval</h2>
+
+<p>The General Social Survey (GSS) is a sociological survey used to collect data on demographic characteristics and attitudes of residents of the United States. In 2010, the survey collected responses from 1,154 US residents. Based on the survey results, a 95% confidence interval for the average number of hours Americans have to relax or pursue activities that you enjoy after an average work day is 3.53 to 3.83 hours. Which of the following is false?</p>
+
+<p>We are given:</p>
+<ul>
+  <li>Sample size $n = 1154$</li>
+  <li>95% confidence interval: 3.53 to 3.83 hours</li>
+</ul>
+
+<p>Let’s go through each statement to determine which is false, and explain why.</p>
+
+<ol>
+  <li>
+    <p>Increasing the confidence level would result in a more accurate but less precise confidence interval.<br />
+True<br />
+A higher confidence level (e.g., 99%) would widen the interval, making it more likely to contain the true population mean (higher accuracy). However, this comes at the cost of a wider (less precise) interval. So, this statement is correct.</p>
+  </li>
+  <li>
+    <p>The standard error is approximately 0.075 hours.<br />
+We are given a 95% confidence interval:</p>
+    <ul>
+      <li>Lower bound = 3.53</li>
+      <li>Upper bound = 3.83</li>
+    </ul>
+  </li>
+</ol>
+
+<p>From this, we can compute:</p>
+<ul>
+  <li>Sample mean $\bar{x} = \frac{3.53 + 3.83}{2} = 3.68$</li>
+  <li>Margin of error (half the width of the interval):<br />
+\(\text{ME} = \frac{3.83 - 3.53}{2} = 0.15\)</li>
+</ul>
+
+<p>At 95% confidence, we use critical value $z^* \approx 1.96$.</p>
+
+<p>Recall:<br />
+\(\text{Margin of Error} = z^* \times SE\)<br />
+So:<br />
+\(0.15 = 1.96 \times SE \Rightarrow SE = \frac{0.15}{1.96} \approx 0.0765\)</p>
+
+<p>This rounds to approximately 0.075, so this statement is true.</p>
+
+<ol>
+  <li>
+    <p>The sample mean is 3.68 hours.<br />
+True<br />
+We already calculated the sample mean:<br />
+\(\bar{x} = \frac{3.53 + 3.83}{2} = 3.68\)<br />
+So this statement is correct.</p>
+  </li>
+  <li>
+    <p>The margin of error is 0.3 hours.<br />
+False<br />
+We already calculated the margin of error:<br />
+\(\text{ME} = \frac{3.83 - 3.53}{2} = 0.15\)<br />
+This statement claims it’s 0.3 hours, which is double the actual value.</p>
+  </li>
+</ol>
+
+<h2 id="backtracking-to-n-for-a-given-me">Backtracking to n for a Given ME</h2>
+
+<p>Given a target margin of error, confidence level, and information on the variability of the sample (or the population), we can determine the required sample size to achieve the desired margin of error.</p>
+
+<p>The formula for the margin of error is:<br />
+\(ME = z^* \cdot \frac{s}{\sqrt{n}}\)</p>
+
+<p>Rearranging to solve for sample size:<br />
+\(n = \left( \frac{z^* \cdot s}{ME} \right)^2\)</p>
+
+<p>As the sample size $n$ increases, the standard error $\frac{s}{\sqrt{n}}$ decreases, which makes the margin of error smaller. This results in narrower confidence intervals that maintain the same confidence level, thus increasing both accuracy and precision.</p>
+
+<h2 id="sample-size-for-desired-margin-of-error">Sample Size for Desired Margin of Error</h2>
+
+<p>A group of researchers want to test the possible effect of an epilepsy medication taken by Dregnant mothers on the cognitive development of their children. As evidence, they want to estimate the IQ scores of three-year-old children born to mothers who were on this medication during pregnancy.</p>
+
+<p>Previous studies suggest that the SD of IQ scores of three-year-old children is 18 points.</p>
+
+<p>How many such children should the researchers sample in order to obtain a 90% confidence nterval with a margin of error less than or equal to 4 points?</p>
+
+<p>Given:<br />
+$ \sigma = 18 $<br />
+$ z^* = 1.65 $ (for 90% confidence)<br />
+$ ME \leq 4 $</p>
+
+<p>Use the formula:<br />
+\(n = \left( \frac{z^* \cdot \sigma}{ME} \right)^2\)<br />
+\(n = \left( \frac{1.65 \cdot 18}{4} \right)^2\)<br />
+\(n = (7.425)^2 = 55.13\)</p>
+
+<p>However, since we can’t really have 0.13 of a person, we’re going to need to round this number. Mathematically this number should round down to 55. However, if we’re saying 55.13 is the minimum required sample size it really doesn’t make sense to go any lower then that. So even though mathematically this number will be rounded to 55, actually in calculations of minimum required sample size, regardless of the value of the decimal, we always want to round up. Therefore, we need at least 56 such children in the sample to obtain a maximum margin of error of four points. We need at least $56$ children in the sample to achieve a margin of error of 4 points or less at 90% confidence.</p>
+
+<h2 id="impact-of-decreasing-margin-of-error">Impact of Decreasing Margin of Error</h2>
+
+<p>We found that we needed at least 56 children in the sample to achieve a maximum margin of error of 4 points. How would the required sample size change if we want to further decrease the margin of error to 2 points?</p>
+
+<p>From the margin of error formula:<br />
+\(ME = \frac{z^* \cdot \sigma}{\sqrt{n}}\)</p>
+
+<p>If we reduce the margin of error from $4$ to $2$ (cutting it in half), the sample size must increase by a factor of $4$ (since $n$ is under a square root).</p>
+
+<p>So, new required sample size:<br />
+\(n_{\text{new}} = 4 \cdot 56 = 224\)</p>
+
+<p>To decrease the margin of error to $2$ points, we need at least $224$ children in the sample.</p>
+
+<h2 id="sample-size-to-narrow-confidence-interval">Sample Size to Narrow Confidence Interval</h2>
+
+<p>A given confidence interval is calculated based on a random sample of n observations. If we want to make this interval narrower (1/3 of what it is now), how many observations should we sample?</p>
+
+<p>From the margin of error formula:<br />
+\(ME = \frac{z^* \cdot \sigma}{\sqrt{n}}\)</p>
+
+<p>Let $ME_{\text{new}} = \frac{1}{3} ME_{\text{old}}$</p>
+
+<p>Then:<br />
+\(\frac{1}{3} ME = \frac{z^* \cdot \sigma}{\sqrt{n_{\text{new}}}}\)</p>
+
+<p>Divide both sides:<br />
+\(\frac{1}{3} \cdot \frac{z^* \cdot \sigma}{\sqrt{n}} = \frac{z^* \cdot \sigma}{\sqrt{n_{\text{new}}}}\)</p>
+
+<p>Simplify:<br />
+\(\frac{1}{3\sqrt{n}} = \frac{1}{\sqrt{n_{\text{new}}}}\)</p>
+
+<p>Take reciprocal:<br />
+\(3\sqrt{n} = \sqrt{n_{\text{new}}}\)</p>
+
+<p>Square both sides:<br />
+\(9n = n_{\text{new}}\)</p>
+
+<p>We need to sample $9n$ observations to narrow the interval to one-third of its original width.</p>
+
+<p>Since n is under the square root sign, to make it 1/3 of what it is now, we need to increase the sample size to $3^2 = 9 n$</p>
+
+<p>The General Social Survey asks: “For how many days during the past 30 days was your mental health, which includes stress, depression, and problems with emotions, not good?” Based on responses from 1,151 US residents, the survey reported a 95% confidence interval of 3.40 to 4.24 days in 2010.</p>
+
+<p>Interpret this interval in context of the data.</p>
+
+<p>We are 95% confident that Americans on average have 3.40 to 4.24 bad mental health days per month.</p>
+
+<p>In this context, what does a 95% confidence level mean?</p>
+
+<p>95% of random samples of 1,151 Americans will yield CIs that capture the true population mean of number of bad mental health days per month.</p>
+
+<p>Suppose the researchers think a 99% confidence level would be more appropriate for this interval. Will this new interval be narrower or wider than the 95% confidence interval?
+As CL increases so does the width of the confidence interval, so wider.</p>
+
+<p>If a new survey asking the same questions was to be done with 500 Americans, would the standard error of the estimate be larger, smaller, or about the same. Assume the standard deviation has remained constant since 2010.</p>
+
+<p>smaller
+larger - correct
+about the same</p>
+
+<p>If sample size decreases, all else held constant, the standard error will increase: $\text{SE}=\frac{s}{\sqrt{n}}$.</p>
+
+<p><strong>Central Limit Theorem (CLT)</strong> is about the distribution of point estimates, and that given certain conditions, this distribution will be nearly normal.</p>
+
+<p>In the case of the <strong>mean</strong>, the CLT tells us that if:</p>
+
+<ol>
+  <li>
+    <p><strong>(1a)</strong> The sample size is sufficiently large, i.e.,<br />
+( n \geq 30 ), and the data are <strong>not extremely skewed</strong>,<br />
+<strong>or</strong></p>
+  </li>
+  <li>
+    <p><strong>(1b)</strong> The population distribution is known to be <strong>normal</strong>,<br />
+<strong>and</strong></p>
+  </li>
+  <li>
+    <p><strong>(2)</strong> The observations in the sample are <strong>independent</strong>,</p>
+  </li>
+</ol>
+
+<p>Then the <strong>distribution of the sample mean</strong> will be <strong>nearly normal</strong>, centered at the <strong>true population mean</strong>, and with a <strong>standard error</strong> of:</p>
+
+<p>[
+SE = \frac{\sigma}{\sqrt{n}}
+]</p>
+
+<p>That is,</p>
+
+<p>[
+\bar{x} \sim N(\text{mean} = \mu, \text{SE} = \frac{\sigma}{\sqrt{n}})
+]</p>
+
+<p>When the <strong>population distribution is unknown</strong>, condition (1a) can be checked using a <strong>histogram</strong> or other visualization of the <strong>observed data</strong>.</p>
+
+<p>As the <strong>sample size increases</strong>, the shape of the population distribution matters less. When ( n ) is very large, the sampling distribution of the sample mean will be <strong>approximately normal</strong>, <strong>regardless of the shape of the population distribution</strong>.</p>
+
+<blockquote>
+  <p><strong>Review the associated learning objective.</strong></p>
+</blockquote>
+
+    <script src="https://utteranc.es/client.js" repo="psymbio/psymbio.github.io" issue-term="pathname" theme="github-dark-orange" crossorigin="anonymous" async>
+    </script>
+</section>
+<section style="padding-left: var(--spacing); width: 100%; max-width: 700px; margin: 0 auto;">
+    <span>That sentence that goes before giving my email to strangers: <a href="mailto: psymbio@gmail.com">psymbio@gmail.com</a></span>
+</section>
+<br>
+<br>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<style>
+    .videoWrapper {
+        position: relative;
+        padding-bottom: 56.333%;
+        height: 0;
+        background: black;
+    }
+    
+    .videoWrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+</style>
+
+<script>
+    function get_youtube_id(url) {
+        var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+        return (url.match(p)) ? RegExp.$1 : false;
+    }
+
+    function vimeo_embed(url, el) {
+        var id = false;
+        $.ajax({
+            url: 'https://vimeo.com/api/oembed.json?url=' + url,
+            async: true,
+            success: function(response) {
+                if (response.video_id) {
+                    id = response.video_id;
+                    if (url.indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (url.indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    var theInnerHTML = '<div class="videoWrapper"><iframe src="https://player.vimeo.com/video/' + id + '/?byline=0&title=0&portrait=0';
+                    if (autoplay == 1) theInnerHTML += '&autoplay=1';
+                    if (loop == 1) theInnerHTML += '&loop=1';
+                    theInnerHTML += '" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>';
+                    el.innerHTML = theInnerHTML;
+                }
+            }
+        });
+    }
+
+    function video_embed() {
+        var p = document.getElementsByTagName('p');
+        for (var i = 0; i < p.length; i++) {
+            //check if this is an external url (that starts with https:// or http://
+            if (p[i].innerHTML.indexOf("http://") == 0 ||
+                p[i].innerHTML.indexOf("https://") == 0) {
+                var youtube_id = get_youtube_id(p[i].innerHTML);
+                if (youtube_id) {
+                    if (p[i].innerHTML.indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (p[i].innerHTML.indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    var theInnerHTML = '<div class="videoWrapper"><iframe width="720" height="420" src="https://www.youtube.com/embed/' + youtube_id + '?rel=0&showinfo=0';
+                    if (autoplay == 1) theInnerHTML += '&autoplay=1';
+                    if (loop == 1) theInnerHTML += '&loop=1&playlist=' + youtube_id + '&version=3';
+                    if (p[i].innerHTML.indexOf('start=') !== -1) theInnerHTML += '&start=' + p[i].innerHTML.substring(p[i].innerHTML.indexOf('start=') + 6);
+                    theInnerHTML += '" frameborder="0" allowfullscreen></iframe></div>';
+                    p[i].innerHTML = theInnerHTML;
+                }
+                if (p[i].innerHTML.indexOf('vimeo.com') !== -1) {
+                    //ask vimeo for the id and place the embed
+                    vimeo_embed(p[i].innerHTML, p[i]);
+                }
+            }
+        }
+    }
+    video_embed();
+
+    function mp3_embed() {
+        var p = document.getElementsByTagName('p');
+        for (var i = 0; i < p.length; i++) {
+            if (p[i].innerHTML.indexOf('.mp3') !== -1) {
+                var str = p[i].innerHTML.split('?');
+                if (str.length == 1) str[1] = '';
+                var str1 = str[1];
+                str1 = str1.replace('&', '').replace('&', '');
+                str1 = str1.replace('autoplay=1', '').replace('autoplay=0', '');
+                str1 = str1.replace('loop=1', '').replace('loop=0', '');
+                str1 = str1.replace('controls=0', '').replace('controls=1', '');
+
+                if (str[0].lastIndexOf('.mp3', str[0].length - 4) === str[0].length - 4 && str1.length == 0) {
+                    if (str[1].indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (str[1].indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    if (str[1].indexOf('controls=0') !== -1) var controls = 0;
+                    else var controls = 1;
+                    var newInnerHTML = '<audio';
+                    if (autoplay == 1) newInnerHTML += ' autoplay';
+                    if (loop == 1) newInnerHTML += ' loop';
+                    if (controls == 1) newInnerHTML += ' controls';
+                    newInnerHTML += '><source src="' + str[0] + '" type="audio/mpeg">Your browser does not support the audio element.</audio>';
+                    p[i].innerHTML = newInnerHTML;
+                }
+            }
+        }
+    }
+    mp3_embed();
+</script>
+<script>
+    ! function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+            p = /^http:/.test(d.location) ? 'http' : 'https';
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.id = id;
+            js.src = p + '://platform.twitter.com/widgets.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    }(document, 'script', 'twitter-wjs');
+</script>
+
+            <section class="shore">
+    </div>
+</body>
+<script>
+    'use strict';
+    var head = document.head;
+    var link = document.createElement('link');
+    link.type = 'text/css';
+    link.rel = 'stylesheet';
+    link.href = '/css/pygments.css'
+    head.appendChild(link);
+</script>
+<!--copy code to clipboard-->
+<script src="/assets/scripts/copycode.js"></script>
+
+</html>

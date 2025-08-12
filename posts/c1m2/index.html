@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        Core Principles of Parallel Programming on CPUs and GPUs (Course 1, Module 2) &ndash; The Brain Archive
+    </title>
+    <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2"
+        crossorigin="messinasans-semi">
+    <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+    <meta name="author" content="psymbio" />
+    <meta name="description" content="psymbio's blog" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+    <link rel="alternate" type="application/rss+xml" href="/atom.xml" />
+    <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+    <link rel="shortcut icon" type="image/x-icon" href="/icons/icon.png" />
+    <link rel="icon" type="image/png" href="/icons/icon.png">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- See https://goo.gl/OOhYW5 -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- See https://goo.gl/qRE0vM -->
+    <meta name="theme-color" content="#C1272D">
+
+    <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="psymbio's blog">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="psymbio's blog">
+
+    <!-- Homescreen icons -->
+    <link rel="apple-touch-icon" sizes="192x192" href="icons/icon.png">
+
+    <!-- Tile icon for Windows 8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="icons/icon.png">
+    <meta name="msapplication-TileColor" content="#C1272D">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Default twitter cards -->
+    <meta name="twitter:card" content="psymbio's blog">
+    <meta name="twitter:site" content="@psymbio">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="my-app">
+    <meta property="og:image" content="icons/icon.png" />
+
+    <!--clicky analytics-->
+
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+        </script>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js"
+        integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.1.2/es5/startup.js"
+        integrity="sha512-umLk4jlqS6v3HF06nsUFlzLGh3yp1A9X+hhlGOEstnLdkphT8w0O8nJJi2Pf28kfIFQvYzMg7ODPluFlkc/WzQ=="
+        crossorigin="anonymous"></script>
+
+    <!--flowcharts-->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true
+        });
+    </script>
+    <!--2d plots-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <!--3d plots-->
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+
+    <!-- Add these in your <head> or right before </body> -->
+
+    <!--python for browser: brython
+<script type="text/javascript" src="/scripts/brython.js"></script>
+<script type="text/javascript" src="/scripts/brython_stdlib.js"></script>
+--->
+    <!--particles on the background-->
+    <!-- <script src="/assets/scripts/particle.js"></script> -->
+
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+    <meta name="google-site-verification" content="3PIlzxg_Fq6uuVEqKvNXrVj8NuWqIA9_hqCxWLcnU-4" />
+    <!--
+<nav>
+  <ul>
+      <li><a href="/">Blog</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+-->
+</head>
+
+<body>
+    <div class="top-line"></div>
+    <div class="container">
+        <section class="shore">
+            <header class="sidebar">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+    <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+    <a href="/">
+        <img src="/images/title.png" height="150" width="150" class="avatar" />
+    </a>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+</header>
+<link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+<link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+<link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+<link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+<!-- <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script> -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+      
+  <script type="text/javascript"
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+<section class="content">
+    <section class="byline">
+        August 12, 2025
+    </section>
+    <h1>Core Principles of Parallel Programming on CPUs and GPUs (Course 1, Module 2)</h1>
+    <h2 id="what-is-concurrent-programming">What is Concurrent Programming?</h2>
+
+<ul>
+  <li>Almost everything that runs on a computer is built around multiprocessing.</li>
+  <li>Operating systems balance multiple applications and background threads.</li>
+  <li>Applications that need to handle lots of data efficiently, need to distribute computation</li>
+  <li>Many artificial intelligence/machine learning techniques require complex logic that continually runs in parallel to work efficiently</li>
+  <li>Video game graphics, video editing software, and compression algorithms can use these techniques to give rapid results to consumers and professionals.</li>
+</ul>
+
+<p>Multi processing, concurrent, parallel, and threaded programming are all synonymous. Modern programming is built around maximizing the utilization of the multiple processors and courts of modern computers. And the best way to do that is via running multiple processes and threads. This is done without developer intervention by the operating system, but you have the ability to improve the efficiency of your software by writing quality code with threads that process data independently. Some highly complex tasks such as artificial intelligence, audio, video processing and signals processing, can be written with multi processing in mind puppy, whereas this can go awry. Parallel processing has been the basis of software that requires lots of computing power but also allows for asynchronous interactions with user.</p>
+
+<h2 id="how-does-it-work">How does it work?</h2>
+<ul>
+  <li>The state of single computation process that takes multiple cycles can be managed as a thread.</li>
+  <li>Consumer laptops can have 4-8 cores and have 4-16 active threads</li>
+  <li>Beyond active threads the OS and application can have many more inactive threads</li>
+  <li>Scheduling algorithms shift threads between inactive and active states</li>
+  <li>Memory Caching is used to shift thread state memory between hard drive and various forms of solid state memory such as RAM and registers</li>
+</ul>
+
+<p>What is a thread? It is an independent collection of sequentially executed programming steps. I think the program with multiple independent threads like train tracks that separate and come together at certain points when the tracks are apart. Multiple trains can go as fast as they want, but when they are together, each train is limited by the speed of the train that is in front of it. With modern CPUs, think of laptops or consumer desktops. You will often have 4-8 cores, and each core can have between one and four threads managed by the scheduler. The heart of any OS is multi-threaded capability is the scheduler, which shuffles different programs, including operating system tasks between active and inactive states, and moving them between cores, moving data around caches, etc. Computers have multiple levels of memory from the hard disk two registers shared between cores. They allow for common data amongst threads, even the instructions that multiple threads from the same program execute the goal of memory. Cashing is to limit the amount of time that is spent waiting for data or instructions to be retrieved from slower and more distant cashing, which causes threads to become inactive. What we see in this diagram is a CPU scheduler shifting between threads on different course. In this case, presumed that all four cores are on the same processor and share at least an L2 cache, buyer threads made inactive and shifted between course.</p>
+
+<p>They have their state changed due to cache misses, and the scheduler doesn’t want to waste CPU cycles on waiting for data or instructions, so instead it finds something that needs to be run and makes it active.</p>
+
+<p>There is, of course, lost time in switching between threads, so constantly switching has a cost as well.</p>
+
+<p>Memory caches are hierarchical in nature, and they really work on the principle that memory that is physically closer is more performant.</p>
+
+<p>Caches are not just used for storing localized data and or instructions for a CPU, but it is also used as the sharing mechanism between cores. And it’s a way to store data and or instructions that limit the number of times that requests have to go to RAM or even hard drive space. There are L3 Caches but apply a little less, when we get to GPS, I won’t be discussed in detail here.</p>
+
+<h2 id="concurrent-programming-pitfalls">Concurrent Programming Pitfalls</h2>
+
+<h2 id="pitfalls-in-concurrent-programming">Pitfalls in Concurrent Programming</h2>
+
+<ul>
+  <li>Race Conditions</li>
+  <li>Resource Contention</li>
+  <li>Dead Lock</li>
+  <li>Live Lock</li>
+  <li>Resource Over/Under Utilization</li>
+</ul>
+
+<h2 id="race-condition">Race Condition</h2>
+<p>When the expected order of thread operations is not followed through issues arise.</p>
+
+<p>Add picture of Race Condition.</p>
+
+<h2 id="resource-contention">Resource Contention</h2>
+<p>Two or more threads attampt to access/modify the same memory and conflict.</p>
+
+<p>Add picture of Race Condition.</p>
+
+<h2 id="dead-lock">Dead Lock</h2>
+<p>One or more processes are blocked from making progress while waiting for resource.</p>
+
+<p>Add picture of Dead Lock.</p>
+
+<h2 id="live-lock">Live Lock</h2>
+<p>Like dead lock (but alive) but processes are actively running.</p>
+
+<p>Add picture of Live Lock.</p>
+
+<h2 id="resource-underoverutilization">Resource Under/Overutilization</h2>
+<ul>
+  <li>Too little work, CPUs are thus sitting idle</li>
+  <li>Too many threads, CPUs are spending too much time context switching</li>
+  <li>Processes are overly complex and therefor CPU may be overextending itself</li>
+  <li>Memory required for processes is too large or changes too frequently. This means that there are cache hits and data is transported to and from RAM and even HD</li>
+</ul>
+
+<p>Hello. In this video, we will discuss issues that arise when writing multi-threaded programs. There are many issues that can occur if care isn’t taken when writing concurrent programs. They include race conditions, dead lock, and live lock, non-optimal resource utilization in contention over resources. One of the most common pitfalls that you encounter when writing multi-threaded programs, is s race condition. This occurs when threads execute in a sequence different than intended and can have dire consequences. In this case, the programmer wanted the first thread to execute its three instructions, and then the second thread to execute its three instructions. Unfortunately, the instructions were interleaved, and therefore, the final integer value is not what the developer wanted. I want to make it clear that in this case, there isn’t an incorrect final value, since each thread performed its instructions in a valid manner related to the shared variable, it is often best to consider minimizing shared or global variables, or if they’re acquired, have a plan to ensure that each threads access is atomic, which we will talk about later. Similar to a race condition, but morally to memory and not the order of execution is resource contention. The more threads and shared resources, the more often this will occur if the programmer hasn’t given sufficient consideration to this happening. This is a more asynchronous version of a race condition, which can extend from threads to completely separate machines. What happens is that resources are needed to be accessed in different ways by different independent threads and they access the same memory, file, etc and this can lead to conflict in constant rewriting of values. Consider the case of databases where values need to be incremented, but each time a value is retrieved from the data base another thread is accessing the same row. Now, it can happen that between the time that the first thread accesses and updates the row and end threads do the same thing that numerous increments go uncounted since the last updated value is what is counted. This is a very significant issue with databases. Thankfully, they have numerous ways of ensuring consistency. Dead lock is similar to resource contention, except that one or more threads or processes require multiple shared resources and will not perform their action until they have access to all that they require. At the same time, they need other required resources. They do not relinquish their hold on a shared resource. Multiple threads each have a shared and required resource and simultaneously are waiting for other resources and cannot proceed to the point when they can release them. None of the participants in the dead lock will make it out of this situation. The first response is to have threads drop their holds on resources, but this will devolve into threads dropping resources and then frantically trying to get all the resources that they can and possibly not helping at all. Live lock is like dead lock but each thread is actively doing something that never makes it out of the overall process that requires multiple resources. This can happen when a programming loop tests for access prior to making a final change and goes to sleep for a small or no time. Consider a do while loop that doesn’t change in externally visible display until it can save the value to a resource. Numerous threads executing the same loop might come to the same while test and not be able to access unnecessary variable, and thus keep incrementing another variable. This could result in a buffer or stack overflow or executing an instruction of millions or even an infinite amount of times, or recursively executing the same code in locking up a program. This can even happen if you incorrectly use some programming language asynchronous capabilities, so be careful. A slightly less worrisome issue is over or underutilizing the computational power of your machine or machines. Though, if this happens with a powerful system or replicated over a large cluster of competing resources, this can be expensive. As the name should indicate, this is when you have too few or too many threads, and they have nothing to do or the few threads are performing a series of computations that could be broken down and run in parallel and therefore more efficiently. If too many threads are going from active to inactive status due to not having work to do, the cost for context switching can outweigh the speed offered when many threads are being used. This can be handled by scaling the number of threads based on the amount of data or CPU utilization. When threads are too few, they may be in constant use and small memory leaks or inefficiencies can compound, and CPU utilization may spike, which makes all running threads sour. Also, if a thread requires a lot of data, or lots of instructions, cache hits can occur more frequently, and therefore the system will be slowed by data transfers to and from the cache or RAM, or even in the worst case, the hard drive.</p>
+
+<h2 id="concurrent-programming-problems-and-algorithms-presentation">Concurrent Programming Problems and Algorithms Presentation</h2>
+
+<h2 id="concurrent-programming-challenges-and-algorithms">Concurrent Programming Challenges and Algorithms</h2>
+<ul>
+  <li>Dining Philosophers</li>
+  <li>Producer-Consumer</li>
+  <li>Sleeping Barber</li>
+  <li>Data and Code Synchronization</li>
+</ul>
+
+<h2 id="dining-philosophers">Dining Philosophers</h2>
+<ul>
+  <li>Each philosopher has a fork on their left and right.</li>
+  <li>They want to eat eggs and side dish.</li>
+  <li>To eat each philosopher needs both to each.</li>
+  <li>We need an algorithm that allows all philosophers to eat.</li>
+</ul>
+
+<p>(The Dining Philosophers Problem With Ron Swanson)[https://www.adit.io/posts/2013-05-11-The-Dining-Philosophers-Problem-With-Ron-Swanson.html]</p>
+
+<p>In the Dining Philosophers Problem, if half of the philosophers had both forks and did not release them, the other half of the philosophers only attempted to get a fork if both were available. would be experiencing</p>
+
+<ol>
+  <li>live lock</li>
+  <li>multithreading</li>
+  <li>resource starvation (correct)</li>
+  <li>synchronization lock</li>
+</ol>
+
+<p>Explanation: Resource starvation is definitely happening from the perspective of the philosophers without forks, since they will never get forks, as the other philosophers do not release the forks that they have.</p>
+
+<h2 id="producer-consumer">Producer-Consumer</h2>
+<ul>
+  <li>One or more consumers need to read data in order and without duplication</li>
+  <li>One or more producers add data in the order that it needs to be processed</li>
+  <li>It is easy to produce race conditions when trying to solve this problem</li>
+</ul>
+
+<p>Race conditions can occur in the Producer-Consumer Problem under which of the following conditions:</p>
+
+<ol>
+  <li>The shared counter is updated, read, and then the memory is updated. (correct)</li>
+  <li>The shared memory/array is filled, and thus the producer cannot work</li>
+  <li>The shared counter becomes negative or larger than the size of memory.</li>
+  <li>There are no consumers or far less consumers than producers</li>
+</ol>
+
+<p>Explanation: A race condition occurs in the above situation because the index into the array is moved to a new location, then the consumer reads the value from that location (could be null or an initial default value), then the producer updates the value at the index in the array, which is never read. So the order of the basic three operations of this pattern are out of sequence and the results are incorrect, which is the definition of a race condition.</p>
+
+<h2 id="sleeping-barber">Sleeping Barber</h2>
+<ul>
+  <li>N customers can sit in the waiting room</li>
+  <li>There is only 1 barber</li>
+  <li>When inactive the barber sleeps</li>
+  <li>If the barber is sleeping a customer should wake him up and sleep</li>
+  <li>If there is no space in the waiting room, a customer leaves</li>
+</ul>
+
+<p>Common pitfalls of the Sleeping Barber are all but:</p>
+
+<ol>
+  <li>Underutilization</li>
+  <li>Dead Lock</li>
+  <li>Resource Contention</li>
+  <li>Race conditions (correct)</li>
+</ol>
+
+<p>Explanation: Race conditions don’t happen with this pattern, since it is not like the customer gets into the seat and leaves it before the barber cuts their hair, or any other combination of operations or something similar. There is no way for the operations to be executed that results in realistically incorrect results.</p>
+
+<h2 id="data-and-code-synchronization">Data and Code Synchronization</h2>
+<ul>
+  <li>There are numerous ways including synchronization locks to control access to data and code in many languages. Implementations of locks can be managed like a deli counter ticketing systems.</li>
+  <li>Semaphores are means of showing state, that can be used to manage use of sections of code or data.</li>
+  <li>Through locks, semaphores, and algorithms partial solutions can be devised to handle many concurrent programming issues, though there will always be competing constraints of access and efficiency.</li>
+</ul>
+
+<p>It is possible to guarantee unconstrained access to data and 100% utilization of processing resources</p>
+
+<ol>
+  <li>True</li>
+  <li>False (correct)</li>
+</ol>
+
+<p>Explanation: This is correct since you can write code that guarantees 100% access or 100% of processing resources but there will always be a case when you try to do both were one or the other constraint will need to be lessened.  The best thing to do is to consider</p>
+
+<p>Well, and I hope you will enjoy this discussion on concurrent programming problems and algorithms to solve them. For canonical challenges and the algorithms in the world of parallel programming are, Dining Philosophers, Producer-Consumer, Sleeping Barber, and also Data and Code Synchronization, which is more of a parallel programming mechanism than a problem. Each of these are at the heart of different issues that you will encounter, and a solution for them will solve numerous analogous issues. So keep them in mind as a pattern to look for when programming with parallelism. I hope you enjoy this depiction of the dining philosophers problem using Ron Swanson from Parks and Rec. This seems a little less scary than having Socrates and Plato waiting to eat. Each philosopher wants to eat, but they need two forks to be able to do this. Don’t ask me why they need two forks, but they do. They can only do one thing at a time, pickup a fork, eat eggs, or put a fork down, etc. So they need to eat with both, and in a naive implementation where a philosopher tries to pick up the left fork and then the right, and then eat, and then put the left fork down, then put the right fork down. This will fail since this will most probably result with each philosopher having one fork and being very hungry. Does this seem familiar? Is a little bit of a few of the problems encountered in the previous video. If you expect each philosopher to neatly and politely get forks and eat without ever trying to pick up the same fork, then it is resource contention, with the fork being the resource. If you have the philosophers hold their ground and never drop a fork, then it is deadlock, almost literally. If each philosopher drops the fork, they hold and tries to get the other fork, they probably have livelock. Consider a way to solve this. Could the philosophers communicate to each other? Or have a central authority determine the order? There are many solutions to this problem, but they aren’t always easy. So think before you write the code.
+Play video starting at :2:37 and follow transcript2:37
+Producer-Consumer or reader-writer pattern is a very common tool these days. A very common way that is used in message queues, which allow for data to be added sequentially and non-sequential in a streaming or batch fashion. Then users pull or subscribe to the message queue, and it returns data either in the order it was placed in there or as it becomes available. One or more processes call them producers, can then add data to be consumed by the consumers. If there is more data than the queue can handle, there are a number of strategies based on how the data is used. If the more recent data is more important, then the queue will drop the oldest data. If only a sub-sampling of data is needed, then data can be randomly dropped from the queue. If all data’s important then newer data can be stored for access once space is available. Think of it as slower and less costly, and consumers can be told to hold back from doing anymore processing. There’s a chance of race conditions if the data structure or queue allows for overriding of values or the pointer index for the producer ends up being ahead of the index of the consumer, and that’s why producer may never end up with new data. The Sleeping Barber is similar to producers- consumers but or is not important, the threads are trying their best to optimize the barbers work. The waiting room is like the queue or data structure from the previous slide, but the barber or barbers can only put one customer share at a time. The waiting room is of a finite size, and two issues can occur. First, if the barbers are chatty and slow and cutting their hair, and there are lots of prospective customers, we can have something like livelock or overutilization where they stick their head and see the waiting room full and leave. The second matrix case is that there are no customers and the barbers should sit around sleeping and talking about how much better baseball was back in the day. This is a situation of under utilization. There are solutions to this problem, from one or more barbers. When I think of this problem, I think about inverting the problem in having the number of customers in the waiting room determine the number of barbers. Many, if not most languages provide a mechanism for synchronizing data or code. This generally locks access to data or code, so you use it with caution. If you make all data synchronize, you end up with dead or livelock. If the threat attempts to access a synchronized piece of data, any thread that requires that data will wait. This is useful in ticketing systems where you want to lock access to code or data until it has been fully used by the previous holder of the call ticket. Semaphores are implemented with Fox, but have a limited number of states to manage access to data or code more indirectly, allow for multiple axises. Concurrently, think of this like sitting categories for flights. Those in-class 1A can be seated before those who are class B or 2. Multiple individuals can board at the same time, which should minimize the possibility of being blocked by other passengers. The major note here is that there are rarely bulletproof solutions to multithreading problems. But you can come up with a reasonable solution based on prioritization of coherent data access and acceptability of under or overutilization.</p>
+
+<p>For the assignments I could only find my solutions - however next time onwards I shall keep a copy of the unsolved version as well.</p>
+
+<h2 id="producer-consumer-activity">Producer Consumer Activity</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;thread&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;deque&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;mutex&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;chrono&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;condition_variable&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">deque</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">mutex</span> <span class="n">mu</span><span class="p">,</span><span class="n">cout_mu</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">condition_variable</span> <span class="n">cond</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Buffer</span>
+<span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="kt">void</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">unique_lock</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="o">&gt;</span> <span class="n">locker</span><span class="p">(</span><span class="n">mu</span><span class="p">);</span>
+            <span class="n">cond</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">locker</span><span class="p">,</span> <span class="p">[</span><span class="k">this</span><span class="p">](){</span><span class="k">return</span> <span class="n">buffer_</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">size_</span><span class="p">;});</span>
+            <span class="n">buffer_</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">num</span><span class="p">);</span>
+            <span class="n">locker</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span>
+            <span class="n">cond</span><span class="p">.</span><span class="n">notify_all</span><span class="p">();</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="nf">remove</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">unique_lock</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="o">&gt;</span> <span class="n">locker</span><span class="p">(</span><span class="n">mu</span><span class="p">);</span>
+            <span class="n">cond</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">locker</span><span class="p">,</span> <span class="p">[</span><span class="k">this</span><span class="p">](){</span><span class="k">return</span> <span class="n">buffer_</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;});</span>
+            <span class="kt">int</span> <span class="n">back</span> <span class="o">=</span> <span class="n">buffer_</span><span class="p">.</span><span class="n">back</span><span class="p">();</span>
+            <span class="n">buffer_</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+            <span class="n">locker</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span>
+            <span class="n">cond</span><span class="p">.</span><span class="n">notify_all</span><span class="p">();</span>
+            <span class="k">return</span> <span class="n">back</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">Buffer</span><span class="p">()</span> <span class="p">{}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">deque</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">buffer_</span><span class="p">;</span>
+    <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">size_</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Producer</span>
+<span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="n">Producer</span><span class="p">(</span><span class="n">Buffer</span><span class="o">*</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">buffer_</span> <span class="o">=</span> <span class="n">buffer</span><span class="p">;</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">name_</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">100</span><span class="p">;</span>
+            <span class="n">buffer_</span><span class="o">-&gt;</span><span class="n">add</span><span class="p">(</span><span class="n">num</span><span class="p">);</span>
+            <span class="n">cout_mu</span><span class="p">.</span><span class="n">lock</span><span class="p">();</span>
+            <span class="kt">int</span> <span class="n">sleep_time</span> <span class="o">=</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">100</span><span class="p">;</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Name: "</span> <span class="o">&lt;&lt;</span> <span class="n">name_</span> <span class="o">&lt;&lt;</span> <span class="s">"   Produced: "</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="s">"   Sleep time: "</span> <span class="o">&lt;&lt;</span> <span class="n">sleep_time</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="n">sleep_time</span><span class="p">));</span>
+            <span class="n">cout_mu</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">Buffer</span> <span class="o">*</span><span class="n">buffer_</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name_</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Consumer</span>
+<span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="n">Consumer</span><span class="p">(</span><span class="n">Buffer</span><span class="o">*</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">buffer_</span> <span class="o">=</span> <span class="n">buffer</span><span class="p">;</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">name_</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">buffer_</span><span class="o">-&gt;</span><span class="n">remove</span><span class="p">();</span>
+            <span class="n">cout_mu</span><span class="p">.</span><span class="n">lock</span><span class="p">();</span>
+            <span class="kt">int</span> <span class="n">sleep_time</span> <span class="o">=</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">100</span><span class="p">;</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Name: "</span> <span class="o">&lt;&lt;</span> <span class="n">name_</span> <span class="o">&lt;&lt;</span> <span class="s">"   Consumed: "</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="s">"   Sleep time: "</span> <span class="o">&lt;&lt;</span> <span class="n">sleep_time</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="n">sleep_time</span><span class="p">));</span>
+            <span class="n">cout_mu</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">Buffer</span> <span class="o">*</span><span class="n">buffer_</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name_</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Buffer</span> <span class="n">b</span><span class="p">;</span>
+    <span class="n">Producer</span> <span class="n">p1</span><span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">,</span> <span class="s">"producer1"</span><span class="p">);</span>
+    <span class="n">Producer</span> <span class="n">p2</span><span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">,</span> <span class="s">"producer2"</span><span class="p">);</span>
+    <span class="n">Producer</span> <span class="n">p3</span><span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">,</span> <span class="s">"producer3"</span><span class="p">);</span>
+    <span class="n">Consumer</span> <span class="n">c1</span><span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">,</span> <span class="s">"consumer1"</span><span class="p">);</span>
+    <span class="n">Consumer</span> <span class="n">c2</span><span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">,</span> <span class="s">"consumer2"</span><span class="p">);</span>
+    <span class="n">Consumer</span> <span class="n">c3</span><span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">,</span> <span class="s">"consumer3"</span><span class="p">);</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">producer_thread1</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Producer</span><span class="o">::</span><span class="n">run</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p1</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">producer_thread2</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Producer</span><span class="o">::</span><span class="n">run</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p2</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">producer_thread3</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Producer</span><span class="o">::</span><span class="n">run</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p3</span><span class="p">);</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">consumer_thread1</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Consumer</span><span class="o">::</span><span class="n">run</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">c1</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">consumer_thread2</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Consumer</span><span class="o">::</span><span class="n">run</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">c2</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">consumer_thread3</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Consumer</span><span class="o">::</span><span class="n">run</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">c3</span><span class="p">);</span>
+
+    <span class="n">producer_thread1</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+    <span class="n">producer_thread2</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+    <span class="n">producer_thread3</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+    <span class="n">consumer_thread1</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+    <span class="n">consumer_thread2</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+    <span class="n">consumer_thread3</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+
+    <span class="n">getchar</span><span class="p">();</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h2 id="dining-philosopher">Dining Philosopher</h2>
+
+<h2 id="solved-assignment">Solved Assignment</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># https://rosettacode.org/wiki/Dining_philosophers#Python
+</span>
+<span class="kn">import</span> <span class="n">threading</span>
+<span class="kn">import</span> <span class="n">random</span>
+<span class="kn">import</span> <span class="n">time</span>
+
+<span class="c1"># Dining philosophers, 5 Phillies with 5 forks. Must have two forks to eat.
+#
+# Deadlock is avoided by never waiting for a fork while holding a fork (locked)
+# Procedure is to do block while waiting to get first fork, and a nonblocking
+# acquire of second fork.  If failed to get second fork, release first fork,
+# swap which fork is first and which is second and retry until getting both.
+#
+# See discussion page note about 'live lock'.
+</span>
+
+<span class="k">class</span> <span class="nc">Philosopher</span><span class="p">(</span><span class="n">threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">):</span>
+
+    <span class="n">running</span> <span class="o">=</span> <span class="bp">True</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">xname</span><span class="p">,</span> <span class="n">fork_on_left</span><span class="p">,</span> <span class="n">fork_on_right</span><span class="p">):</span>
+        <span class="n">threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">.</span><span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">xname</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">fork_on_left</span> <span class="o">=</span> <span class="n">fork_on_left</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">fork_on_right</span> <span class="o">=</span> <span class="n">fork_on_right</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">while</span> <span class="n">self</span><span class="p">.</span><span class="n">running</span><span class="p">:</span>
+            <span class="c1">#  Philosopher is thinking (but really is sleeping).
+</span>            <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="n">random</span><span class="p">.</span><span class="nf">uniform</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">13</span><span class="p">))</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> is hungry.</span><span class="sh">'</span><span class="p">)</span>
+            <span class="n">self</span><span class="p">.</span><span class="nf">dine</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">dine</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="n">fork1</span><span class="p">,</span> <span class="n">fork2</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">fork_on_left</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">fork_on_right</span>
+
+        <span class="k">while</span> <span class="n">self</span><span class="p">.</span><span class="n">running</span><span class="p">:</span>
+            <span class="n">fork1</span><span class="p">.</span><span class="nf">acquire</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+            <span class="n">locked</span> <span class="o">=</span> <span class="n">fork2</span><span class="p">.</span><span class="nf">acquire</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">locked</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">fork1</span><span class="p">.</span><span class="nf">release</span><span class="p">()</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> swaps forks</span><span class="sh">'</span><span class="p">)</span>
+            <span class="n">fork1</span><span class="p">,</span> <span class="n">fork2</span> <span class="o">=</span> <span class="n">fork2</span><span class="p">,</span> <span class="n">fork1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">self</span><span class="p">.</span><span class="nf">dining</span><span class="p">()</span>
+        <span class="n">fork2</span><span class="p">.</span><span class="nf">release</span><span class="p">()</span>
+        <span class="n">fork1</span><span class="p">.</span><span class="nf">release</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">dining</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> starts eating</span><span class="sh">'</span><span class="p">)</span>
+        <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="n">random</span><span class="p">.</span><span class="nf">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> finishes eating and leaves to think.</span><span class="sh">'</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">dining_philosophers</span><span class="p">():</span>
+
+    <span class="n">forks</span> <span class="o">=</span> <span class="p">[</span><span class="n">threading</span><span class="p">.</span><span class="nc">Lock</span><span class="p">()</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
+    <span class="n">philosopher_names</span> <span class="o">=</span> <span class="p">(</span><span class="sh">'</span><span class="s">Aristotle</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Kant</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Buddha</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Marx</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Russel</span><span class="sh">'</span><span class="p">)</span>
+
+    <span class="n">philosophers</span> <span class="o">=</span> <span class="p">[</span><span class="nc">Philosopher</span><span class="p">(</span><span class="n">philosopher_names</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">forks</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="mi">5</span><span class="p">],</span> <span class="n">forks</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">5</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
+    
+    <span class="c1"># print(forks)
+</span>    <span class="c1"># print(philosophers)
+</span>    <span class="c1"># exit()
+</span>
+    <span class="n">random</span><span class="p">.</span><span class="nf">seed</span><span class="p">(</span><span class="mi">507129</span><span class="p">)</span>
+    <span class="n">Philosopher</span><span class="p">.</span><span class="n">running</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">philosophers</span><span class="p">:</span>
+        <span class="n">p</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span>
+    <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">Philosopher</span><span class="p">.</span><span class="n">running</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Now we</span><span class="sh">'</span><span class="s">re finishing.</span><span class="sh">"</span><span class="p">)</span>
+
+
+<span class="nf">dining_philosophers</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h2 id="sleeping-barber-1">Sleeping Barber</h2>
+
+<h2 id="solved-assignment-1">Solved Assignment</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Based on code from https://github.com/Nohclu/Sleeping-Barber-Python-3.6-/blob/master/barber.py
+</span><span class="kn">import</span> <span class="n">time</span>
+<span class="kn">import</span> <span class="n">random</span>
+<span class="kn">import</span> <span class="n">threading</span>
+<span class="kn">from</span> <span class="n">queue</span> <span class="kn">import</span> <span class="n">Queue</span>
+
+<span class="n">CUSTOMERS_SEATS</span> <span class="o">=</span> <span class="mi">15</span>        <span class="c1"># Number of seats in BarberShop
+</span><span class="n">BARBERS</span> <span class="o">=</span> <span class="mi">3</span>                <span class="c1"># Number of Barbers working
+</span><span class="n">EVENT</span> <span class="o">=</span> <span class="n">threading</span><span class="p">.</span><span class="nc">Event</span><span class="p">()</span>   <span class="c1"># Event flag, keeps track of Barber/Customer interactions
+</span><span class="k">global</span> <span class="n">Earnings</span>
+<span class="k">global</span> <span class="n">SHOP_OPEN</span>
+
+
+<span class="k">class</span> <span class="nc">Customer</span><span class="p">(</span><span class="n">threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">):</span>       <span class="c1"># Producer Thread
+</span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">queue</span><span class="p">):</span>          <span class="c1"># Constructor passes Global Queue (all_customers) to Class
+</span>        <span class="n">threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">.</span><span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">queue</span> <span class="o">=</span> <span class="n">queue</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">rate</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">what_customer</span><span class="p">()</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">what_customer</span><span class="p">():</span>
+        <span class="n">customer_types</span> <span class="o">=</span> <span class="p">[</span><span class="sh">"</span><span class="s">adult</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">senior</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">student</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">child</span><span class="sh">"</span><span class="p">]</span>
+        <span class="n">customer_rates</span> <span class="o">=</span> <span class="p">{</span><span class="sh">"</span><span class="s">adult</span><span class="sh">"</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+                          <span class="sh">"</span><span class="s">senior</span><span class="sh">"</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+                          <span class="sh">"</span><span class="s">student</span><span class="sh">"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+                          <span class="sh">"</span><span class="s">child</span><span class="sh">"</span><span class="p">:</span> <span class="mi">7</span><span class="p">}</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">customer_types</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="sh">"</span><span class="s"> rate.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">customer_rates</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">self</span><span class="p">.</span><span class="n">queue</span><span class="p">.</span><span class="nf">full</span><span class="p">():</span>  <span class="c1"># Check queue size
+</span>            <span class="n">EVENT</span><span class="p">.</span><span class="nf">set</span><span class="p">()</span>  <span class="c1"># Sets EVENT flag to True i.e. Customer available in the Queue
+</span>            <span class="n">EVENT</span><span class="p">.</span><span class="nf">clear</span><span class="p">()</span>  <span class="c1"># A lerts Barber that their is a Customer available in the Queue
+</span>        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># If Queue is full, Customer leaves.
+</span>            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Queue full, customer has left.</span><span class="sh">"</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">trim</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Customer haircut started.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">random</span><span class="p">.</span><span class="nf">random</span><span class="p">()</span>  <span class="c1"># Retrieves random number.
+</span>        <span class="c1"># TODO execute the time sleep function with a, which simulates the time it takes for a barber to give a haircut.
+</span>        <span class="n">payment</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">rate</span>
+        <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+        <span class="c1"># Barber finished haircut.
+</span>        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Haircut finished. Haircut took {}</span><span class="sh">"</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+        <span class="k">global</span> <span class="n">Earnings</span>
+        <span class="n">Earnings</span> <span class="o">+=</span> <span class="n">payment</span>
+
+<span class="k">class</span> <span class="nc">Barber</span><span class="p">(</span><span class="n">threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">):</span>     <span class="c1"># Consumer Thread
+</span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">queue</span><span class="p">):</span>      <span class="c1"># Constructor passes Global Queue (all_customers) to Class
+</span>        <span class="n">threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">.</span><span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+        <span class="c1"># TODO set this class's queue property to the passed value
+</span>        <span class="n">self</span><span class="p">.</span><span class="n">sleep</span> <span class="o">=</span> <span class="bp">True</span>   <span class="c1"># No Customers in Queue therefore Barber sleeps by default
+</span>        <span class="n">self</span><span class="p">.</span><span class="n">queue</span> <span class="o">=</span> <span class="n">queue</span>
+
+    <span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>  <span class="c1"># Simple function that checks if there is a customer in the Queue and if so
+</span>        <span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="n">queue</span><span class="p">.</span><span class="nf">empty</span><span class="p">():</span>
+            <span class="n">self</span><span class="p">.</span><span class="n">sleep</span> <span class="o">=</span> <span class="bp">True</span>   <span class="c1"># If nobody in the Queue Barber sleeps.
+</span>        <span class="k">else</span><span class="p">:</span>
+            <span class="n">self</span><span class="p">.</span><span class="n">sleep</span> <span class="o">=</span> <span class="bp">False</span>  <span class="c1"># Else he wakes up.
+</span>        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">------------------</span><span class="se">\n</span><span class="s">Barber sleep {}</span><span class="se">\n</span><span class="s">------------------</span><span class="sh">"</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">sleep</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">global</span> <span class="n">SHOP_OPEN</span>
+        <span class="k">while</span> <span class="n">SHOP_OPEN</span><span class="p">:</span>
+            <span class="k">while</span> <span class="n">self</span><span class="p">.</span><span class="n">queue</span><span class="p">.</span><span class="nf">empty</span><span class="p">():</span>
+                <span class="c1"># Waits for the Event flag to be set, Can be seen as the Barber Actually sleeping.
+</span>                <span class="n">EVENT</span><span class="p">.</span><span class="nf">wait</span><span class="p">()</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Barber is sleeping...</span><span class="sh">"</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Barber is awake.</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">customer</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">queue</span>
+            <span class="n">self</span><span class="p">.</span><span class="nf">is_empty</span><span class="p">()</span>
+            <span class="c1"># FIFO Queue So first customer added is gotten.
+</span>            <span class="n">customer</span> <span class="o">=</span> <span class="n">customer</span><span class="p">.</span><span class="nf">get</span><span class="p">()</span>
+            <span class="n">customer</span><span class="p">.</span><span class="nf">trim</span><span class="p">()</span>  <span class="c1"># Customers Hair is being cut
+</span>            <span class="n">self</span><span class="p">.</span><span class="n">queue</span><span class="p">.</span><span class="nf">task_done</span><span class="p">()</span>
+            <span class="n">customer</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">queue</span>
+            <span class="c1"># TODO use the task_done function to complete cutting the customer's hair
+</span>            <span class="nf">print</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>    <span class="c1"># Which Barber served the Customer
+</span>
+
+<span class="k">def</span> <span class="nf">wait</span><span class="p">():</span>
+    <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="n">random</span><span class="p">.</span><span class="nf">random</span><span class="p">())</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">'</span><span class="s">__main__</span><span class="sh">'</span><span class="p">:</span>
+    <span class="n">Earnings</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">SHOP_OPEN</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">barbers</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">all_customers</span> <span class="o">=</span> <span class="nc">Queue</span><span class="p">(</span><span class="n">CUSTOMERS_SEATS</span><span class="p">)</span>  <span class="c1"># A queue of size Customer Seats
+</span>
+    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">BARBERS</span><span class="p">):</span>
+        <span class="c1"># TODO Pass the all_customers Queue to the Barber constructor
+</span>        <span class="c1"># Makes the Thread a super low priority thread allowing it to be terminated easier
+</span>        <span class="n">b</span> <span class="o">=</span> <span class="nc">Barber</span><span class="p">(</span><span class="n">all_customers</span><span class="p">)</span>
+        <span class="n">b</span><span class="p">.</span><span class="n">daemon</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">b</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span>   <span class="c1"># Invokes the run method in the Barber Class
+</span>        <span class="c1"># Adding the Barber Thread to an array for easy referencing later on.
+</span>        <span class="n">barbers</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>  <span class="c1"># Loop that creates infinite Customers
+</span>        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">----</span><span class="sh">"</span><span class="p">)</span>
+        <span class="c1"># Simple Tracker too see the qsize (NOT RELIABLE!)
+</span>        <span class="nf">print</span><span class="p">(</span><span class="n">all_customers</span><span class="p">.</span><span class="nf">qsize</span><span class="p">())</span>
+        <span class="nf">wait</span><span class="p">()</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="nc">Customer</span><span class="p">(</span><span class="n">all_customers</span><span class="p">)</span>  <span class="c1"># Passing Queue object to Customer class
+</span>        <span class="n">all_customers</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>    <span class="c1"># Puts the Customer Thread in the Queue
+</span>        <span class="c1"># TODO Invoke the run method in the Customer Class
+</span>        <span class="n">c</span> <span class="o">=</span> <span class="nc">Customer</span><span class="p">(</span><span class="n">all_customers</span><span class="p">)</span>
+        <span class="n">c</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span> 
+    <span class="n">all_customers</span><span class="p">.</span><span class="nf">join</span><span class="p">()</span>    <span class="c1"># Terminates all Customer Threads
+</span>    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">€</span><span class="sh">"</span><span class="o">+</span><span class="nf">str</span><span class="p">(</span><span class="n">Earnings</span><span class="p">))</span>
+    <span class="n">SHOP_OPEN</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">barbers</span><span class="p">:</span>
+        <span class="n">i</span><span class="p">.</span><span class="nf">join</span><span class="p">()</span>    <span class="c1"># Terminates all Barbers
+</span>        <span class="c1"># Program hangs due to infinite loop in Barber Class, use ctrl-z to exit.
+</span></code></pre></div></div>
+
+<p>https://github.com/Nohclu/Sleeping-Barber-Python-3.6-/blob/master/barber.py</p>
+
+<h2 id="concurrent-programming-patterns">Concurrent Programming Patterns</h2>
+
+<h2 id="concurrent-programming-patterns-1">Concurrent Programming Patterns</h2>
+<ul>
+  <li>Divide and Conquer</li>
+  <li>Map-Reduce</li>
+  <li>Repository</li>
+  <li>Pipelines/Workflows</li>
+  <li>Recursion</li>
+</ul>
+
+<h2 id="divide-and-conquer">Divide and Conquer</h2>
+<ul>
+  <li>Take large datasets and divide up</li>
+  <li>Often implemented via recursive algorithms</li>
+  <li>Solving small problems and apply those solutions to solve ever larger problems</li>
+  <li>Easily implemented on powerful computing platforms that can maintain complex state</li>
+</ul>
+
+<p>Which is true of the concept of Divide and Conquer?</p>
+
+<ol>
+  <li>It requires multiple processes/threads to work.</li>
+  <li>By solving smaller subsets of the problems, they can be combined into larger solutions. (correct)</li>
+  <li>It doesn’t work well with recursive function calls.</li>
+  <li>It can only work if division is done binarily.</li>
+  <li>If used to implement searching for a single value, all data must be investigated.</li>
+</ol>
+
+<p>Explanation: This is the main reason for using divide and conquer, if you had to answer a question but the data structure it was stored in could only allow sequential access then divide and conquer wouldn’t work.</p>
+
+<h2 id="map-reduce">Map-Reduce</h2>
+<ul>
+  <li>Similar to divide and conquer, with division of data/computation</li>
+  <li>Often skips much of hierarchy of divide and conquer, map single data point to a single result.</li>
+  <li>Reduce series of inputs to single result.</li>
+  <li>Can include multiple stages and repeated iterations.</li>
+  <li>Operations in map and reduces steps work best if simple and uniform across a stage.</li>
+</ul>
+
+<p>Map-Reduce is a form of Divide and Conquer?</p>
+
+<ol>
+  <li>True (correct)</li>
+  <li>False</li>
+</ol>
+
+<p>Explanation: This is correct as the main principle is to take each dataset break down into single values execute map functions on each value, the map output is sent to a smaller number of reducers, which output the final result. This means that the solution to a small subset is combined to arrive at the overall solution, which is the definition of Divide and Conquer.</p>
+
+<p>In Map-Reduce, which is false?</p>
+
+<ol>
+  <li>Reducers handle multiple inputs and output a single solution.</li>
+  <li>There needs to be more reducers than mappers. (correct)</li>
+  <li>The result of a map action is a single value.</li>
+  <li>There is no requirement for recursion.</li>
+</ol>
+
+<p>Explanation: This is the opposite of the map-reduce pattern, you want many mappers and the smallest number of reducers, since you want a single output value.  If multiple reducers are needed, then there will need to be follow-on processing,</p>
+
+<h2 id="repository">Repository</h2>
+<ul>
+  <li>Repository manages central state across multiple running processes</li>
+  <li>Processes access and update their own and central state through predefined communications mechanisms</li>
+  <li>Need to ensure that two processes don’t have access to same data simultaneously</li>
+</ul>
+
+<p>In the Repository pattern, which role is defined appropriately?</p>
+
+<ol>
+  <li>Repositories control the order in which processes do computation.</li>
+  <li>Processes manage access to all shared data.</li>
+  <li>Repositories manage access to all shared data (correct)</li>
+  <li>Processes synchronize computation amongst each other.</li>
+</ol>
+
+<p>Explanation: The only role that manages access to shared data is the repository.</p>
+
+<h2 id="pipelinesworkflows">Pipelines/Workflows</h2>
+<ul>
+  <li>Pipelines can manage multiple synchronous or asynchronous processing steps in a linear fashion</li>
+  <li>Each step can have its own logic</li>
+  <li>Workflows are similar to pipelines but are more complex interactions and can be represented as Directed Acyclic Graphs (not required)</li>
+</ul>
+
+<p>What is not a valid difference between pipelines and workflows?</p>
+
+<ol>
+  <li>Pipelines process data without forks and joins.</li>
+  <li>Pipelines are not DAGs (correct)</li>
+  <li>Workflow steps can receive input from multiple prior steps</li>
+  <li>Workflow outputs can feed into multiple upstream steps.</li>
+</ol>
+
+<p>Explanation: Pipelines are the simplest form of directed acyclic graphs (DAGs). They definitely have no cycles and they proceed from one step to another without any more advanced branching schemes such as forks and joins</p>
+
+<h2 id="recursion">Recursion</h2>
+<ul>
+  <li>Functions call themselves with arguments derived from current input</li>
+  <li>Used in some implementations of divide and conquer, but has general purpose</li>
+  <li>Does not work well when distributed across CPUs, networked machines, or GPUs because management of state can be complex and wasteful.</li>
+</ul>
+
+<p>Which is an accurate definition of recursion?</p>
+
+<ol>
+  <li>Recursive functions call themselves with subsets of their input data. (correct)</li>
+  <li>Recursive functions only work in divide and conquer algorithms (incorrect) [Recursive functions can be used under circumstances that are not necessarily divide and conquer, though it is the primary usage pattern for this type of call. An example of when recursion is not divide and conquer, would be in functional languages with data structures with head and tail or first and rest.  A recursive call is made as say the same function is applied to each item of data, which would mean that there would be the same number of recursive calls as the amount of data, which is not dividing and conquering.]</li>
+  <li>Recursive functions work in all computing architectures including networked CPUs and GPUs (incorrect) [Many types of hardware and associated software architectures do not handle recursion well. GPUs, Nvidia specifically, and CUDA do not encourage this pattern as recursive calls can halt all other threads.  The better usage pattern might be a multipass map-reduce solution.]</li>
+  <li>It is impossible for recursive functions to get caught in infinite loops. (incorrect) [Infinite loops are one of the biggest problems with badly written recursive functions. If solutions/base cases do not appropriately handle all solutions, it is possible for a recursive call to continually call itself with the same data and eventually loop until the software or the OS locks.]</li>
+  <li>With CPU usage, hardware stack memory ensures that recursive functions can always complete. (incorrect) [While hardware-based stacks and heaps make recursive functions work, there is no guarantee that a badly written recursive algorithm will complete.  This is why usage of recursive functions should only occur after careful thought and algorithm design.]</li>
+</ol>
+
+<p>Explanation: This is the exact definition of a recursive call.  The subset on subsequent recursive function calls should be smaller than the current call’s input but that is not necessarily the case, though that can be cause for concern.</p>
+
+<p>[1] Kim, Eun-Gyu. 2004. Department of Computer Science, University of Illinois. Parallel Programming Patterns. Retrieved from
+http://snir.cs.illinois.edu/patterns/patterns.pdf</p>
+
+<p>Google search query: site:snir.cs.illinois.edu filetype:pdf</p>
+
+<p>Hello and welcome to this video that we’ll discuss patterns that you will use in parallel programming. Many of the solutions to parallel programming challenges fit into these five patterns: divide and conquer, map-reduce, the repository, pipelines or workflows, and recursion. Learn to recognize that one of these patterns can be used in your program to make it more efficient and you’ll save yourself a lot of time avoiding trying to reinvent the wheel. One of the most common ways to solve computer science problems even without concurrency is divide and conquer. You’ve probably seen how can we use it in searching and sorting algorithms. The basic idea is to split up the data until it is small enough to answer the larger question, order or equality for the smaller amount of data. Once the thread has an answer, return that answer to a call that and it will take the responses from all the smaller datasets and answer the question with less work. This makes it back to the main calling context and should’ve taking less time than doing pairwise comparisons. It’s not always the best answer. Finding the same value in a set might take any comparisons and thus, if this dataset is not always sorted, you’ll pay an extra cost for the breaking down and bringing back together. If recursion is now allowed or really inefficient which is the case in CUDA, then this should not be used frequently. Also a program implementing this will need to be well-designed and or maintain a complex state for all of the various divides, etc. Map-reduce can be thought of as a subset of divide and conquer. The main difference is that each time a map-reduce cycle is run, it immediately breaks down into individual data points and the same operation is applied to all individual pieces of data. Each mapper returns only one value and the reducer has a job of taking n return values and reducing it to a single value. An example would be testing if a value is in a set, each mapper would return zero if the value passed to it was not the search for value and one if it is. The reducer would just add all the values and convert zero to false and greater than zero to true. The nice thing about this way of doing things is that it scales well regardless of the size of data and quality of competing resources, presuming the MR system is well architected and communications is not slow. What mappers and reducers do can be more complex or they can be strung into a series of MR jobs that feed into each other. The repository pattern can be used when state needs to be maintained across multiple threads or processes. Each process can run independently and when it needs information or wants to change the overall state, it makes requests of the repository. The repository needs to ensure that data is maintained atomically within itself but processes are responsible for maintaining their own state. Based on concerns of data consistency or staleness, this system may want to encourage more or less use of the repository since it is possible for a process to work on data for awhile and want to update it. But doing so could overwrite the changes that were made based on a newer state. Pipelines and workflows are similar. They’re both represented as directly crass without cycles. Though that is not strictly the case since workflow systems allow cycles but data will still flow out of a note. Pipelines are workflows in which each step gets input from the previous step and outputs to a single future step. Workflows often employ fan out and fan in patterns where either the same input is the output to different logical steps or data is divided up and sent to the same logical code. Note that map-reduce and divide and conquer can be implemented using workflows. They neither are exclusive to the other. Programming languages handle divide and conquer and map-reduce especially now in a more functional programming way. A key way to solving many complex problems can be via recursion. Almost any problem can be solved recursively though not always most efficiently. Functional programming languages and framework such as Lisp, Closure and Lodash are built around some level of recursion. In these cases, data is divided into head and tail or first and last. Functions operate on the current data and call themselves with the rest. Recursion does not always have to be handled in that way. It can be divided in a number of ways, including in a binary manner. Recursion requires management of state since you need to ensure that it is an infinite which means that recursive algorithms need final states often when only one or two pieces of data are inputs to a function. Recursion is not advisable when you are using a large data across multiple local or distributed CPU’s, not on the same processor and GPUs don’t perform well in this pattern.</p>
+
+<h2 id="serial-versus-parallel-code-and-flynns-taxonomy">Serial Versus Parallel Code and Flynn’s Taxonomy</h2>
+
+<h2 id="concurrent-programming-patterns-2">Concurrent Programming Patterns</h2>
+<ul>
+  <li>Serial Search Pseudocode</li>
+  <li>Parallel Search Pseudocode</li>
+  <li>Flynn’s Taxonomy</li>
+</ul>
+
+<h2 id="inefficient-serial-search-pseudocode">Inefficient Serial Search Pseudocode</h2>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SerialSearchExample</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">4</span><span class="o">};</span>
+        <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>  <span class="c1">// example search value</span>
+        <span class="kt">int</span> <span class="n">foundIdx</span> <span class="o">=</span> <span class="n">serialSearch</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">x</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">foundIdx</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Value found at index: "</span> <span class="o">+</span> <span class="n">foundIdx</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Value not found."</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">serialSearch</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">,</span> <span class="kt">int</span> <span class="n">searchValue</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">foundIndex</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">data</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">==</span> <span class="n">searchValue</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">foundIndex</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">foundIndex</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>Pros:</p>
+<ul>
+  <li>Simple code</li>
+  <li>Doesn’t depend on sorting</li>
+</ul>
+
+<p>Cons:</p>
+<ul>
+  <li>Scales linearly with data size</li>
+</ul>
+
+<h2 id="recursive-serial-search-pseudocode">Recursive Serial Search Pseudocode</h2>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BinarySearchExample</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">9</span><span class="o">};</span>
+        <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span> <span class="c1">// value to search</span>
+        <span class="kt">int</span> <span class="n">foundIdx</span> <span class="o">=</span> <span class="n">binarySearch</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">data</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">,</span> <span class="n">x</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">foundIdx</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Value found at index: "</span> <span class="o">+</span> <span class="n">foundIdx</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Value not found."</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">binarySearch</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">l</span><span class="o">,</span> <span class="kt">int</span> <span class="n">r</span><span class="o">,</span> <span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">r</span> <span class="o">&gt;=</span> <span class="n">l</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="o">(</span><span class="n">r</span> <span class="o">-</span> <span class="n">l</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">==</span> <span class="n">x</span><span class="o">)</span>
+                <span class="k">return</span> <span class="n">mid</span><span class="o">;</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">x</span><span class="o">)</span>
+                <span class="k">return</span> <span class="nf">binarySearch</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">l</span><span class="o">,</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">,</span> <span class="n">x</span><span class="o">);</span>
+
+            <span class="k">return</span> <span class="nf">binarySearch</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">r</span><span class="o">,</span> <span class="n">x</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>Presume Sorted</p>
+
+<p>Pros:</p>
+<ul>
+  <li>Search time is logarithmic</li>
+  <li>Cost of sorting if data doesn’t change</li>
+</ul>
+
+<p>Cons:</p>
+<ul>
+  <li>Cost of sorting if data changes</li>
+  <li>Doesn’t distribute well</li>
+</ul>
+
+<h2 id="parallel-search-pseudocode">Parallel Search Pseudocode</h2>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">pSearch</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">subData</span><span class="o">,</span> <span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">offset</span><span class="o">,</span> <span class="nc">SharedResult</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="n">subData</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">idx</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">isFound</span><span class="o">())</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span> <span class="c1">// another thread found it</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">subData</span><span class="o">[</span><span class="n">idx</span><span class="o">]</span> <span class="o">==</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">idx</span> <span class="o">+</span> <span class="n">offset</span><span class="o">;</span> <span class="c1">// return global index</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="kd">class</span> <span class="nc">SharedResult</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">foundIndex</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+    <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">setFoundIndex</span><span class="o">(</span><span class="kt">int</span> <span class="n">idx</span><span class="o">)</span> <span class="o">{</span> <span class="k">if</span> <span class="o">(</span><span class="n">foundIndex</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="n">foundIndex</span> <span class="o">=</span> <span class="n">idx</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">synchronized</span> <span class="kt">int</span> <span class="nf">getFoundIndex</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">foundIndex</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">synchronized</span> <span class="kt">boolean</span> <span class="nf">isFound</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">foundIndex</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span> <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="n">function</span> <span class="nf">killOtherThreads</span><span class="o">(</span><span class="nc">Thread</span><span class="o">[]</span> <span class="n">threads</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="nc">Thread</span> <span class="n">t</span> <span class="o">:</span> <span class="n">threads</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">t</span> <span class="n">is</span> <span class="n">still</span> <span class="n">running</span><span class="o">)</span>
+            <span class="n">t</span><span class="o">.</span><span class="na">interrupt</span><span class="o">();</span>  <span class="c1">// or some other safe termination</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="c1">// Input</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="o">[</span><span class="mi">4</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">8</span><span class="o">];</span>
+<span class="kt">int</span> <span class="n">numThreads</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">numElements</span> <span class="o">=</span> <span class="n">ceil</span><span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">length</span> <span class="o">/</span> <span class="n">numThreads</span><span class="o">);</span>
+<span class="nc">Thread</span><span class="o">[]</span> <span class="n">threads</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Thread</span><span class="o">[</span><span class="n">numThreads</span><span class="o">];</span>
+<span class="nc">SharedResult</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SharedResult</span><span class="o">();</span> <span class="c1">// thread-safe class to store result</span>
+
+<span class="c1">// Launch threads</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">tIdx</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">tIdx</span> <span class="o">&lt;</span> <span class="n">numThreads</span><span class="o">;</span> <span class="n">tIdx</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">startIdx</span> <span class="o">=</span> <span class="n">tIdx</span> <span class="o">*</span> <span class="n">numElements</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">endIdx</span> <span class="o">=</span> <span class="n">min</span><span class="o">(</span><span class="n">startIdx</span> <span class="o">+</span> <span class="n">numElements</span><span class="o">,</span> <span class="n">data</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
+    
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">sData</span> <span class="o">=</span> <span class="n">slice</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">startIdx</span><span class="o">,</span> <span class="n">endIdx</span><span class="o">);</span>
+    <span class="n">threads</span><span class="o">[</span><span class="n">tIdx</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">localResult</span> <span class="o">=</span> <span class="n">pSearch</span><span class="o">(</span><span class="n">sData</span><span class="o">,</span> <span class="n">x</span><span class="o">,</span> <span class="n">startIdx</span><span class="o">,</span> <span class="n">result</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">localResult</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">result</span><span class="o">.</span><span class="na">setFoundIndex</span><span class="o">(</span><span class="n">localResult</span><span class="o">);</span>
+            <span class="n">killOtherThreads</span><span class="o">(</span><span class="n">threads</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+    <span class="n">threads</span><span class="o">[</span><span class="n">tIdx</span><span class="o">].</span><span class="na">start</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="c1">// Wait for all threads</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">tIdx</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">tIdx</span> <span class="o">&lt;</span> <span class="n">numThreads</span><span class="o">;</span> <span class="n">tIdx</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="n">threads</span><span class="o">[</span><span class="n">tIdx</span><span class="o">].</span><span class="na">join</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="k">if</span> <span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">getFoundIndex</span><span class="o">()</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">print</span><span class="o">(</span><span class="s">"Found at index: "</span> <span class="o">+</span> <span class="n">result</span><span class="o">.</span><span class="na">getFoundIndex</span><span class="o">());</span>
+<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="n">print</span><span class="o">(</span><span class="s">"Not found."</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Pros:</p>
+<ul>
+  <li>Doesn’t require presorting</li>
+  <li>Scales based on number of threads</li>
+</ul>
+
+<p>Cons:</p>
+<ul>
+  <li>Bad when #Threads « Size of Data</li>
+  <li>Thread management isn’t easy</li>
+</ul>
+
+<p>We are now onto the video discussion of serial versus parallel code, focusing on how you can develop code to handle different situations. We’ll explore how to create code to search for a value in a dataset using both serial and parallel approaches. Search is one of the most canonical challenges in computing, so understanding both good and bad ways to perform it can help you define analogous processes using sequential or concurrent programming.</p>
+
+<p>Also, as a way to break down what happens and what types of programming work best for what types of data, we will investigate Flynn’s taxonomy.</p>
+
+<p>In this code, you will recognize a very simple sequential algorithm for finding the index of a search value in a dataset. Simply stated: iterate through all values in the set. If the current value equals the search value, return the index. Otherwise, return -1 if not found.</p>
+
+<p>The good thing about this approach is that it’s extremely simple to implement. There is no need to sort the data ahead of time, which can be costly. The downside is that you may need to search through all values in the dataset to find a match. Linear search is not efficient, especially if you need to perform it frequently. That’s why the cost of sorting, along with a good algorithm (like binary search), is often worthwhile. It allows you to achieve logarithmic-time search, which becomes very efficient as dataset size grows—even if there’s an upfront cost to sorting, especially when the data can be updated efficiently.</p>
+
+<p>One of the more common and effective implementations of search is using a divide-and-conquer approach. This assumes that the dataset is always sorted, because otherwise it won’t work. The code divides the problem by picking midpoints and comparing them to the search value. If equal, return the index. If the search value is smaller or larger, the function recursively searches the left or right half of the dataset.</p>
+
+<p>The benefit of this approach is that search becomes algorithmic and efficient. The cost of search is low relative to frequent usage, making it worth the upfront sorting cost. However, if the dataset doesn’t update efficiently, or the data and computation are distributed, this approach can become expensive.</p>
+
+<p>With parallel search, things become more complex. You need to carefully assign the correct data subset to each thread. This is usually done by uniformly slicing the dataset into chunks to evenly distribute the workload.</p>
+
+<p>Each thread searches only a small portion of the dataset. If it finds the target value, it needs to terminate the other threads (probably indirectly) and return the index. The advantages here are that no sorting is required, and you can scale the solution by increasing the number of threads.</p>
+
+<p>However, there are drawbacks. If the number of threads is much smaller than the dataset size, then this is only slightly more efficient than inefficient serial search. Thread management isn’t easy, and safely killing threads requires well-thought-out logic.</p>
+
+<p>This approach can be improved with pre-sorting and binary search within each thread’s data slice. But then it inherits the issues we discussed with the recursive version. Where parallel search really shines is when you have lots of threads—this is where GPUs come in. More on that later.</p>
+
+<p>If each thread just needs to do a single comparison, and only update a shared variable if the value is found, then the search time becomes constant, which is better than logarithmic.</p>
+
+<p>Flynn’s Taxonomy
+Flynn’s taxonomy is a way of categorizing programs based on how they process instructions and data. The first two characters in the taxonomy can be SISD, SIMD, MISD, or MIMD:</p>
+
+<ul>
+  <li>SI (Single Instruction) or MI (Multiple Instruction): Refers to whether the same or different logic is applied across the data.</li>
+  <li>SD (Single Data) or MD (Multiple Data): Refers to whether the data is a single complex entity or many simple elements.</li>
+</ul>
+
+<p>In the top-left corner (SISD), we have sequential programs working on a single, complex state. Think of a program managing a chess game—lots of parts, but it likely can’t be decomposed. This isn’t about searching for the next move, just managing state.</p>
+
+<p>In the bottom-right corner (MIMD), multiple different processes do different things to lots of small pieces of data. This is like running multiple filters on pixels in an image or processing video frames. Each operation may be independent, without needing context from nearby pixels or previous frames.</p>
+
+<p>Most CPU-based sequential programs are MISD, since they include different processing steps meant to operate on a single or small number of complex objects.</p>
+
+<p>GPUs and distributed programming solutions are often SIMD, as they apply the same logic to large amounts of data using many threads and processes.</p>
+
+<p>Flynn’s taxonomy helps you assess your data and processing goal. Once you determine which category your task falls into, you can choose appropriate languages, frameworks, and hardware to implement your solution effectively.</p>
+
+<p>(Flynn’s Taxonomy)[https://archive.ph/nY0WM]</p>
+
+<h2 id="apply-flynns-taxonomy-to-come-up-with-candidate-solutions-including-existing-ones-to-each-of-the-following-domains">Apply Flynn’s taxonomy to come up with candidate solutions (including existing ones) to each of the following domains:</h2>
+
+<ul>
+  <li>Search for Extraterrestrial Intelligence</li>
+  <li>Cryptography (Encryption/Decryption)</li>
+  <li>Gene Folding/Candidate Vaccine Analysis</li>
+</ul>
+
+<ol>
+  <li>Search for Extraterrestrial Intelligence (SETI)</li>
+</ol>
+
+<p>Nature of Task:</p>
+<ul>
+  <li>Processing massive amounts of radio signal data from space.</li>
+  <li>Looking for patterns, anomalies, or narrow-bandwidth signals across large frequency ranges.</li>
+  <li>Highly parallelizable — each signal chunk can be independently analyzed.</li>
+</ul>
+
+<p>Flynn’s Classification: SIMD / MIMD</p>
+<ul>
+  <li>SIMD (Single Instruction, Multiple Data): Apply the same signal processing algorithms (FFT, filtering) across massive streams of independent data.</li>
+  <li>MIMD (Multiple Instruction, Multiple Data): Different signal analyses (AI-based, frequency-specific heuristics, anomaly detection) applied in parallel across large datasets.</li>
+</ul>
+
+<p>Candidate Solutions / Examples:</p>
+<ul>
+  <li>SETI@home (now retired): Classic MIMD model—distributed volunteer computing using BOINC.</li>
+  <li>GPU-accelerated signal analysis: Modern SIMD approach using CUDA/OpenCL for real-time FFTs and filtering.</li>
+  <li>AI-based anomaly detectors: Running on MIMD-style high-performance clusters.</li>
+</ul>
+
+<p>Best Fit: MIMD with optional SIMD sub-tasks (e.g., FFT)</p>
+
+<ol>
+  <li>Cryptography (Encryption / Decryption)</li>
+</ol>
+
+<p>Nature of Task:</p>
+<ul>
+  <li>Modern encryption algorithms (AES, RSA, ECC) are deterministic, structured.</li>
+  <li>Brute force or key cracking involves testing many keys — easily parallelizable.</li>
+  <li>Secure communication often involves many concurrent encrypt/decrypt operations.</li>
+</ul>
+
+<p>Flynn’s Classification: SIMD / MIMD</p>
+<ul>
+  <li>SIMD: Apply the same encryption algorithm across multiple messages or keys — ideal for AES or block cipher modes on GPUs.</li>
+  <li>MIMD: Each thread or process could try a different key or decrypt scheme in brute-force cracking; or process independent sessions.</li>
+</ul>
+
+<p>Candidate Solutions / Examples:</p>
+<ul>
+  <li>AES-NI: Hardware acceleration using SIMD (Intel/AMD instruction sets).</li>
+  <li>Brute-force tools: e.g., Hashcat, John the Ripper — heavily GPU-optimized, SIMD-like.</li>
+  <li>Parallelized public-key systems: Cloud-based encryption systems that use thread pools for concurrent sessions.</li>
+</ul>
+
+<p>Best Fit:</p>
+<ul>
+  <li>Encryption: SIMD for speed, instruction-level parallelism.</li>
+  <li>Brute-force / Decryption: MIMD — each process tries a different key independently.</li>
+</ul>
+
+<ol>
+  <li>Gene Folding / Candidate Vaccine Analysis</li>
+</ol>
+
+<p>Nature of Task:</p>
+<ul>
+  <li>Predicting 3D protein folding from amino acid sequences (very complex, nonlinear).</li>
+  <li>Exploring huge search spaces to simulate molecular interactions and binding.</li>
+  <li>Involves physics-based models (energy minimization), ML models, and stochastic simulations.</li>
+</ul>
+
+<p>Flynn’s Classification: MIMD</p>
+<ul>
+  <li>Highly diverse instructions across diverse data (e.g., different folding candidates, molecular models).</li>
+  <li>Different simulation types and models may run concurrently.</li>
+</ul>
+
+<p>Candidate Solutions / Examples:</p>
+<ul>
+  <li>Folding@home: Classic MIMD model — each node simulates a portion of folding space.</li>
+  <li>AlphaFold: Deep learning model (not parallel in Flynn’s sense, but trained using MIMD-style distributed frameworks like TensorFlow on TPU clusters).</li>
+  <li>Molecular dynamics engines: e.g., GROMACS, AMBER, which run large-scale simulations often in MIMD supercomputers.</li>
+</ul>
+
+<p>Best Fit: MIMD</p>
+<ul>
+  <li>Due to heterogeneity of tasks and models (physics + biology + AI).</li>
+  <li>SIMD may be used in low-level operations (e.g., matrix multiplications, force calculations).</li>
+</ul>
+
+    <script src="https://utteranc.es/client.js" repo="psymbio/psymbio.github.io" issue-term="pathname" theme="github-dark-orange" crossorigin="anonymous" async>
+    </script>
+</section>
+<section style="padding-left: var(--spacing); width: 100%; max-width: 700px; margin: 0 auto;">
+    <span>That sentence that goes before giving my email to strangers: <a href="mailto: psymbio@gmail.com">psymbio@gmail.com</a></span>
+</section>
+<br>
+<br>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<style>
+    .videoWrapper {
+        position: relative;
+        padding-bottom: 56.333%;
+        height: 0;
+        background: black;
+    }
+    
+    .videoWrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+</style>
+
+<script>
+    function get_youtube_id(url) {
+        var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+        return (url.match(p)) ? RegExp.$1 : false;
+    }
+
+    function vimeo_embed(url, el) {
+        var id = false;
+        $.ajax({
+            url: 'https://vimeo.com/api/oembed.json?url=' + url,
+            async: true,
+            success: function(response) {
+                if (response.video_id) {
+                    id = response.video_id;
+                    if (url.indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (url.indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    var theInnerHTML = '<div class="videoWrapper"><iframe src="https://player.vimeo.com/video/' + id + '/?byline=0&title=0&portrait=0';
+                    if (autoplay == 1) theInnerHTML += '&autoplay=1';
+                    if (loop == 1) theInnerHTML += '&loop=1';
+                    theInnerHTML += '" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>';
+                    el.innerHTML = theInnerHTML;
+                }
+            }
+        });
+    }
+
+    function video_embed() {
+        var p = document.getElementsByTagName('p');
+        for (var i = 0; i < p.length; i++) {
+            //check if this is an external url (that starts with https:// or http://
+            if (p[i].innerHTML.indexOf("http://") == 0 ||
+                p[i].innerHTML.indexOf("https://") == 0) {
+                var youtube_id = get_youtube_id(p[i].innerHTML);
+                if (youtube_id) {
+                    if (p[i].innerHTML.indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (p[i].innerHTML.indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    var theInnerHTML = '<div class="videoWrapper"><iframe width="720" height="420" src="https://www.youtube.com/embed/' + youtube_id + '?rel=0&showinfo=0';
+                    if (autoplay == 1) theInnerHTML += '&autoplay=1';
+                    if (loop == 1) theInnerHTML += '&loop=1&playlist=' + youtube_id + '&version=3';
+                    if (p[i].innerHTML.indexOf('start=') !== -1) theInnerHTML += '&start=' + p[i].innerHTML.substring(p[i].innerHTML.indexOf('start=') + 6);
+                    theInnerHTML += '" frameborder="0" allowfullscreen></iframe></div>';
+                    p[i].innerHTML = theInnerHTML;
+                }
+                if (p[i].innerHTML.indexOf('vimeo.com') !== -1) {
+                    //ask vimeo for the id and place the embed
+                    vimeo_embed(p[i].innerHTML, p[i]);
+                }
+            }
+        }
+    }
+    video_embed();
+
+    function mp3_embed() {
+        var p = document.getElementsByTagName('p');
+        for (var i = 0; i < p.length; i++) {
+            if (p[i].innerHTML.indexOf('.mp3') !== -1) {
+                var str = p[i].innerHTML.split('?');
+                if (str.length == 1) str[1] = '';
+                var str1 = str[1];
+                str1 = str1.replace('&', '').replace('&', '');
+                str1 = str1.replace('autoplay=1', '').replace('autoplay=0', '');
+                str1 = str1.replace('loop=1', '').replace('loop=0', '');
+                str1 = str1.replace('controls=0', '').replace('controls=1', '');
+
+                if (str[0].lastIndexOf('.mp3', str[0].length - 4) === str[0].length - 4 && str1.length == 0) {
+                    if (str[1].indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (str[1].indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    if (str[1].indexOf('controls=0') !== -1) var controls = 0;
+                    else var controls = 1;
+                    var newInnerHTML = '<audio';
+                    if (autoplay == 1) newInnerHTML += ' autoplay';
+                    if (loop == 1) newInnerHTML += ' loop';
+                    if (controls == 1) newInnerHTML += ' controls';
+                    newInnerHTML += '><source src="' + str[0] + '" type="audio/mpeg">Your browser does not support the audio element.</audio>';
+                    p[i].innerHTML = newInnerHTML;
+                }
+            }
+        }
+    }
+    mp3_embed();
+</script>
+<script>
+    ! function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+            p = /^http:/.test(d.location) ? 'http' : 'https';
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.id = id;
+            js.src = p + '://platform.twitter.com/widgets.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    }(document, 'script', 'twitter-wjs');
+</script>
+
+            <section class="shore">
+    </div>
+</body>
+<script>
+    'use strict';
+    var head = document.head;
+    var link = document.createElement('link');
+    link.type = 'text/css';
+    link.rel = 'stylesheet';
+    link.href = '/css/pygments.css'
+    head.appendChild(link);
+</script>
+<!--copy code to clipboard-->
+<script src="/assets/scripts/copycode.js"></script>
+
+</html>
