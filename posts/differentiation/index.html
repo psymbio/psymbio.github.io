@@ -236,6 +236,44 @@
 
 \[\frac{d}{dx} \left[ f(x) \cdot g(x) \right] = f'(x)g(x) + f(x)g'(x)\]
 
+<h2 id="quotient-rule">Quotient Rule</h2>
+
+<p>If $f(x)$ and $g(x)$ are differentiable functions, and $g(x) \neq 0$, then the derivative of their quotient is:</p>
+
+\[\frac{d}{dx} \left[ \frac{f(x)}{g(x)} \right] = \frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2}\]
+
+<p>We start with the definition of the derivative:</p>
+
+\[\frac{d}{dx} \left[ \frac{f(x)}{g(x)} \right] = \lim_{\Delta x \to 0} \frac{\frac{f(x + \Delta x)}{g(x + \Delta x)} - \frac{f(x)}{g(x)}}{\Delta x}\]
+
+<p>Combine the fractions in the numerator:</p>
+
+\[= \lim_{\Delta x \to 0} \frac{\frac{f(x + \Delta x)g(x) - f(x)g(x + \Delta x)}{g(x + \Delta x)g(x)}}{\Delta x}\]
+
+<p>Simplify by multiplying through by the reciprocal:</p>
+
+\[= \lim_{\Delta x \to 0} \frac{f(x + \Delta x)g(x) - f(x)g(x + \Delta x)}{\Delta x \cdot g(x + \Delta x)g(x)}\]
+
+<p>Add and subtract $f(x)g(x)$ in the numerator to split the expression:</p>
+
+\[= \lim_{\Delta x \to 0} \frac{\left[ f(x + \Delta x)g(x) - f(x)g(x) \right] + \left[ f(x)g(x) - f(x)g(x + \Delta x) \right]}{\Delta x \cdot g(x + \Delta x)g(x)}\]
+
+<p>Group terms:</p>
+
+\[= \lim_{\Delta x \to 0} \frac{g(x)\left( f(x + \Delta x) - f(x) \right) - f(x)\left( g(x + \Delta x) - g(x) \right)}{\Delta x \cdot g(x + \Delta x)g(x)}\]
+
+<p>Split into two limits:</p>
+
+\[= \frac{g(x) \cdot \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x} - f(x) \cdot \lim_{\Delta x \to 0} \frac{g(x + \Delta x) - g(x)}{\Delta x}}{g(x) \cdot g(x)}\]
+
+<p>Recognize the derivatives:</p>
+
+\[= \frac{g(x)f'(x) - f(x)g'(x)}{[g(x)]^2}\]
+
+<p>So,</p>
+
+\[\frac{d}{dx} \left[ \frac{f(x)}{g(x)} \right] = \frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2}\]
+
 <h2 id="chain-rule">Chain Rule</h2>
 
 <p>If $y = f(g(x))$, where both $f$ and $g$ are differentiable functions, then the derivative of the composition is:</p>
@@ -320,6 +358,55 @@
 <p>Therefore:</p>
 
 \[\frac{d}{dx}[\cos(x)] = -\sin(x)\]
+
+<h2 id="derivative-of-the-sigmoid-function">Derivative of the Sigmoid Function</h2>
+
+<p>We want to compute the derivative of the sigmoid function:</p>
+
+\[\sigma(x) = \frac{1}{1 + e^{-x}}\]
+
+<p>By definition, the derivative is:</p>
+
+\[\sigma'(x) = \lim_{\Delta x \to 0} \frac{\sigma(x + \Delta x) - \sigma(x)}{\Delta x}\]
+
+<p>Instead of working directly with the limit, we first rewrite ( \sigma(x) ) in a form easier to differentiate:</p>
+
+\[\sigma(x) = (1 + e^{-x})^{-1}\]
+
+<p>Now apply the chain rule:</p>
+
+<ul>
+  <li>Let ( u = 1 + e^{-x} ), so ( \sigma(x) = u^{-1} ).</li>
+  <li>The derivative of ( u^{-1} ) is ( -u^{-2} \cdot u’ ).</li>
+</ul>
+
+<p>We compute ( u’ ):</p>
+
+\[u' = \frac{d}{dx}[1 + e^{-x}] = 0 + (-e^{-x}) = -e^{-x}\]
+
+<p>Substitute back:</p>
+
+\[\sigma'(x) = -u^{-2} \cdot (-e^{-x})\]
+
+<p>Simplify:</p>
+
+\[\sigma'(x) = \frac{e^{-x}}{(1 + e^{-x})^2}\]
+
+<p>Now, recall that:</p>
+
+\[\sigma(x) = \frac{1}{1 + e^{-x}}, \quad 1 - \sigma(x) = \frac{e^{-x}}{1 + e^{-x}}\]
+
+<p>Multiply these:</p>
+
+\[\sigma(x) \cdot (1 - \sigma(x)) = \frac{1}{1 + e^{-x}} \cdot \frac{e^{-x}}{1 + e^{-x}} = \frac{e^{-x}}{(1 + e^{-x})^2}\]
+
+<p>Therefore:</p>
+
+\[\sigma'(x) = \sigma(x) \cdot (1 - \sigma(x))\]
+
+<p>So the final derivative is:</p>
+
+\[\frac{d}{dx} \left[ \frac{1}{1 + e^{-x}} \right] = \sigma(x) \cdot (1 - \sigma(x))\]
 
 <h2 id="references">References</h2>
 
