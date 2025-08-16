@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        Chapter 2 - Probability Univariate Models &ndash; The Brain Archive
+    </title>
+    <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2"
+        crossorigin="messinasans-semi">
+    <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+    <meta name="author" content="psymbio" />
+    <meta name="description" content="psymbio's blog" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+    <link rel="alternate" type="application/rss+xml" href="/atom.xml" />
+    <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+    <link rel="shortcut icon" type="image/x-icon" href="/icons/icon.png" />
+    <link rel="icon" type="image/png" href="/icons/icon.png">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- See https://goo.gl/OOhYW5 -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- See https://goo.gl/qRE0vM -->
+    <meta name="theme-color" content="#C1272D">
+
+    <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="psymbio's blog">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="psymbio's blog">
+
+    <!-- Homescreen icons -->
+    <link rel="apple-touch-icon" sizes="192x192" href="icons/icon.png">
+
+    <!-- Tile icon for Windows 8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="icons/icon.png">
+    <meta name="msapplication-TileColor" content="#C1272D">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Default twitter cards -->
+    <meta name="twitter:card" content="psymbio's blog">
+    <meta name="twitter:site" content="@psymbio">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="my-app">
+    <meta property="og:image" content="icons/icon.png" />
+
+    <!--clicky analytics-->
+
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+        </script>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js"
+        integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.1.2/es5/startup.js"
+        integrity="sha512-umLk4jlqS6v3HF06nsUFlzLGh3yp1A9X+hhlGOEstnLdkphT8w0O8nJJi2Pf28kfIFQvYzMg7ODPluFlkc/WzQ=="
+        crossorigin="anonymous"></script>
+
+    <!--flowcharts-->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true
+        });
+    </script>
+    <!--2d plots-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <!--3d plots-->
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+
+    <!-- Add these in your <head> or right before </body> -->
+
+    <!--python for browser: brython
+<script type="text/javascript" src="/scripts/brython.js"></script>
+<script type="text/javascript" src="/scripts/brython_stdlib.js"></script>
+--->
+    <!--particles on the background-->
+    <!-- <script src="/assets/scripts/particle.js"></script> -->
+
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+    <meta name="google-site-verification" content="3PIlzxg_Fq6uuVEqKvNXrVj8NuWqIA9_hqCxWLcnU-4" />
+    <!--
+<nav>
+  <ul>
+      <li><a href="/">Blog</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+-->
+</head>
+
+<body>
+    <div class="top-line"></div>
+    <div class="container">
+        <section class="shore">
+            <header class="sidebar">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+    <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+    <a href="/">
+        <img src="/images/title.png" height="150" width="150" class="avatar" />
+    </a>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+</header>
+<link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+<link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+<link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+<link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+<!-- <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script> -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+      
+  <script type="text/javascript"
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+<section class="content">
+    <section class="byline">
+        August 16, 2025
+    </section>
+    <h1>Chapter 2 - Probability Univariate Models</h1>
+    <p><a href="https://faculty.washington.edu/fm1/394/Materials/2-3indep.pdf">https://faculty.washington.edu/fm1/394/Materials/2-3indep.pdf</a></p>
+
+<p>2.9 Exercises</p>
+
+<p>2.1 Conditional Indpendence
+a. Let $H \in {1, \ldots, K}$ be a discrete random variable, and let $e_1$ and $e_2$ be the observed values of two other random variables $E_1$ and $E_2$. Suppose we wish to calculate the vector</p>
+
+\[\vec{P}(H \mid e_1, e_2) = \big(P(H = 1 \mid e_1, e_2), \ldots, P(H = K \mid e_1, e_2)\big)\]
+
+<p>Which of the following sets of numbers are sufficient for the calculation?</p>
+
+<p>i. $P(e_1, e_2),\; P(H),\; P(e_1 \mid H),\; P(e_2 \mid H)$<br />
+ii. $P(e_1, e_2),\; P(H),\; P(e_1, e_2 \mid H)$<br />
+iii. $P(e_1 \mid H),\; P(e_2 \mid H),\; P(H)$</p>
+
+<p>b. Now suppose we assume $E_1 \perp E_2 \mid H$ (i.e., $E_1$ and $E_2$ are conditionally independent given $H$). Which of the above 3 sets are sufficient now?</p>
+
+<p>a) Using Bayes Theorem we have: $P(A \mid B) = \frac{P(B \mid A) P(A)}{P(B)}$, we get:</p>
+
+\[P(H \mid e_1, e_2) = \frac{P(e_1, e_2 \mid H) P(H)}{P(e_1, e_2)}\]
+
+<p>therefore: only set(ii) is sufficient for calculation.</p>
+
+<p>b) Under the assumption $E_1 \perp E_2 \mid H$, we have:</p>
+
+\[P(e_1,e_2 \mid H)=P(e_1 \mid H)\,P(e_2 \mid H).\]
+
+<p>therefore set (i) and (ii) are sufficient</p>
+
+<p>set (iii) becomes sufficient because $P(H)$ gives $P(H = k)$ and $P(e_1,e_2 \mid H)$ can be formed as a product, and the normalizer can be computed as
+\(P(e_1,e_2)=\sum_{k=1}^K P(e_1 \mid H=k)P(e_2 \mid H=k)P(H=k).\) (I need to do a bit more research on explaining this)</p>
+
+<p>Answer: (i), (ii), and (iii) are all sufficient under $E_1 \perp E_2 \mid H$.</p>
+
+<p>2.2 [Pairwise independence does not imply mutual independence]
+We say that two random variables are pairwise independent if
+\(p(X_2 \mid X_1) = p(X_2)\)
+and hence
+\(p(X_2, X_1) = p(X_1)p(X_2 \mid X_1) = p(X_1)p(X_2).\)
+We say that n random variables are mutually independent if
+\(p(X_i \mid X_S) = p(X_i) \quad \forall S \subseteq \{1,\ldots,n\}\setminus\{i\}\)
+and hence
+\(p(X_{1:n})=\prod_{i=1}^n p(X_i).\)
+Show that pairwise independence between all pairs of variables does not necessarily imply mutual independence. It suffices to give a counterexample.</p>
+
+<p>I did a little google search - still not equipped with the knowledge to find counter examples of things - I actually asked couple LLMs to help me with the sort ideation process of this sort of thing but even starts to give you a very organic reasoning of taking three events $X, Y, Z$ (because that would be the least complex thing to do here and trust me we want anything but the complexity of too many events)</p>
+
+<p>On this page: https://en.wikipedia.org/wiki/Independence_(probability_theory) scroll down to: Pairwise and mutual independence, to the diagram: Pairwise independent, but not mutually independent, events</p>
+
+\[P(A) = \frac{9+6+4+1}{40} = \frac{1}{2}\]
+
+<p>\(P(A \mid B) = \frac{P(A \cap B)}{P(B)} = \frac{10/40}{20/40} = \frac{1}{2} = P(A)\)
+(so on and so forth of explainaing the pairwise independence)</p>
+
+<p>\(P(A \mid BC) = \frac{P(A \cap B \cap C)}{P(BC)} = \frac{\frac{4}{40}}{\frac{4}{40} + \frac{1}{40}} = \frac{4}{5} \neq P(A)\) (so on and so forth of explainaing mutual independence doesn’t exist)</p>
+
+<p>(If you are wondering why I have stated almost the sme thing with few things added from what was in the article and few things subtracted it was just to sort of explain the calculation to myself.)</p>
+
+<p>but back to the crux of the problem - that venn diagram seems so perfectly crafted in fact how did they come up numbers to show this so beautifully…</p>
+
+<p>[I am leaving at no solution but the obvious XOR one shown in the solutions of the book: https://probml.github.io/pml-book/solns-public.pdf (page 4)]</p>
+
+<p>2.3 Let $X,Y,Z$ be discrete random variables. In the text we said $X \perp Y \mid Z$ iff
+\(p(x,y\mid z) = p(x\mid z)\,p(y\mid z)\)
+for all $x,y,z$ such that $p(z)&gt;0$. Now prove the following alternative definition: $X \perp Y \mid Z$ iff there exist functions $g$ and $h$ such that
+\(p(x,y\mid z) = g(x,z)\,h(y,z)\)
+for all $x,y,z$ such that $p(z)&gt;0$.</p>
+
+<p>[need to review]</p>
+
+<p>Proof:</p>
+
+<p>($\Rightarrow$) If $X \perp Y \mid Z$ then by definition
+\(p(x,y\mid z)=p(x\mid z)\,p(y\mid z).\)</p>
+
+<p>This is of the required product form with the choices</p>
+
+\[g(x,z)=p(x\mid z),\qquad h(y,z)=p(y\mid z).\]
+
+<p>($\Leftarrow$) Now assume there exist functions $g(x,z)$ and $h(y,z)$ with
+\(p(x,y\mid z)=g(x,z)\,h(y,z)\)</p>
+
+<p>for all $x,y$ and for every $z$ with $p(z)&gt;0$.</p>
+
+<p>Fix such a $z$. Sum the equation over $y$ to get the marginal $p(x\mid z)$:
+\(p(x\mid z)=\sum_y p(x,y\mid z)=\sum_y g(x,z)\,h(y,z)=g(x,z)\sum_y h(y,z).\)</p>
+
+<p>Define
+\(c(z):=\sum_y h(y,z).\)</p>
+
+<p>Because $p(z)&gt;0$ the conditional distribution $p(\cdot,\cdot\mid z)$ is a valid probability distribution over $(x,y)$, hence for some $x$ there must be some $y$ with $p(x,y\mid z)&gt;0$, which implies $c(z)&gt;0$. Thus we can write
+\(g(x,z)=\frac{p(x\mid z)}{c(z)}.\)</p>
+
+<p>Substitute this back into the factorization:
+\(p(x,y\mid z)=\frac{p(x\mid z)}{c(z)}\,h(y,z)
+= p(x\mid z)\,\frac{h(y,z)}{c(z)}.\)</p>
+
+<p>But
+\(\frac{h(y,z)}{c(z)}=\frac{h(y,z)}{\sum_{y'}h(y',z)}\)</p>
+
+<p>is a nonnegative function of $y$ that sums to $1$ over $y$, so it equals $p(y\mid z)$. Therefore
+\(p(x,y\mid z)=p(x\mid z)\,p(y\mid z)\)</p>
+
+<p>for all $x,y$ and for every $z$ with $p(z)&gt;0$, which is exactly $X\perp Y\mid Z$.</p>
+
+<p>This establishes the equivalence.</p>
+
+    <script src="https://utteranc.es/client.js" repo="psymbio/psymbio.github.io" issue-term="pathname" theme="github-dark-orange" crossorigin="anonymous" async>
+    </script>
+</section>
+<section style="padding-left: var(--spacing); width: 100%; max-width: 700px; margin: 0 auto;">
+    <span>That sentence that goes before giving my email to strangers: <a href="mailto: psymbio@gmail.com">psymbio@gmail.com</a></span>
+</section>
+<br>
+<br>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<style>
+    .videoWrapper {
+        position: relative;
+        padding-bottom: 56.333%;
+        height: 0;
+        background: black;
+    }
+    
+    .videoWrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+</style>
+
+<script>
+    function get_youtube_id(url) {
+        var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+        return (url.match(p)) ? RegExp.$1 : false;
+    }
+
+    function vimeo_embed(url, el) {
+        var id = false;
+        $.ajax({
+            url: 'https://vimeo.com/api/oembed.json?url=' + url,
+            async: true,
+            success: function(response) {
+                if (response.video_id) {
+                    id = response.video_id;
+                    if (url.indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (url.indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    var theInnerHTML = '<div class="videoWrapper"><iframe src="https://player.vimeo.com/video/' + id + '/?byline=0&title=0&portrait=0';
+                    if (autoplay == 1) theInnerHTML += '&autoplay=1';
+                    if (loop == 1) theInnerHTML += '&loop=1';
+                    theInnerHTML += '" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>';
+                    el.innerHTML = theInnerHTML;
+                }
+            }
+        });
+    }
+
+    function video_embed() {
+        var p = document.getElementsByTagName('p');
+        for (var i = 0; i < p.length; i++) {
+            //check if this is an external url (that starts with https:// or http://
+            if (p[i].innerHTML.indexOf("http://") == 0 ||
+                p[i].innerHTML.indexOf("https://") == 0) {
+                var youtube_id = get_youtube_id(p[i].innerHTML);
+                if (youtube_id) {
+                    if (p[i].innerHTML.indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (p[i].innerHTML.indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    var theInnerHTML = '<div class="videoWrapper"><iframe width="720" height="420" src="https://www.youtube.com/embed/' + youtube_id + '?rel=0&showinfo=0';
+                    if (autoplay == 1) theInnerHTML += '&autoplay=1';
+                    if (loop == 1) theInnerHTML += '&loop=1&playlist=' + youtube_id + '&version=3';
+                    if (p[i].innerHTML.indexOf('start=') !== -1) theInnerHTML += '&start=' + p[i].innerHTML.substring(p[i].innerHTML.indexOf('start=') + 6);
+                    theInnerHTML += '" frameborder="0" allowfullscreen></iframe></div>';
+                    p[i].innerHTML = theInnerHTML;
+                }
+                if (p[i].innerHTML.indexOf('vimeo.com') !== -1) {
+                    //ask vimeo for the id and place the embed
+                    vimeo_embed(p[i].innerHTML, p[i]);
+                }
+            }
+        }
+    }
+    video_embed();
+
+    function mp3_embed() {
+        var p = document.getElementsByTagName('p');
+        for (var i = 0; i < p.length; i++) {
+            if (p[i].innerHTML.indexOf('.mp3') !== -1) {
+                var str = p[i].innerHTML.split('?');
+                if (str.length == 1) str[1] = '';
+                var str1 = str[1];
+                str1 = str1.replace('&', '').replace('&', '');
+                str1 = str1.replace('autoplay=1', '').replace('autoplay=0', '');
+                str1 = str1.replace('loop=1', '').replace('loop=0', '');
+                str1 = str1.replace('controls=0', '').replace('controls=1', '');
+
+                if (str[0].lastIndexOf('.mp3', str[0].length - 4) === str[0].length - 4 && str1.length == 0) {
+                    if (str[1].indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (str[1].indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    if (str[1].indexOf('controls=0') !== -1) var controls = 0;
+                    else var controls = 1;
+                    var newInnerHTML = '<audio';
+                    if (autoplay == 1) newInnerHTML += ' autoplay';
+                    if (loop == 1) newInnerHTML += ' loop';
+                    if (controls == 1) newInnerHTML += ' controls';
+                    newInnerHTML += '><source src="' + str[0] + '" type="audio/mpeg">Your browser does not support the audio element.</audio>';
+                    p[i].innerHTML = newInnerHTML;
+                }
+            }
+        }
+    }
+    mp3_embed();
+</script>
+<script>
+    ! function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+            p = /^http:/.test(d.location) ? 'http' : 'https';
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.id = id;
+            js.src = p + '://platform.twitter.com/widgets.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    }(document, 'script', 'twitter-wjs');
+</script>
+
+            <section class="shore">
+    </div>
+</body>
+<script>
+    'use strict';
+    var head = document.head;
+    var link = document.createElement('link');
+    link.type = 'text/css';
+    link.rel = 'stylesheet';
+    link.href = '/css/pygments.css'
+    head.appendChild(link);
+</script>
+<!--copy code to clipboard-->
+<script src="/assets/scripts/copycode.js"></script>
+
+</html>
