@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-        Chapter 2 - Probability Univariate Models &ndash; The Brain Archive
+        Module 2 - How to find an Example &ndash; The Brain Archive
     </title>
     <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
     <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2"
@@ -134,119 +134,182 @@
   </script>
 <section class="content">
     <section class="byline">
-        August 16, 2025
+        August 17, 2025
     </section>
-    <h1>Chapter 2 - Probability Univariate Models</h1>
-    <p>Some references:</p>
+    <h1>Module 2 - How to find an Example</h1>
+    <h2 id="magic-squares">Magic Squares</h2>
 
-<p><a href="https://faculty.washington.edu/fm1/394/Materials/2-3indep.pdf">https://faculty.washington.edu/fm1/394/Materials/2-3indep.pdf</a></p>
+<h2 id="multiplicative-magic-squares">Multiplicative Magic Squares</h2>
 
-<p><a href="https://www.jeffreyheinz.net/classes/20F/materials/a1-answers.pdf">https://www.jeffreyheinz.net/classes/20F/materials/a1-answers.pdf</a></p>
+<h2 id="6-digit-number-starting-with-100-divisible-by-9271">6 digit number starting with 100 divisible by 9271</h2>
 
-<p>2.9 Exercises</p>
+<h2 id="3-digit-number-that-produces-a-remainder-1-when-divided-by-2-3-4-5-6-7">3 digit number that produces a remainder 1 when divided by 2, 3, 4, 5, 6, 7</h2>
 
-<p>2.1 Conditional Indpendence
-a. Let $H \in {1, \ldots, K}$ be a discrete random variable, and let $e_1$ and $e_2$ be the observed values of two other random variables $E_1$ and $E_2$. Suppose we wish to calculate the vector</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">101</span><span class="p">,</span> <span class="mi">999</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="nf">if </span><span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">6</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">7</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="c1"># but the simpler way of doing this is
+# N - 1 is some number divisible by 2, 3, 4, 5, 6, 7
+# N - 1 is 2 * 2 * 3 * 5 * 7 
+</span><span class="nf">print</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">7</span><span class="p">)</span>
+<span class="c1"># therefore N = (2 * 2 * 3 * 5 * 7) + 1
+</span></code></pre></div></div>
 
-\[\vec{P}(H \mid e_1, e_2) = \big(P(H = 1 \mid e_1, e_2), \ldots, P(H = K \mid e_1, e_2)\big)\]
+<p>We are looking for a 3-digit number $N$ such that</p>
 
-<p>Which of the following sets of numbers are sufficient for the calculation?</p>
+\[N \equiv 1 \pmod{2}, \quad
+N \equiv 1 \pmod{3}, \quad
+N \equiv 1 \pmod{4}, \quad
+N \equiv 1 \pmod{5}, \quad
+N \equiv 1 \pmod{6}, \quad
+N \equiv 1 \pmod{7}.\]
 
-<p>i. $P(e_1, e_2),\; P(H),\; P(e_1 \mid H),\; P(e_2 \mid H)$<br />
-ii. $P(e_1, e_2),\; P(H),\; P(e_1, e_2 \mid H)$<br />
-iii. $P(e_1 \mid H),\; P(e_2 \mid H),\; P(H)$</p>
+<p>This means that $N-1$ must be divisible by all of $2,3,4,5,6,7$. The lowest common multiple is:
+\(\text{lcm}(2,3,4,5,6,7) = 420.\)</p>
 
-<p>b. Now suppose we assume $E_1 \perp E_2 \mid H$ (i.e., $E_1$ and $E_2$ are conditionally independent given $H$). Which of the above 3 sets are sufficient now?</p>
+<p>Answer: $420 + 1 = 421$</p>
 
-<p>a) Using Bayes Theorem we have: $P(A \mid B) = \frac{P(B \mid A) P(A)}{P(B)}$, we get:</p>
+<p>The second number can be found doing:</p>
 
-\[P(H \mid e_1, e_2) = \frac{P(e_1, e_2 \mid H) P(H)}{P(e_1, e_2)}\]
+<p>Answer: $(420 * 2) + 1 = 841$</p>
 
-<p>therefore: only set(ii) is sufficient for calculation.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Find 3-digit number N such that N % m = 1 for m = 2, 3, 4, 5, 6, 7
+# This means N - 1 is divisible by 2, 3, 4, 5, 6, 7
+# Since 4 = 2 * 2 and 6 = 2 * 3, we need N - 1 divisible by 2, 3, 4, 5, 6, 7
+# Compute product 2 * 2 * 3 * 5 * 7 = 420 to account for all divisors
+# Thus, N = 420k + 1 for some integer k
+# For N to be a 3-digit number, 100 &lt;= N &lt;= 999
+</span>
+<span class="n">lcm</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">7</span>  <span class="c1"># 420
+</span><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>  <span class="c1"># Check k values where 420k + 1 is 3-digit
+</span>    <span class="n">N</span> <span class="o">=</span> <span class="n">lcm</span> <span class="o">*</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="mi">100</span> <span class="o">&lt;=</span> <span class="n">N</span> <span class="o">&lt;=</span> <span class="mi">999</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">N = </span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s"> satisfies N % m = 1 for m = 2, 3, 4, 5, 6, 7</span><span class="sh">"</span><span class="p">)</span>
 
-<p>b) Under the assumption $E_1 \perp E_2 \mid H$, we have:</p>
+<span class="c1"># Verify manually
+</span><span class="n">N</span> <span class="o">=</span> <span class="mi">421</span>  <span class="c1"># Example: k = 1 gives 420 * 1 + 1 = 421
+</span><span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s"> % </span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s"> = </span><span class="si">{</span><span class="n">N</span> <span class="o">%</span> <span class="n">m</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
 
-\[P(e_1,e_2 \mid H)=P(e_1 \mid H)\,P(e_2 \mid H).\]
+<h2 id="prove-there-exist-two-integers-n-with-different-first-digits-whose-square-begins-with-the-digits-31415-find-such-n">Prove there exist two integers $n$ with different first digits whose square begins with the digits $31415$. Find such $n$.</h2>
 
-<p>therefore set (i) and (ii) are sufficient</p>
+<p>A square starts with the prefix $31415$ iff for some integer $t\ge 0$,
+\(31415\cdot 10^{2t}\ \le\ n^2\ &lt;\ 31416\cdot 10^{2t},\)
+i.e.
+\(\sqrt{31415}\cdot 10^{t}\ \le\ n\ &lt;\ \sqrt{31416}\cdot 10^{t}.\)
+Equivalently, defining the interval
+\(I=\big[\sqrt{31415},\sqrt{31416}\big)\approx[177.245\ldots,177.271\ldots),\)
+an integer $n$ works exactly when $n/10^{t}\in I$ for some $t$.</p>
 
-<p>set (iii) becomes sufficient because $P(H)$ gives $P(H = k)$ and $P(e_1,e_2 \mid H)$ can be formed as a product, and the normalizer can be computed as
-\(P(e_1,e_2)=\sum_{k=1}^K P(e_1 \mid H=k)P(e_2 \mid H=k)P(H=k).\) (I need to do a bit more research on explaining this)</p>
+<p>We can choose digits greedily: at each step multiply the current interval by $10$ and select a digit that keeps us inside. Because
+\(\sqrt{3141.5}=\sqrt{\tfrac{31415}{10}} \approx 56.0490856\ldots,\)
+both leading digits $1$ and $5$ are possible branches:</p>
 
-<p>Answer: (i), (ii), and (iii) are all sufficient under $E_1 \perp E_2 \mid H$.</p>
+<p>1) Branch starting with $1$.
+Iterating the digit-choosing process yields the unique 6-digit integer
+\(n=177243,\)
+and a check shows
+\(177243^2=31\,415\,081\,049,\)
+which indeed begins with $31415$.</p>
 
-<p>2.2 [Pairwise independence does not imply mutual independence]
-We say that two random variables are pairwise independent if
-\(p(X_2 \mid X_1) = p(X_2)\)
-and hence
-\(p(X_2, X_1) = p(X_1)p(X_2 \mid X_1) = p(X_1)p(X_2).\)
-We say that n random variables are mutually independent if
-\(p(X_i \mid X_S) = p(X_i) \quad \forall S \subseteq \{1,\ldots,n\}\setminus\{i\}\)
-and hence
-\(p(X_{1:n})=\prod_{i=1}^n p(X_i).\)
-Show that pairwise independence between all pairs of variables does not necessarily imply mutual independence. It suffices to give a counterexample.</p>
+<p>1) Branch starting with $5$.
+Continuing the same process produces
+\(n=560491,\)
+and
+\(560491^2=314\,150\,161\,081,\)
+which also begins with $31415$.</p>
 
-<p>I did a little google search - still not equipped with the knowledge to find counter examples of things - I actually asked couple LLMs to help me with the sort ideation process of this sort of thing but even starts to give you a very organic reasoning of taking three events $X, Y, Z$ (because that would be the least complex thing to do here and trust me we want anything but the complexity of too many events)</p>
+<p>Thus there are at least two such integers with different first digits:
+\(n=177243 \quad \text{and} \quad n=560491.\)</p>
 
-<p>On this page: https://en.wikipedia.org/wiki/Independence_(probability_theory) scroll down to: Pairwise and mutual independence, to the diagram: Pairwise independent, but not mutually independent, events</p>
+<h2 id="integer-linear-combinations---city-with-713-florins">Integer Linear Combinations - City with 7/13 florins</h2>
 
-\[P(A) = \frac{9+6+4+1}{40} = \frac{1}{2}\]
+<p>Imagine a country with 7/13 florins coins. Two people, each has many coins of each type. Can one pay 6 florins to the other?</p>
 
-<p>\(P(A \mid B) = \frac{P(A \cap B)}{P(B)} = \frac{10/40}{20/40} = \frac{1}{2} = P(A)\)
-(so on and so forth of explainaing the pairwise independence)</p>
+<p>6 = 13 - 7
+what about paying 1 florin?
+yes: 2 * 7 - 13 = 1 or 7-6=1
+what about 2 florins?
+4 * 7 - 2 * 13 = 28 - 26 = 2 or 2 * 1 = 2
+any (integer) amount is payable</p>
 
-<p>\(P(A \mid BC) = \frac{P(A \cap B \cap C)}{P(BC)} = \frac{\frac{4}{40}}{\frac{4}{40} + \frac{1}{40}} = \frac{4}{5} \neq P(A)\) (so on and so forth of explainaing mutual independence doesn’t exist)</p>
+<h2 id="city-with-1521-florins">City with 15/21 florins</h2>
 
-<p>(If you are wondering why I have stated almost the sme thing with few things added from what was in the article and few things subtracted it was just to sort of explain the calculation to myself.)</p>
+<p>Now imagine a country with 15/21 coins; how to pay 6?</p>
 
-<p>but back to the crux of the problem - that venn diagram seems so perfectly crafted in fact how did they come up numbers to show this so beautifully…</p>
+<p>6 = 21 - 15</p>
 
-<p>[I am leaving at no solution but the obvious XOR one shown in the solutions of the book: https://probml.github.io/pml-book/solns-public.pdf (page 4)]</p>
+<p>What about 8?</p>
 
-<p>2.3 Let $X,Y,Z$ be discrete random variables. In the text we said $X \perp Y \mid Z$ iff
-\(p(x,y\mid z) = p(x\mid z)\,p(y\mid z)\)
-for all $x,y,z$ such that $p(z)&gt;0$. Now prove the following alternative definition: $X \perp Y \mid Z$ iff there exist functions $g$ and $h$ such that
-\(p(x,y\mid z) = g(x,z)\,h(y,z)\)
-for all $x,y,z$ such that $p(z)&gt;0$.</p>
+<p>Not possible - all payable amounts are multiple of 3 no chances of 1 and 8</p>
 
-<p>[need to review]</p>
+<p>What about 3? Possible:
+9 = (2 * 15) - 21
+6 = 21 - 15
+3 = 9 - 6
+Thus, 3 and any multiple of 3 is possible.</p>
 
-<p>Proof:</p>
+<p>equation should be 15x+21y=c15, x, plus, 21, y, equals, c if I want to pay c florins.</p>
 
-<p>($\Rightarrow$) If $X \perp Y \mid Z$ then by definition
-\(p(x,y\mid z)=p(x\mid z)\,p(y\mid z).\)</p>
+<p>basically a multiple of the greatest common divisor</p>
 
-<p>This is of the required product form with the choices</p>
+<p>a7 + b13 = 5</p>
 
-\[g(x,z)=p(x\mid z),\qquad h(y,z)=p(y\mid z).\]
+<p>Quiz:</p>
 
-<p>($\Leftarrow$) Now assume there exist functions $g(x,z)$ and $h(y,z)$ with
-\(p(x,y\mid z)=g(x,z)\,h(y,z)\)</p>
+<ol>
+  <li>Person A has an unlimited number of 7-florin coins, person B has an unlimited number of 13-florin coins. How A can pay 5 florins to B? A pays 10 florins of 7 and B pays 5 florins of 13 to get 5.</li>
+  <li>A town has three hotels. You have 10 vouchers for one-night stay for the first hotel, 15 for the second one, and 20 for the third one. The rules do not allow you to use vouchers for two consecutive nights in one hotel. Can you use them all for 10 + 15 + 20 = 45 consecutive nights changing the hotels each night?</li>
+  <li>A town has three hotels. You have 10 vouchers for one-night stay for the first hotel, 15 for the second one, and 30 for the third one. The rules do not allow you to use vouchers for two consecutive nights in one hotel. Can you use them all for 10 + 15 + 30 = 55 consecutive nights changing the hotels each night?</li>
+</ol>
 
-<p>for all $x,y$ and for every $z$ with $p(z)&gt;0$.</p>
+<h2 id="paths-in-a-graph">Paths in a Graph</h2>
+<p>So, here is the puzzle. There are three hotels in a town A, B and C and you have vouchers. You have 10 vouchers for hotel A, 15 vouchers for B and 20 for C but there is a restriction. The hotel does not allow you to use the voucher two nights in a row. So you need to change hotels. Every night you should move to a different hotel. The question is whether it is possible to do this for 45 consecutive nights.</p>
 
-<p>Fix such a $z$. Sum the equation over $y$ to get the marginal $p(x\mid z)$:
-\(p(x\mid z)=\sum_y p(x,y\mid z)=\sum_y g(x,z)\,h(y,z)=g(x,z)\sum_y h(y,z).\)</p>
+<p>Answer: Start with C, keep going from C to B and then when all of them look somewhat equal go from A to B to C.</p>
 
-<p>Define
-\(c(z):=\sum_y h(y,z).\)</p>
+<p>Repeat a path of length 9 (A = 10/5 = 2, B = 15/5 = 3, C = 20/5 = 4) 5 times. ACACBCBCB [explain this]</p>
 
-<p>Because $p(z)&gt;0$ the conditional distribution $p(\cdot,\cdot\mid z)$ is a valid probability distribution over $(x,y)$, hence for some $x$ there must be some $y$ with $p(x,y\mid z)&gt;0$, which implies $c(z)&gt;0$. Thus we can write
-\(g(x,z)=\frac{p(x\mid z)}{c(z)}.\)</p>
+<p>If we want to repeat some path several times, the last hotel of the previous iteration and the first hotel of the next iteration should be different</p>
 
-<p>Substitute this back into the factorization:
-\(p(x,y\mid z)=\frac{p(x\mid z)}{c(z)}\,h(y,z)
-= p(x\mid z)\,\frac{h(y,z)}{c(z)}.\)</p>
+<p>A(10), B(15), C(30) = 55 -&gt; is this possible, no, why??
+obstacle: too many vouchers for C</p>
 
-<p>But
-\(\frac{h(y,z)}{c(z)}=\frac{h(y,z)}{\sum_{y'}h(y',z)}\)</p>
+<p>2, 3, 6
+ACACBCBCBC -&gt; Only 5 Cs could be fixed not six of them</p>
 
-<p>is a nonnegative function of $y$ that sums to $1$ over $y$, so it equals $p(y\mid z)$. Therefore
-\(p(x,y\mid z)=p(x\mid z)\,p(y\mid z)\)</p>
+<p>25, 20, x
+5, 4, x</p>
 
-<p>for all $x,y$ and for every $z$ with $p(z)&gt;0$, which is exactly $X\perp Y\mid Z$.</p>
+<p>CACACA -&gt; And then I figured basically with every A there can be a C (likewise with every B there can be a C). So, 9x5 is the maximum</p>
 
-<p>This establishes the equivalence.</p>
+<p>You can sleep 46 times in C with one-day breaks, using 20+25=45 other vouchers for the breaks, but not more (not enough to fill all breaks)</p>
+
+<p>Question 3
+There are some books on the table. If you group them by 3, you get some number of full groups and 2 books remain; if you group them by 4, you get some number of full groups and 3 books remain; if you group them by 5, you get some number of full groups and 4 books remain. What is the number of books on the table, if it is less than 100?
+(Maybe Chinese Remainder Theorem)</p>
+
+<p>x%3 = 2
+x%4 = 3
+x%5 = 4</p>
+
+<p>Dumb way:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">):</span>
+    <span class="nf">if </span><span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">4</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Answer:
+If you add one book, the number will be a multiple of 2,3,4,5, and these common multiples are multiples of 60.</p>
+
+<p>In some country there are 12-, 20-, and 30-florin coins only. One person in this country wants to pay some amount to other person in this country. What is the minimal amount that can be paid if both people have many coins of each type?</p>
+
+<p>2</p>
+
+<p>12+20-30=2; one cannot pay 1 since all the coins are multiples of 2.</p>
+
+<p>I took out the HCF.</p>
 
     <script src="https://utteranc.es/client.js" repo="psymbio/psymbio.github.io" issue-term="pathname" theme="github-dark-orange" crossorigin="anonymous" async>
     </script>

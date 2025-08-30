@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        Module 3 - Warm Up &ndash; The Brain Archive
+    </title>
+    <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2"
+        crossorigin="messinasans-semi">
+    <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+    <meta name="author" content="psymbio" />
+    <meta name="description" content="psymbio's blog" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+    <link rel="alternate" type="application/rss+xml" href="/atom.xml" />
+    <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+    <link rel="shortcut icon" type="image/x-icon" href="/icons/icon.png" />
+    <link rel="icon" type="image/png" href="/icons/icon.png">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- See https://goo.gl/OOhYW5 -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- See https://goo.gl/qRE0vM -->
+    <meta name="theme-color" content="#C1272D">
+
+    <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="psymbio's blog">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="psymbio's blog">
+
+    <!-- Homescreen icons -->
+    <link rel="apple-touch-icon" sizes="192x192" href="icons/icon.png">
+
+    <!-- Tile icon for Windows 8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="icons/icon.png">
+    <meta name="msapplication-TileColor" content="#C1272D">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Default twitter cards -->
+    <meta name="twitter:card" content="psymbio's blog">
+    <meta name="twitter:site" content="@psymbio">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="my-app">
+    <meta property="og:image" content="icons/icon.png" />
+
+    <!--clicky analytics-->
+
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+        </script>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js"
+        integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.1.2/es5/startup.js"
+        integrity="sha512-umLk4jlqS6v3HF06nsUFlzLGh3yp1A9X+hhlGOEstnLdkphT8w0O8nJJi2Pf28kfIFQvYzMg7ODPluFlkc/WzQ=="
+        crossorigin="anonymous"></script>
+
+    <!--flowcharts-->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true
+        });
+    </script>
+    <!--2d plots-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <!--3d plots-->
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+
+    <!-- Add these in your <head> or right before </body> -->
+
+    <!--python for browser: brython
+<script type="text/javascript" src="/scripts/brython.js"></script>
+<script type="text/javascript" src="/scripts/brython_stdlib.js"></script>
+--->
+    <!--particles on the background-->
+    <!-- <script src="/assets/scripts/particle.js"></script> -->
+
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+    <meta name="google-site-verification" content="3PIlzxg_Fq6uuVEqKvNXrVj8NuWqIA9_hqCxWLcnU-4" />
+    <!--
+<nav>
+  <ul>
+      <li><a href="/">Blog</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+-->
+</head>
+
+<body>
+    <div class="top-line"></div>
+    <div class="container">
+        <section class="shore">
+            <header class="sidebar">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+    <link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+    <link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+    <a href="/">
+        <img src="/images/title.png" height="150" width="150" class="avatar" />
+    </a>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+</header>
+<link rel="stylesheet" href="/css/post.css" type="text/css" media="screen, projection" />
+<link rel="preload" as="font" href="/fonts/MessinaSans-Regular.woff2" type="font/woff2" crossorigin="messinasans">
+<link rel="preload" as="font" href="/fonts/MessinaSans-SemiBold.woff2" type="font/woff2" crossorigin="messinasans-semi">
+<link rel="preload" as="font" href="/fonts/fira-mono-v9-latin-regular.woff2" type="font/woff2" crossorigin="fira">
+<!-- <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script> -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+  </script>
+      
+  <script type="text/javascript"
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+<section class="content">
+    <section class="byline">
+        August 23, 2025
+    </section>
+    <h1>Module 3 - Warm Up</h1>
+    <h2 id="maximizing-profit-chocolate-factory">Maximizing Profit: Chocolate Factory</h2>
+
+<p>Setup</p>
+<ul>
+  <li>Let $M$ = boxes of milk chocolate per day</li>
+  <li>Let $D$ = boxes of dark chocolate per day</li>
+</ul>
+
+<p>Constraints
+\(\begin{aligned}
+M &amp;\le 500 \quad \text{(milk demand)}\\
+D &amp;\le 200 \quad \text{(dark demand)}\\
+M + D &amp;\le 600 \quad \text{(daily capacity)}\\
+M, D &amp;\ge 0
+\end{aligned}\)</p>
+
+<p>Objective
+\(\max\; 10M + 30D\)</p>
+
+<p>Existential part: a plan that achieves $10{,}000</p>
+<ul>
+  <li>Take $(M,D)=(400,200)$.</li>
+</ul>
+
+<p>Feasibility check:
+\(400 \le 500,\quad 200 \le 200,\quad 400+200=600 \le 600\)</p>
+
+<p>Profit:
+\(10\cdot 400 + 30\cdot 200 = 4000 + 6000 = 10{,}000\)</p>
+
+<p>Universal part: no plan can exceed $10{,}000
+From the constraints,
+\(\begin{aligned}
+M + D &amp;\le 600 \quad \Rightarrow \quad 10M + 10D \le 6000,\\
+D &amp;\le 200 \quad \Rightarrow \quad 20D \le 4000.
+\end{aligned}\)
+Add them:
+\((10M + 10D) + (20D) \le 6000 + 4000 \;\Rightarrow\; 10M + 30D \le 10{,}000.\)
+Thus every feasible plan has profit at most $10{,}000, so the plan above is optimal.</p>
+
+<p>Dual (certificate of optimality)
+Primal (above) dual is
+\(\begin{aligned}
+\min\;&amp; 500y_1 + 200y_2 + 600y_3 \\
+\text{s.t. }&amp; y_1 + y_3 \ge 10 \quad \text{(for } M\text{)}\\
+&amp; y_2 + y_3 \ge 30 \quad \text{(for } D\text{)}\\
+&amp; y_1,y_2,y_3 \ge 0.
+\end{aligned}\)
+Choose
+\((y_1,y_2,y_3) = (0,20,10),\)
+which is feasible since $0+10=10\ge10$ and $20+10=30\ge30$.
+Its value is
+\(500\cdot 0 + 200\cdot 20 + 600\cdot 10 = 4000 + 6000 = 10{,}000.\)
+By weak duality, every primal feasible plan has profit $\le 10{,}000$. Since we have a primal plan achieving $10{,}000, it is optimal (strong duality).</p>
+
+<p>Geometric intuition</p>
+<ul>
+  <li>The objective prefers dark chocolate (higher profit per box).</li>
+  <li>Produce dark up to its demand: $D=200$.</li>
+  <li>Use remaining capacity for milk: $M=600-200=400$.</li>
+  <li>This is the corner point where $D=200$ and $M+D=600$ intersect, yielding the maximum.</li>
+</ul>
+
+<p>Answer</p>
+<ul>
+  <li>Optimal production plan: $M=400$, $D=200$.</li>
+  <li>Maximum profit: $10{,}000.</li>
+</ul>
+
+<h2 id="simple-card-game-draw-two-cards">Simple Card Game (Draw two cards)</h2>
+<p>We are given all two-digit numbers: 10, 11, 12, …, 99.<br />
+We want to select as many numbers as possible under the constraint that no two chosen numbers sum to 100.<br />
+In other words, for every chosen $x$, the number $100-x$ cannot also be chosen.<br />
+The question is: what is the maximum possible number of such integers?</p>
+
+<p>Solution
+Let us analyze step by step.</p>
+
+<ol>
+  <li>Pairing numbers
+    <ul>
+      <li>Consider the smallest number 10. Its complement with respect to 100 is 90.<br />
+Hence, from the pair $(10,90)$ we can take at most one number.</li>
+      <li>Similarly, $(11,89), (12,88), …, (49,51)$ are all disjoint pairs.</li>
+      <li>In total, there are 40 such pairs.</li>
+    </ul>
+  </li>
+  <li>Free numbers
+    <ul>
+      <li>The number 50 is special: its complement is itself. Since we have only one copy of 50, we can take it without conflict.</li>
+      <li>The numbers 91, 92, …, 99 also have no valid complements in the two-digit range, so they can all be chosen.</li>
+      <li>Thus, there are $1+9=10$ such “free” numbers.</li>
+    </ul>
+  </li>
+  <li>Upper bound
+    <ul>
+      <li>From each of the 40 pairs, we can select at most one element.</li>
+      <li>Along with the 10 free numbers, the total maximum size is:
+\(40 + 10 = 50.\)
+So no solution can exceed 50 numbers.</li>
+    </ul>
+  </li>
+  <li>Achievability
+    <ul>
+      <li>To see that 50 is achievable, consider the set
+\(\{50, 51, 52, \ldots, 99\}.\)
+This set contains 50 numbers.<br />
+Any two chosen numbers sum to at least $50+51=101$, which is never equal to 100.<br />
+Hence, this is a valid solution.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Conclusion
+The maximum number of two-digit integers one can select with no two summing to 100 is:
+\(\boxed{50}.\)</p>
+
+<h2 id="maximum-number-of-rooks-on-a-chessboard">Maximum Number of Rooks on a Chessboard</h2>
+
+<p>What is the maximum number of rooks that one can place on an $8\times 8$ chessboard such that no two rooks attack each other?</p>
+
+<p>A rook moves any number of squares vertically or horizontally.<br />
+Thus, if two rooks share the same row or the same column, they attack each other.</p>
+
+<p>The <strong>pigeonhole principle</strong> states:<br />
+If $n$ pigeons are placed into $m$ boxes with $n&gt;m$, then at least one box contains more than one pigeon.</p>
+
+<ul>
+  <li>Think of the 8 rows as “boxes” and rooks as “pigeons.”</li>
+  <li>If there were more than 8 rooks, then by the pigeonhole principle, at least one row would contain at least two rooks.</li>
+  <li>But if two rooks share a row, they attack each other.</li>
+  <li>Therefore, <strong>at most 8 rooks</strong> can be placed without conflict.</li>
+</ul>
+
+<p>Placing 8 rooks is straightforward:</p>
+<ul>
+  <li>Put one rook in each row and each column.</li>
+  <li>Example: place rooks along the diagonal:<br />
+\((1,1), (2,2), (3,3), \dots, (8,8).\)</li>
+  <li>
+    <p>This arrangement ensures no two rooks attack.</p>
+  </li>
+  <li>Upper bound: at most 8 rooks (pigeonhole principle).</li>
+  <li>Achievable: exactly 8 rooks (diagonal or other one-per-row-and-column placements).</li>
+  <li>Hence the maximum is:
+\(\boxed{8}\)</li>
+</ul>
+
+<p>There are many optimal solutions:<br />
+any placement with one rook per row and per column is valid.</p>
+
+<h2 id="maximum-number-of-knights-on-a-chessboard">Maximum Number of Knights on a Chessboard</h2>
+<p>What is the maximum number of knights that can be placed on an $8\times 8$ chessboard such that no two knights attack each other?</p>
+
+<p>A knight moves in an <strong>L-shape</strong>: two squares in one direction and one square perpendicular.<br />
+Importantly:</p>
+<ul>
+  <li>A knight on a <strong>white square</strong> attacks only <strong>black squares</strong>.</li>
+  <li>A knight on a <strong>black square</strong> attacks only <strong>white squares</strong>.</li>
+</ul>
+
+<p>If we place knights on all 32 white squares, then:</p>
+<ul>
+  <li>None of these knights attack each other, because a knight on white only attacks black.<br />
+Thus, we immediately have a valid solution with:
+\(32 \;\text{knights}.\)</li>
+</ul>
+
+<p>Suppose we try to place more than 32 knights.</p>
+<ul>
+  <li>Clearly, 64 knights is impossible, since many pairs of knights would attack.</li>
+  <li>Consider the bottom-left corner square. It conflicts with the square two up and one right.<br />
+So these two form a <strong>forbidden pair</strong>: at most one knight can be placed between them.</li>
+</ul>
+
+<p>If we can partition the entire chessboard into disjoint pairs of squares such that the two squares in each pair attack each other, then:</p>
+<ul>
+  <li>From each pair, we can select at most one knight.</li>
+  <li>Since there are $64/2=32$ pairs, at most 32 knights can be placed.</li>
+</ul>
+
+<p>Indeed, the board can be partitioned into $2\times 4$ rectangles.</p>
+<ul>
+  <li>Each $2\times 4$ rectangle has 8 squares.</li>
+  <li>Inside it, we can group the squares into 4 attacking pairs.</li>
+  <li>Thus, at most 4 knights can be placed inside such a rectangle.</li>
+  <li>
+    <p>Since the $8\times 8$ board can be fully covered by 8 such rectangles, we get a total bound:
+\(8 \times 4 = 32.\)</p>
+  </li>
+  <li>We found a construction with 32 knights (all on white squares).</li>
+  <li>We proved that no arrangement can exceed 32 knights.</li>
+</ul>
+
+<p>Hence, the maximum number of knights on a chessboard with no two attacking is:
+\(\boxed{32}\)</p>
+
+<h2 id="maximum-number-of-bishops-on-a-chessboard">Maximum Number of Bishops on a Chessboard</h2>
+
+<h3 id="problem">Problem</h3>
+<p>What is the maximum number of bishops that can be placed on an $8\times 8$ chessboard such that no two bishops attack each other?</p>
+
+<h3 id="reminder-bishop-movement">Reminder: Bishop Movement</h3>
+<p>A bishop moves <strong>diagonally</strong> across the board.<br />
+Thus, if two bishops share the same diagonal, they attack each other.</p>
+
+<h3 id="step-1-partition-into-diagonals">Step 1: Partition into Diagonals</h3>
+<ul>
+  <li>The board can be partitioned into 15 diagonals running from bottom-left to top-right.</li>
+  <li>Each diagonal can hold at most <strong>one bishop</strong> (otherwise they would attack).</li>
+  <li>This gives a <strong>first upper bound</strong>:
+\(\text{Maximum} \leq 15\)</li>
+</ul>
+
+<h3 id="step-2-tightening-the-upper-bound">Step 2: Tightening the Upper Bound</h3>
+<ul>
+  <li>Look at diagonal 1 (bottom-left corner). It contains just one square.</li>
+  <li>Similarly, diagonal 15 (top-right corner) also contains just one square.</li>
+  <li>We cannot place bishops on both of these simultaneously, since they lie on the same other diagonal.</li>
+  <li>Thus, the true maximum is reduced to:
+\(\text{Maximum} \leq 14\)</li>
+</ul>
+
+<h3 id="step-3-constructing-a-solution">Step 3: Constructing a Solution</h3>
+<p>It is indeed possible to place 14 bishops without conflict:</p>
+<ul>
+  <li>Choose one bishop on each diagonal numbered $2,3,\dots,15$ except for one of the extremes.</li>
+  <li>With careful placement, no two bishops attack each other.</li>
+</ul>
+
+<h3 id="step-4-conclusion">Step 4: Conclusion</h3>
+<ul>
+  <li>Upper bound: 14 bishops.</li>
+  <li>Achievability: 14 bishops (by explicit construction).</li>
+</ul>
+
+<p>Therefore, the maximum number of bishops that can be placed on an $8\times 8$ chessboard with no two attacking is:
+\(\boxed{14}\)</p>
+
+<h2 id="subset-without-x-and-2x">Subset without x and 2x</h2>
+<p>Choose the maximal number of integers among 1..50 that can be selected if we are not allowed to select n and 2n at at same time.</p>
+
+<p>Did I think about it - no, I just started clicking after one - whatever was clickable.</p>
+
+<p>Solution</p>
+
+<p>Idea: partition the numbers into chains formed by repeatedly doubling, each chain starting at an odd number.<br />
+For an odd starter $s$ the chain is
+\(s,\;2s,\;4s,\;8s,\;\dots\)
+stopping when the next doubling exceeds $50$. Every integer $1\le n\le 50$ belongs to exactly one such chain (its unique chain is obtained by repeatedly dividing by $2$ until odd). Numbers of the form $x$ and $2x$ always lie in the same chain, and there are no conflicts between different chains. Thus the problem reduces to choosing, independently in each chain, a largest set that contains no two consecutive elements of that chain.</p>
+
+<p>Optimal choice in a single chain</p>
+<ul>
+  <li>If a chain has length $L$, the largest number of elements we can pick from that chain with no two consecutive (no $x$ and $2x$) is
+\(\left\lceil\frac{L}{2}\right\rceil.\)
+(Choose every second element starting from the first.)</li>
+</ul>
+
+<p>List of chains (starter → chain)
+\(\begin{aligned}
+1&amp;:\; 1,2,4,8,16,32 &amp; (L=6)\\
+3&amp;:\; 3,6,12,24,48 &amp; (L=5)\\
+5&amp;:\; 5,10,20,40 &amp; (L=4)\\
+7&amp;:\; 7,14,28 &amp; (L=3)\\
+9&amp;:\; 9,18,36 &amp; (L=3)\\
+11&amp;:\; 11,22,44 &amp; (L=3)\\
+13&amp;:\; 13,26 &amp; (L=2)\\
+15&amp;:\; 15,30 &amp; (L=2)\\
+17&amp;:\; 17,34 &amp; (L=2)\\
+19&amp;:\; 19,38 &amp; (L=2)\\
+21&amp;:\; 21,42 &amp; (L=2)\\
+23&amp;:\; 23,46 &amp; (L=2)\\
+25&amp;:\; 25,50 &amp; (L=2)\\
+27,29,31,\dots,49&amp;:\; \text{each a singleton }(L=1)
+\end{aligned}\)</p>
+
+<p>Compute the best pick from each chain: take $\lceil L/2\rceil$ from each chain. Summing over all odd starters $1,3,5,\dots,49$ gives
+\(\sum_{\text{odd }s\le50} \left\lceil\frac{L_s}{2}\right\rceil = 33.\)</p>
+
+<p>Concrete optimal selection (one example)
+Pick every other element in each chain starting with the first. One such maximal set (sorted) is
+\(\{1,3,4,5,7,9,11,12,13,15,16,17,19,20,21,23,24,25,27,28,29,31,33,35,36,37,39,41,43,44,45,47,48,49\},\)
+which has size $33$ and contains no pair $x,2x$.</p>
+
+<center>
+<embed src="/svg/warm-up/max-set-n-2n.svg" type="image/svg+xml" />
+</center>
+
+<p>make this image smaller and add shading</p>
+
+<p>Optimality</p>
+<ul>
+  <li>By partitioning into chains we reduced the problem to independent subproblems, and we chose the maximal possible number from each chain. Therefore no larger global selection exists.</li>
+</ul>
+
+<p>Answer
+\(\boxed{33}\)</p>
+
+<h2 id="maximum-number-of-two-digit-integers-figure-out-the-correct-location-of-this">Maximum Number of Two Digit Integers (figure out the correct location of this)</h2>
+
+<p>Question 1
+There are 90 cards with all two-digit numbers on them:</p>
+
+<p>$10, 11, 12, …, 98, 99$</p>
+
+<p>A player takes some of these cards simultaneously. For each card taken she gets $1. However, if the player takes two cards that add up to 100 (say, 23 and 77), she loses all the money. How much could she get?</p>
+
+<p>In mathematical language: What is the maximum number of two-digit integers (10,11,…,99) that one can select satisfying the following condition: no two different selected integers have sum 100?</p>
+
+<h2 id="from-below-this-i-need-to-refactor-and-make-notes-after-chatgpt-5-comes-back">FROM BELOW THIS I NEED TO REFACTOR AND MAKE NOTES AFTER CHATGPT 5 COMES BACK</h2>
+<p>https://braintoblueprinttobuild.wordpress.com/2017/05/28/two-classic-chess-problems-and-how-to-solve-them-the-hard-way/</p>
+
+<hr />
+<h2 id="n-queens">N Queens</h2>
+<ol>
+  <li>Place 2 queens such that no two attack each other. Click on a cell to add or remove a queen. Grid 2x2
+    <ul>
+      <li>Solution: It’s impossible</li>
+    </ul>
+  </li>
+  <li>Place 3 queens such that no two attack each other. Click on a cell to add or remove a queen. Grid 3x3
+    <ul>
+      <li>Solution: It’s impossible</li>
+    </ul>
+  </li>
+  <li>Place 4 queens such that no two attack each other. Click on a cell to add or remove a queen. Grid 4x4
+    <ul>
+      <li>Solution: It’s possible</li>
+    </ul>
+  </li>
+  <li>Place 5 queens such that no two attack each other. Click on a cell to add or remove a queen. Grid 5x5
+    <ul>
+      <li>Solution: It’s possible</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Hello and welcome to the lesson Computer Search. To prove that an object satisfying some particular properties exists, it is actually enough to construct and present such an object. At the same time, there are cases when it is not so easy to do this by hand, and it is exactly the situation when it makes perfect sense to us, computers to help us. And this is exactly the thing that we’re going to do in this lesson. Namely, what we will consider through challenging puzzles,namely n queens puzzles and 16 diagonals puzzle. If you try them, you will notice that it is indeed not so easy to find the solution. Instead of constructing such a solution by hand, we’re going to implement this simple program that is going to help us to find a solution in a blink of an eye.
+Play video starting at ::52 and follow transcript0:52
+So we start with the N Queens puzzle. Let me first remind you how the chess queen moves. So it moves horizontally, diagonally, and vertically. So, for example, the queen that you see here on the slide can move along either this vertical line or horizontal line or two diagonal lines. Okay. Then the natural question is the following. Given an n x n chessboard, your goal is to place exactly n queens on this board such that no two queens attack each other.
+Play video starting at :1:31 and follow transcript1:31
+Okay? So, first of all, we know that the solution for this puzzle exists whenever n is at least four. At the same time, if you try to solve this puzzle by hand, you will notice that already for n equals eight, it is not so easy to find it by hand. Not to say about n equals 20. So let’s try to find a solution and let’s try to find and implement a computer program that will find a solution almost immediately. First of all, let’s try to understand how to represent a particular solution in our problem. And for this, let’s notice that if there is a solution that in every column, there must be exactly one, one queen.
+Play video starting at :2:20 and follow transcript2:20
+Why is that? Well exactly, because if there are at least two queens in some column, then they definitely must attack each other. So there must be at most one queen in each column. At the same time, if there is a column without the queen, this means basically is that in total, there are strictly less than n queens. And similarly we conclude that in each rows there must be exactly one queen. Okay. Now let’s consider the following solution for the case where n, the size of the board is equal to four.
+Play video starting at :2:57 and follow transcript2:57
+So in this case we have 4 x 4 board and there are four queens, exactly one queen in each row and exactly one queen in each column, such that they do not attack each other. So what the title of the slide claims here, is that this solution can be represented as a permutation. You see the left index of the columns and of the rows by numbers starting from zero to n minus one. So in this case n equals 4, so n minus one equals three. Okay, so now let’s represent the corresponding placement of queens by the following permutation of the numbers 0, one, two, three. So how it is represented by this permutation? Well it is easy to see.
+Play video starting at :3:47 and follow transcript3:47
+So this is an array, right? It is of size four. This is its indices 0, one, two, three. So the contents of the cell one actually tells of that in the zero’s column, this is the zero’s column and this the zero cell, we have a queen in the first row. This is the queen in the first row, right? And this exactly corresponds to this one. For the second column, that is column number one because we start from zero, we have three in this cell and this exactly indicates the fact that for this column, we have a queen standing at the third row in this column and so on.
+Play video starting at :4:43 and follow transcript4:43
+So, at this point, it should be clear that every correct solution can be represented by a permutation. This is exactly because in every row and in every column, we have a single queen. At the same time, not every permutation defines a solution and this is shown here on the slide. And so in the left, we have our previous solution and in the right, we have also some permutation which defines some placement of queens such that in every row and in every column, there is exactly one queen. At the same time, it is not a solution, right? Because we have two queens here on the same diagonal. So they attack each other.
+Play video starting at :5:28 and follow transcript5:28
+So we definitely need some procedure that we’ll check whether the given permutation is indeed a solution. So we need to implement the procedures that will be given a permutation and it will all prove true even though I believe in this permutation, in this placement of queens on the n by n board, there are no two queens that stay on the same diagonal. So let’s try to design a formula which will tell us when two queens stay on the same diagonal. This is our initial picture, so it shows our initial queen and it shows all the positions where it can move. So when I claim in the following, two queens stay on the same diagonal, consider for example, this queen and for example this queen. So they stay on the same diagonal because this horizontal shape exactly equal its vertical shape, right? And this is true for all the positions shown here on the slide.
+Play video starting at :6:37 and follow transcript6:37
+So in this particular case we have four cells here and four cells here. Now let’s consider for example this queen. So these two guys stay on the same diagonal exactly because the difference between their coordinates with respect to the columns is equal to the distance. It is equal to three. In this case, it is equal to three with respect to rows. And so right here, we see a formula. So, if we have two cells with coordinates I1 and J1 and I2 and J2, so this means that we have a queen standing at I’s row and J’s column and we have another queen standing at I2 row and J2 column.
+Play video starting at :7:26 and follow transcript7:26
+So then they stay on the same diagonal, if and only if, the absolute value between I1 and I2 is equal to the absolute value between J1 and J2. Right? So this is our formula and it allows us to immediately implement a simple program, just four lines of code that will check whether a given permutation is indeed a solution. So to check this, we do the following. We just, given the permutation, we go through all possible indices of rows, I1 and I2. So here we just iterate for all possible such queries using combinations from itertools. So then we just check whether the absolute value of I1 and I2 is equal to the absolute value of J1 and J2, where J1 is computed as permutation of I1.
+Play video starting at :8:27 and follow transcript8:27
+So this is J1 and J2 is computed as a permutation of I2. So if this absolute value is inside for at least for some pair of I1 and I2, this basically means that there are two queens that attack each other. In this case, we immediately return false. If there is no such player, we return true. So after this procedure is implemented, we do a small sanity check. We just check whether for the previously considered examples, the first one is indeed a solution and the second one is indeed not a solution. Okay. So when given such a check whether a given permutation is a solution or not, we can actually implement the whole program for finding a solution for the eight by eight board for example.
+Play video starting at :9:27 and follow transcript9:27
+So this is our procedure that checks whether a given permutation is a solution or not. And then what remains to be done is just to iterate through all possible permutations. And fortunately enough, in Python we can do this very easily. So we just iterate through all possible permutations and for each one we check whether it is a solution or not. If it is a solution, we print it and we stop immediately, okay? And this is basically it. So if you run this program, you will notice that it will find a solution for n equal to eight, almost immediately.
+Play video starting at :10:9 and follow transcript10:09
+At the same time, already for n equal to 13, for example, it takes a noticeable time. Okay. Not to say about n equal to 20, it will never stop for n equal to 20. In the next video, we will actually optimize our problem so that it works quite fast even for n equal to 20.</p>
+
+<p>Computer Search
+• There are cases when a solution exists, but
+it is not easy to construct it by hand</p>
+
+<p>Computer Search
+• There are cases when a solution exists, but
+it is not easy to construct it by hand
+• Let computers do the job!</p>
+
+<p>Computer Search
+• There are cases when a solution exists, but
+it is not easy to construct it by hand
+• Let computers do the job!
+• For two puzzles (n queens and 16
+diagonals), we will implement a program
+that will solve a puzzle on your laptop in
+blink of an eye
+Outline
+N Queens: Brute Force Search
+N Queens: Backtracking
+16 Diagonals
+Chess Queen
+A chess queen moves
+vertically, horizontally,
+or diagonally
+Chess Queen
+A chess queen moves
+vertically, horizontally,
+or diagonally
+N Queens Problem
+Problem
+Is it possible to place n queens on an n × n
+chessboard such that no two queens attack
+each other?
+Computer Search
+• It is known that this is possible for all n ≥ 4</p>
+
+<p>Computer Search
+• It is known that this is possible for all n ≥ 4
+• But already for n = 8 it is not easy to
+construct a solution by hand
+Speculating
+• Since we are placing n queens on an n × n
+board, there should be exactly one queen
+in each column</p>
+
+<p>Speculating
+• Since we are placing n queens on an n × n
+board, there should be exactly one queen
+in each column
+• If there are two queens in a column, they
+attack each other. Hence at most one queen
+in each column</p>
+
+<p>Speculating
+• Since we are placing n queens on an n × n
+board, there should be exactly one queen
+in each column
+• If there are two queens in a column, they
+attack each other. Hence at most one queen
+in each column
+• If there is a column without a queen, then the
+total number of queens is less than n</p>
+
+<p>Speculating
+• Since we are placing n queens on an n × n
+board, there should be exactly one queen
+in each column
+• If there are two queens in a column, they
+attack each other. Hence at most one queen
+in each column
+• If there is a column without a queen, then the
+total number of queens is less than n
+• For the same reason, there should be
+exactly one queen in each row
+Solution is a Permutation
+Solution is a Permutation
+0
+0
+1
+1
+2
+2
+3
+3
+Solution is a Permutation
+1 3 0 2
+0
+0
+1
+1
+2
+2
+3
+3
+But Not Every Permutation is a Solution
+1 3 0 2 3 1 0 2
+✓ ✗</p>
+
+<p>But Not Every Permutation is a Solution
+1 3 0 2 3 1 0 2
+✓ ✗
+How to check whether a permutation is a solution?
+Cells in the Same Diagonal
+0
+0
+1
+1
+2
+2
+3
+3
+4
+4
+5
+5
+6
+6
+7
+7
+cells [i1, j1] and [i2, j2]
+are on the same diagonal, if and only if
+|i1 − i2| = |j1 − j2|
+Is a Solution?
+import i t e r t o o l s as i t
+def i s _ s o l u t i o n ( perm ) :
+for ( i1 , i 2 ) in i t . combinations ( range ( len ( perm ) ) , 2 ) :
+i f abs ( i 1 − i 2 ) == abs ( perm [ i 1 ] − perm [ i 2 ] ) :
+return F alse
+return True
+a s s e r t ( i s _ s o l u t i o n ( [ 1 , 3 , 0 , 2 ] ) == True )
+a s s e r t ( i s _ s o l u t i o n ( [ 3 , 1 , 0 , 2 ] ) == F alse )
+Brute Force Search Program
+import i t e r t o o l s as i t
+def i s _ s o l u t i o n ( perm ) :
+for ( i1 , i 2 ) in i t . combinations ( range ( len ( perm ) ) , 2 ) :
+i f abs ( i 1 − i 2 ) == abs ( perm [ i 1 ] − perm [ i 2 ] ) :
+return F alse
+return True
+for perm in i t . permutations ( range ( 8 ) ) :
+i f i s _ s o l u t i o n ( perm ) :
+p rint ( perm )
+e x i t ( )
+Conclusion
+• The program finds a solution for n = 8
+immediately</p>
+
+<p>Conclusion
+• The program finds a solution for n = 8
+immediately
+• But already for n = 13 takes too long</p>
+
+<p>Conclusion
+• The program finds a solution for n = 8
+immediately
+• But already for n = 13 takes too long
+• Next part: will optimize the program so
+that it is able to find a solution quickly
+even for n = 20</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">itertools</span> <span class="k">as</span> <span class="n">it</span>
+
+<span class="k">def</span> <span class="nf">is_solution</span><span class="p">(</span><span class="n">perm</span><span class="p">):</span>
+    <span class="nf">for </span><span class="p">(</span><span class="n">i1</span><span class="p">,</span> <span class="n">i2</span><span class="p">)</span> <span class="ow">in</span> <span class="n">it</span><span class="p">.</span><span class="nf">combinations</span><span class="p">(</span><span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">perm</span><span class="p">)),</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nf">abs</span><span class="p">(</span><span class="n">i1</span> <span class="o">-</span> <span class="n">i2</span><span class="p">)</span> <span class="o">==</span> <span class="nf">abs</span><span class="p">(</span><span class="n">perm</span><span class="p">[</span><span class="n">i1</span><span class="p">]</span> <span class="o">-</span> <span class="n">perm</span><span class="p">[</span><span class="n">i2</span><span class="p">]):</span>
+            <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="k">return</span> <span class="bp">True</span>
+
+<span class="k">for</span> <span class="n">perm</span> <span class="ow">in</span> <span class="n">it</span><span class="p">.</span><span class="nf">permutations</span><span class="p">(</span><span class="nf">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="nf">is_solution</span><span class="p">(</span><span class="n">perm</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">perm</span><span class="p">)</span>
+        <span class="nf">exit</span><span class="p">()</span>
+</code></pre></div></div>
+<hr />
+<p>https://www.youtube.com/watch?v=Ph95IHmRp5M&amp;ab_channel=NeetCode</p>
+
+    <script src="https://utteranc.es/client.js" repo="psymbio/psymbio.github.io" issue-term="pathname" theme="github-dark-orange" crossorigin="anonymous" async>
+    </script>
+</section>
+<section style="padding-left: var(--spacing); width: 100%; max-width: 700px; margin: 0 auto;">
+    <span>That sentence that goes before giving my email to strangers: <a href="mailto: psymbio@gmail.com">psymbio@gmail.com</a></span>
+</section>
+<br>
+<br>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<style>
+    .videoWrapper {
+        position: relative;
+        padding-bottom: 56.333%;
+        height: 0;
+        background: black;
+    }
+    
+    .videoWrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+</style>
+
+<script>
+    function get_youtube_id(url) {
+        var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+        return (url.match(p)) ? RegExp.$1 : false;
+    }
+
+    function vimeo_embed(url, el) {
+        var id = false;
+        $.ajax({
+            url: 'https://vimeo.com/api/oembed.json?url=' + url,
+            async: true,
+            success: function(response) {
+                if (response.video_id) {
+                    id = response.video_id;
+                    if (url.indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (url.indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    var theInnerHTML = '<div class="videoWrapper"><iframe src="https://player.vimeo.com/video/' + id + '/?byline=0&title=0&portrait=0';
+                    if (autoplay == 1) theInnerHTML += '&autoplay=1';
+                    if (loop == 1) theInnerHTML += '&loop=1';
+                    theInnerHTML += '" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>';
+                    el.innerHTML = theInnerHTML;
+                }
+            }
+        });
+    }
+
+    function video_embed() {
+        var p = document.getElementsByTagName('p');
+        for (var i = 0; i < p.length; i++) {
+            //check if this is an external url (that starts with https:// or http://
+            if (p[i].innerHTML.indexOf("http://") == 0 ||
+                p[i].innerHTML.indexOf("https://") == 0) {
+                var youtube_id = get_youtube_id(p[i].innerHTML);
+                if (youtube_id) {
+                    if (p[i].innerHTML.indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (p[i].innerHTML.indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    var theInnerHTML = '<div class="videoWrapper"><iframe width="720" height="420" src="https://www.youtube.com/embed/' + youtube_id + '?rel=0&showinfo=0';
+                    if (autoplay == 1) theInnerHTML += '&autoplay=1';
+                    if (loop == 1) theInnerHTML += '&loop=1&playlist=' + youtube_id + '&version=3';
+                    if (p[i].innerHTML.indexOf('start=') !== -1) theInnerHTML += '&start=' + p[i].innerHTML.substring(p[i].innerHTML.indexOf('start=') + 6);
+                    theInnerHTML += '" frameborder="0" allowfullscreen></iframe></div>';
+                    p[i].innerHTML = theInnerHTML;
+                }
+                if (p[i].innerHTML.indexOf('vimeo.com') !== -1) {
+                    //ask vimeo for the id and place the embed
+                    vimeo_embed(p[i].innerHTML, p[i]);
+                }
+            }
+        }
+    }
+    video_embed();
+
+    function mp3_embed() {
+        var p = document.getElementsByTagName('p');
+        for (var i = 0; i < p.length; i++) {
+            if (p[i].innerHTML.indexOf('.mp3') !== -1) {
+                var str = p[i].innerHTML.split('?');
+                if (str.length == 1) str[1] = '';
+                var str1 = str[1];
+                str1 = str1.replace('&', '').replace('&', '');
+                str1 = str1.replace('autoplay=1', '').replace('autoplay=0', '');
+                str1 = str1.replace('loop=1', '').replace('loop=0', '');
+                str1 = str1.replace('controls=0', '').replace('controls=1', '');
+
+                if (str[0].lastIndexOf('.mp3', str[0].length - 4) === str[0].length - 4 && str1.length == 0) {
+                    if (str[1].indexOf('autoplay=1') !== -1) var autoplay = 1;
+                    else var autoplay = 0;
+                    if (str[1].indexOf('loop=1') !== -1) var loop = 1;
+                    else var loop = 0;
+                    if (str[1].indexOf('controls=0') !== -1) var controls = 0;
+                    else var controls = 1;
+                    var newInnerHTML = '<audio';
+                    if (autoplay == 1) newInnerHTML += ' autoplay';
+                    if (loop == 1) newInnerHTML += ' loop';
+                    if (controls == 1) newInnerHTML += ' controls';
+                    newInnerHTML += '><source src="' + str[0] + '" type="audio/mpeg">Your browser does not support the audio element.</audio>';
+                    p[i].innerHTML = newInnerHTML;
+                }
+            }
+        }
+    }
+    mp3_embed();
+</script>
+<script>
+    ! function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+            p = /^http:/.test(d.location) ? 'http' : 'https';
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.id = id;
+            js.src = p + '://platform.twitter.com/widgets.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    }(document, 'script', 'twitter-wjs');
+</script>
+
+            <section class="shore">
+    </div>
+</body>
+<script>
+    'use strict';
+    var head = document.head;
+    var link = document.createElement('link');
+    link.type = 'text/css';
+    link.rel = 'stylesheet';
+    link.href = '/css/pygments.css'
+    head.appendChild(link);
+</script>
+<!--copy code to clipboard-->
+<script src="/assets/scripts/copycode.js"></script>
+
+</html>
